@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 
-
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Application definition
 
