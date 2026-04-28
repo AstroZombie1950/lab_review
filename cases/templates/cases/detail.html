@@ -1,0 +1,519 @@
+{% extends "cases/base.html" %}
+
+{% block title %}{{ case.meta_title|default:case.title }}{% endblock %}
+{% block meta_description %}{{ case.meta_description|default:case.description }}{% endblock %}
+
+{% block extra_css %}
+<style>
+	.case-page {
+		min-height: 100vh;
+		padding-bottom: 80px;
+	}
+
+	/* Хлебные крошки */
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 24px 0 0;
+		font-size: 13px;
+		color: var(--muted);
+	}
+
+	.breadcrumb a:hover { color: #fff; }
+	.breadcrumb-sep { color: var(--muted-2); }
+
+	/* Герой */
+	.hero {
+		padding: 40px 0 0;
+	}
+
+	.hero-shell {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		overflow: hidden;
+	}
+
+	.hero-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		min-height: 480px;
+	}
+
+	.hero-content {
+		padding: 48px;
+		border-right: 1px solid var(--stroke);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.eyebrow {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--muted);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+	}
+
+	.hero-title {
+		font-size: clamp(28px, 3.5vw, 48px);
+		font-weight: 900;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		margin-bottom: 20px;
+	}
+
+	.hero-title span {
+		color: var(--muted);
+	}
+
+	.hero-desc {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.6;
+		margin-bottom: 40px;
+	}
+
+	/* Метрики в герое */
+	.hero-stats {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1px;
+		background: var(--stroke);
+		border-top: 1px solid var(--stroke);
+		margin-top: auto;
+	}
+
+	.hero-stat {
+		padding: 24px;
+		background: var(--bg-2);
+	}
+
+	.hero-stat strong {
+		display: block;
+		font-size: 28px;
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		margin-bottom: 6px;
+		color: #fff;
+	}
+
+	.hero-stat span {
+		font-size: 13px;
+		color: var(--muted);
+		line-height: 1.4;
+	}
+
+	/* Превью справа */
+	.hero-preview {
+		position: relative;
+		background:
+			radial-gradient(ellipse 80% 60% at 50% 0%, rgba(140,30,20,0.12), transparent),
+			var(--bg-3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.hero-cover {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.7;
+	}
+
+	.hero-no-cover {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		height: 100%;
+		color: var(--muted-2);
+		font-size: 14px;
+	}
+
+	/* Теги и отрасль */
+	.hero-meta {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+		padding: 16px 48px;
+		border-bottom: 1px solid var(--stroke);
+	}
+
+	.meta-tag {
+		display: inline-flex;
+		align-items: center;
+		height: 28px;
+		padding: 0 12px;
+		border-radius: 999px;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid var(--stroke);
+		font-size: 12px;
+		color: var(--muted);
+	}
+
+	/* Секции */
+	.section {
+		padding: 32px 0 0;
+	}
+
+	.section-shell {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		padding: 48px;
+	}
+
+	.section-head {
+		margin-bottom: 32px;
+	}
+
+	.section-title {
+		font-size: clamp(24px, 3vw, 36px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		margin-bottom: 12px;
+	}
+
+	.section-text {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.6;
+		max-width: 700px;
+	}
+
+	/* Блок info (проблема/задача/подход) */
+	.info-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+	}
+
+	.info-card {
+		padding: 28px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+	}
+
+	.card-kicker {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin-bottom: 14px;
+	}
+
+	.card-title {
+		font-size: 17px;
+		font-weight: 700;
+		line-height: 1.3;
+		margin-bottom: 12px;
+	}
+
+	.card-text {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.6;
+	}
+
+	/* Блок steps */
+	.steps-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 16px;
+	}
+
+	.step-card {
+		padding: 28px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+	}
+
+	.step-num {
+		width: 36px;
+		height: 36px;
+		border-radius: 10px;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid var(--stroke);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 15px;
+		font-weight: 800;
+		margin-bottom: 16px;
+		color: var(--muted);
+	}
+
+	/* Блок results */
+	.results-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 16px;
+	}
+
+	.result-card {
+		padding: 28px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+	}
+
+	.result-card strong {
+		display: block;
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		margin-bottom: 10px;
+		color: #fff;
+	}
+
+	.result-card span {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.5;
+	}
+
+	/* Блок text */
+	.text-block {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.8;
+	}
+
+	/* CTA */
+	.cta-shell {
+		margin-top: 32px;
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		padding: 48px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 32px;
+	}
+
+	.cta-title {
+		font-size: clamp(24px, 3vw, 38px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		margin-bottom: 12px;
+	}
+
+	.cta-text {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.6;
+		max-width: 600px;
+	}
+
+	.cta-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 52px;
+		padding: 0 28px;
+		border-radius: var(--radius-lg);
+		background: #fff;
+		color: #000;
+		font-size: 15px;
+		font-weight: 800;
+		white-space: nowrap;
+		transition: opacity .2s;
+		flex-shrink: 0;
+	}
+
+	.cta-btn:hover { opacity: 0.88; }
+
+	/* Назад */
+	.back-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 14px;
+		color: var(--muted);
+		margin-bottom: 8px;
+		transition: color .2s;
+	}
+
+	.back-link:hover { color: #fff; }
+
+	/* Адаптив */
+	@media (max-width: 1024px) {
+		.hero-grid { grid-template-columns: 1fr; }
+		.hero-content { border-right: none; border-bottom: 1px solid var(--stroke); }
+		.hero-preview { min-height: 300px; }
+		.results-grid { grid-template-columns: repeat(2, 1fr); }
+		.info-grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 720px) {
+		.hero-content { padding: 28px; }
+		.hero-meta { padding: 14px 28px; }
+		.section-shell { padding: 28px; }
+		.cta-shell { flex-direction: column; align-items: flex-start; padding: 28px; }
+		.hero-stats { grid-template-columns: 1fr; }
+		.steps-grid { grid-template-columns: 1fr; }
+		.results-grid { grid-template-columns: 1fr 1fr; }
+	}
+
+	@media (max-width: 480px) {
+		.results-grid { grid-template-columns: 1fr; }
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="case-page">
+	<div class="shell">
+
+		<!-- Хлебные крошки -->
+		<div class="breadcrumb">
+			<a href="/">Главная</a>
+			<span class="breadcrumb-sep">•</span>
+			<a href="{% url 'cases:list' %}">Кейсы</a>
+			<span class="breadcrumb-sep">•</span>
+			<span>{{ case.title }}</span>
+		</div>
+
+		<!-- Герой -->
+		<div class="hero">
+			<section class="hero-shell">
+
+				<!-- Теги и отрасль -->
+				<div class="hero-meta">
+					{% if case.industry %}
+					<span class="meta-tag">{{ case.industry }}</span>
+					{% endif %}
+					{% for tag in case.tags.all %}
+					<span class="meta-tag">{{ tag.name }}</span>
+					{% endfor %}
+				</div>
+
+				<div class="hero-grid">
+					<div class="hero-content">
+						<div>
+							<div class="eyebrow">{{ case.get_direction_display }} / {{ case.get_service_display }}</div>
+							<h1 class="hero-title">{{ case.title }}</h1>
+							<p class="hero-desc">{{ case.description }}</p>
+						</div>
+
+						<!-- Метрики из JSON -->
+						{% if case.metrics %}
+						<div class="hero-stats">
+							{% for metric in case.metrics %}
+							<div class="hero-stat">
+								<strong>{{ metric.value }}</strong>
+								<span>{{ metric.label }}</span>
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
+					</div>
+
+					<!-- Обложка -->
+					<div class="hero-preview">
+						{% if case.cover %}
+						<img class="hero-cover" src="{{ case.cover.url }}" alt="{{ case.title }}" />
+						{% else %}
+						<div class="hero-no-cover">Нет обложки</div>
+						{% endif %}
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Динамические блоки -->
+		{% for block in case.blocks %}
+
+			{% if block.type == 'info' %}
+			<section class="section">
+				<div class="section-shell">
+					<div class="section-head">
+						<h2 class="section-title">{{ block.title }}</h2>
+						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
+					</div>
+					<div class="info-grid">
+						{% for card in block.cards %}
+						<article class="info-card">
+							{% if card.kicker %}<div class="card-kicker">{{ card.kicker }}</div>{% endif %}
+							<h3 class="card-title">{{ card.title }}</h3>
+							<p class="card-text">{{ card.text }}</p>
+						</article>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+
+			{% elif block.type == 'steps' %}
+			<section class="section">
+				<div class="section-shell">
+					<div class="section-head">
+						<h2 class="section-title">{{ block.title }}</h2>
+						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
+					</div>
+					<div class="steps-grid">
+						{% for step in block.steps %}
+						<article class="step-card">
+							<div class="step-num">{{ forloop.counter }}</div>
+							<h3 class="card-title">{{ step.title }}</h3>
+							<p class="card-text">{{ step.text }}</p>
+						</article>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+
+			{% elif block.type == 'results' %}
+			<section class="section">
+				<div class="section-shell">
+					<div class="section-head">
+						<h2 class="section-title">{{ block.title }}</h2>
+						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
+					</div>
+					<div class="results-grid">
+						{% for result in block.results %}
+						<article class="result-card">
+							<strong>{{ result.value }}</strong>
+							<span>{{ result.text }}</span>
+						</article>
+						{% endfor %}
+					</div>
+				</div>
+			</section>
+
+			{% elif block.type == 'text' %}
+			<section class="section">
+				<div class="section-shell">
+					<div class="section-head">
+						<h2 class="section-title">{{ block.title }}</h2>
+					</div>
+					<p class="text-block">{{ block.text }}</p>
+				</div>
+			</section>
+
+			{% elif block.type == 'cta' %}
+			<div class="cta-shell">
+				<div>
+					<h2 class="cta-title">{{ block.title }}</h2>
+					{% if block.text %}<p class="cta-text">{{ block.text }}</p>{% endif %}
+				</div>
+				<a href="{{ block.btn_url|default:'#' }}" class="cta-btn">{{ block.btn_text|default:'Обсудить проект' }}</a>
+			</div>
+
+			{% endif %}
+
+		{% endfor %}
+
+	</div>
+</main>
+{% endblock %}

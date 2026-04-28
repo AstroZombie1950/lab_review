@@ -1,0 +1,455 @@
+{% extends "cases/base.html" %}
+
+{% block title %}Кейсы{% endblock %}
+{% block meta_description %}Кейсы по рекламе, SEO и разработке{% endblock %}
+
+{% block extra_css %}
+<style>
+	/* Страница */
+	.cases-page {
+		min-height: 100vh;
+		padding-bottom: 80px;
+	}
+
+	/* Герой */
+	.hero {
+		padding: 60px 0 48px;
+		background:
+			radial-gradient(ellipse 60% 40% at 70% 0%, rgba(140,30,20,0.18), transparent),
+			radial-gradient(ellipse 40% 30% at 30% 0%, rgba(80,20,60,0.14), transparent);
+	}
+
+	.hero-label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--muted);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+	}
+
+	.hero-title {
+		font-size: clamp(48px, 7vw, 96px);
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.04em;
+		margin-bottom: 20px;
+	}
+
+	.hero-title .dim { color: var(--muted); }
+
+	.hero-subtitle {
+		font-size: 18px;
+		color: var(--muted);
+		max-width: 560px;
+		line-height: 1.5;
+	}
+
+	/* Фильтры */
+	.filters {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+		padding: 24px 0 16px;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: var(--bg);
+		border-bottom: 1px solid var(--stroke);
+		margin-bottom: 16px;
+	}
+
+	.dropdown {
+		position: relative;
+	}
+
+	.dropdown-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		height: 42px;
+		padding: 0 16px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		color: rgba(255,255,255,0.78);
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+		transition: border-color .2s;
+	}
+
+	.dropdown-btn:hover,
+	.dropdown-btn.is-open {
+		border-color: var(--stroke-2);
+	}
+
+	.dropdown-btn svg { flex-shrink: 0; transition: transform .2s; }
+	.dropdown-btn.is-open svg { transform: rotate(180deg); }
+
+	.dropdown-menu {
+		display: none;
+		position: absolute;
+		top: calc(100% + 8px);
+		left: 0;
+		min-width: 200px;
+		background: #1a1a1a;
+		border: 1px solid var(--stroke-2);
+		border-radius: var(--radius-lg);
+		padding: 8px;
+		z-index: 100;
+		box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+	}
+
+	.dropdown-menu.is-open { display: block; }
+
+	.dropdown-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 12px;
+		border-radius: var(--radius-sm);
+		font-size: 14px;
+		color: rgba(255,255,255,0.72);
+		cursor: pointer;
+		transition: background .15s;
+	}
+
+	.dropdown-item:hover { background: rgba(255,255,255,0.06); }
+	.dropdown-item.is-active { color: #fff; }
+
+	.dropdown-item .check {
+		width: 18px;
+		height: 18px;
+		border-radius: 5px;
+		border: 1px solid var(--stroke-2);
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.dropdown-item.is-active .check {
+		background: var(--accent);
+		border-color: var(--accent);
+	}
+
+	/* Поиск */
+	.search-wrap {
+		flex: 1;
+		min-width: 200px;
+		max-width: 440px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		height: 42px;
+		padding: 0 16px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		transition: border-color .2s;
+	}
+
+	.search-wrap:focus-within { border-color: var(--stroke-2); }
+
+	.search-wrap input {
+		flex: 1;
+		border: none;
+		background: transparent;
+		color: #fff;
+		font-size: 14px;
+		outline: none;
+	}
+
+	.search-wrap input::placeholder { color: var(--muted-2); }
+
+	.sort-btn {
+		margin-left: auto;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		height: 42px;
+		padding: 0 16px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		color: rgba(255,255,255,0.78);
+		font-size: 14px;
+		white-space: nowrap;
+	}
+
+	/* Список кейсов */
+	.cases-list {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.case-row {
+		display: grid;
+		grid-template-columns: 80px 1fr auto auto;
+		align-items: center;
+		gap: 24px;
+		padding: 18px 20px;
+		border-radius: var(--radius-lg);
+		border: 1px solid transparent;
+		transition: background .2s, border-color .2s;
+		cursor: pointer;
+	}
+
+	.case-row:hover {
+		background: var(--bg-3);
+		border-color: var(--stroke);
+	}
+
+	.case-year {
+		font-size: 14px;
+		color: var(--muted);
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		white-space: nowrap;
+	}
+
+	.case-year::before {
+		content: '';
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--accent);
+		flex-shrink: 0;
+	}
+
+	.case-main {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-width: 0;
+	}
+
+	.case-title {
+		font-size: 17px;
+		font-weight: 700;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	.case-industry {
+		display: inline-flex;
+		align-items: center;
+		height: 26px;
+		padding: 0 10px;
+		border-radius: 999px;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid var(--stroke);
+		font-size: 12px;
+		color: var(--muted);
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.case-tags {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: nowrap;
+	}
+
+	.case-tag {
+		font-size: 13px;
+		color: var(--muted);
+		white-space: nowrap;
+	}
+
+	.case-tag-more {
+		font-size: 13px;
+		color: var(--muted-2);
+	}
+
+	.case-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		color: var(--muted);
+		white-space: nowrap;
+		transition: color .2s;
+	}
+
+	.case-link:hover { color: #fff; }
+
+	/* Пусто */
+	.empty {
+		padding: 80px 0;
+		text-align: center;
+		color: var(--muted);
+		font-size: 16px;
+	}
+
+	/* Адаптив */
+	@media (max-width: 900px) {
+		.case-row {
+			grid-template-columns: 60px 1fr auto;
+		}
+		.case-tags { display: none; }
+	}
+
+	@media (max-width: 600px) {
+		.hero { padding: 40px 0 32px; }
+		.filters { gap: 8px; }
+		.sort-btn { display: none; }
+		.case-row {
+			grid-template-columns: 1fr auto;
+			gap: 12px;
+		}
+		.case-year { display: none; }
+		.search-wrap { max-width: 100%; }
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="cases-page">
+	<div class="shell">
+
+		<!-- Герой -->
+		<div class="hero">
+			<div class="hero-label">Кейсы</div>
+			<h1 class="hero-title">
+				<span class="dim">Почитайте.</span><br>
+				Здесь про наш опыт<br>и подходы к работе
+			</h1>
+			<p class="hero-subtitle">Вы наверняка найдёте в этих историях что-то полезное.</p>
+		</div>
+
+		<!-- Фильтры -->
+		<div class="filters" id="filters">
+
+			<!-- Дропдаун по отрасли -->
+			<div class="dropdown">
+				<button class="dropdown-btn" id="industry-btn" type="button">
+					{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</button>
+				<div class="dropdown-menu" id="industry-menu">
+					<div class="dropdown-item {% if not selected_industry %}is-active{% endif %}" onclick="applyFilter('industry', '')">
+						<span class="check">{% if not selected_industry %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+						Все отрасли
+					</div>
+					{% for ind in all_industries %}
+					<div class="dropdown-item {% if selected_industry == ind %}is-active{% endif %}" onclick="applyFilter('industry', '{{ ind }}')">
+						<span class="check">{% if selected_industry == ind %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+						{{ ind }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- Дропдаун по тегу -->
+			<div class="dropdown">
+				<button class="dropdown-btn" id="tag-btn" type="button">
+					{% if selected_tag %}{{ selected_tag }}{% else %}По тегу{% endif %}
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</button>
+				<div class="dropdown-menu" id="tag-menu">
+					<div class="dropdown-item {% if not selected_tag %}is-active{% endif %}" onclick="applyFilter('tag', '')">
+						<span class="check">{% if not selected_tag %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+						Все теги
+					</div>
+					{% for tag in all_tags %}
+					<div class="dropdown-item {% if selected_tag == tag.slug %}is-active{% endif %}" onclick="applyFilter('tag', '{{ tag.slug }}')">
+						<span class="check">{% if selected_tag == tag.slug %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+						{{ tag.name }}
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+
+			<!-- Поиск -->
+			<label class="search-wrap">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+				<input type="text" placeholder="По названию" id="search-input" value="{{ search }}" />
+			</label>
+
+			<!-- Сортировка -->
+			<button class="sort-btn" type="button">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h13M10 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+				Сначала новые
+			</button>
+		</div>
+
+		<!-- Список -->
+		<div class="cases-list">
+			{% for case in cases %}
+			<a class="case-row" href="{% url 'cases:detail' case.slug %}">
+				<div class="case-year">{{ case.created_at.year }}</div>
+				<div class="case-main">
+					<div class="case-title">{{ case.title }}</div>
+					{% if case.industry %}
+					<div class="case-industry">{{ case.industry }}</div>
+					{% endif %}
+				</div>
+				<div class="case-tags">
+					{% for tag in case.tags.all|slice:":3" %}
+					<span class="case-tag">{{ tag.name }}</span>
+					{% endfor %}
+					{% if case.tags.count > 3 %}
+					<span class="case-tag-more">ещё...</span>
+					{% endif %}
+				</div>
+				<div class="case-link">
+					Кейс
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+			{% empty %}
+			<div class="empty">Кейсы не найдены</div>
+			{% endfor %}
+		</div>
+
+	</div>
+</main>
+
+<script>
+	// Применяем фильтр — обновляем URL
+	function applyFilter(param, value) {
+		const url = new URL(window.location);
+		if (value) {
+			url.searchParams.set(param, value);
+		} else {
+			url.searchParams.delete(param);
+		}
+		window.location = url;
+	}
+
+	// Поиск с задержкой
+	const searchInput = document.getElementById('search-input');
+	let searchTimer;
+	searchInput.addEventListener('input', () => {
+		clearTimeout(searchTimer);
+		searchTimer = setTimeout(() => {
+			applyFilter('search', searchInput.value.trim());
+		}, 400);
+	});
+
+	// Дропдауны
+	document.querySelectorAll('.dropdown').forEach(dropdown => {
+		const btn = dropdown.querySelector('.dropdown-btn');
+		const menu = dropdown.querySelector('.dropdown-menu');
+		btn.addEventListener('click', (e) => {
+			e.stopPropagation();
+			btn.classList.toggle('is-open');
+			menu.classList.toggle('is-open');
+		});
+	});
+
+	// Закрыть дропдауны по клику вне
+	document.addEventListener('click', () => {
+		document.querySelectorAll('.dropdown-btn, .dropdown-menu').forEach(el => {
+			el.classList.remove('is-open');
+		});
+	});
+</script>
+{% endblock %}

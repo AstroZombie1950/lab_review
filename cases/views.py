@@ -1,0 +1,36 @@
+from django.shortcuts import render, get_object_or_404
+from .models import Case, Tag
+
+
+def cases_list(request):
+	cases = Case.objects.filter(is_published=True).prefetch_related('tags')
+
+	industry = request.GET.get('industry')
+	if industry:
+		cases = cases.filter(industry=industry)
+
+	tag = request.GET.get('tag')
+	if tag:
+		cases = cases.filter(tags__slug=tag)
+
+	search = request.GET.get('search')
+	if search:
+		cases = cases.filter(title__icontains=search)
+
+	all_tags = Tag.objects.all()
+	all_industries = Case.objects.filter(is_published=True).values_list('industry', flat=True).distinct()
+
+	context = {
+		'cases': cases,
+		'all_tags': all_tags,
+		'all_industries': [i for i in all_industries if i],
+		'selected_industry': industry,
+		'selected_tag': tag,
+		'search': search or '',
+	}
+	return render(request, 'cases/list.html', context)
+
+
+def case_detail(request, slug):
+	case = get_object_or_404(Case, slug=slug, is_published=True)
+	return render(request, 'cases/detail.html', {'case': case})
