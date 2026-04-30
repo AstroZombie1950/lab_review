@@ -17,7 +17,7 @@ import os
 
 load_dotenv()
 
-SECRET_KEY = os.getenv('d6cd7873b321b34b0f7bf2e1adf5a61c78c9f0ef905db56f22659a03a37010d9f11f91d11c746a45e523cb77707a9341c1ea')
+SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

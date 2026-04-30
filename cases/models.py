@@ -50,10 +50,10 @@ class Case(models.Model):
 	# Для карточки в списке
 	description = models.TextField('Короткое описание')
 	cover = models.ImageField('Обложка', upload_to='cases/covers/', blank=True, null=True)
-	metrics = models.JSONField('Метрики', default=list, help_text='Список строк: ["+142% заявок", "-31% лид"]')
+	metrics = models.JSONField('Метрики', default=list, blank=True, help_text='Список строк: ["+142% заявок", "-31% лид"]')
 
 	# Внутренняя страница
-	blocks = models.JSONField('Блоки страницы', default=list)
+	blocks = models.JSONField('Блоки страницы', default=list, blank=True)
 
 	# Мета
 	meta_title = models.CharField('Meta Title', max_length=200, blank=True)

@@ -114,26 +114,56 @@
 			radial-gradient(ellipse 80% 60% at 50% 0%, rgba(140,30,20,0.12), transparent),
 			var(--bg-3);
 		display: flex;
-		align-items: center;
-		justify-content: center;
+		flex-direction: column;
 		overflow: hidden;
 	}
 
 	.hero-cover {
 		width: 100%;
-		height: 100%;
+		flex: 1;
 		object-fit: cover;
 		opacity: 0.7;
+		min-height: 0;
 	}
 
 	.hero-no-cover {
+		flex: 1;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
-		height: 100%;
 		color: var(--muted-2);
 		font-size: 14px;
+	}
+
+	/* Метрики справа внизу */
+	.preview-metrics {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 1px;
+		background: var(--stroke);
+		border-top: 1px solid var(--stroke);
+		flex-shrink: 0;
+	}
+
+	.preview-metric {
+		padding: 20px 24px;
+		background: rgba(10,10,10,0.72);
+		backdrop-filter: blur(8px);
+	}
+
+	.preview-metric strong {
+		display: block;
+		font-size: 24px;
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		margin-bottom: 4px;
+		color: #fff;
+	}
+
+	.preview-metric span {
+		font-size: 12px;
+		color: var(--muted);
+		line-height: 1.4;
 	}
 
 	/* Теги и отрасль */
@@ -407,10 +437,10 @@
 							<p class="hero-desc">{{ case.description }}</p>
 						</div>
 
-						<!-- Метрики из JSON -->
+						<!-- Первые 3 метрики слева -->
 						{% if case.metrics %}
 						<div class="hero-stats">
-							{% for metric in case.metrics %}
+							{% for metric in case.metrics|slice:":3" %}
 							<div class="hero-stat">
 								<strong>{{ metric.value }}</strong>
 								<span>{{ metric.label }}</span>
@@ -426,6 +456,18 @@
 						<img class="hero-cover" src="{{ case.cover.url }}" alt="{{ case.title }}" />
 						{% else %}
 						<div class="hero-no-cover">Нет обложки</div>
+						{% endif %}
+
+						<!-- Следующие 3 метрики справа -->
+						{% if case.metrics %}
+						<div class="preview-metrics">
+							{% for metric in case.metrics|slice:"3:6" %}
+							<div class="preview-metric">
+								<strong>{{ metric.value }}</strong>
+								<span>{{ metric.label }}</span>
+							</div>
+							{% endfor %}
+						</div>
 						{% endif %}
 					</div>
 				</div>

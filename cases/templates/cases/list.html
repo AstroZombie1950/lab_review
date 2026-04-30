@@ -5,84 +5,170 @@
 
 {% block extra_css %}
 <style>
-	/* Страница */
+	/* ── Страница ── */
 	.cases-page {
 		min-height: 100vh;
-		padding-bottom: 80px;
+		padding-bottom: 100px;
 	}
 
-	/* Герой */
+	/* ── Герой ── */
 	.hero {
-		padding: 60px 0 48px;
-		background:
-			radial-gradient(ellipse 60% 40% at 70% 0%, rgba(140,30,20,0.18), transparent),
-			radial-gradient(ellipse 40% 30% at 30% 0%, rgba(80,20,60,0.14), transparent);
+		padding: 72px 0 56px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Анимированные пятна */
+	.hero-blob {
+		position: absolute;
+		top: -120px;
+		right: -80px;
+		width: 600px;
+		height: 600px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.18) 0%, rgba(232,56,42,0.06) 50%, transparent 70%);
+		animation: blob-drift 8s ease-in-out infinite;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.hero-blob-2 {
+		position: absolute;
+		bottom: -200px;
+		left: -100px;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.08) 0%, transparent 65%);
+		animation: blob-drift 12s ease-in-out infinite reverse;
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	@keyframes blob-drift {
+		0%, 100% { transform: translate(0, 0) scale(1); }
+		33%       { transform: translate(-30px, 20px) scale(1.05); }
+		66%       { transform: translate(20px, -30px) scale(0.96); }
+	}
+
+	.hero-inner {
+		position: relative;
+		z-index: 1;
 	}
 
 	.hero-label {
-		font-size: 13px;
-		font-weight: 600;
-		color: var(--muted);
-		letter-spacing: 0.08em;
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		margin-bottom: 20px;
+		margin-bottom: 24px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.hero-label::before {
+		content: '';
+		width: 20px;
+		height: 2px;
+		background: var(--accent);
+		flex-shrink: 0;
 	}
 
 	.hero-title {
-		font-size: clamp(48px, 7vw, 96px);
+		font-size: clamp(52px, 7.5vw, 104px);
 		font-weight: 900;
 		line-height: 1;
 		letter-spacing: -0.04em;
-		margin-bottom: 20px;
+		margin-bottom: 24px;
 	}
 
 	.hero-title .dim { color: var(--muted); }
 
 	.hero-subtitle {
-		font-size: 18px;
+		font-size: 17px;
 		color: var(--muted);
-		max-width: 560px;
-		line-height: 1.5;
+		max-width: 480px;
+		line-height: 1.6;
 	}
 
-	/* Фильтры */
+	/* ── Табы услуг ── */
+	.service-tabs {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+		padding: 32px 0 0;
+	}
+
+	.service-tab {
+		display: inline-flex;
+		align-items: center;
+		height: 38px;
+		padding: 0 16px;
+		border-radius: 999px;
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		font-size: 13px;
+		font-weight: 500;
+		color: rgba(255,255,255,0.52);
+		cursor: pointer;
+		transition: all .2s;
+		white-space: nowrap;
+	}
+
+	.service-tab:hover {
+		color: rgba(255,255,255,0.85);
+		border-color: var(--stroke-2);
+	}
+
+	.service-tab.is-active {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+		font-weight: 700;
+	}
+
+	/* ── Панель фильтров ── */
 	.filters {
 		display: flex;
 		align-items: center;
 		gap: 10px;
 		flex-wrap: wrap;
-		padding: 24px 0 16px;
+		padding: 20px 0 16px;
 		position: sticky;
 		top: 0;
 		z-index: 10;
 		background: var(--bg);
 		border-bottom: 1px solid var(--stroke);
-		margin-bottom: 16px;
+		margin-bottom: 8px;
 	}
 
-	.dropdown {
-		position: relative;
-	}
+	/* Дропдауны */
+	.dropdown { position: relative; }
 
 	.dropdown-btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		height: 42px;
+		height: 40px;
 		padding: 0 16px;
 		border-radius: var(--radius-lg);
 		background: var(--bg-3);
 		border: 1px solid var(--stroke);
-		color: rgba(255,255,255,0.78);
+		color: rgba(255,255,255,0.65);
 		font-size: 14px;
 		font-weight: 500;
 		white-space: nowrap;
-		transition: border-color .2s;
+		transition: border-color .2s, color .2s;
+		cursor: pointer;
 	}
 
 	.dropdown-btn:hover,
 	.dropdown-btn.is-open {
 		border-color: var(--stroke-2);
+		color: rgba(255,255,255,0.9);
 	}
 
 	.dropdown-btn svg { flex-shrink: 0; transition: transform .2s; }
@@ -93,13 +179,13 @@
 		position: absolute;
 		top: calc(100% + 8px);
 		left: 0;
-		min-width: 200px;
-		background: #1a1a1a;
+		min-width: 210px;
+		background: #1c1c1c;
 		border: 1px solid var(--stroke-2);
 		border-radius: var(--radius-lg);
 		padding: 8px;
 		z-index: 100;
-		box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+		box-shadow: 0 20px 48px rgba(0,0,0,0.6);
 	}
 
 	.dropdown-menu.is-open { display: block; }
@@ -108,20 +194,20 @@
 		display: flex;
 		align-items: center;
 		gap: 10px;
-		padding: 10px 12px;
+		padding: 9px 12px;
 		border-radius: var(--radius-sm);
-		font-size: 14px;
-		color: rgba(255,255,255,0.72);
+		font-size: 13px;
+		color: rgba(255,255,255,0.65);
 		cursor: pointer;
-		transition: background .15s;
+		transition: background .15s, color .15s;
 	}
 
-	.dropdown-item:hover { background: rgba(255,255,255,0.06); }
+	.dropdown-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
 	.dropdown-item.is-active { color: #fff; }
 
 	.dropdown-item .check {
-		width: 18px;
-		height: 18px;
+		width: 17px;
+		height: 17px;
 		border-radius: 5px;
 		border: 1px solid var(--stroke-2);
 		flex-shrink: 0;
@@ -139,11 +225,11 @@
 	.search-wrap {
 		flex: 1;
 		min-width: 200px;
-		max-width: 440px;
+		max-width: 420px;
 		display: flex;
 		align-items: center;
 		gap: 10px;
-		height: 42px;
+		height: 40px;
 		padding: 0 16px;
 		border-radius: var(--radius-lg);
 		background: var(--bg-3);
@@ -157,42 +243,52 @@
 		flex: 1;
 		border: none;
 		background: transparent;
-		color: #fff;
+		color: rgba(255,255,255,0.85);
 		font-size: 14px;
 		outline: none;
 	}
 
-	.search-wrap input::placeholder { color: var(--muted-2); }
+	.search-wrap input::placeholder { color: rgba(255,255,255,0.28); }
 
+	/* Сортировка */
 	.sort-btn {
 		margin-left: auto;
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		height: 42px;
+		height: 40px;
 		padding: 0 16px;
 		border-radius: var(--radius-lg);
 		background: var(--bg-3);
 		border: 1px solid var(--stroke);
-		color: rgba(255,255,255,0.78);
-		font-size: 14px;
+		color: rgba(255,255,255,0.52);
+		font-size: 13px;
 		white-space: nowrap;
+		cursor: pointer;
+		transition: color .2s, border-color .2s;
 	}
 
-	/* Список кейсов */
+	.sort-btn:hover {
+		color: rgba(255,255,255,0.85);
+		border-color: var(--stroke-2);
+	}
+
+	/* ── Список кейсов ── */
 	.cases-list {
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
+		gap: 3px;
 	}
 
+	/* Строка */
 	.case-row {
 		display: grid;
-		grid-template-columns: 80px 1fr auto auto;
+		grid-template-columns: 200px minmax(0,1fr) 1fr auto;
 		align-items: center;
 		gap: 24px;
-		padding: 18px 20px;
+		padding: 18px 22px;
 		border-radius: var(--radius-lg);
+		background: var(--bg-2);
 		border: 1px solid transparent;
 		transition: background .2s, border-color .2s;
 		cursor: pointer;
@@ -203,16 +299,17 @@
 		border-color: var(--stroke);
 	}
 
-	.case-year {
-		font-size: 14px;
-		color: var(--muted);
+	/* Услуга (вместо года) */
+	.case-service {
+		font-size: 13px;
+		color: rgba(255,255,255,0.4);
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		white-space: nowrap;
+		overflow: hidden;
 	}
 
-	.case-year::before {
+	.case-service::before {
 		content: '';
 		width: 6px;
 		height: 6px;
@@ -221,6 +318,13 @@
 		flex-shrink: 0;
 	}
 
+	.case-service-text {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	/* Название + отрасль */
 	.case-main {
 		display: flex;
 		align-items: center;
@@ -231,6 +335,7 @@
 	.case-title {
 		font-size: 17px;
 		font-weight: 700;
+		color: rgba(255,255,255,0.88);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -242,43 +347,92 @@
 		height: 26px;
 		padding: 0 10px;
 		border-radius: 999px;
-		background: rgba(255,255,255,0.06);
+		background: rgba(255,255,255,0.05);
 		border: 1px solid var(--stroke);
 		font-size: 12px;
-		color: var(--muted);
+		color: rgba(255,255,255,0.4);
 		white-space: nowrap;
 		flex-shrink: 0;
 	}
 
+	/* Теги */
 	.case-tags {
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		flex-wrap: nowrap;
 	}
 
 	.case-tag {
 		font-size: 13px;
-		color: var(--muted);
+		color: rgba(255,255,255,0.38);
 		white-space: nowrap;
 	}
 
 	.case-tag-more {
 		font-size: 13px;
-		color: var(--muted-2);
+		color: rgba(255,255,255,0.22);
 	}
 
+	/* Кнопка кейса — заметная */
 	.case-link {
 		display: inline-flex;
 		align-items: center;
-		gap: 6px;
-		font-size: 13px;
-		color: var(--muted);
+		gap: 8px;
+		height: 40px;
+		padding: 0 20px;
+		border-radius: var(--radius-md);
+		background: rgba(255,255,255,0.07);
+		border: 1px solid var(--stroke);
+		font-size: 14px;
+		font-weight: 600;
+		color: rgba(255,255,255,0.6);
 		white-space: nowrap;
-		transition: color .2s;
+		transition: background .2s, color .2s, border-color .2s;
+		flex-shrink: 0;
 	}
 
-	.case-link:hover { color: #fff; }
+	.case-row:hover .case-link {
+		background: rgba(255,255,255,0.12);
+		color: #fff;
+		border-color: rgba(255,255,255,0.2);
+	}
+
+	/* Превью при ховере */
+	.case-preview {
+		position: fixed;
+		width: 300px;
+		height: 220px;
+		border-radius: var(--radius-xl);
+		overflow: hidden;
+		pointer-events: none;
+		opacity: 0;
+		transform: scale(0.94) translateY(8px);
+		transition: opacity .25s, transform .25s;
+		z-index: 200;
+		box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+	}
+
+	.case-preview.is-visible {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+
+	.case-preview img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.case-preview-empty {
+		width: 100%;
+		height: 100%;
+		background: var(--bg-3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--muted-2);
+		font-size: 13px;
+	}
 
 	/* Пусто */
 	.empty {
@@ -288,24 +442,27 @@
 		font-size: 16px;
 	}
 
-	/* Адаптив */
-	@media (max-width: 900px) {
-		.case-row {
-			grid-template-columns: 60px 1fr auto;
-		}
+	/* ── Адаптив ── */
+	@media (max-width: 1024px) {
+		.case-row { grid-template-columns: 160px 1fr auto; }
 		.case-tags { display: none; }
 	}
 
-	@media (max-width: 600px) {
-		.hero { padding: 40px 0 32px; }
-		.filters { gap: 8px; }
-		.sort-btn { display: none; }
+	@media (max-width: 720px) {
+		.hero { padding: 48px 0 36px; }
 		.case-row {
 			grid-template-columns: 1fr auto;
 			gap: 12px;
 		}
-		.case-year { display: none; }
+		.case-service { display: none; }
+		.sort-btn { display: none; }
 		.search-wrap { max-width: 100%; }
+	}
+
+	@media (max-width: 480px) {
+		.filters { gap: 8px; }
+		.service-tabs { gap: 6px; }
+		.service-tab { font-size: 12px; padding: 0 12px; }
 	}
 </style>
 {% endblock %}
@@ -316,18 +473,34 @@
 
 		<!-- Герой -->
 		<div class="hero">
-			<div class="hero-label">Кейсы</div>
-			<h1 class="hero-title">
-				<span class="dim">Почитайте.</span><br>
-				Здесь про наш опыт<br>и подходы к работе
-			</h1>
-			<p class="hero-subtitle">Вы наверняка найдёте в этих историях что-то полезное.</p>
+			<div class="hero-blob"></div>
+			<div class="hero-blob-2"></div>
+			<div class="hero-inner">
+				<div class="hero-label">Кейсы</div>
+				<h1 class="hero-title">
+					<span class="dim">Почитайте.</span><br>
+					Здесь про наш опыт<br>и подходы к работе
+				</h1>
+				<p class="hero-subtitle">Вы наверняка найдёте в этих историях что-то полезное.</p>
+
+				<!-- Табы услуг -->
+				<div class="service-tabs">
+					<button class="service-tab {% if not selected_service %}is-active{% endif %}" onclick="applyFilter('service', '')">
+						Все услуги
+					</button>
+					{% for value, label in service_choices %}
+					<button class="service-tab {% if selected_service == value %}is-active{% endif %}" onclick="applyFilter('service', '{{ value }}')">
+						{{ label }}
+					</button>
+					{% endfor %}
+				</div>
+			</div>
 		</div>
 
 		<!-- Фильтры -->
 		<div class="filters" id="filters">
 
-			<!-- Дропдаун по отрасли -->
+			<!-- По отрасли -->
 			<div class="dropdown">
 				<button class="dropdown-btn" id="industry-btn" type="button">
 					{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}
@@ -347,10 +520,10 @@
 				</div>
 			</div>
 
-			<!-- Дропдаун по тегу -->
+			<!-- По тегу -->
 			<div class="dropdown">
 				<button class="dropdown-btn" id="tag-btn" type="button">
-					{% if selected_tag %}{{ selected_tag }}{% else %}По тегу{% endif %}
+					{% if selected_tag %}{{ selected_tag_name }}{% else %}По тегу{% endif %}
 					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 				</button>
 				<div class="dropdown-menu" id="tag-menu">
@@ -369,13 +542,13 @@
 
 			<!-- Поиск -->
 			<label class="search-wrap">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 				<input type="text" placeholder="По названию" id="search-input" value="{{ search }}" />
 			</label>
 
 			<!-- Сортировка -->
 			<button class="sort-btn" type="button">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h13M10 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+				<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h13M10 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
 				Сначала новые
 			</button>
 		</div>
@@ -383,14 +556,24 @@
 		<!-- Список -->
 		<div class="cases-list">
 			{% for case in cases %}
-			<a class="case-row" href="{% url 'cases:detail' case.slug %}">
-				<div class="case-year">{{ case.created_at.year }}</div>
+			<a class="case-row"
+				href="{% url 'cases:detail' case.slug %}"
+				data-cover="{% if case.cover %}{{ case.cover.url }}{% endif %}">
+
+				<!-- Услуга вместо года -->
+				<div class="case-service">
+					<span class="case-service-text">{{ case.get_service_display }}</span>
+				</div>
+
+				<!-- Название + отрасль -->
 				<div class="case-main">
 					<div class="case-title">{{ case.title }}</div>
 					{% if case.industry %}
 					<div class="case-industry">{{ case.industry }}</div>
 					{% endif %}
 				</div>
+
+				<!-- Теги -->
 				<div class="case-tags">
 					{% for tag in case.tags.all|slice:":3" %}
 					<span class="case-tag">{{ tag.name }}</span>
@@ -399,9 +582,11 @@
 					<span class="case-tag-more">ещё...</span>
 					{% endif %}
 				</div>
+
+				<!-- Кнопка -->
 				<div class="case-link">
 					Кейс
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 				</div>
 			</a>
 			{% empty %}
@@ -411,6 +596,12 @@
 
 	</div>
 </main>
+
+<!-- Превью при ховере -->
+<div class="case-preview" id="case-preview">
+	<div class="case-preview-empty" id="preview-empty">Нет обложки</div>
+	<img id="preview-img" src="" alt="" style="display:none;" />
+</div>
 
 <script>
 	// Применяем фильтр — обновляем URL
@@ -445,10 +636,49 @@
 		});
 	});
 
-	// Закрыть дропдауны по клику вне
 	document.addEventListener('click', () => {
 		document.querySelectorAll('.dropdown-btn, .dropdown-menu').forEach(el => {
 			el.classList.remove('is-open');
+		});
+	});
+
+	// Превью при ховере — следует за курсором
+	const preview = document.getElementById('case-preview');
+	const previewImg = document.getElementById('preview-img');
+	const previewEmpty = document.getElementById('preview-empty');
+	let moveHandler = null;
+
+	document.querySelectorAll('.case-row').forEach(row => {
+		row.addEventListener('mouseenter', () => {
+			const cover = row.dataset.cover;
+
+			if (cover) {
+				previewImg.src = cover;
+				previewImg.style.display = 'block';
+				previewEmpty.style.display = 'none';
+			} else {
+				previewImg.style.display = 'none';
+				previewEmpty.style.display = 'flex';
+			}
+
+			preview.classList.add('is-visible');
+
+			moveHandler = (ev) => {
+				const x = ev.clientX + 24;
+				const y = ev.clientY - 110;
+				preview.style.left = Math.min(x, window.innerWidth - 320) + 'px';
+				preview.style.top = Math.max(8, Math.min(y, window.innerHeight - 240)) + 'px';
+			};
+
+			document.addEventListener('mousemove', moveHandler);
+		});
+
+		row.addEventListener('mouseleave', () => {
+			preview.classList.remove('is-visible');
+			if (moveHandler) {
+				document.removeEventListener('mousemove', moveHandler);
+				moveHandler = null;
+			}
 		});
 	});
 </script>

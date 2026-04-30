@@ -3,16 +3,15 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<title>{% block title %}Кейсы{% endblock %}</title>
+	<title>{% block title %}Lab Review{% endblock %}</title>
 	<meta name="description" content="{% block meta_description %}{% endblock %}" />
 
-	<!-- Inter из Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
 	<style>
-		/* Переменные */
+		/* ── Переменные ── */
 		:root {
 			--bg: #0a0a0a;
 			--bg-2: #111111;
@@ -27,10 +26,11 @@
 			--radius-lg: 16px;
 			--radius-md: 12px;
 			--radius-sm: 8px;
-			--container: 1320px;
+			--container: 1480px;
+			--header-h: 68px;
 		}
 
-		/* Сброс */
+		/* ── Сброс ── */
 		*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 		html { scroll-behavior: smooth; }
 		body {
@@ -38,21 +38,945 @@
 			background: var(--bg);
 			color: var(--text);
 			-webkit-font-smoothing: antialiased;
+			padding-top: var(--header-h);
 		}
 		a { color: inherit; text-decoration: none; }
 		button { font: inherit; cursor: pointer; border: none; background: none; }
 		img { display: block; max-width: 100%; }
 
-		/* Контейнер */
+		/* ── Контейнер ── */
 		.shell {
 			width: min(calc(100% - 32px), var(--container));
 			margin: 0 auto;
+		}
+
+		/* ════════════════════════════════
+		   ШАПКА
+		════════════════════════════════ */
+		.site-header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 100;
+			height: var(--header-h);
+			background: rgba(10,10,10,0.82);
+			backdrop-filter: blur(16px);
+			-webkit-backdrop-filter: blur(16px);
+			border-bottom: 1px solid var(--stroke);
+			transition: transform .35s ease, opacity .35s ease;
+		}
+
+		/* Скрываем при скролле вниз, показываем вверх */
+		.site-header.is-hidden {
+			transform: translateY(-100%);
+			opacity: 0;
+		}
+
+		/* Градиент-тень под шапкой */
+		.site-header::after {
+			content: '';
+			position: absolute;
+			top: 100%;
+			left: 0;
+			right: 0;
+			height: 80px;
+			background: linear-gradient(to bottom, rgba(10,10,10,0.5), transparent);
+			pointer-events: none;
+		}
+
+		.header-inner {
+			display: grid;
+			grid-template-columns: auto 1fr auto;
+			align-items: center;
+			gap: 32px;
+			height: var(--header-h);
+		}
+
+		/* Логотип */
+		.logo {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			text-decoration: none;
+			flex-shrink: 0;
+		}
+
+		.logo-mark {
+			width: 36px;
+			height: 36px;
+			border-radius: 10px;
+			background: var(--accent);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 15px;
+			font-weight: 900;
+			color: #fff;
+			letter-spacing: -0.05em;
+			flex-shrink: 0;
+		}
+
+		.logo-name {
+			font-size: 16px;
+			font-weight: 800;
+			letter-spacing: -0.03em;
+			color: #fff;
+		}
+
+		.logo-name span {
+			color: var(--accent);
+		}
+
+		/* Навигация */
+		.nav {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 4px;
+		}
+
+		.nav-link {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			height: 38px;
+			padding: 0 14px;
+			border-radius: var(--radius-md);
+			font-size: 14px;
+			font-weight: 500;
+			color: rgba(255,255,255,0.65);
+			transition: color .2s, background .2s;
+			white-space: nowrap;
+		}
+
+		.nav-link:hover,
+		.nav-link.is-active {
+			color: #fff;
+			background: rgba(255,255,255,0.06);
+		}
+
+		/* Выпадашка услуг */
+		.nav-dropdown {
+			position: relative;
+		}
+
+		.nav-dropdown-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 5px;
+			height: 38px;
+			padding: 0 14px;
+			border-radius: var(--radius-md);
+			font-size: 14px;
+			font-weight: 500;
+			color: rgba(255,255,255,0.65);
+			transition: color .2s, background .2s;
+			cursor: pointer;
+		}
+
+		.nav-dropdown-btn:hover,
+		.nav-dropdown-btn.is-open {
+			color: #fff;
+			background: rgba(255,255,255,0.06);
+		}
+
+		.nav-dropdown-btn svg {
+			transition: transform .2s;
+			flex-shrink: 0;
+		}
+
+		.nav-dropdown-btn.is-open svg {
+			transform: rotate(180deg);
+		}
+
+		.nav-dropdown-menu {
+			display: none;
+			position: absolute;
+			top: calc(100% + 10px);
+			left: 0;
+			width: 280px;
+			background: #181818;
+			border: 1px solid var(--stroke-2);
+			border-radius: var(--radius-lg);
+			padding: 8px;
+			box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+			z-index: 200;
+		}
+
+		.nav-dropdown-menu.is-open {
+			display: block;
+		}
+
+		/* Группа услуг */
+		.nav-service-group {
+			padding: 8px 0 4px;
+		}
+
+		.nav-service-group:not(:first-child) {
+			border-top: 1px solid var(--stroke);
+			margin-top: 4px;
+		}
+
+		.nav-service-label {
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--accent);
+			padding: 0 12px 6px;
+			display: block;
+		}
+
+		.nav-service-item {
+			display: block;
+			padding: 8px 12px;
+			border-radius: var(--radius-sm);
+			font-size: 13px;
+			color: rgba(255,255,255,0.65);
+			transition: background .15s, color .15s;
+		}
+
+		.nav-service-item:hover {
+			background: rgba(255,255,255,0.06);
+			color: #fff;
+		}
+
+		/* Правая часть шапки */
+		.header-right {
+			display: flex;
+			align-items: center;
+			gap: 16px;
+			flex-shrink: 0;
+		}
+
+		.messengers {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		.messenger-btn {
+			width: 36px;
+			height: 36px;
+			border-radius: var(--radius-sm);
+			background: rgba(255,255,255,0.06);
+			border: 1px solid var(--stroke);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: rgba(255,255,255,0.65);
+			transition: background .2s, color .2s, border-color .2s;
+			flex-shrink: 0;
+		}
+
+		.messenger-btn:hover {
+			background: rgba(255,255,255,0.1);
+			color: #fff;
+			border-color: var(--stroke-2);
+		}
+
+		.worktime {
+			display: flex;
+			flex-direction: column;
+			gap: 1px;
+		}
+
+		.worktime-label {
+			font-size: 10px;
+			color: var(--muted-2);
+			letter-spacing: 0.06em;
+			text-transform: uppercase;
+		}
+
+		.worktime-value {
+			font-size: 13px;
+			font-weight: 700;
+			color: rgba(255,255,255,0.85);
+			white-space: nowrap;
+		}
+
+		/* ════════════════════════════════
+		   ФУТЕР
+		════════════════════════════════ */
+		.site-footer {
+			margin-top: 100px;
+			border-top: 1px solid var(--stroke);
+		}
+
+		/* Верхняя часть */
+		.footer-top {
+			padding: 64px 0 48px;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr;
+			gap: 48px;
+			align-items: start;
+		}
+
+		/* Колонка 1: логотип + контакты */
+		.footer-brand {
+			display: flex;
+			flex-direction: column;
+			gap: 24px;
+		}
+
+		.footer-contact-block {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.footer-phone {
+			font-size: 22px;
+			font-weight: 800;
+			letter-spacing: -0.03em;
+			color: #fff;
+		}
+
+		.footer-email {
+			font-size: 15px;
+			color: var(--muted);
+			transition: color .2s;
+		}
+
+		.footer-email:hover { color: #fff; }
+
+		.footer-worktime {
+			font-size: 13px;
+			color: var(--muted-2);
+		}
+
+		.footer-messengers {
+			display: flex;
+			gap: 8px;
+		}
+
+		/* Колонка 2: навигация */
+		.footer-nav {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
+
+		.footer-nav-title {
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--muted-2);
+			margin-bottom: 4px;
+		}
+
+		.footer-nav-link {
+			font-size: 15px;
+			color: rgba(255,255,255,0.65);
+			transition: color .2s;
+		}
+
+		.footer-nav-link:hover { color: #fff; }
+
+		/* Колонка 3: CTA */
+		.footer-cta {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 16px;
+		}
+
+		.footer-cta-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 52px;
+			padding: 0 28px;
+			border-radius: var(--radius-lg);
+			background: var(--accent);
+			color: #fff;
+			font-size: 15px;
+			font-weight: 700;
+			white-space: nowrap;
+			transition: opacity .2s;
+		}
+
+		.footer-cta-btn:hover { opacity: 0.88; }
+
+		/* Нижняя часть */
+		.footer-bottom {
+			border-top: 1px solid var(--stroke);
+			padding: 20px 0;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+			flex-wrap: wrap;
+		}
+
+		.footer-copy {
+			font-size: 13px;
+			color: var(--muted-2);
+		}
+
+		.footer-legal {
+			display: flex;
+			align-items: center;
+			gap: 20px;
+			flex-wrap: wrap;
+		}
+
+		.footer-legal a {
+			font-size: 13px;
+			color: var(--muted-2);
+			transition: color .2s;
+		}
+
+		.footer-legal a:hover { color: rgba(255,255,255,0.65); }
+
+		.footer-social {
+			display: flex;
+			gap: 8px;
+		}
+
+		/* ── Адаптив ── */
+		@media (max-width: 1024px) {
+			.footer-top { grid-template-columns: 1fr 1fr; }
+			.footer-cta { align-items: flex-start; }
+		}
+
+		@media (max-width: 720px) {
+			.nav { display: none; }
+			.worktime { display: none; }
+			.messengers { display: none; }
+			.header-inner { grid-template-columns: auto 1fr; }
+			.header-right { justify-self: end; }
+			.footer-top { grid-template-columns: 1fr; gap: 32px; }
+			.footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
+		}
+
+		/* ── Хлебные крошки (общие) ── */
+		.breadcrumb {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 24px 0 0;
+			font-size: 13px;
+			color: var(--muted-2);
+		}
+
+		.breadcrumb a {
+			color: var(--muted);
+			transition: color .2s;
+		}
+
+		.breadcrumb a:hover { color: #fff; }
+		.breadcrumb-sep { color: var(--muted-2); }
+
+		/* Кнопка назад */
+		.back-nav {
+			display: inline-flex;
+			align-items: center;
+			gap: 10px;
+			margin: 32px 0 40px;
+			color: var(--muted);
+			font-size: 14px;
+			font-weight: 500;
+			transition: color .2s;
+			cursor: pointer;
+		}
+
+		.back-nav:hover { color: #fff; }
+
+		.back-nav-icon {
+			width: 36px;
+			height: 36px;
+			border-radius: var(--radius-sm);
+			background: rgba(255,255,255,0.06);
+			border: 1px solid var(--stroke);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			transition: background .2s, border-color .2s;
+		}
+
+		.back-nav:hover .back-nav-icon {
+			background: rgba(255,255,255,0.1);
+			border-color: var(--stroke-2);
+		}
+
+		/* ── Бургер ── */
+		.burger-btn {
+			display: none;
+			width: 36px;
+			height: 36px;
+			border-radius: var(--radius-sm);
+			background: rgba(255,255,255,0.06);
+			border: 1px solid var(--stroke);
+			align-items: center;
+			justify-content: center;
+			color: rgba(255,255,255,0.65);
+			transition: background .2s, color .2s;
+			flex-shrink: 0;
+		}
+
+		.burger-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+		@media (max-width: 720px) {
+			.burger-btn { display: flex; }
+		}
+
+		/* ── Мобильное меню ── */
+		.mobile-menu {
+			position: fixed;
+			inset: 0;
+			z-index: 500;
+			background: #0a0a0a;
+			display: flex;
+			flex-direction: column;
+			opacity: 0;
+			pointer-events: none;
+			transform: translateY(-12px);
+			transition: opacity .25s ease, transform .25s ease;
+			overflow-y: auto;
+		}
+
+		.mobile-menu.is-open {
+			opacity: 1;
+			pointer-events: all;
+			transform: translateY(0);
+		}
+
+		/* Скролл заморожен */
+		body.menu-open { overflow: hidden; }
+
+		.mobile-menu-head {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 16px 20px;
+			border-bottom: 1px solid var(--stroke);
+			flex-shrink: 0;
+		}
+
+		.mobile-close {
+			width: 36px;
+			height: 36px;
+			border-radius: var(--radius-sm);
+			background: rgba(255,255,255,0.06);
+			border: 1px solid var(--stroke);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: rgba(255,255,255,0.65);
+			cursor: pointer;
+			transition: background .2s, color .2s;
+		}
+
+		.mobile-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+		.mobile-nav {
+			flex: 1;
+			padding: 16px 20px;
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.mobile-nav-link {
+			display: flex;
+			align-items: center;
+			height: 52px;
+			padding: 0 16px;
+			border-radius: var(--radius-md);
+			font-size: 18px;
+			font-weight: 600;
+			color: rgba(255,255,255,0.72);
+			transition: background .15s, color .15s;
+		}
+
+		.mobile-nav-link:hover {
+			background: rgba(255,255,255,0.06);
+			color: #fff;
+		}
+
+		/* Аккордеон услуг в мобильном меню */
+		.mobile-services-btn {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 100%;
+			height: 52px;
+			padding: 0 16px;
+			border-radius: var(--radius-md);
+			font-size: 18px;
+			font-weight: 600;
+			color: rgba(255,255,255,0.72);
+			transition: background .15s, color .15s;
+			cursor: pointer;
+		}
+
+		.mobile-services-btn:hover {
+			background: rgba(255,255,255,0.06);
+			color: #fff;
+		}
+
+		.mobile-services-btn svg {
+			transition: transform .2s;
+			flex-shrink: 0;
+		}
+
+		.mobile-services-btn.is-open svg { transform: rotate(180deg); }
+
+		.mobile-services-list {
+			display: none;
+			flex-direction: column;
+			gap: 0;
+			padding: 4px 0 4px 16px;
+		}
+
+		.mobile-services-list.is-open { display: flex; }
+
+		.mobile-service-group-label {
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			color: var(--accent);
+			padding: 10px 16px 4px;
+		}
+
+		.mobile-service-link {
+			display: block;
+			padding: 8px 16px;
+			border-radius: var(--radius-sm);
+			font-size: 14px;
+			color: rgba(255,255,255,0.55);
+			transition: background .15s, color .15s;
+		}
+
+		.mobile-service-link:hover {
+			background: rgba(255,255,255,0.05);
+			color: #fff;
+		}
+
+		/* Низ мобильного меню */
+		.mobile-menu-foot {
+			padding: 20px;
+			border-top: 1px solid var(--stroke);
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+			flex-shrink: 0;
+		}
+
+		.mobile-foot-phone {
+			font-size: 20px;
+			font-weight: 800;
+			letter-spacing: -0.03em;
+			color: #fff;
+		}
+
+		.mobile-foot-worktime {
+			font-size: 13px;
+			color: var(--muted-2);
+		}
+
+		.mobile-foot-messengers {
+			display: flex;
+			gap: 8px;
 		}
 	</style>
 
 	{% block extra_css %}{% endblock %}
 </head>
 <body>
-	{% block content %}{% endblock %}
+
+<!-- ════════ ШАПКА ════════ -->
+<header class="site-header" id="site-header">
+	<div class="shell">
+		<div class="header-inner">
+
+			<!-- Логотип -->
+			<a href="/" class="logo">
+				<div class="logo-mark">LR</div>
+				<div class="logo-name">Lab<span>Review</span></div>
+			</a>
+
+			<!-- Навигация -->
+			<nav class="nav">
+
+				<!-- Услуги с выпадашкой -->
+				<div class="nav-dropdown">
+					<button class="nav-dropdown-btn" id="services-btn">
+						Услуги
+						<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</button>
+					<div class="nav-dropdown-menu" id="services-menu">
+						<div class="nav-service-group">
+							<span class="nav-service-label">Авито</span>
+							<a href="#" class="nav-service-item">Создание и ведение рекламной кампании</a>
+							<a href="#" class="nav-service-item">Авитолог на день</a>
+							<a href="#" class="nav-service-item">Консультация Авитолога</a>
+							<a href="#" class="nav-service-item">Создание автозагрузочных файлов</a>
+						</div>
+						<div class="nav-service-group">
+							<span class="nav-service-label">Разработка</span>
+							<a href="#" class="nav-service-item">Разработка интернет-магазина</a>
+							<a href="#" class="nav-service-item">Разработка лендинга</a>
+							<a href="#" class="nav-service-item">Разработка сайта</a>
+							<a href="#" class="nav-service-item">Верстка сайтов</a>
+						</div>
+						<div class="nav-service-group">
+							<span class="nav-service-label">СЕО</span>
+							<a href="#" class="nav-service-item">Внутренняя настройка СЕО</a>
+							<a href="#" class="nav-service-item">Ведение проекта под ключ</a>
+							<a href="#" class="nav-service-item">Вывод сайта в топ Яндекса</a>
+						</div>
+						<div class="nav-service-group">
+							<span class="nav-service-label">Яндекс Директ</span>
+							<a href="#" class="nav-service-item">Ведение рекламных кампаний</a>
+						</div>
+					</div>
+				</div>
+
+				<a href="{% url 'cases:list' %}" class="nav-link">Кейсы</a>
+				<a href="#" class="nav-link">Блог</a>
+				<a href="/requisites" class="nav-link">Реквизиты</a>
+				<a href="#" class="nav-link">Контакты</a>
+			</nav>
+
+			<!-- Правая часть -->
+			<div class="header-right">
+				<div class="messengers">
+					<!-- Telegram -->
+					<a href="#" class="messenger-btn" title="Telegram">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
+					</a>
+					<!-- WhatsApp -->
+					<a href="#" class="messenger-btn" title="WhatsApp">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
+					</a>
+					<!-- Max -->
+					<a href="#" class="messenger-btn" title="Max">
+						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+					</a>
+				</div>
+
+				<div class="worktime">
+					<span class="worktime-label">с 09:00 до 19:00</span>
+					<span class="worktime-value">+7 (495) 222-33-33</span>
+				</div>
+
+				<!-- Бургер (только мобайл) -->
+				<button class="burger-btn" id="burger-btn" aria-label="Открыть меню">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+				</button>
+			</div>
+
+		</div>
+	</div>
+</header>
+
+{% block content %}{% endblock %}
+
+<!-- ════════ МОБИЛЬНОЕ МЕНЮ ════════ -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+
+	<!-- Шапка меню -->
+	<div class="mobile-menu-head">
+		<a href="/" class="logo">
+			<div class="logo-mark">LR</div>
+			<div class="logo-name">Lab<span>Review</span></div>
+		</a>
+		<button class="mobile-close" id="mobile-close" aria-label="Закрыть меню">
+			<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+		</button>
+	</div>
+
+	<!-- Навигация -->
+	<nav class="mobile-nav">
+
+		<!-- Услуги аккордеон -->
+		<div>
+			<button class="mobile-services-btn" id="mobile-services-btn">
+				Услуги
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</button>
+			<div class="mobile-services-list" id="mobile-services-list">
+				<span class="mobile-service-group-label">Авито</span>
+				<a href="#" class="mobile-service-link">Создание и ведение рекламной кампании</a>
+				<a href="#" class="mobile-service-link">Авитолог на день</a>
+				<a href="#" class="mobile-service-link">Консультация Авитолога</a>
+				<a href="#" class="mobile-service-link">Создание автозагрузочных файлов</a>
+				<span class="mobile-service-group-label">Разработка</span>
+				<a href="#" class="mobile-service-link">Разработка интернет-магазина</a>
+				<a href="#" class="mobile-service-link">Разработка лендинга</a>
+				<a href="#" class="mobile-service-link">Разработка сайта</a>
+				<a href="#" class="mobile-service-link">Верстка сайтов</a>
+				<span class="mobile-service-group-label">СЕО</span>
+				<a href="#" class="mobile-service-link">Внутренняя настройка СЕО</a>
+				<a href="#" class="mobile-service-link">Ведение проекта под ключ</a>
+				<a href="#" class="mobile-service-link">Вывод сайта в топ Яндекса</a>
+				<span class="mobile-service-group-label">Яндекс Директ</span>
+				<a href="#" class="mobile-service-link">Ведение рекламных кампаний</a>
+			</div>
+		</div>
+
+		<a href="{% url 'cases:list' %}" class="mobile-nav-link">Кейсы</a>
+		<a href="#" class="mobile-nav-link">Блог</a>
+		<a href="/requisites" class="mobile-nav-link">Реквизиты</a>
+		<a href="#" class="mobile-nav-link">Контакты</a>
+	</nav>
+
+	<!-- Низ меню: контакты + мессенджеры -->
+	<div class="mobile-menu-foot">
+		<a href="tel:+74952223333" class="mobile-foot-phone">+7 (495) 222-33-33</a>
+		<span class="mobile-foot-worktime">с 09:00 до 19:00, пн–пт</span>
+		<div class="mobile-foot-messengers">
+			<a href="#" class="messenger-btn" title="Telegram">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
+			</a>
+			<a href="#" class="messenger-btn" title="WhatsApp">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
+			</a>
+			<a href="#" class="messenger-btn" title="Max">
+				<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+			</a>
+		</div>
+	</div>
+
+</div>
+
+<!-- ════════ ФУТЕР ════════ -->
+<footer class="site-footer">
+	<div class="shell">
+
+		<!-- Верхняя часть -->
+		<div class="footer-top">
+
+			<!-- Бренд -->
+			<div class="footer-brand">
+				<a href="/" class="logo">
+					<div class="logo-mark">LR</div>
+					<div class="logo-name">Lab<span>Review</span></div>
+				</a>
+			</div>
+
+			<!-- Навигация -->
+			<div class="footer-nav">
+				<span class="footer-nav-title">Навигация</span>
+				<a href="/" class="footer-nav-link">Главная</a>
+				<a href="{% url 'cases:list' %}" class="footer-nav-link">Кейсы</a>
+				<a href="#" class="footer-nav-link">Услуги</a>
+				<a href="#" class="footer-nav-link">Блог</a>
+				<a href="#" class="footer-nav-link">Контакты</a>
+				<a href="/requisites" class="footer-nav-link">Реквизиты</a>
+			</div>
+
+			<!-- CTA + контакты -->
+			<div class="footer-cta">
+				<a href="#" class="footer-cta-btn">Обсудить проект</a>
+				<div class="footer-contact-block">
+					<a href="tel:+74952223333" class="footer-phone">+7 (495) 222-33-33</a>
+					<a href="mailto:contact@lab-review.ru" class="footer-email">contact@lab-review.ru</a>
+					<span class="footer-worktime">с 09:00 до 19:00, пн–пт</span>
+				</div>
+				<div class="footer-messengers">
+					<a href="#" class="messenger-btn" title="Telegram">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
+					</a>
+					<a href="#" class="messenger-btn" title="WhatsApp">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
+					</a>
+					<a href="#" class="messenger-btn" title="Max">
+						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Нижняя часть -->
+		<div class="footer-bottom">
+			<span class="footer-copy">© 2025 Lab Review. Все права защищены.</span>
+			<div class="footer-legal">
+				<a href="/privacy-policy">Политика конфиденциальности</a>
+				<a href="/oferta">Оферта</a>
+				<a href="/cookie-consent">Политика Cookie</a>
+				<a href="/requisites">Реквизиты</a>
+			</div>
+			<div class="footer-social">
+				<a href="#" class="messenger-btn" title="Telegram">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
+				</a>
+				<a href="#" class="messenger-btn" title="WhatsApp">
+					<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
+				</a>
+			</div>
+		</div>
+
+	</div>
+</footer>
+
+<script>
+	// Скрыть/показать шапку при скролле
+	const header = document.getElementById('site-header');
+	let lastY = 0;
+	window.addEventListener('scroll', () => {
+		const y = window.scrollY;
+		if (y > lastY && y > 80) {
+			header.classList.add('is-hidden');
+		} else {
+			header.classList.remove('is-hidden');
+		}
+		lastY = y;
+	}, { passive: true });
+
+	// Выпадашка услуг (десктоп)
+	const servicesBtn = document.getElementById('services-btn');
+	const servicesMenu = document.getElementById('services-menu');
+	servicesBtn.addEventListener('click', (e) => {
+		e.stopPropagation();
+		servicesBtn.classList.toggle('is-open');
+		servicesMenu.classList.toggle('is-open');
+	});
+	document.addEventListener('click', () => {
+		servicesBtn.classList.remove('is-open');
+		servicesMenu.classList.remove('is-open');
+	});
+
+	// Мобильное меню
+	const mobileMenu = document.getElementById('mobile-menu');
+	const burgerBtn = document.getElementById('burger-btn');
+	const mobileClose = document.getElementById('mobile-close');
+
+	function openMenu() {
+		mobileMenu.classList.add('is-open');
+		mobileMenu.setAttribute('aria-hidden', 'false');
+		document.body.classList.add('menu-open');
+	}
+
+	function closeMenu() {
+		mobileMenu.classList.remove('is-open');
+		mobileMenu.setAttribute('aria-hidden', 'true');
+		document.body.classList.remove('menu-open');
+	}
+
+	burgerBtn.addEventListener('click', openMenu);
+	mobileClose.addEventListener('click', closeMenu);
+
+	// Закрытие по Escape
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') closeMenu();
+	});
+
+	// Аккордеон услуг в мобильном меню
+	const mobileServicesBtn = document.getElementById('mobile-services-btn');
+	const mobileServicesList = document.getElementById('mobile-services-list');
+	mobileServicesBtn.addEventListener('click', () => {
+		mobileServicesBtn.classList.toggle('is-open');
+		mobileServicesList.classList.toggle('is-open');
+	});
+</script>
+
 </body>
 </html>

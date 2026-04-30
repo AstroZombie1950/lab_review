@@ -1,9 +1,14 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Case, Tag
+from .models import Case, Tag, SERVICE_CHOICES
 
 
 def cases_list(request):
 	cases = Case.objects.filter(is_published=True).prefetch_related('tags')
+
+	# Фильтр по услуге
+	service = request.GET.get('service')
+	if service:
+		cases = cases.filter(service=service)
 
 	industry = request.GET.get('industry')
 	if industry:
@@ -20,12 +25,23 @@ def cases_list(request):
 	all_tags = Tag.objects.all()
 	all_industries = Case.objects.filter(is_published=True).values_list('industry', flat=True).distinct()
 
+	# Имя выбранного тега для отображения в кнопке
+	selected_tag_name = ''
+	if tag:
+		try:
+			selected_tag_name = Tag.objects.get(slug=tag).name
+		except Tag.DoesNotExist:
+			pass
+
 	context = {
 		'cases': cases,
 		'all_tags': all_tags,
 		'all_industries': [i for i in all_industries if i],
+		'service_choices': SERVICE_CHOICES,
+		'selected_service': service,
 		'selected_industry': industry,
 		'selected_tag': tag,
+		'selected_tag_name': selected_tag_name,
 		'search': search or '',
 	}
 	return render(request, 'cases/list.html', context)
