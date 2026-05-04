@@ -1,0 +1,712 @@
+{% extends "cases/base.html" %}
+
+{% block title %}Lab Review — разработка, SEO и Яндекс Директ{% endblock %}
+{% block meta_description %}Делаем сайты, настраиваем SEO и ведём рекламу в Яндекс Директ. Работаем на результат — трафик, заявки, продажи.{% endblock %}
+
+{% block extra_css %}
+<style>
+	/* ── Герой ── */
+	.home-hero {
+		min-height: calc(100vh - var(--header-h));
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 64px;
+		align-items: center;
+		padding: 80px 0;
+	}
+
+	.home-hero-label {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 13px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		margin-bottom: 28px;
+	}
+
+	.home-hero-label-line {
+		width: 24px;
+		height: 2px;
+		background: var(--accent);
+		flex-shrink: 0;
+	}
+
+	.home-hero-title {
+		font-size: clamp(42px, 5.5vw, 80px);
+		font-weight: 900;
+		line-height: 1.0;
+		letter-spacing: -0.04em;
+		margin-bottom: 28px;
+	}
+
+	.home-hero-title span { color: var(--accent); }
+
+	.home-hero-text {
+		font-size: 18px;
+		color: var(--muted);
+		line-height: 1.7;
+		max-width: 480px;
+		margin-bottom: 40px;
+	}
+
+	.home-hero-btns {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.home-hero-btn-primary {
+		display: inline-flex;
+		align-items: center;
+		height: 56px;
+		padding: 0 32px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 16px;
+		font-weight: 700;
+		transition: opacity .2s;
+	}
+
+	.home-hero-btn-primary:hover { opacity: 0.88; }
+
+	.home-hero-btn-secondary {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		height: 56px;
+		padding: 0 28px;
+		border-radius: var(--radius-lg);
+		border: 1px solid var(--stroke-2);
+		color: rgba(255,255,255,0.65);
+		font-size: 16px;
+		font-weight: 600;
+		transition: color .2s, border-color .2s;
+	}
+
+	.home-hero-btn-secondary:hover {
+		color: #fff;
+		border-color: rgba(255,255,255,0.25);
+	}
+
+	/* ── Анимация справа ── */
+	.home-hero-visual {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	.hero-anim {
+		width: 440px;
+		height: 440px;
+		position: relative;
+	}
+
+	/* Внешнее кольцо */
+	.hero-ring {
+		position: absolute;
+		border-radius: 50%;
+		border: 1px solid var(--stroke-2);
+	}
+
+	.hero-ring-1 {
+		inset: 0;
+		animation: ring-spin 18s linear infinite;
+	}
+
+	.hero-ring-2 {
+		inset: 48px;
+		animation: ring-spin 12s linear infinite reverse;
+	}
+
+	.hero-ring-3 {
+		inset: 96px;
+		animation: ring-spin 8s linear infinite;
+		border-color: rgba(232,56,42,0.2);
+	}
+
+	/* Точки на кольцах */
+	.hero-ring::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
+		box-shadow: 0 0 12px rgba(232,56,42,0.6);
+	}
+
+	.hero-ring-2::before {
+		background: rgba(255,255,255,0.4);
+		box-shadow: none;
+		width: 6px;
+		height: 6px;
+	}
+
+	@keyframes ring-spin {
+		from { transform: rotate(0deg); }
+		to   { transform: rotate(360deg); }
+	}
+
+	/* Центральный блок */
+	.hero-center {
+		position: absolute;
+		inset: 140px;
+		border-radius: 50%;
+		background: var(--bg-2);
+		border: 1px solid var(--stroke-2);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 4px;
+	}
+
+	.hero-center-icon {
+		font-size: 32px;
+		font-weight: 900;
+		color: var(--accent);
+		letter-spacing: -0.05em;
+		line-height: 1;
+	}
+
+	.hero-center-label {
+		font-size: 11px;
+		font-weight: 700;
+		color: var(--muted-2);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	/* Плавающие карточки */
+	.hero-badge {
+		position: absolute;
+		background: var(--bg-2);
+		border: 1px solid var(--stroke-2);
+		border-radius: var(--radius-md);
+		padding: 10px 16px;
+		font-size: 13px;
+		font-weight: 600;
+		color: rgba(255,255,255,0.85);
+		white-space: nowrap;
+		animation: badge-float 4s ease-in-out infinite;
+	}
+
+	.hero-badge-dot {
+		display: inline-block;
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
+		margin-right: 6px;
+		flex-shrink: 0;
+	}
+
+	.hero-badge-1 {
+		top: 20px;
+		left: 10px;
+		animation-delay: 0s;
+	}
+
+	.hero-badge-2 {
+		bottom: 60px;
+		left: 0;
+		animation-delay: 1.3s;
+	}
+
+	.hero-badge-3 {
+		top: 60px;
+		right: 0;
+		animation-delay: 0.7s;
+	}
+
+	.hero-badge-4 {
+		bottom: 20px;
+		right: 10px;
+		animation-delay: 2s;
+	}
+
+	@keyframes badge-float {
+		0%, 100% { transform: translateY(0); }
+		50%       { transform: translateY(-8px); }
+	}
+
+	/* ── Секция услуг ── */
+	.home-services {
+		padding: 100px 0 0;
+	}
+
+	.home-section-label {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		margin-bottom: 16px;
+	}
+
+	.home-section-label::before {
+		content: '';
+		width: 20px;
+		height: 2px;
+		background: var(--accent);
+	}
+
+	.home-section-title {
+		font-size: clamp(32px, 4vw, 56px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.05;
+		margin-bottom: 56px;
+	}
+
+	.home-section-title span { color: var(--muted); }
+
+	/* Сетка услуг */
+	.home-services-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3px;
+	}
+
+	.home-service-card {
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		border-radius: 0;
+		padding: 36px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		min-height: 280px;
+		position: relative;
+		overflow: hidden;
+		transition: background .2s, border-color .2s;
+		cursor: pointer;
+	}
+
+	/* Скругления по углам сетки */
+	.home-service-card:nth-child(1) { border-radius: var(--radius-xl) 0 0 0; }
+	.home-service-card:nth-child(3) { border-radius: 0 var(--radius-xl) 0 0; }
+	.home-service-card:nth-child(7) { border-radius: 0 0 0 var(--radius-xl); }
+	.home-service-card:nth-child(9) { border-radius: 0 0 var(--radius-xl) 0; }
+
+	.home-service-card:hover {
+		background: var(--bg-3);
+		border-color: var(--stroke-2);
+	}
+
+	/* Акцентная карточка */
+	.home-service-card.is-accent {
+		background: linear-gradient(135deg, #c41e10 0%, #8b1010 100%);
+		border-color: transparent;
+	}
+
+	.home-service-card.is-accent:hover { opacity: 0.92; }
+
+	.home-service-cat {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	.home-service-card.is-accent .home-service-cat {
+		color: rgba(255,255,255,0.6);
+	}
+
+	.home-service-cat-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: currentColor;
+		flex-shrink: 0;
+	}
+
+	.home-service-name {
+		font-size: clamp(18px, 2vw, 24px);
+		font-weight: 800;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+		color: rgba(255,255,255,0.88);
+		flex: 1;
+	}
+
+	.home-service-card.is-accent .home-service-name { color: #fff; }
+
+	.home-service-arrow {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: rgba(255,255,255,0.06);
+		border: 1px solid var(--stroke-2);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		align-self: flex-end;
+		transition: background .2s, transform .2s;
+		flex-shrink: 0;
+	}
+
+	.home-service-card:hover .home-service-arrow {
+		background: rgba(255,255,255,0.12);
+		transform: translate(2px, -2px);
+	}
+
+	.home-service-card.is-accent .home-service-arrow {
+		background: rgba(255,255,255,0.15);
+		border-color: rgba(255,255,255,0.2);
+	}
+
+	/* ── Кейсы ── */
+	.home-cases {
+		padding: 100px 0 0;
+	}
+
+	.home-cases-head {
+		display: flex;
+		align-items: flex-end;
+		justify-content: space-between;
+		margin-bottom: 48px;
+		gap: 24px;
+	}
+
+	.home-cases-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--muted);
+		transition: color .2s;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.home-cases-link:hover { color: #fff; }
+
+	.home-cases-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+	}
+
+	/* Карточка кейса */
+	.home-case-card {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		min-height: 380px;
+		position: relative;
+		transition: border-color .2s;
+	}
+
+	.home-case-card:hover { border-color: var(--stroke-2); }
+
+	.home-case-cover {
+		width: 100%;
+		height: 220px;
+		object-fit: cover;
+		display: block;
+	}
+
+	.home-case-cover-placeholder {
+		width: 100%;
+		height: 220px;
+		background: var(--bg-3);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--muted-2);
+	}
+
+	.home-case-body {
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		flex: 1;
+	}
+
+	.home-case-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	.home-case-tag {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+		background: rgba(232,56,42,0.1);
+		border: 1px solid rgba(232,56,42,0.2);
+		border-radius: 6px;
+		padding: 3px 8px;
+	}
+
+	.home-case-title {
+		font-size: 18px;
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+		color: rgba(255,255,255,0.9);
+	}
+
+	.home-case-desc {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.6;
+		flex: 1;
+	}
+
+	.home-case-arrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--muted);
+		margin-top: 4px;
+		transition: color .2s;
+	}
+
+	.home-case-card:hover .home-case-arrow { color: #fff; }
+
+	/* Заглушка — нет кейсов */
+	.home-cases-empty {
+		grid-column: 1 / -1;
+		text-align: center;
+		padding: 80px 0;
+		color: var(--muted-2);
+		font-size: 15px;
+	}
+
+	/* ── Адаптив ── */
+	@media (max-width: 1024px) {
+		.home-hero { grid-template-columns: 1fr; min-height: auto; padding: 60px 0; }
+		.home-hero-visual { display: none; }
+		.home-services-grid { grid-template-columns: 1fr 1fr; }
+		.home-service-card:nth-child(1) { border-radius: var(--radius-xl) 0 0 0; }
+		.home-service-card:nth-child(2) { border-radius: 0 var(--radius-xl) 0 0; }
+		.home-service-card:nth-child(3) { border-radius: 0; }
+		.home-service-card:last-child { border-radius: 0 0 var(--radius-xl) var(--radius-xl); }
+		.home-cases-grid { grid-template-columns: 1fr 1fr; }
+	}
+
+	@media (max-width: 720px) {
+		.home-hero { padding: 40px 0; }
+		.home-hero-title { font-size: clamp(36px, 10vw, 56px); }
+		.home-services-grid { grid-template-columns: 1fr; }
+		.home-service-card:nth-child(n) { border-radius: var(--radius-xl); }
+		.home-cases-grid { grid-template-columns: 1fr; }
+		.home-cases-head { flex-direction: column; align-items: flex-start; }
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main style="padding-bottom: 120px;">
+<div class="shell">
+
+	<!-- ════ ГЕРОЙ ════ -->
+	<section class="home-hero">
+
+		<!-- Левая часть -->
+		<div class="home-hero-content">
+			<div class="home-hero-label">
+				<span class="home-hero-label-line"></span>
+				Разработка · SEO · Реклама
+			</div>
+			<h1 class="home-hero-title">
+				Делаем сайты,<br>
+				которые<br>
+				<span>приносят</span> деньги
+			</h1>
+			<p class="home-hero-text">
+				Разрабатываем сайты и интернет-магазины, настраиваем SEO и ведём рекламу в Яндекс Директ. Работаем на конкретный результат — трафик, заявки, продажи.
+			</p>
+			<div class="home-hero-btns">
+				<a href="#services" class="home-hero-btn-primary">Смотреть услуги</a>
+				<a href="{% url 'cases:list' %}" class="home-hero-btn-secondary">
+					Наши кейсы
+					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</a>
+			</div>
+		</div>
+
+		<!-- Правая часть — анимация -->
+		<div class="home-hero-visual">
+			<div class="hero-anim">
+				<!-- Кольца -->
+				<div class="hero-ring hero-ring-1"></div>
+				<div class="hero-ring hero-ring-2"></div>
+				<div class="hero-ring hero-ring-3"></div>
+
+				<!-- Центр -->
+				<div class="hero-center">
+					<div class="hero-center-icon">LR</div>
+					<div class="hero-center-label">Lab Review</div>
+				</div>
+
+				<!-- Плавающие бейджи -->
+				<div class="hero-badge hero-badge-1">
+					<span class="hero-badge-dot"></span>SEO в топ Яндекса
+				</div>
+				<div class="hero-badge hero-badge-2">
+					<span class="hero-badge-dot"></span>Разработка сайтов
+				</div>
+				<div class="hero-badge hero-badge-3">
+					<span class="hero-badge-dot"></span>Яндекс Директ
+				</div>
+				<div class="hero-badge hero-badge-4">
+					<span class="hero-badge-dot"></span>+142% заявок
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<!-- ════ УСЛУГИ ════ -->
+	<section class="home-services" id="services">
+		<div class="home-section-label">Что мы делаем</div>
+		<h2 class="home-section-title">Наши <span>услуги</span></h2>
+
+		<div class="home-services-grid">
+
+			<!-- Разработка -->
+			<a href="/internet-shop/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
+				<div class="home-service-name">Разработка интернет-магазина</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<a href="/landing/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
+				<div class="home-service-name">Разработка лендинга</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<a href="/website/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
+				<div class="home-service-name">Разработка сайта</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<!-- SEO -->
+			<a href="/seo-setup/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
+				<div class="home-service-name">Внутренняя настройка SEO</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<a href="/seo-full/" class="home-service-card is-accent">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
+				<div class="home-service-name">Ведение SEO-проекта под ключ</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<a href="/seo-top/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
+				<div class="home-service-name">Вывод сайта в топ Яндекса</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<!-- Верстка -->
+			<a href="/html-css/" class="home-service-card">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
+				<div class="home-service-name">Верстка сайтов</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+			<!-- Директ — на 2 колонки -->
+			<a href="/yandex-direct/" class="home-service-card" style="grid-column: span 2;">
+				<div class="home-service-cat"><span class="home-service-cat-dot"></span>Яндекс Директ</div>
+				<div class="home-service-name">Ведение рекламных кампаний в Яндекс Директ</div>
+				<div class="home-service-arrow">
+					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				</div>
+			</a>
+
+		</div>
+	</section>
+
+	<!-- ════ КЕЙСЫ ════ -->
+	<section class="home-cases">
+		<div class="home-cases-head">
+			<div>
+				<div class="home-section-label">Портфолио</div>
+				<h2 class="home-section-title" style="margin-bottom: 0;">Наши <span>кейсы</span></h2>
+			</div>
+			<a href="{% url 'cases:list' %}" class="home-cases-link">
+				Все кейсы
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+			</a>
+		</div>
+
+		<div class="home-cases-grid">
+			{% for case in cases %}
+			<a href="{% url 'cases:detail' case.slug %}" class="home-case-card">
+				{% if case.cover %}
+					<img src="{{ case.cover.url }}" alt="{{ case.title }}" class="home-case-cover">
+				{% else %}
+					<div class="home-case-cover-placeholder">
+						<svg width="40" height="40" viewBox="0 0 24 24" fill="none" opacity="0.3"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+					</div>
+				{% endif %}
+				<div class="home-case-body">
+					<div class="home-case-tags">
+						<span class="home-case-tag">{{ case.get_direction_display }}</span>
+						{% for tag in case.tags.all|slice:":2" %}
+							<span class="home-case-tag">{{ tag.name }}</span>
+						{% endfor %}
+					</div>
+					<div class="home-case-title">{{ case.title }}</div>
+					<div class="home-case-desc">{{ case.description|truncatechars:100 }}</div>
+					<span class="home-case-arrow">
+						Подробнее
+						<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</span>
+				</div>
+			</a>
+			{% empty %}
+			<div class="home-cases-empty">Кейсы появятся здесь после добавления через админку.</div>
+			{% endfor %}
+		</div>
+	</section>
+
+</div>
+</main>
+{% endblock %}

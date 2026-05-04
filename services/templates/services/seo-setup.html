@@ -1,0 +1,137 @@
+{% extends "services/service_base.html" %}
+
+{% block title %}Внутренняя настройка SEO | Lab Review{% endblock %}
+{% block meta_description %}Проводим техническую и контентную SEO-оптимизацию сайта. Исправляем ошибки, настраиваем метатеги, ускоряем загрузку и готовим сайт к продвижению.{% endblock %}
+
+{% block breadcrumb_title %}Внутренняя настройка SEO{% endblock %}
+{% block hero_label %}SEO{% endblock %}
+
+{% block hero_title %}
+	Внутренняя<br><span>настройка SEO</span>
+{% endblock %}
+
+{% block hero_text %}
+	Проводим полный технический и контентный аудит сайта, исправляем ошибки и приводим его в порядок перед продвижением. Без этого этапа деньги на рекламу уходят впустую.
+{% endblock %}
+
+{% block hero_checks %}
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Технический аудит и исправление ошибок
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Настройка метатегов и структуры URL
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Оптимизация скорости загрузки
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Подготовка семантического ядра
+	</div>
+{% endblock %}
+
+{% block info_cards %}
+	<div class="svc-info-card is-accent">
+		<div class="svc-info-card-title">Техническая оптимизация</div>
+		<p class="svc-info-card-text">Большинство сайтов теряют позиции из-за технических проблем, которые владелец не видит. Мы находим и устраняем всё, что мешает поисковикам правильно индексировать страницы.</p>
+		<div class="svc-info-checks">
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Исправление ошибок 404, 301, дублей страниц</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Настройка robots.txt и sitemap.xml</div>
+			<div class="svc-info-check"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Оптимизация скорости: сжатие, кэш, CDN</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Настройка микроразметки Schema.org</div>
+		</div>
+	</div>
+	<div class="svc-info-card is-dark">
+		<div class="svc-info-card-title">Контентная оптимизация</div>
+		<p class="svc-info-card-text">Технически здоровый сайт — это только половина дела. Поисковик должен понимать, о чём каждая страница. Мы настраиваем структуру контента под алгоритмы Яндекса и Google.</p>
+		<div class="svc-info-checks">
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Составление и кластеризация семантики</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Прописывание title, description, H1 для каждой страницы</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Настройка внутренней перелинковки</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Подключение Яндекс.Вебмастера и Search Console</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block plans %}
+	<div class="svc-plan">
+		<div class="svc-plan-left">
+			<div>
+				<div class="svc-plan-name">Аудит</div>
+				<div class="svc-plan-desc">Полный технический и контентный аудит с отчётом и рекомендациями</div>
+				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-features">
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Технический аудит</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Контентный аудит</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Анализ конкурентов</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Подробный отчёт</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Список ошибок с приоритетами</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Рекомендации по исправлению</div>
+				</div>
+			</div>
+			<div class="svc-plan-bottom">
+				<div class="svc-plan-price">от <strong>15 000 ₽</strong></div>
+				<a href="#contact" class="svc-plan-btn">Заказать</a>
+			</div>
+		</div>
+		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+	</div>
+	<div class="svc-plan">
+		<div class="svc-plan-left">
+			<div>
+				<div class="svc-plan-name">Оптимизация</div>
+				<div class="svc-plan-desc">Аудит + полное внедрение исправлений под ключ</div>
+				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-features">
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из Аудита</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Исправление ошибок</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Настройка метатегов</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Семантическое ядро</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Перелинковка</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>1 месяц сопровождения</div>
+				</div>
+			</div>
+			<div class="svc-plan-bottom">
+				<div class="svc-plan-price">от <strong>45 000 ₽</strong></div>
+				<a href="#contact" class="svc-plan-btn">Заказать</a>
+			</div>
+		</div>
+		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+	</div>
+{% endblock %}
+
+{% block steps %}
+	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Сбор данных</div><p class="svc-step-text">Получаем доступ к сайту, Метрике и Search Console. Собираем исходную статистику.</p></div>
+	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Технический аудит</div><p class="svc-step-text">Сканируем сайт, выявляем ошибки индексации, дубли, битые ссылки и проблемы скорости.</p></div>
+	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Контентный аудит</div><p class="svc-step-text">Анализируем метатеги, заголовки, тексты и структуру страниц.</p></div>
+	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Семантика</div><p class="svc-step-text">Собираем и кластеризуем ключевые запросы под каждую страницу сайта.</p></div>
+	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Внедрение</div><p class="svc-step-text">Исправляем ошибки, прописываем метатеги, настраиваем перелинковку и микроразметку.</p></div>
+	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Отчёт</div><p class="svc-step-text">Передаём подробный отчёт с выполненными работами и рекомендациями на будущее.</p></div>
+{% endblock %}
+
+{% block team %}
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">АИ</div></div><div class="svc-team-name">Алексей Иванов</div><div class="svc-team-role">Руководитель проектов</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">МС</div></div><div class="svc-team-name">Мария Смирнова</div><div class="svc-team-role">SEO-специалист</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ДК</div></div><div class="svc-team-name">Дмитрий Козлов</div><div class="svc-team-role">Технический специалист</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ОП</div></div><div class="svc-team-name">Ольга Петрова</div><div class="svc-team-role">Контент-стратег</div></div>
+{% endblock %}
+
+{% block faq %}
+	<div class="svc-faq-item"><button class="svc-faq-btn">Чем внутренняя оптимизация отличается от продвижения?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Внутренняя оптимизация — это фундамент: устранение технических ошибок, настройка метатегов и структуры. Без неё внешнее продвижение малоэффективно. Сначала приводим сайт в порядок, потом наращиваем позиции.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько времени занимает настройка?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Аудит — 3–5 рабочих дней. Полная оптимизация с внедрением — от 2 до 4 недель в зависимости от размера сайта.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Нужен ли доступ к сайту?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Для аудита достаточно доступа к Яндекс.Метрике и Search Console. Для внедрения потребуется доступ к CMS или хостингу — обсудим на старте.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Когда появятся результаты в поиске?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Первые изменения в индексации заметны через 2–4 недели после внедрения. Рост позиций зависит от конкурентности ниши и продолжается постепенно.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Подходит ли для любой CMS?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Работаем с WordPress, Bitrix, Tilda, 1С-Битрикс и кастомными решениями. Если есть ограничения платформы — честно скажем об этом на этапе аудита.</div></div></div>
+{% endblock %}
+
+{% block others %}
+	<a href="/seo-full/" class="svc-other-card"><div class="svc-other-cat">SEO</div><div class="svc-other-name">Ведение SEO-проекта под ключ</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/seo-top/" class="svc-other-card"><div class="svc-other-cat">SEO</div><div class="svc-other-name">Вывод сайта в топ Яндекса</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/yandex-direct/" class="svc-other-card"><div class="svc-other-cat">Реклама</div><div class="svc-other-name">Ведение Яндекс Директ</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/website/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка сайта</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/landing/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка лендинга</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/internet-shop/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка интернет-магазина</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+{% endblock %}

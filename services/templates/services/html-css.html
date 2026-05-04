@@ -1,0 +1,141 @@
+{% extends "services/service_base.html" %}
+
+{% block title %}Верстка сайтов | Lab Review{% endblock %}
+{% block meta_description %}Верстаем сайты по макетам Figma. Пиксельная точность, адаптив, быстрая загрузка.{% endblock %}
+
+{% block breadcrumb_title %}Верстка сайтов{% endblock %}
+{% block hero_label %}Разработка{% endblock %}
+
+{% block hero_title %}
+	Верстка<br><span>сайтов</span>
+{% endblock %}
+
+{% block hero_text %}
+	Переводим макеты из Figma в живой код. Пиксельная точность, чистая семантика, адаптив под все устройства и высокая скорость загрузки.
+{% endblock %}
+
+{% block hero_checks %}
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Вёрстка по макетам Figma, Photoshop, XD
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Адаптив под мобильные, планшеты, десктоп
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Чистый семантический HTML/CSS
+	</div>
+	<div class="svc-check">
+		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		Кросс-браузерная совместимость
+	</div>
+{% endblock %}
+
+{% block info_cards %}
+	<div class="svc-info-card is-accent">
+		<div class="svc-info-card-title">Точность и качество кода</div>
+		<p class="svc-info-card-text">Верстаем так, чтобы дизайнер не плакал. Каждый отступ, шрифт и цвет — как в макете. Код чистый, без лишнего мусора, легко поддерживается.</p>
+		<div class="svc-info-checks">
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Пиксельное совпадение с макетом</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Семантическая разметка для SEO</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>CSS без дублирования и !important</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Проверка в Chrome, Firefox, Safari</div>
+		</div>
+	</div>
+	<div class="svc-info-card is-dark">
+		<div class="svc-info-card-title">Скорость и производительность</div>
+		<p class="svc-info-card-text">Оптимизируем изображения, минимизируем CSS и JS, используем современные форматы. Сайт грузится быстро — и Google это видит.</p>
+		<div class="svc-info-checks">
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Оптимизация изображений WebP</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Минификация и сборка ресурсов</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Lazy load для картинок</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>PageSpeed 90+ на выходе</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block plans %}
+	<div class="svc-plan">
+		<div class="svc-plan-left">
+			<div>
+				<div class="svc-plan-name">Лендинг</div>
+				<div class="svc-plan-desc">Верстка одностраничного сайта по готовому макету</div>
+				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-features">
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>До 10 блоков</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Адаптив</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Анимации</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Кросс-браузерность</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Оптимизация скорости</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Сдача в срок</div>
+				</div>
+			</div>
+			<div class="svc-plan-bottom">
+				<div class="svc-plan-price">от <strong>25 000 ₽</strong></div>
+				<a href="#contact" class="svc-plan-btn">Заказать</a>
+			</div>
+		</div>
+		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+	</div>
+
+	<div class="svc-plan">
+		<div class="svc-plan-left">
+			<div>
+				<div class="svc-plan-name">Многостраничный</div>
+				<div class="svc-plan-desc">Верстка сайта с несколькими страницами и шаблонами</div>
+				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-features">
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>До 10 страниц</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из Лендинга</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Компонентная структура</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Подключение к CMS</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>JS-интерактив</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>2 месяца поддержки</div>
+				</div>
+			</div>
+			<div class="svc-plan-bottom">
+				<div class="svc-plan-price">от <strong>60 000 ₽</strong></div>
+				<a href="#contact" class="svc-plan-btn">Заказать</a>
+			</div>
+		</div>
+		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+	</div>
+{% endblock %}
+
+{% block steps %}
+	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Получаем макет</div><p class="svc-step-text">Принимаем файл Figma, Photoshop или XD. Если макета нет — поможем найти дизайнера.</p></div>
+	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Оцениваем</div><p class="svc-step-text">Изучаем макет, даём точную оценку по срокам и стоимости.</p></div>
+	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Заключаем договор</div><p class="svc-step-text">Фиксируем сроки, стоимость и требования в договоре.</p></div>
+	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Верстаем</div><p class="svc-step-text">Пишем чистый HTML/CSS/JS по макету, строго соблюдая отступы и типографику.</p></div>
+	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Адаптируем</div><p class="svc-step-text">Делаем адаптив для мобильных, планшетов и широких экранов.</p></div>
+	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Оптимизируем</div><p class="svc-step-text">Сжимаем изображения, настраиваем lazy load, добиваемся PageSpeed 90+.</p></div>
+	<div class="svc-step"><div class="svc-step-num">7</div><div class="svc-step-title">Тестируем</div><p class="svc-step-text">Проверяем в Chrome, Firefox, Safari, Edge на разных разрешениях.</p></div>
+	<div class="svc-step"><div class="svc-step-num">8</div><div class="svc-step-title">Сдаём</div><p class="svc-step-text">Передаём исходники, деплоим на хостинг или отдаём архив.</p></div>
+	<div class="svc-step"><div class="svc-step-num">9</div><div class="svc-step-title">Поддерживаем</div><p class="svc-step-text">Правим замечания и помогаем с доработками после сдачи.</p></div>
+{% endblock %}
+
+{% block team %}
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">АИ</div></div><div class="svc-team-name">Алексей Иванов</div><div class="svc-team-role">Руководитель проектов</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">МС</div></div><div class="svc-team-name">Мария Смирнова</div><div class="svc-team-role">UI/UX дизайнер</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ДК</div></div><div class="svc-team-name">Дмитрий Козлов</div><div class="svc-team-role">Frontend-разработчик</div></div>
+	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ОП</div></div><div class="svc-team-name">Ольга Петрова</div><div class="svc-team-role">Backend-разработчик</div></div>
+{% endblock %}
+
+{% block faq %}
+	<div class="svc-faq-item"><button class="svc-faq-btn">Нужен ли готовый макет для начала работы?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, мы верстаем по готовым макетам. Если макета нет — можем порекомендовать дизайнера или разработать дизайн самостоятельно.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">В каком формате передаёте результат?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Отдаём архив с исходниками — HTML, CSS, JS, изображения. По желанию деплоим на ваш хостинг или подключаем к CMS.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Верстаете ли вы под WordPress или другую CMS?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, верстаем шаблоны под WordPress, а также под Django и другие фреймворки. Уточните при заказе — учтём при оценке.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько времени занимает верстка?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Лендинг — 3–5 рабочих дней, многостраничный сайт — от 10 дней. Точные сроки после оценки макета.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Что если макет изменится в процессе работы?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Небольшие правки в рамках проекта включены. Существенные изменения макета после старта работ обсуждаются отдельно.</div></div></div>
+{% endblock %}
+
+{% block others %}
+	<a href="/internet-shop/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка интернет-магазина</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/landing/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка лендинга</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/website/" class="svc-other-card"><div class="svc-other-cat">Разработка</div><div class="svc-other-name">Разработка сайта</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/seo-setup/" class="svc-other-card"><div class="svc-other-cat">SEO</div><div class="svc-other-name">Внутренняя настройка SEO</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/yandex-direct/" class="svc-other-card"><div class="svc-other-cat">Яндекс Директ</div><div class="svc-other-name">Ведение рекламных кампаний</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+	<a href="/seo-full/" class="svc-other-card"><div class="svc-other-cat">SEO</div><div class="svc-other-name">Ведение проекта под ключ</div><span class="svc-other-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+{% endblock %}

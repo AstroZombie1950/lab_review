@@ -1,0 +1,869 @@
+{% extends "cases/base.html" %}
+
+{% block extra_css %}
+<style>
+	.svc-page {
+		min-height: 100vh;
+		padding-bottom: 120px;
+	}
+
+	/* ── Герой ── */
+	.svc-hero {
+		padding: 64px 0 80px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.svc-hero-blob {
+		position: absolute;
+		top: -100px;
+		right: -100px;
+		width: 700px;
+		height: 700px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.14) 0%, transparent 65%);
+		pointer-events: none;
+		animation: blob-drift 10s ease-in-out infinite;
+	}
+
+	@keyframes blob-drift {
+		0%, 100% { transform: translate(0,0) scale(1); }
+		50%       { transform: translate(-40px, 30px) scale(1.06); }
+	}
+
+	.svc-hero-inner {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 64px;
+		align-items: center;
+		position: relative;
+		z-index: 1;
+	}
+
+	.svc-hero-label {
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		margin-bottom: 20px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.svc-hero-label::before {
+		content: '';
+		width: 20px;
+		height: 2px;
+		background: var(--accent);
+	}
+
+	.svc-hero-title {
+		font-size: clamp(36px, 5vw, 72px);
+		font-weight: 900;
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+		margin-bottom: 24px;
+	}
+
+	.svc-hero-title span { color: var(--muted); }
+
+	.svc-hero-text {
+		font-size: 17px;
+		color: var(--muted);
+		line-height: 1.65;
+		margin-bottom: 32px;
+		max-width: 480px;
+	}
+
+	.svc-hero-checks {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-bottom: 40px;
+	}
+
+	.svc-check {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		font-size: 15px;
+		color: rgba(255,255,255,0.8);
+		line-height: 1.5;
+	}
+
+	.svc-check-icon {
+		width: 20px;
+		height: 20px;
+		border-radius: 50%;
+		background: rgba(232,56,42,0.15);
+		border: 1px solid rgba(232,56,42,0.4);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	.svc-hero-btn {
+		display: inline-flex;
+		align-items: center;
+		height: 56px;
+		padding: 0 32px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 16px;
+		font-weight: 700;
+		transition: opacity .2s;
+	}
+
+	.svc-hero-btn:hover { opacity: 0.88; }
+
+	.svc-hero-image {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		overflow: hidden;
+		aspect-ratio: 4/3;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.svc-hero-image img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.svc-hero-image-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		color: var(--muted-2);
+	}
+
+	.svc-hero-image-placeholder svg { opacity: 0.3; }
+	.svc-hero-image-placeholder span { font-size: 13px; }
+
+	/* ── Секция ── */
+	.svc-section { padding: 80px 0 0; }
+
+	.svc-section-label {
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		margin-bottom: 16px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.svc-section-label::before {
+		content: '';
+		width: 20px;
+		height: 2px;
+		background: var(--accent);
+	}
+
+	.svc-section-title {
+		font-size: clamp(28px, 3.5vw, 48px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 16px;
+	}
+
+	.svc-section-title span { color: var(--muted); }
+
+	.svc-section-text {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.65;
+		max-width: 640px;
+		margin-bottom: 48px;
+	}
+
+	/* ── Инфо-блоки ── */
+	.svc-info-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.svc-info-card {
+		padding: 40px;
+		border-radius: var(--radius-xl);
+		border: 1px solid var(--stroke);
+		background: var(--bg-2);
+	}
+
+	.svc-info-card.is-accent {
+		background: linear-gradient(135deg, #c41e10 0%, #8b1010 100%);
+		border-color: transparent;
+	}
+
+	.svc-info-card.is-dark {
+		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+		border-color: rgba(255,255,255,0.08);
+	}
+
+	.svc-info-card-title {
+		font-size: clamp(22px, 2.5vw, 32px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.15;
+		margin-bottom: 16px;
+	}
+
+	.svc-info-card-text {
+		font-size: 15px;
+		color: rgba(255,255,255,0.72);
+		line-height: 1.65;
+		margin-bottom: 24px;
+	}
+
+	.svc-info-checks { display: flex; flex-direction: column; gap: 10px; }
+
+	.svc-info-check {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		font-size: 14px;
+		color: rgba(255,255,255,0.8);
+		line-height: 1.5;
+	}
+
+	.svc-info-check-dot {
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background: rgba(255,255,255,0.15);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		margin-top: 2px;
+	}
+
+	/* ── Тарифы ── */
+	.svc-plans { display: flex; flex-direction: column; gap: 16px; }
+
+	.svc-plan {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		overflow: hidden;
+		min-height: 340px;
+	}
+
+	.svc-plan-left {
+		padding: 48px;
+		border-right: 1px solid var(--stroke);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+
+	.svc-plan-name {
+		font-size: 36px;
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		margin-bottom: 8px;
+	}
+
+	.svc-plan-desc {
+		font-size: 15px;
+		color: var(--muted);
+		margin-bottom: 24px;
+		line-height: 1.5;
+	}
+
+	.svc-plan-includes {
+		font-size: 13px;
+		color: var(--muted-2);
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		font-weight: 700;
+		margin-bottom: 16px;
+	}
+
+	.svc-plan-features {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 10px;
+		margin-bottom: 32px;
+	}
+
+	.svc-plan-feature {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		font-size: 14px;
+		color: rgba(255,255,255,0.72);
+		line-height: 1.45;
+	}
+
+	.svc-plan-bottom {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
+	.svc-plan-price { font-size: 13px; color: var(--muted-2); }
+
+	.svc-plan-price strong {
+		font-size: 32px;
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		color: #fff;
+		margin-left: 4px;
+	}
+
+	.svc-plan-btn {
+		display: inline-flex;
+		align-items: center;
+		height: 48px;
+		padding: 0 28px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 15px;
+		font-weight: 700;
+		transition: opacity .2s;
+		white-space: nowrap;
+	}
+
+	.svc-plan-btn:hover { opacity: 0.88; }
+
+	.svc-plan-right {
+		background: var(--bg-3);
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.svc-plan-right img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.6;
+	}
+
+	.svc-plan-right-placeholder {
+		color: var(--muted-2);
+		font-size: 13px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		opacity: 0.5;
+	}
+
+	/* ── Форма ── */
+	.svc-form-wrap {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		padding: 64px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 64px;
+		align-items: start;
+	}
+
+	.svc-form-left-title {
+		font-size: clamp(28px, 3vw, 42px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 16px;
+	}
+
+	.svc-form-left-title span { color: var(--muted); }
+
+	.svc-form-left-text {
+		font-size: 15px;
+		color: var(--muted);
+		line-height: 1.65;
+		margin-bottom: 32px;
+	}
+
+	.svc-form-contacts { display: flex; flex-direction: column; gap: 8px; }
+
+	.svc-form-contact-item {
+		font-size: 15px;
+		color: rgba(255,255,255,0.65);
+		transition: color .2s;
+	}
+
+	.svc-form-contact-item:hover { color: #fff; }
+
+	.svc-form { display: flex; flex-direction: column; gap: 16px; }
+
+	.svc-field { display: flex; flex-direction: column; gap: 8px; }
+
+	.svc-field label {
+		font-size: 13px;
+		color: var(--muted-2);
+		font-weight: 500;
+	}
+
+	.svc-field input,
+	.svc-field textarea {
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		border-radius: var(--radius-md);
+		padding: 14px 16px;
+		font-size: 15px;
+		color: rgba(255,255,255,0.88);
+		font-family: inherit;
+		outline: none;
+		transition: border-color .2s;
+		resize: none;
+	}
+
+	.svc-field input:focus,
+	.svc-field textarea:focus { border-color: var(--stroke-2); }
+
+	.svc-field input::placeholder,
+	.svc-field textarea::placeholder { color: rgba(255,255,255,0.22); }
+
+	.svc-form-submit {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 52px;
+		padding: 0 32px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 15px;
+		font-weight: 700;
+		transition: opacity .2s;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+	}
+
+	.svc-form-submit:hover { opacity: 0.88; }
+
+	.svc-form-note {
+		font-size: 12px;
+		color: var(--muted-2);
+		text-align: center;
+		line-height: 1.5;
+	}
+
+	/* ── Как мы работаем ── */
+	.svc-steps-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3px;
+		margin-top: 48px;
+	}
+
+	.svc-step {
+		padding: 32px;
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+	}
+
+	.svc-step:first-child { border-radius: var(--radius-xl) 0 0 0; }
+	.svc-step:nth-child(3) { border-radius: 0 var(--radius-xl) 0 0; }
+	.svc-step:nth-child(7) { border-radius: 0 0 0 var(--radius-xl); }
+	.svc-step:last-child { border-radius: 0 0 var(--radius-xl) 0; }
+
+	.svc-step-num {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		background: var(--accent);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		font-weight: 900;
+		color: #fff;
+		margin-bottom: 20px;
+	}
+
+	.svc-step-title {
+		font-size: 16px;
+		font-weight: 700;
+		margin-bottom: 8px;
+		line-height: 1.3;
+	}
+
+	.svc-step-text {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.6;
+	}
+
+	/* ── Сотрудники ── */
+	.svc-team-grid {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 16px;
+		margin-top: 48px;
+	}
+
+	.svc-team-card {
+		padding: 28px 24px;
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 16px;
+	}
+
+	.svc-team-avatar {
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		background: var(--bg-3);
+		border: 2px solid var(--stroke);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.svc-team-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+	.svc-team-avatar-placeholder {
+		font-size: 28px;
+		font-weight: 900;
+		color: var(--muted-2);
+	}
+
+	.svc-team-name { font-size: 16px; font-weight: 700; }
+
+	.svc-team-role {
+		font-size: 13px;
+		color: var(--muted);
+		line-height: 1.4;
+	}
+/* ── FAQ ── */
+.svc-faq { display: flex; flex-direction: column; gap: 3px; margin-top: 48px; }
+
+.svc-faq-item {
+	border-radius: var(--radius-lg);
+	background: var(--bg-2);
+	border: 1px solid var(--stroke);
+	overflow: hidden;
+}
+
+.svc-faq-btn {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding: 24px 28px;
+	text-align: left;
+	font-size: 16px;
+	font-weight: 700;
+	color: rgba(255,255,255,0.88);
+	cursor: pointer;
+	transition: color .2s;
+}
+
+.svc-faq-btn:hover { color: #fff; }
+
+.svc-faq-icon {
+	width: 32px;
+	height: 32px;
+	border-radius: var(--radius-sm);
+	background: rgba(255,255,255,0.06);
+	border: 1px solid var(--stroke);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	transition: transform .25s;
+}
+
+.svc-faq-item.is-open .svc-faq-icon { transform: rotate(45deg); }
+
+.svc-faq-body {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows .3s ease, padding .3s ease;
+	padding: 0 28px;
+	font-size: 15px;
+	color: var(--muted);
+	line-height: 1.7;
+}
+
+.svc-faq-body-inner {
+	overflow: hidden;
+}
+
+.svc-faq-item.is-open .svc-faq-body {
+	grid-template-rows: 1fr;
+	padding: 0 28px 24px;
+}
+	/* ── Другие услуги ── */
+	.svc-others-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 16px;
+		margin-top: 48px;
+	}
+
+	.svc-other-card {
+		padding: 32px;
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		transition: background .2s, border-color .2s;
+	}
+
+	.svc-other-card:hover {
+		background: var(--bg-3);
+		border-color: var(--stroke-2);
+	}
+
+	.svc-other-cat {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	.svc-other-name {
+		font-size: 18px;
+		font-weight: 700;
+		line-height: 1.3;
+		color: rgba(255,255,255,0.88);
+	}
+
+	.svc-other-arrow {
+		margin-top: auto;
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 13px;
+		color: var(--muted);
+		font-weight: 500;
+		transition: color .2s;
+	}
+
+	.svc-other-card:hover .svc-other-arrow { color: #fff; }
+
+	/* ── Адаптив ── */
+	@media (max-width: 1024px) {
+		.svc-hero-inner { grid-template-columns: 1fr; }
+		.svc-hero-image { display: none; }
+		.svc-info-grid { grid-template-columns: 1fr; }
+		.svc-plan { grid-template-columns: 1fr; }
+		.svc-plan-right { min-height: 200px; }
+		.svc-plan-left { border-right: none; border-bottom: 1px solid var(--stroke); }
+		.svc-form-wrap { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
+		.svc-steps-grid { grid-template-columns: 1fr 1fr; }
+		.svc-team-grid { grid-template-columns: repeat(2, 1fr); }
+		.svc-others-grid { grid-template-columns: 1fr 1fr; }
+	}
+
+	@media (max-width: 720px) {
+		.svc-hero { padding: 40px 0 56px; }
+		.svc-info-card { padding: 28px; }
+		.svc-plan-left { padding: 28px; }
+		.svc-plan-features { grid-template-columns: 1fr; }
+		.svc-form-wrap { padding: 28px; }
+		.svc-steps-grid { grid-template-columns: 1fr; }
+		.svc-others-grid { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 480px) {
+		.svc-team-grid { grid-template-columns: 1fr 1fr; }
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="svc-page">
+	<div class="shell">
+
+		<!-- Хлебные крошки -->
+		<div class="breadcrumb">
+			<a href="/">Главная</a>
+			<span class="breadcrumb-sep">•</span>
+			<span>{% block breadcrumb_title %}{% endblock %}</span>
+		</div>
+
+		<!-- ════ ГЕРОЙ ════ -->
+		<section class="svc-hero">
+			<div class="svc-hero-blob"></div>
+			<div class="svc-hero-inner">
+				<div class="svc-hero-content">
+					<div class="svc-hero-label">{% block hero_label %}{% endblock %}</div>
+					<h1 class="svc-hero-title">{% block hero_title %}{% endblock %}</h1>
+					<p class="svc-hero-text">{% block hero_text %}{% endblock %}</p>
+					<div class="svc-hero-checks">{% block hero_checks %}{% endblock %}</div>
+					<a href="#contact" class="svc-hero-btn">Обсудить проект</a>
+				</div>
+				<div class="svc-hero-image">
+					{% block hero_image %}
+					<div class="svc-hero-image-placeholder">
+						<svg width="64" height="64" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+						<span>Изображение услуги</span>
+					</div>
+					{% endblock %}
+				</div>
+			</div>
+		</section>
+
+		<!-- ════ ИНФО-БЛОКИ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">О услуге</div>
+			<h2 class="svc-section-title">Что вы получаете</h2>
+			<div class="svc-info-grid">{% block info_cards %}{% endblock %}</div>
+		</section>
+
+		<!-- ════ ТАРИФЫ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">Стоимость</div>
+			<h2 class="svc-section-title">Варианты <span>тарифов</span></h2>
+			<p class="svc-section-text">Каждый проект рассчитываем индивидуально. Ниже — ориентировочные пакеты для разных задач.</p>
+			<div class="svc-plans">{% block plans %}{% endblock %}</div>
+		</section>
+
+		<!-- ════ ФОРМА ════ -->
+		<section class="svc-section" id="contact">
+			<div class="svc-form-wrap">
+				<div>
+					<h2 class="svc-form-left-title">Обсудим <span>ваш проект?</span></h2>
+					<p class="svc-form-left-text">Оставьте заявку — перезвоним в течение 30 минут и ответим на все вопросы.</p>
+					<div class="svc-form-contacts">
+						<a href="tel:+74952223333" class="svc-form-contact-item">+7 (495) 222-33-33</a>
+						<a href="mailto:contact@lab-review.ru" class="svc-form-contact-item">contact@lab-review.ru</a>
+						<span class="svc-form-contact-item" style="cursor:default;">с 09:00 до 19:00, пн–пт</span>
+					</div>
+				</div>
+				<form class="svc-form" id="svc-contact-form">
+					{% csrf_token %}
+					<div class="svc-field">
+						<label>Имя</label>
+						<input type="text" name="name" placeholder="Иван Иванов" required />
+					</div>
+					<div class="svc-field">
+						<label>Телефон или e-mail</label>
+						<input type="text" name="contact" placeholder="+7 (999) 000-00-00" required />
+					</div>
+					<div class="svc-field">
+						<label>Сообщение</label>
+						<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
+					</div>
+					<button type="submit" class="svc-form-submit">Отправить заявку</button>
+					<p class="svc-form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/" style="color:var(--muted);">политикой конфиденциальности</a></p>
+					<div id="form-status" style="display:none;text-align:center;font-size:14px;padding:12px;border-radius:var(--radius-md);"></div>
+				</form>
+			</div>
+		</section>
+
+		<!-- ════ КАК МЫ РАБОТАЕМ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">Процесс</div>
+			<h2 class="svc-section-title">Как мы <span>работаем</span></h2>
+			<div class="svc-steps-grid">{% block steps %}{% endblock %}</div>
+		</section>
+
+		<!-- ════ СОТРУДНИКИ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">Команда</div>
+			<h2 class="svc-section-title">Наши <span>специалисты</span></h2>
+			<div class="svc-team-grid">{% block team %}{% endblock %}</div>
+		</section>
+
+		<!-- ════ FAQ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">Вопросы</div>
+			<h2 class="svc-section-title">Часто <span>спрашивают</span></h2>
+			<div class="svc-faq">{% block faq %}{% endblock %}</div>
+		</section>
+
+		<!-- ════ ДРУГИЕ УСЛУГИ ════ -->
+		<section class="svc-section">
+			<div class="svc-section-label">Ещё</div>
+			<h2 class="svc-section-title">Другие <span>наши услуги</span></h2>
+			<div class="svc-others-grid">{% block others %}{% endblock %}</div>
+		</section>
+
+	</div>
+</main>
+
+<script>
+    /* FAQ аккордеон */
+    document.querySelectorAll('.svc-faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.svc-faq-item');
+            const isOpen = item.classList.contains('is-open');
+            document.querySelectorAll('.svc-faq-item').forEach(i => i.classList.remove('is-open'));
+            if (!isOpen) item.classList.add('is-open');
+        });
+    });
+
+	/* Отправка формы в Telegram */
+	document.getElementById('svc-contact-form').addEventListener('submit', async function(e) {
+		e.preventDefault();
+		const btn = this.querySelector('.svc-form-submit');
+		const status = document.getElementById('form-status');
+		const name = this.querySelector('[name="name"]').value.trim();
+		const contact = this.querySelector('[name="contact"]').value.trim();
+		const message = this.querySelector('[name="message"]').value.trim();
+		const page = document.title;
+
+		btn.disabled = true;
+		btn.textContent = 'Отправляем...';
+
+		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение: ${message || 'не указано'}`;
+
+		try {
+			const resp = await fetch('/services/send-form/', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+					'X-CSRFToken': this.querySelector('[name="csrfmiddlewaretoken"]').value,
+				},
+				body: JSON.stringify({ text }),
+			});
+			const data = await resp.json();
+			if (data.ok) {
+				status.style.display = 'block';
+				status.style.background = 'rgba(232,56,42,0.1)';
+				status.style.color = '#fff';
+				status.textContent = 'Заявка отправлена! Перезвоним в течение 30 минут.';
+				this.reset();
+			} else { throw new Error(); }
+		} catch {
+			status.style.display = 'block';
+			status.style.background = 'rgba(255,255,255,0.05)';
+			status.style.color = 'var(--muted)';
+			status.textContent = 'Что-то пошло не так. Позвоните нам напрямую.';
+		}
+
+		btn.disabled = false;
+		btn.textContent = 'Отправить заявку';
+	});
+</script>
+{% endblock %}
