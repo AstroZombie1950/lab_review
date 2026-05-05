@@ -1,0 +1,11 @@
+/* Все секции блока скрыты по умолчанию — JS показывает нужные */
+.block-section-intro,
+.block-section-task_resume,
+.block-section-tasks_grid,
+.block-section-content_full,
+.block-section-content_two,
+.block-section-metrics,
+.block-section-team,
+.block-section-cta {
+	display: none;
+}

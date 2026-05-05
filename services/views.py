@@ -1,5 +1,19 @@
+import os
+import json
+import urllib.request
+
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.views.generic import TemplateView
+from dotenv import load_dotenv
+
 from cases.models import Case
+
+load_dotenv()
+
+TG_TOKEN = os.getenv('TG_TOKEN')
+TG_CHAT = os.getenv('TG_CHAT')
 
 
 # Главная страница
@@ -8,23 +22,8 @@ def home(request):
 	return render(request, 'home.html', {'cases': cases})
 
 
-
 def internet_shop(request):
 	return render(request, 'services/internet-shop.html')
-
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-import json
-import urllib.request
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-
-TG_TOKEN = os.getenv('TG_TOKEN')
-TG_CHAT = os.getenv('TG_CHAT')
 
 def landing(request):
 	return render(request, 'services/landing.html')
@@ -48,6 +47,8 @@ def seo_top(request):
 def yandex_direct(request):
 	return render(request, 'services/yandex-direct.html')
 
+
+# Отправка формы в Telegram
 @require_POST
 def send_form(request):
 	try:

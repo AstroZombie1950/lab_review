@@ -10,6 +10,6 @@ urlpatterns = [
 	path('privacy-policy/', TemplateView.as_view(template_name='privacy-policy.html'), name='privacy_policy'),
 	path('oferta/', TemplateView.as_view(template_name='oferta.html'), name='oferta'),
 	path('cookie-consent/', TemplateView.as_view(template_name='cookie-consent.html'), name='cookie_consent'),
-    path('requisites/', TemplateView.as_view(template_name='requisites.html'), name='requisites'),
-    path('', include('services.urls')),
+	path('requisites/', TemplateView.as_view(template_name='requisites.html'), name='requisites'),
+	path('', include('services.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

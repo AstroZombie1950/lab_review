@@ -6,555 +6,832 @@
 {% block extra_css %}
 <style>
 	.case-page {
-		min-height: 100vh;
-		padding-bottom: 80px;
+		padding-bottom: 120px;
 	}
 
-	/* Хлебные крошки */
-	.breadcrumb {
+	/* ── Герой ── */
+	.case-hero {
+		position: relative;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		padding-bottom: 60px;
+		overflow: hidden;
+	}
+
+	.case-hero-bg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		opacity: 0.45;
+		z-index: 0;
+	}
+
+	.case-hero-overlay {
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 60%, transparent 100%);
+		z-index: 1;
+	}
+
+	.case-hero-inner {
+		position: relative;
+		z-index: 2;
+	}
+
+	/* Назад */
+	.case-back {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-size: 14px;
+		color: rgba(255,255,255,0.5);
+		margin-bottom: 48px;
+		transition: color .2s;
+	}
+	.case-back:hover { color: #fff; }
+
+	/* Заголовок героя */
+	.case-hero-title {
+		font-size: clamp(36px, 5.5vw, 80px);
+		font-weight: 900;
+		line-height: 1.05;
+		letter-spacing: -0.04em;
+		margin-bottom: 24px;
+	}
+	.case-hero-title .dim { color: var(--muted); }
+
+	.case-hero-desc {
+		font-size: 18px;
+		color: var(--muted);
+		line-height: 1.6;
+		max-width: 640px;
+		margin-bottom: 48px;
+	}
+
+	/* Нижняя строка героя: год + теги + ссылка */
+	.case-hero-footer {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.case-hero-year {
 		display: flex;
 		align-items: center;
 		gap: 8px;
-		padding: 24px 0 0;
+		font-size: 14px;
+		color: var(--muted);
+	}
+	.case-hero-year::before {
+		content: '';
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
+	}
+
+	.case-tag {
+		display: inline-flex;
+		align-items: center;
+		height: 34px;
+		padding: 0 16px;
+		border-radius: 999px;
+		background: rgba(255,255,255,0.08);
+		border: 1px solid rgba(255,255,255,0.12);
+		font-size: 13px;
+		font-weight: 500;
+		color: rgba(255,255,255,0.7);
+	}
+
+	.case-hero-url {
+		margin-left: auto;
 		font-size: 13px;
 		color: var(--muted);
 	}
 
-	.breadcrumb a:hover { color: #fff; }
-	.breadcrumb-sep { color: var(--muted-2); }
+	.case-goto-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 80px;
+		height: 80px;
+		border-radius: 50%;
+		background: var(--accent);
+		color: #fff;
+		font-size: 12px;
+		font-weight: 700;
+		text-align: center;
+		line-height: 1.3;
+		transition: opacity .2s;
+		flex-shrink: 0;
+	}
+	.case-goto-btn:hover { opacity: 0.88; }
 
-	/* Герой */
-	.hero {
-		padding: 40px 0 0;
+	/* ── Общие стили секций ── */
+	.cb { padding: 40px 0 0; }
+
+	/* ── intro ── */
+	.cb-intro p {
+		font-size: clamp(17px, 2vw, 22px);
+		line-height: 1.7;
+		color: rgba(255,255,255,0.85);
+		max-width: 900px;
 	}
 
-	.hero-shell {
+	/* ── task_resume ── */
+	.cb-task-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
+	}
+
+	.cb-task-left {
+		border-radius: var(--radius-xl);
+		background: var(--accent);
+		padding: 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+	}
+
+	.cb-task-kicker {
+		font-size: 14px;
+		color: rgba(255,255,255,0.6);
+	}
+
+	.cb-task-text {
+		font-size: clamp(20px, 2.2vw, 28px);
+		font-weight: 900;
+		line-height: 1.2;
+		letter-spacing: -0.02em;
+	}
+
+	.cb-resume {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		padding: 40px;
+	}
+
+	.cb-resume-title {
+		font-size: 24px;
+		font-weight: 900;
+		margin-bottom: 24px;
+		padding-bottom: 24px;
+		border-bottom: 1px solid var(--stroke);
+	}
+
+	.cb-resume-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 24px;
+	}
+
+	.cb-resume-item-label {
+		font-size: 13px;
+		color: var(--muted);
+		margin-bottom: 6px;
+	}
+
+	.cb-resume-item-value {
+		font-size: 20px;
+		font-weight: 900;
+		letter-spacing: -0.02em;
+	}
+
+	/* ── tasks_grid ── */
+	.cb-tasks-title {
+		font-size: clamp(28px, 4vw, 52px);
+		font-weight: 900;
+		line-height: 1.1;
+		letter-spacing: -0.03em;
+		margin-bottom: 40px;
+	}
+	.cb-tasks-title .dim { color: var(--muted); }
+
+	.cb-tasks-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 3px;
+	}
+
+	.cb-task-card {
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		border-radius: var(--radius-lg);
+		padding: 24px;
+		cursor: pointer;
+		transition: background .2s;
+	}
+	.cb-task-card:hover { background: var(--bg-3); }
+
+	.cb-task-card-title {
+		font-size: 15px;
+		line-height: 1.4;
+		color: rgba(255,255,255,0.8);
+	}
+
+	/* ── content_full ── */
+	.cb-full {
 		border-radius: var(--radius-xl);
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
 		overflow: hidden;
-	}
-
-	.hero-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		min-height: 480px;
 	}
 
-	.hero-content {
+	.cb-full-text {
 		padding: 48px;
-		border-right: 1px solid var(--stroke);
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: center;
+		gap: 16px;
 	}
 
-	.eyebrow {
+	.cb-full-label {
+		display: flex;
+		align-items: center;
+		gap: 8px;
 		font-size: 13px;
-		font-weight: 600;
-		color: var(--muted);
-		letter-spacing: 0.08em;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.1em;
 		text-transform: uppercase;
-		margin-bottom: 20px;
+	}
+	.cb-full-label::before {
+		content: '';
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		background: var(--accent);
 	}
 
-	.hero-title {
-		font-size: clamp(28px, 3.5vw, 48px);
+	.cb-full-title {
+		font-size: clamp(22px, 2.5vw, 36px);
 		font-weight: 900;
-		line-height: 1.1;
+		line-height: 1.15;
 		letter-spacing: -0.03em;
-		margin-bottom: 20px;
 	}
 
-	.hero-title span {
-		color: var(--muted);
-	}
-
-	.hero-desc {
+	.cb-full-main {
 		font-size: 16px;
+		line-height: 1.7;
+		color: rgba(255,255,255,0.88);
+	}
+
+	.cb-full-secondary {
+		font-size: 14px;
+		line-height: 1.65;
 		color: var(--muted);
-		line-height: 1.6;
-		margin-bottom: 40px;
 	}
 
-	/* Метрики в герое */
-	.hero-stats {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1px;
-		background: var(--stroke);
-		border-top: 1px solid var(--stroke);
-		margin-top: auto;
+	.cb-full-link {
+		margin-top: 8px;
 	}
 
-	.hero-stat {
-		padding: 24px;
-		background: var(--bg-2);
-	}
-
-	.hero-stat strong {
-		display: block;
-		font-size: 28px;
-		font-weight: 900;
-		letter-spacing: -0.03em;
-		margin-bottom: 6px;
-		color: #fff;
-	}
-
-	.hero-stat span {
+	.cb-full-link-label {
 		font-size: 13px;
 		color: var(--muted);
-		line-height: 1.4;
+		margin-bottom: 8px;
 	}
 
-	/* Превью справа */
-	.hero-preview {
-		position: relative;
-		background:
-			radial-gradient(ellipse 80% 60% at 50% 0%, rgba(140,30,20,0.12), transparent),
-			var(--bg-3);
-		display: flex;
-		flex-direction: column;
+	.cb-link-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 12px;
+		height: 48px;
+		padding: 0 20px;
+		border-radius: var(--radius-md);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+		font-size: 14px;
+		color: rgba(255,255,255,0.7);
+		transition: border-color .2s, color .2s;
+		max-width: 320px;
 		overflow: hidden;
 	}
+	.cb-link-btn:hover { border-color: var(--stroke-2); color: #fff; }
 
-	.hero-cover {
-		width: 100%;
-		flex: 1;
-		object-fit: cover;
-		opacity: 0.7;
-		min-height: 0;
+	.cb-full-img {
+		position: relative;
+		overflow: hidden;
 	}
-
-	.hero-no-cover {
-		flex: 1;
+	.cb-full-img img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.cb-full-img-placeholder {
+		width: 100%;
+		height: 100%;
+		background: var(--bg-3);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		color: var(--muted-2);
-		font-size: 14px;
+		font-size: 13px;
 	}
 
-	/* Метрики справа внизу */
-	.preview-metrics {
+	/* ── content_two ── */
+	.cb-two-grid {
 		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1px;
-		background: var(--stroke);
-		border-top: 1px solid var(--stroke);
-		flex-shrink: 0;
+		grid-template-columns: 1fr 1fr;
+		gap: 16px;
 	}
 
-	.preview-metric {
-		padding: 20px 24px;
-		background: rgba(10,10,10,0.72);
-		backdrop-filter: blur(8px);
-	}
-
-	.preview-metric strong {
-		display: block;
-		font-size: 24px;
-		font-weight: 900;
-		letter-spacing: -0.03em;
-		margin-bottom: 4px;
-		color: #fff;
-	}
-
-	.preview-metric span {
-		font-size: 12px;
-		color: var(--muted);
-		line-height: 1.4;
-	}
-
-	/* Теги и отрасль */
-	.hero-meta {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		flex-wrap: wrap;
-		padding: 16px 48px;
-		border-bottom: 1px solid var(--stroke);
-	}
-
-	.meta-tag {
-		display: inline-flex;
-		align-items: center;
-		height: 28px;
-		padding: 0 12px;
-		border-radius: 999px;
-		background: rgba(255,255,255,0.05);
-		border: 1px solid var(--stroke);
-		font-size: 12px;
-		color: var(--muted);
-	}
-
-	/* Секции */
-	.section {
-		padding: 32px 0 0;
-	}
-
-	.section-shell {
+	.cb-two-col {
 		border-radius: var(--radius-xl);
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
+		padding: 40px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		overflow: hidden;
+	}
+
+	.cb-two-col-title {
+		font-size: clamp(20px, 2vw, 30px);
+		font-weight: 900;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+	}
+
+	.cb-two-col img {
+		width: 100%;
+		border-radius: var(--radius-lg);
+		margin-top: 8px;
+	}
+
+	/* ── metrics ── */
+	.cb-metrics {
+		border-radius: var(--radius-xl);
+		background: linear-gradient(135deg, #0d1a2e 0%, #0a1520 100%);
+		border: 1px solid rgba(255,255,255,0.08);
 		padding: 48px;
 	}
 
-	.section-head {
-		margin-bottom: 32px;
-	}
-
-	.section-title {
-		font-size: clamp(24px, 3vw, 36px);
+	.cb-metrics-title {
+		font-size: clamp(24px, 3vw, 40px);
 		font-weight: 900;
 		letter-spacing: -0.03em;
-		margin-bottom: 12px;
+		margin-bottom: 8px;
 	}
 
-	.section-text {
-		font-size: 16px;
+	.cb-metrics-subtitle {
+		font-size: 15px;
 		color: var(--muted);
-		line-height: 1.6;
-		max-width: 700px;
+		margin-bottom: 40px;
+		line-height: 1.5;
 	}
 
-	/* Блок info (проблема/задача/подход) */
-	.info-grid {
+	.cb-metrics-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 16px;
 	}
 
-	.info-card {
-		padding: 28px;
+	.cb-metric-card {
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.08);
 		border-radius: var(--radius-lg);
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
+		padding: 28px;
 	}
 
-	.card-kicker {
-		font-size: 11px;
-		font-weight: 700;
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-		color: var(--accent);
-		margin-bottom: 14px;
-	}
-
-	.card-title {
-		font-size: 17px;
-		font-weight: 700;
-		line-height: 1.3;
+	.cb-metric-num {
+		font-size: clamp(36px, 4vw, 56px);
+		font-weight: 900;
+		letter-spacing: -0.04em;
+		line-height: 1;
 		margin-bottom: 12px;
 	}
 
-	.card-text {
-		font-size: 14px;
+	.cb-metric-unit {
+		font-size: clamp(18px, 2vw, 28px);
+		font-weight: 700;
 		color: var(--muted);
-		line-height: 1.6;
+		margin-left: 4px;
 	}
 
-	/* Блок steps */
-	.steps-grid {
-		display: grid;
-		grid-template-columns: repeat(2, 1fr);
-		gap: 16px;
-	}
-
-	.step-card {
-		padding: 28px;
-		border-radius: var(--radius-lg);
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
-	}
-
-	.step-num {
-		width: 36px;
-		height: 36px;
-		border-radius: 10px;
-		background: rgba(255,255,255,0.06);
-		border: 1px solid var(--stroke);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 15px;
-		font-weight: 800;
-		margin-bottom: 16px;
-		color: var(--muted);
-	}
-
-	/* Блок results */
-	.results-grid {
-		display: grid;
-		grid-template-columns: repeat(4, 1fr);
-		gap: 16px;
-	}
-
-	.result-card {
-		padding: 28px;
-		border-radius: var(--radius-lg);
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
-	}
-
-	.result-card strong {
-		display: block;
-		font-size: 36px;
-		font-weight: 900;
-		letter-spacing: -0.04em;
-		margin-bottom: 10px;
-		color: #fff;
-	}
-
-	.result-card span {
+	.cb-metric-label {
 		font-size: 14px;
 		color: var(--muted);
 		line-height: 1.5;
 	}
 
-	/* Блок text */
-	.text-block {
-		font-size: 16px;
-		color: var(--muted);
-		line-height: 1.8;
-	}
-
-	/* CTA */
-	.cta-shell {
-		margin-top: 32px;
+	/* ── team ── */
+	.cb-team-inner {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		gap: 48px;
+		align-items: start;
 		border-radius: var(--radius-xl);
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
 		padding: 48px;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: 32px;
 	}
 
-	.cta-title {
-		font-size: clamp(24px, 3vw, 38px);
+	.cb-team-heading {
+		font-size: clamp(24px, 3vw, 40px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+	}
+
+	.cb-team-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+	}
+
+	.cb-team-card {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		padding: 16px 20px;
+		border-radius: var(--radius-lg);
+		background: var(--bg-3);
+		border: 1px solid var(--stroke);
+	}
+
+	.cb-team-avatar {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		background: var(--bg-2);
+		border: 1px solid var(--stroke-2);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 16px;
+		font-weight: 800;
+		color: var(--muted);
+		flex-shrink: 0;
+	}
+
+	.cb-team-name {
+		font-size: 15px;
+		font-weight: 700;
+		margin-bottom: 3px;
+	}
+
+	.cb-team-role {
+		font-size: 13px;
+		color: var(--muted);
+		line-height: 1.3;
+	}
+
+	/* ── cta ── */
+	.cb-cta {
+		border-radius: var(--radius-xl);
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		padding: 64px 48px;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 48px;
+		align-items: center;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.cb-cta::before {
+		content: '';
+		position: absolute;
+		top: -120px;
+		right: -80px;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.12) 0%, transparent 65%);
+		pointer-events: none;
+	}
+
+	.cb-cta-title {
+		font-size: clamp(28px, 3.5vw, 48px);
 		font-weight: 900;
 		letter-spacing: -0.03em;
 		margin-bottom: 12px;
 	}
 
-	.cta-text {
+	.cb-cta-text {
 		font-size: 16px;
 		color: var(--muted);
 		line-height: 1.6;
-		max-width: 600px;
+		max-width: 560px;
 	}
+	.cb-cta-text strong { color: rgba(255,255,255,0.88); }
 
-	.cta-btn {
+	.cb-cta-btn {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		height: 52px;
-		padding: 0 28px;
-		border-radius: var(--radius-lg);
-		background: #fff;
-		color: #000;
-		font-size: 15px;
+		height: 60px;
+		padding: 0 36px;
+		border-radius: 999px;
+		background: rgba(255,255,255,0.06);
+		border: 2px solid rgba(255,255,255,0.2);
+		font-size: 16px;
 		font-weight: 800;
+		color: #fff;
 		white-space: nowrap;
-		transition: opacity .2s;
-		flex-shrink: 0;
+		transition: background .2s, border-color .2s;
+	}
+	.cb-cta-btn:hover {
+		background: rgba(255,255,255,0.1);
+		border-color: rgba(255,255,255,0.35);
 	}
 
-	.cta-btn:hover { opacity: 0.88; }
-
-	/* Назад */
-	.back-link {
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 14px;
-		color: var(--muted);
-		margin-bottom: 8px;
-		transition: color .2s;
-	}
-
-	.back-link:hover { color: #fff; }
-
-	/* Адаптив */
+	/* ── Адаптив ── */
 	@media (max-width: 1024px) {
-		.hero-grid { grid-template-columns: 1fr; }
-		.hero-content { border-right: none; border-bottom: 1px solid var(--stroke); }
-		.hero-preview { min-height: 300px; }
-		.results-grid { grid-template-columns: repeat(2, 1fr); }
-		.info-grid { grid-template-columns: 1fr; }
+		.cb-full { grid-template-columns: 1fr; }
+		.cb-full-img { min-height: 280px; }
+		.cb-task-grid { grid-template-columns: 1fr; }
+		.cb-two-grid { grid-template-columns: 1fr; }
+		.cb-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+		.cb-team-inner { grid-template-columns: 1fr; gap: 24px; }
+		.cb-tasks-grid { grid-template-columns: repeat(2, 1fr); }
+		.cb-cta { grid-template-columns: 1fr; }
+		.cb-resume-grid { grid-template-columns: repeat(2, 1fr); }
 	}
 
 	@media (max-width: 720px) {
-		.hero-content { padding: 28px; }
-		.hero-meta { padding: 14px 28px; }
-		.section-shell { padding: 28px; }
-		.cta-shell { flex-direction: column; align-items: flex-start; padding: 28px; }
-		.hero-stats { grid-template-columns: 1fr; }
-		.steps-grid { grid-template-columns: 1fr; }
-		.results-grid { grid-template-columns: 1fr 1fr; }
-	}
-
-	@media (max-width: 480px) {
-		.results-grid { grid-template-columns: 1fr; }
+		.case-hero-title { font-size: clamp(28px, 8vw, 48px); }
+		.cb-full-text { padding: 28px; }
+		.cb-two-col { padding: 28px; }
+		.cb-metrics { padding: 28px; }
+		.cb-metrics-grid { grid-template-columns: 1fr; }
+		.cb-team-grid { grid-template-columns: 1fr; }
+		.cb-cta { padding: 32px 28px; }
+		.cb-tasks-grid { grid-template-columns: 1fr; }
+		.cb-resume-grid { grid-template-columns: 1fr; }
+		.case-hero-url { display: none; }
 	}
 </style>
 {% endblock %}
 
 {% block content %}
 <main class="case-page">
-	<div class="shell">
 
-		<!-- Хлебные крошки -->
-		<div class="breadcrumb">
-			<a href="/">Главная</a>
-			<span class="breadcrumb-sep">•</span>
-			<a href="{% url 'cases:list' %}">Кейсы</a>
-			<span class="breadcrumb-sep">•</span>
-			<span>{{ case.title }}</span>
-		</div>
+	<!-- ════ ГЕРОЙ ════ -->
+	<section class="case-hero">
+		{% if case.hero_bg %}
+		<img class="case-hero-bg" src="{{ case.hero_bg.url }}" alt="{{ case.title }}">
+		{% endif %}
+		<div class="case-hero-overlay"></div>
 
-		<!-- Герой -->
-		<div class="hero">
-			<section class="hero-shell">
+		<div class="shell case-hero-inner">
 
-				<!-- Теги и отрасль -->
-				<div class="hero-meta">
-					{% if case.industry %}
-					<span class="meta-tag">{{ case.industry }}</span>
-					{% endif %}
-					{% for tag in case.tags.all %}
-					<span class="meta-tag">{{ tag.name }}</span>
-					{% endfor %}
+			<!-- Хлебные крошки / назад -->
+			<a href="{% url 'cases:list' %}" class="case-back">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+				Кейсы
+			</a>
+
+			<h1 class="case-hero-title">{{ case.title }}</h1>
+			<p class="case-hero-desc">{{ case.description }}</p>
+
+			<div class="case-hero-footer">
+				{% if case.year %}
+				<span class="case-hero-year">{{ case.year }}</span>
+				{% endif %}
+
+				{% for tag in case.tags.all %}
+				<span class="case-tag">{{ tag.name }}</span>
+				{% endfor %}
+
+				{% if case.industry %}
+				<span class="case-tag">{{ case.industry }}</span>
+				{% endif %}
+
+				{% if case.client_url %}
+				<div class="case-hero-url">
+					<div style="font-size:12px;color:var(--muted-2);margin-bottom:4px;">Адрес:</div>
+					<div style="font-size:14px;color:var(--muted);">{{ case.client_url|cut:"https://"|cut:"http://" }}</div>
 				</div>
-
-				<div class="hero-grid">
-					<div class="hero-content">
-						<div>
-							<div class="eyebrow">{{ case.get_direction_display }} / {{ case.get_service_display }}</div>
-							<h1 class="hero-title">{{ case.title }}</h1>
-							<p class="hero-desc">{{ case.description }}</p>
-						</div>
-
-						<!-- Первые 3 метрики слева -->
-						{% if case.metrics %}
-						<div class="hero-stats">
-							{% for metric in case.metrics|slice:":3" %}
-							<div class="hero-stat">
-								<strong>{{ metric.value }}</strong>
-								<span>{{ metric.label }}</span>
-							</div>
-							{% endfor %}
-						</div>
-						{% endif %}
-					</div>
-
-					<!-- Обложка -->
-					<div class="hero-preview">
-						{% if case.cover %}
-						<img class="hero-cover" src="{{ case.cover.url }}" alt="{{ case.title }}" />
-						{% else %}
-						<div class="hero-no-cover">Нет обложки</div>
-						{% endif %}
-
-						<!-- Следующие 3 метрики справа -->
-						{% if case.metrics %}
-						<div class="preview-metrics">
-							{% for metric in case.metrics|slice:"3:6" %}
-							<div class="preview-metric">
-								<strong>{{ metric.value }}</strong>
-								<span>{{ metric.label }}</span>
-							</div>
-							{% endfor %}
-						</div>
-						{% endif %}
-					</div>
-				</div>
-			</section>
-		</div>
-
-		<!-- Динамические блоки -->
-		{% for block in case.blocks %}
-
-			{% if block.type == 'info' %}
-			<section class="section">
-				<div class="section-shell">
-					<div class="section-head">
-						<h2 class="section-title">{{ block.title }}</h2>
-						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
-					</div>
-					<div class="info-grid">
-						{% for card in block.cards %}
-						<article class="info-card">
-							{% if card.kicker %}<div class="card-kicker">{{ card.kicker }}</div>{% endif %}
-							<h3 class="card-title">{{ card.title }}</h3>
-							<p class="card-text">{{ card.text }}</p>
-						</article>
-						{% endfor %}
-					</div>
-				</div>
-			</section>
-
-			{% elif block.type == 'steps' %}
-			<section class="section">
-				<div class="section-shell">
-					<div class="section-head">
-						<h2 class="section-title">{{ block.title }}</h2>
-						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
-					</div>
-					<div class="steps-grid">
-						{% for step in block.steps %}
-						<article class="step-card">
-							<div class="step-num">{{ forloop.counter }}</div>
-							<h3 class="card-title">{{ step.title }}</h3>
-							<p class="card-text">{{ step.text }}</p>
-						</article>
-						{% endfor %}
-					</div>
-				</div>
-			</section>
-
-			{% elif block.type == 'results' %}
-			<section class="section">
-				<div class="section-shell">
-					<div class="section-head">
-						<h2 class="section-title">{{ block.title }}</h2>
-						{% if block.text %}<p class="section-text">{{ block.text }}</p>{% endif %}
-					</div>
-					<div class="results-grid">
-						{% for result in block.results %}
-						<article class="result-card">
-							<strong>{{ result.value }}</strong>
-							<span>{{ result.text }}</span>
-						</article>
-						{% endfor %}
-					</div>
-				</div>
-			</section>
-
-			{% elif block.type == 'text' %}
-			<section class="section">
-				<div class="section-shell">
-					<div class="section-head">
-						<h2 class="section-title">{{ block.title }}</h2>
-					</div>
-					<p class="text-block">{{ block.text }}</p>
-				</div>
-			</section>
-
-			{% elif block.type == 'cta' %}
-			<div class="cta-shell">
-				<div>
-					<h2 class="cta-title">{{ block.title }}</h2>
-					{% if block.text %}<p class="cta-text">{{ block.text }}</p>{% endif %}
-				</div>
-				<a href="{{ block.btn_url|default:'#' }}" class="cta-btn">{{ block.btn_text|default:'Обсудить проект' }}</a>
+				<a href="{{ case.client_url }}" target="_blank" rel="noopener" class="case-goto-btn">Перейти<br>на сайт</a>
+				{% endif %}
 			</div>
 
-			{% endif %}
+		</div>
+	</section>
 
-		{% endfor %}
+	<div class="shell">
+
+	<!-- ════ БЛОКИ КОНТЕНТА ════ -->
+	{% for block in case.content_blocks.all %}
+	{% if block.is_visible %}
+
+		{% if block.block_type == 'intro' %}
+		<!-- Вводный текст -->
+		<section class="cb">
+			<p class="cb-intro">{{ block.intro_text }}</p>
+		</section>
+
+		{% elif block.block_type == 'task_resume' %}
+		<!-- Задача + резюме -->
+		<section class="cb">
+			<div class="cb-task-grid">
+				<div class="cb-task-left">
+					<div class="cb-task-kicker">Задача, поставленная заказчиком</div>
+					<div class="cb-task-text">{{ block.task_text }}</div>
+				</div>
+				<div class="cb-resume">
+					<div class="cb-resume-title">Резюме проекта</div>
+					<div class="cb-resume-grid">
+						{% for item in block.resume_items.all %}
+						<div>
+							<div class="cb-resume-item-label">{{ item.label }}:</div>
+							<div class="cb-resume-item-value">{{ item.value }}</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		{% elif block.block_type == 'tasks_grid' %}
+		<!-- Сетка задач -->
+		<section class="cb">
+			<h2 class="cb-tasks-title">{{ block.tasks_title }}</h2>
+			<div class="cb-tasks-grid">
+				{% for item in block.task_items.all %}
+				<div class="cb-task-card">
+					<div class="cb-task-card-title">{{ item.title }}</div>
+				</div>
+				{% endfor %}
+			</div>
+		</section>
+
+		{% elif block.block_type == 'content_full' %}
+		<!-- Контент на всю ширину -->
+		<section class="cb">
+			<div class="cb-full">
+				<div class="cb-full-text">
+					{% if block.cf_label %}
+					<div class="cb-full-label">{{ block.cf_label }}</div>
+					{% endif %}
+					{% if block.cf_title %}
+					<h2 class="cb-full-title">{{ block.cf_title }}</h2>
+					{% endif %}
+					{% if block.cf_text_main %}
+					<p class="cb-full-main">{{ block.cf_text_main }}</p>
+					{% endif %}
+					{% if block.cf_text_secondary %}
+					<p class="cb-full-secondary">{{ block.cf_text_secondary }}</p>
+					{% endif %}
+					{% if block.cf_link_url %}
+					<div class="cb-full-link">
+						{% if block.cf_link_text %}
+						<div class="cb-full-link-label">{{ block.cf_link_text }}</div>
+						{% endif %}
+						<a href="{{ block.cf_link_url }}" target="_blank" rel="noopener" class="cb-link-btn">
+							{{ block.cf_link_url|cut:"https://"|cut:"http://" }}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+						</a>
+					</div>
+					{% endif %}
+				</div>
+				<div class="cb-full-img">
+					{% if block.cf_image %}
+					<img src="{{ block.cf_image.url }}" alt="{{ block.cf_title }}">
+					{% else %}
+					<div class="cb-full-img-placeholder">Нет изображения</div>
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+			{% elif block.block_type == 'content_two' %}
+		<!-- Две колонки -->
+		<section class="cb">
+			<div class="cb-two-grid">
+				<!-- Левая колонка -->
+				<div class="cb-two-col">
+					{% if block.left_label %}
+					<div class="cb-full-label">{{ block.left_label }}</div>
+					{% endif %}
+					{% if block.left_title %}
+					<h2 class="cb-two-col-title">{{ block.left_title }}</h2>
+					{% endif %}
+					{% if block.left_text_main %}
+					<p class="cb-full-main">{{ block.left_text_main }}</p>
+					{% endif %}
+					{% if block.left_text_secondary %}
+					<p class="cb-full-secondary">{{ block.left_text_secondary }}</p>
+					{% endif %}
+					{% if block.left_link_url %}
+					<div>
+						{% if block.left_link_text %}
+						<div class="cb-full-link-label">{{ block.left_link_text }}</div>
+						{% endif %}
+						<a href="{{ block.left_link_url }}" target="_blank" rel="noopener" class="cb-link-btn">
+							{{ block.left_link_url|cut:"https://"|cut:"http://" }}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+						</a>
+					</div>
+					{% endif %}
+				</div>
+				<!-- Правая колонка -->
+				<div class="cb-two-col">
+					{% if block.right_label %}
+					<div class="cb-full-label">{{ block.right_label }}</div>
+					{% endif %}
+					{% if block.right_title %}
+					<h2 class="cb-two-col-title">{{ block.right_title }}</h2>
+					{% endif %}
+					{% if block.right_text_main %}
+					<p class="cb-full-main">{{ block.right_text_main }}</p>
+					{% endif %}
+					{% if block.right_text_secondary %}
+					<p class="cb-full-secondary">{{ block.right_text_secondary }}</p>
+					{% endif %}
+					{% if block.right_link_url %}
+					<div>
+						{% if block.right_link_text %}
+						<div class="cb-full-link-label">{{ block.right_link_text }}</div>
+						{% endif %}
+						<a href="{{ block.right_link_url }}" target="_blank" rel="noopener" class="cb-link-btn">
+							{{ block.right_link_url|cut:"https://"|cut:"http://" }}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+						</a>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</section>
+
+		{% elif block.block_type == 'metrics' %}
+		<!-- Метрики -->
+		<section class="cb">
+			<div class="cb-metrics">
+				{% if block.metrics_title %}
+				<h2 class="cb-metrics-title">{{ block.metrics_title }}</h2>
+				{% endif %}
+				{% if block.metrics_subtitle %}
+				<p class="cb-metrics-subtitle">{{ block.metrics_subtitle }}</p>
+				{% endif %}
+				<div class="cb-metrics-grid">
+					{% for item in block.metric_items.all %}
+					<div class="cb-metric-card">
+						<div class="cb-metric-num">
+							{{ item.value }}<span class="cb-metric-unit">{{ item.unit }}</span>
+						</div>
+						<div class="cb-metric-label">{{ item.label }}</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		{% elif block.block_type == 'team' %}
+		<!-- Команда -->
+		<section class="cb">
+			<div class="cb-team-inner">
+				<h2 class="cb-team-heading">Над проектом<br>работали</h2>
+				<div class="cb-team-grid">
+					{% for member in block.team_members.all %}
+					<div class="cb-team-card">
+						<div class="cb-team-avatar">
+							{{ member.name|first }}
+						</div>
+						<div>
+							<div class="cb-team-name">{{ member.name }}</div>
+							<div class="cb-team-role">{{ member.role }}</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+
+		{% elif block.block_type == 'cta' %}
+		<!-- CTA -->
+		<section class="cb">
+			<div class="cb-cta">
+				<div>
+					<h2 class="cb-cta-title">{{ block.cta_title }}</h2>
+					{% if block.cta_text %}
+					<p class="cb-cta-text">{{ block.cta_text }}</p>
+					{% endif %}
+				</div>
+				<a href="{{ block.cta_btn_url|default:'#contact' }}" class="cb-cta-btn">
+					{{ block.cta_btn_text|default:'Написать' }}
+				</a>
+			</div>
+		</section>
+
+		{% endif %}
+
+	{% endif %}
+	{% endfor %}
 
 	</div>
 </main>

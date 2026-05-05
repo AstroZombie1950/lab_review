@@ -1,0 +1,1493 @@
+[
+{
+  "model": "cases.tag",
+  "pk": 1,
+  "fields": {
+    "name": "SEO",
+    "slug": "seo"
+  }
+},
+{
+  "model": "cases.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Разработка",
+    "slug": "razrabotka"
+  }
+},
+{
+  "model": "cases.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Яндекс Директ",
+    "slug": "yandex-direct"
+  }
+},
+{
+  "model": "cases.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Интернет-магазин",
+    "slug": "internet-magazin"
+  }
+},
+{
+  "model": "cases.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Лендинг",
+    "slug": "lending"
+  }
+},
+{
+  "model": "cases.tag",
+  "pk": 6,
+  "fields": {
+    "name": "B2B",
+    "slug": "b2b"
+  }
+},
+{
+  "model": "cases.case",
+  "pk": 1,
+  "fields": {
+    "title": "Разработка интернет-магазина строительных материалов",
+    "slug": "razrabotka-internet-magazina-stroymaterialy",
+    "service": "shop",
+    "direction": "dev",
+    "industry": "Строительство",
+    "description": "Разработали интернет-магазин с каталогом 4000+ позиций, личным кабинетом и интеграцией с 1С. Запустили за 3 месяца.",
+    "cover": "",
+    "hero_bg": "",
+    "client_url": "",
+    "year": "2024",
+    "meta_title": "",
+    "meta_description": "",
+    "is_published": true,
+    "published_at": "2024-11-15",
+    "created_at": "2026-05-05T20:06:50.822Z",
+    "tags": [
+      2,
+      4
+    ]
+  }
+},
+{
+  "model": "cases.case",
+  "pk": 2,
+  "fields": {
+    "title": "SEO-продвижение интернет-магазина сантехники",
+    "slug": "seo-internet-magazin-santehnika",
+    "service": "seo_top",
+    "direction": "seo",
+    "industry": "Сантехника",
+    "description": "Вывели 68 коммерческих запросов в топ-3 Яндекса за 5 месяцев. Органический трафик вырос в 3.8 раза.",
+    "cover": "",
+    "hero_bg": "",
+    "client_url": "",
+    "year": "2024",
+    "meta_title": "",
+    "meta_description": "",
+    "is_published": true,
+    "published_at": "2024-09-20",
+    "created_at": "2026-05-05T20:07:18.663Z",
+    "tags": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "cases.case",
+  "pk": 3,
+  "fields": {
+    "title": "Яндекс Директ для B2B-поставщика промышленного оборудования",
+    "slug": "yandex-direct-b2b-promyshlennoe-oborudovanie",
+    "service": "direct_ads",
+    "direction": "direct",
+    "industry": "Промышленное оборудование",
+    "description": "Снизили стоимость заявки с 4 200 до 890 рублей. За 4 месяца — 214 целевых обращений при том же бюджете.",
+    "cover": "",
+    "hero_bg": "",
+    "client_url": "",
+    "year": "2024",
+    "meta_title": "",
+    "meta_description": "",
+    "is_published": true,
+    "published_at": "2024-10-05",
+    "created_at": "2026-05-05T20:07:48.433Z",
+    "tags": [
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 1,
+  "fields": {
+    "case": 1,
+    "value": "4 000+",
+    "label": "товаров в каталоге",
+    "order": 0
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 2,
+  "fields": {
+    "case": 1,
+    "value": "3 мес",
+    "label": "срок разработки",
+    "order": 1
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 3,
+  "fields": {
+    "case": 1,
+    "value": "×2.4",
+    "label": "конверсия выше рынка",
+    "order": 2
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 4,
+  "fields": {
+    "case": 2,
+    "value": "×3.8",
+    "label": "рост органического трафика",
+    "order": 0
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 5,
+  "fields": {
+    "case": 2,
+    "value": "68",
+    "label": "запросов в топ-3",
+    "order": 1
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 6,
+  "fields": {
+    "case": 2,
+    "value": "5 мес",
+    "label": "срок работы",
+    "order": 2
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 7,
+  "fields": {
+    "case": 3,
+    "value": "−79",
+    "label": "% стоимость заявки",
+    "order": 0
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 8,
+  "fields": {
+    "case": 3,
+    "value": "214",
+    "label": "целевых обращений за 4 мес",
+    "order": 1
+  }
+},
+{
+  "model": "cases.casemetric",
+  "pk": 9,
+  "fields": {
+    "case": 3,
+    "value": "×5.1",
+    "label": "рост конверсии кампаний",
+    "order": 2
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 1,
+  "fields": {
+    "case": 1,
+    "block_type": "intro",
+    "order": 0,
+    "is_visible": true,
+    "intro_text": "Компания «СтройДом» — оптово-розничный поставщик строительных материалов в Екатеринбурге. Работают с 2008 года, но продажи шли только через офлайн и телефон. Обратились с задачей перевести бизнес в онлайн: сделать полноценный интернет-магазин с удобным каталогом, корзиной и интеграцией с их учётной системой.",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 2,
+  "fields": {
+    "case": 1,
+    "block_type": "task_resume",
+    "order": 1,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "Разработать интернет-магазин с каталогом 4000+ позиций, личным кабинетом оптового покупателя и автоматической синхронизацией остатков с 1С",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 3,
+  "fields": {
+    "case": 1,
+    "block_type": "tasks_grid",
+    "order": 2,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "Что мы сделали в проекте",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 4,
+  "fields": {
+    "case": 1,
+    "block_type": "content_full",
+    "order": 3,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "Разработка",
+    "cf_title": "Сложная фильтрация без потери скорости",
+    "cf_text_main": "Главная техническая задача — фильтрация по множеству параметров при большом каталоге. Реализовали индексацию на уровне базы данных и кеширование результатов. Страница категории загружается за 0.3 секунды даже на мобильном.",
+    "cf_text_secondary": "Использовали Django + PostgreSQL на бэкенде, Vue.js для динамических компонентов каталога.",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 5,
+  "fields": {
+    "case": 1,
+    "block_type": "metrics",
+    "order": 4,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "Результаты через 2 месяца после запуска",
+    "metrics_subtitle": "Считаем по данным Яндекс Метрики и внутренней аналитике магазина",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 6,
+  "fields": {
+    "case": 1,
+    "block_type": "team",
+    "order": 5,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 7,
+  "fields": {
+    "case": 1,
+    "block_type": "cta",
+    "order": 6,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "Нужен интернет-магазин?",
+    "cta_text": "Расскажите о вашем проекте — обсудим задачу, сроки и бюджет. Первая консультация бесплатно.",
+    "cta_btn_text": "Обсудить проект",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 8,
+  "fields": {
+    "case": 2,
+    "block_type": "intro",
+    "order": 0,
+    "is_visible": true,
+    "intro_text": "Интернет-магазин сантехники «АкваДом» работал три года, но трафик из поиска почти не рос. Сайт был на Bitrix с хорошим ассортиментом, но с серьёзными техническими проблемами и слабым контентом. Клиент обратился после того, как основной конкурент обогнал его по большинству ключевых запросов.",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 9,
+  "fields": {
+    "case": 2,
+    "block_type": "task_resume",
+    "order": 1,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "Вывести сайт в топ-3 Яндекса по 50+ коммерческим запросам и увеличить органический трафик минимум в 3 раза за 6 месяцев",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 10,
+  "fields": {
+    "case": 2,
+    "block_type": "tasks_grid",
+    "order": 2,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "Что мы решали в этом проекте",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 11,
+  "fields": {
+    "case": 2,
+    "block_type": "content_two",
+    "order": 3,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "До работ",
+    "left_title": "Что было на старте",
+    "left_text_main": "214 технических ошибок, из которых 47 критических. Страницы каталога не индексировались поисковиком из-за неправильных robots.txt и canonical.",
+    "left_text_secondary": "Скорость загрузки главной страницы — 8.2 секунды на мобильном устройстве.",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "После работ",
+    "right_title": "Что стало через 5 месяцев",
+    "right_text_main": "Все критические ошибки устранены. 68 запросов вышли в топ-3, ещё 94 запроса — в топ-10 Яндекса по Екатеринбургу.",
+    "right_text_secondary": "Скорость загрузки сократилась до 1.8 секунды. Показатель отказов снизился с 67% до 41%.",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 12,
+  "fields": {
+    "case": 2,
+    "block_type": "metrics",
+    "order": 4,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "Цифры через 5 месяцев работы",
+    "metrics_subtitle": "Данные Яндекс Метрики и Яндекс Вебмастера, срез на сентябрь 2024",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 13,
+  "fields": {
+    "case": 2,
+    "block_type": "team",
+    "order": 5,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 14,
+  "fields": {
+    "case": 2,
+    "block_type": "cta",
+    "order": 6,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "Хотите такие же результаты?",
+    "cta_text": "Проведём бесплатный экспресс-аудит сайта и покажем точки роста трафика.",
+    "cta_btn_text": "Получить аудит",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 15,
+  "fields": {
+    "case": 3,
+    "block_type": "intro",
+    "order": 0,
+    "is_visible": true,
+    "intro_text": "Компания «ПромТех» поставляет компрессорное и насосное оборудование для промышленных предприятий. Средний чек сделки — от 800 тысяч рублей. Директ вели своими силами: бюджет тратился, заявки были, но большинство — нецелевые. Обратились с запросом снизить стоимость заявки и повысить качество трафика.",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 16,
+  "fields": {
+    "case": 3,
+    "block_type": "task_resume",
+    "order": 1,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "Снизить стоимость целевой заявки минимум вдвое и выстроить стабильный поток B2B-обращений через Яндекс Директ",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 17,
+  "fields": {
+    "case": 3,
+    "block_type": "tasks_grid",
+    "order": 2,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "Что мы сделали с рекламными кампаниями",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 18,
+  "fields": {
+    "case": 3,
+    "block_type": "content_full",
+    "order": 3,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "Ключевой результат",
+    "cf_title": "Стоимость заявки упала с 4 200 до 890 рублей",
+    "cf_text_main": "На старте клиент платил 4 200 рублей за каждую заявку, из которых 70% оказывались нецелевыми — физлица или мелкий опт. После переработки семантики и структуры кампаний стоимость заявки упала до 890 рублей, а доля целевых обращений выросла до 84%.",
+    "cf_text_secondary": "Это позволило при том же месячном бюджете получать в 4.7 раза больше реальных потенциальных сделок.",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 19,
+  "fields": {
+    "case": 3,
+    "block_type": "metrics",
+    "order": 4,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "Результаты за 4 месяца ведения",
+    "metrics_subtitle": "Сравнение периодов: июнь–октябрь 2024 vs февраль–июнь 2024",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 20,
+  "fields": {
+    "case": 3,
+    "block_type": "team",
+    "order": 5,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "",
+    "cta_text": "",
+    "cta_btn_text": "Написать",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.caseblock",
+  "pk": 21,
+  "fields": {
+    "case": 3,
+    "block_type": "cta",
+    "order": 6,
+    "is_visible": true,
+    "intro_text": "",
+    "task_text": "",
+    "tasks_title": "",
+    "cf_label": "",
+    "cf_title": "",
+    "cf_text_main": "",
+    "cf_text_secondary": "",
+    "cf_image": "",
+    "cf_link_text": "",
+    "cf_link_url": "",
+    "left_label": "",
+    "left_title": "",
+    "left_text_main": "",
+    "left_text_secondary": "",
+    "left_link_text": "",
+    "left_link_url": "",
+    "right_label": "",
+    "right_title": "",
+    "right_text_main": "",
+    "right_text_secondary": "",
+    "right_link_text": "",
+    "right_link_url": "",
+    "metrics_title": "",
+    "metrics_subtitle": "",
+    "cta_title": "Сливаете бюджет на нецелевой трафик?",
+    "cta_text": "Проведём аудит ваших кампаний в Директе и покажем где теряются деньги. Бесплатно, без обязательств.",
+    "cta_btn_text": "Получить аудит",
+    "cta_btn_url": "#contact"
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 1,
+  "fields": {
+    "block": 2,
+    "label": "Старт работ",
+    "value": "август 2024",
+    "order": 0
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 2,
+  "fields": {
+    "block": 2,
+    "label": "Запуск",
+    "value": "ноябрь 2024",
+    "order": 1
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 3,
+  "fields": {
+    "block": 2,
+    "label": "Длительность",
+    "value": "3 месяца",
+    "order": 2
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 4,
+  "fields": {
+    "block": 9,
+    "label": "Старт работ",
+    "value": "апрель 2024",
+    "order": 0
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 5,
+  "fields": {
+    "block": 9,
+    "label": "Срез результатов",
+    "value": "сентябрь 2024",
+    "order": 1
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 6,
+  "fields": {
+    "block": 9,
+    "label": "Длительность",
+    "value": "5 месяцев",
+    "order": 2
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 7,
+  "fields": {
+    "block": 9,
+    "label": "Формат работы",
+    "value": "под ключ",
+    "order": 3
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 8,
+  "fields": {
+    "block": 16,
+    "label": "Старт работ",
+    "value": "июнь 2024",
+    "order": 0
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 9,
+  "fields": {
+    "block": 16,
+    "label": "Срез результатов",
+    "value": "октябрь 2024",
+    "order": 1
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 10,
+  "fields": {
+    "block": 16,
+    "label": "Длительность",
+    "value": "4 месяца",
+    "order": 2
+  }
+},
+{
+  "model": "cases.resumeitem",
+  "pk": 11,
+  "fields": {
+    "block": 16,
+    "label": "Бюджет в месяц",
+    "value": "без изменений",
+    "order": 3
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 1,
+  "fields": {
+    "block": 3,
+    "title": "Проектирование структуры",
+    "text": "Проработали архитектуру каталога: категории, фильтры, атрибуты товаров. Учли специфику строительного ассортимента.",
+    "order": 0
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 2,
+  "fields": {
+    "block": 3,
+    "title": "Дизайн и вёрстка",
+    "text": "Разработали дизайн в тёмной теме под брендбук заказчика. Адаптив под мобильные устройства.",
+    "order": 1
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 3,
+  "fields": {
+    "block": 3,
+    "title": "Каталог и фильтрация",
+    "text": "Реализовали умный поиск и фильтры по 12 параметрам. Быстрая загрузка даже при 4000+ позиций.",
+    "order": 2
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 4,
+  "fields": {
+    "block": 3,
+    "title": "Личный кабинет",
+    "text": "Отдельный кабинет для оптовых покупателей: индивидуальные цены, история заказов, документы.",
+    "order": 3
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 5,
+  "fields": {
+    "block": 3,
+    "title": "Интеграция с 1С",
+    "text": "Синхронизация остатков и цен каждые 15 минут. Заказы автоматически попадают в учётную систему.",
+    "order": 4
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 6,
+  "fields": {
+    "block": 3,
+    "title": "Запуск и тестирование",
+    "text": "Провели нагрузочное тестирование, обучили менеджеров работе с админкой.",
+    "order": 5
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 7,
+  "fields": {
+    "block": 10,
+    "title": "Технический аудит",
+    "text": "Выявили 214 технических ошибок: дубли страниц, битые ссылки, медленная загрузка, проблемы с индексацией.",
+    "order": 0
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 8,
+  "fields": {
+    "block": 10,
+    "title": "Сбор семантики",
+    "text": "Собрали семантическое ядро из 1 200 запросов, разбили по посадочным страницам.",
+    "order": 1
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 9,
+  "fields": {
+    "block": 10,
+    "title": "Оптимизация страниц",
+    "text": "Переписали мета-теги и заголовки для 340 страниц каталога и карточек товаров.",
+    "order": 2
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 10,
+  "fields": {
+    "block": 10,
+    "title": "Контент и тексты",
+    "text": "Написали 24 SEO-статьи для блога и оптимизировали тексты на коммерческих страницах.",
+    "order": 3
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 11,
+  "fields": {
+    "block": 10,
+    "title": "Работа со ссылками",
+    "text": "Получили 38 качественных ссылок с тематических сайтов о ремонте и строительстве.",
+    "order": 4
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 12,
+  "fields": {
+    "block": 10,
+    "title": "Коммерческие факторы",
+    "text": "Добавили отзывы, улучшили страницу контактов, настроили микроразметку Schema.org.",
+    "order": 5
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 13,
+  "fields": {
+    "block": 17,
+    "title": "Аудит текущих кампаний",
+    "text": "Разобрали структуру аккаунта. Нашли 23 группы объявлений с нецелевым трафиком и пересечением ключей.",
+    "order": 0
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 14,
+  "fields": {
+    "block": 17,
+    "title": "Переработка семантики",
+    "text": "Собрали B2B-семантику: запросы от предприятий и снабженцев. Исключили розничные и информационные запросы.",
+    "order": 1
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 15,
+  "fields": {
+    "block": 17,
+    "title": "Новая структура кампаний",
+    "text": "Разделили кампании по типам оборудования и регионам. Отдельные кампании на РСЯ и поиск.",
+    "order": 2
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 16,
+  "fields": {
+    "block": 17,
+    "title": "Тексты объявлений",
+    "text": "Написали объявления под B2B: акцент на объём, сроки поставки, документы, оплата по счёту.",
+    "order": 3
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 17,
+  "fields": {
+    "block": 17,
+    "title": "Посадочные страницы",
+    "text": "Доработали лендинг под коммерческий трафик: добавили технические характеристики и форму для юрлиц.",
+    "order": 4
+  }
+},
+{
+  "model": "cases.taskitem",
+  "pk": 18,
+  "fields": {
+    "block": 17,
+    "title": "Аналитика и оптимизация",
+    "text": "Настроили сквозную аналитику, ежедневно отключали неэффективные площадки и ключи.",
+    "order": 5
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 1,
+  "fields": {
+    "block": 5,
+    "value": "+340",
+    "unit": "%",
+    "label": "рост онлайн-продаж за 2 месяца",
+    "order": 0
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 2,
+  "fields": {
+    "block": 5,
+    "value": "0.3",
+    "unit": "с",
+    "label": "среднее время загрузки страницы",
+    "order": 1
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 3,
+  "fields": {
+    "block": 5,
+    "value": "4 200",
+    "unit": "",
+    "label": "товаров синхронизируется с 1С",
+    "order": 2
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 4,
+  "fields": {
+    "block": 12,
+    "value": "+278",
+    "unit": "%",
+    "label": "рост органического трафика",
+    "order": 0
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 5,
+  "fields": {
+    "block": 12,
+    "value": "68",
+    "unit": "",
+    "label": "запросов в топ-3 Яндекса",
+    "order": 1
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 6,
+  "fields": {
+    "block": 12,
+    "value": "94",
+    "unit": "",
+    "label": "запросов в топ-10",
+    "order": 2
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 7,
+  "fields": {
+    "block": 12,
+    "value": "1.8",
+    "unit": "с",
+    "label": "скорость загрузки страницы",
+    "order": 3
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 8,
+  "fields": {
+    "block": 19,
+    "value": "890",
+    "unit": "₽",
+    "label": "стоимость целевой заявки (было 4 200 ₽)",
+    "order": 0
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 9,
+  "fields": {
+    "block": 19,
+    "value": "214",
+    "unit": "",
+    "label": "целевых обращений за 4 месяца",
+    "order": 1
+  }
+},
+{
+  "model": "cases.metricitem",
+  "pk": 10,
+  "fields": {
+    "block": 19,
+    "value": "84",
+    "unit": "%",
+    "label": "доля целевых заявок",
+    "order": 2
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 1,
+  "fields": {
+    "block": 6,
+    "name": "Сергей Иванов",
+    "role": "Руководитель проекта, бэкенд",
+    "order": 0
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 2,
+  "fields": {
+    "block": 6,
+    "name": "Анна Козлова",
+    "role": "UI/UX дизайнер",
+    "order": 1
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 3,
+  "fields": {
+    "block": 6,
+    "name": "Дмитрий Фролов",
+    "role": "Фронтенд-разработчик",
+    "order": 2
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 4,
+  "fields": {
+    "block": 13,
+    "name": "Михаил Петров",
+    "role": "SEO-стратег, руководитель проекта",
+    "order": 0
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 5,
+  "fields": {
+    "block": 13,
+    "name": "Елена Смирнова",
+    "role": "Технический SEO-специалист",
+    "order": 1
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 6,
+  "fields": {
+    "block": 13,
+    "name": "Ирина Белова",
+    "role": "Копирайтер, SEO-тексты",
+    "order": 2
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 7,
+  "fields": {
+    "block": 20,
+    "name": "Алексей Громов",
+    "role": "Директолог, стратегия кампаний",
+    "order": 0
+  }
+},
+{
+  "model": "cases.teammember",
+  "pk": 8,
+  "fields": {
+    "block": 20,
+    "name": "Наталья Орлова",
+    "role": "Аналитик, сквозная аналитика",
+    "order": 1
+  }
+}
+]
