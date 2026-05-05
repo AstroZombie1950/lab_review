@@ -11,126 +11,271 @@
 
 	/* ── Герой ── */
 	.case-hero {
-		position: relative;
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		padding-bottom: 60px;
+		padding: 34px 0 0;
+	}
+
+	.case-hero-shell {
+		border-radius: 34px;
+		background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+		border: 1px solid rgba(255,255,255,0.06);
+		box-shadow: 0 24px 80px rgba(0,0,0,0.42);
 		overflow: hidden;
 	}
 
-	.case-hero-bg {
-		position: absolute;
-		inset: 0;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		opacity: 0.45;
-		z-index: 0;
+	.case-hero-grid {
+		display: grid;
+		grid-template-columns: 1.02fr 0.98fr;
+		gap: 0;
+		min-height: 620px;
 	}
 
-	.case-hero-overlay {
-		position: absolute;
-		inset: 0;
-		background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, rgba(10,10,10,0.4) 60%, transparent 100%);
-		z-index: 1;
+	/* Левая колонка */
+	.case-hero-content {
+		padding: 36px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		border-right: 1px solid rgba(255,255,255,0.06);
+		background:
+			radial-gradient(circle at left top, rgba(232,56,42,0.10), transparent 24%),
+			linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.012));
 	}
 
-	.case-hero-inner {
-		position: relative;
-		z-index: 2;
-	}
-
-	/* Назад */
+	/* Хлебные крошки */
 	.case-back {
 		display: inline-flex;
 		align-items: center;
 		gap: 8px;
-		font-size: 14px;
-		color: rgba(255,255,255,0.5);
-		margin-bottom: 48px;
-		transition: color .2s;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: rgba(255,255,255,0.82);
+		min-height: 34px;
+		width: fit-content;
+		padding: 0 12px;
+		border-radius: 999px;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid rgba(255,255,255,0.08);
+		margin-bottom: 16px;
+		transition: background .2s;
 	}
-	.case-back:hover { color: #fff; }
+	.case-back:hover { background: rgba(255,255,255,0.09); }
 
-	/* Заголовок героя */
 	.case-hero-title {
-		font-size: clamp(36px, 5.5vw, 80px);
+		font-size: clamp(36px, 5vw, 70px);
 		font-weight: 900;
-		line-height: 1.05;
-		letter-spacing: -0.04em;
-		margin-bottom: 24px;
+		line-height: 0.98;
+		letter-spacing: -0.05em;
+		max-width: 720px;
+		margin: 0;
 	}
-	.case-hero-title .dim { color: var(--muted); }
+
+	.case-hero-title span {
+		background: linear-gradient(90deg, #fff 0%, #f0d2a1 48%, #8fcbff 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		color: transparent;
+	}
 
 	.case-hero-desc {
-		font-size: 18px;
+		margin-top: 18px;
+		max-width: 700px;
 		color: var(--muted);
+		font-size: 17px;
 		line-height: 1.6;
-		max-width: 640px;
-		margin-bottom: 48px;
 	}
 
-	/* Нижняя строка героя: год + теги + ссылка */
-	.case-hero-footer {
-		display: flex;
-		align-items: center;
-		gap: 16px;
-		flex-wrap: wrap;
+	/* Метрики под заголовком */
+	.case-hero-stats {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0,1fr));
+		gap: 14px;
+		margin-top: 28px;
 	}
 
-	.case-hero-year {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 14px;
+	.case-hero-stat {
+		padding: 18px;
+		border-radius: 20px;
+		background: rgba(255,255,255,0.04);
+		border: 1px solid rgba(255,255,255,0.06);
+	}
+
+	.case-hero-stat strong {
+		display: block;
+		font-size: 26px;
+		line-height: 1;
+		margin-bottom: 8px;
+		letter-spacing: -0.04em;
+	}
+
+	.case-hero-stat span {
 		color: var(--muted);
-	}
-	.case-hero-year::before {
-		content: '';
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: var(--accent);
+		font-size: 13px;
 	}
 
-	.case-tag {
+	/* Правая колонка — превью-дашборд */
+	.case-hero-preview {
+		position: relative;
+		background:
+			radial-gradient(circle at 20% 20%, rgba(232,56,42,0.10), transparent 18%),
+			radial-gradient(circle at 80% 18%, rgba(59,208,255,0.10), transparent 18%),
+			linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+		overflow: hidden;
+	}
+
+	/* Сетка фона */
+	.case-preview-grid {
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+		background-size: 32px 32px;
+		opacity: .5;
+	}
+
+	/* Топографические линии */
+	.case-preview-topo {
+		position: absolute;
+		inset: 0;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><g fill="none" stroke="rgba(70,160,255,0.16)" stroke-width="1.2"><path d="M-50 140 C120 80, 220 210, 390 150 S700 90, 910 150 S1160 210, 1260 130"/><path d="M-50 200 C90 140, 220 280, 410 220 S700 150, 930 220 S1150 290, 1260 210"/><path d="M-50 260 C120 200, 250 340, 430 280 S730 210, 940 280 S1160 350, 1260 280"/><path d="M-50 320 C130 260, 280 390, 470 340 S760 270, 960 340 S1180 410, 1260 340"/><path d="M-50 390 C110 320, 260 450, 460 410 S730 350, 930 410 S1160 470, 1260 410"/><path d="M-50 470 C130 410, 280 540, 490 490 S790 430, 980 490 S1170 560, 1260 500"/><path d="M-50 550 C140 490, 300 620, 520 570 S810 510, 1000 570 S1170 630, 1260 580"/></g></svg>');
+		background-size: cover;
+		opacity: .9;
+	}
+
+	/* Карточка поверх фона */
+	.case-preview-card {
+		position: absolute;
+		left: 34px; right: 34px;
+		top: 34px; bottom: 34px;
+		border-radius: 28px;
+		background: rgba(9,12,18,0.52);
+		border: 1px solid rgba(255,255,255,0.08);
+		backdrop-filter: blur(10px);
+		padding: 24px;
+		display: grid;
+		gap: 18px;
+	}
+
+	.case-preview-head {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 14px;
+	}
+
+	.case-preview-title {
+		font-size: 18px;
+		font-weight: 800;
+		letter-spacing: -0.03em;
+	}
+
+	.case-preview-badge {
 		display: inline-flex;
 		align-items: center;
-		height: 34px;
-		padding: 0 16px;
+		min-height: 34px;
+		padding: 0 12px;
 		border-radius: 999px;
-		background: rgba(255,255,255,0.08);
-		border: 1px solid rgba(255,255,255,0.12);
-		font-size: 13px;
-		font-weight: 500;
-		color: rgba(255,255,255,0.7);
-	}
-
-	.case-hero-url {
-		margin-left: auto;
-		font-size: 13px;
-		color: var(--muted);
-	}
-
-	.case-goto-btn {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		width: 80px;
-		height: 80px;
-		border-radius: 50%;
-		background: var(--accent);
-		color: #fff;
+		background: rgba(255,255,255,0.05);
+		border: 1px solid rgba(255,255,255,0.07);
 		font-size: 12px;
+		color: rgba(255,255,255,0.8);
 		font-weight: 700;
-		text-align: center;
-		line-height: 1.3;
-		transition: opacity .2s;
-		flex-shrink: 0;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
 	}
-	.case-goto-btn:hover { opacity: 0.88; }
+
+	/* График */
+	.case-chart-wrap {
+		height: 210px;
+		position: relative;
+		border-radius: 24px;
+		background: rgba(255,255,255,0.025);
+		border: 1px solid rgba(255,255,255,0.06);
+		overflow: hidden;
+	}
+
+	.case-chart-wrap::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+		background-size: 24px 24px;
+	}
+
+	.case-chart-bars {
+		position: absolute;
+		left: 18px; right: 18px; bottom: 18px;
+		height: 136px;
+		display: flex;
+		align-items: end;
+		gap: 10px;
+	}
+
+	.case-chart-bars span {
+		flex: 1 1 0;
+		border-radius: 14px 14px 6px 6px;
+		background: linear-gradient(180deg, rgba(240,210,161,0.96), rgba(125,103,255,0.66));
+		box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+	}
+
+	.case-chart-curve {
+		position: absolute;
+		inset: 26px 18px auto 18px;
+		height: 90px;
+	}
+
+	.case-chart-curve svg {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+
+	/* Нижние метрики в превью */
+	.case-preview-metrics {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0,1fr));
+		gap: 12px;
+	}
+
+	.case-preview-metric {
+		padding: 16px;
+		border-radius: 18px;
+		background: rgba(255,255,255,0.035);
+		border: 1px solid rgba(255,255,255,0.06);
+	}
+
+	.case-preview-metric small {
+		display: block;
+		color: rgba(255,255,255,0.48);
+		font-size: 12px;
+		margin-bottom: 8px;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.case-preview-metric strong {
+		font-size: 24px;
+		line-height: 1;
+		letter-spacing: -0.03em;
+	}
+
+	/* Адаптив героя */
+	@media (max-width: 1024px) {
+		.case-hero-grid { grid-template-columns: 1fr; min-height: auto; }
+		.case-hero-content { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+		.case-hero-preview { min-height: 420px; }
+		.case-preview-metrics { grid-template-columns: 1fr; }
+	}
+
+	@media (max-width: 720px) {
+		.case-hero-stats { grid-template-columns: 1fr; }
+		.case-hero-preview { min-height: 340px; }
+		.case-preview-card { left: 18px; right: 18px; top: 18px; bottom: 18px; padding: 16px; }
+	}
 
 	/* ── Общие стили секций ── */
 	.cb { padding: 40px 0 0; }
@@ -582,44 +727,84 @@
 
 	<!-- ════ ГЕРОЙ ════ -->
 	<section class="case-hero">
-		{% if case.hero_bg %}
-		<img class="case-hero-bg" src="{{ case.hero_bg.url }}" alt="{{ case.title }}">
-		{% endif %}
-		<div class="case-hero-overlay"></div>
+		<div class="shell">
+			<div class="case-hero-shell">
+				<div class="case-hero-grid">
 
-		<div class="shell case-hero-inner">
+					<!-- Левая колонка: текст + метрики -->
+					<div class="case-hero-content">
 
-			<!-- Хлебные крошки / назад -->
-			<a href="{% url 'cases:list' %}" class="case-back">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				Кейсы
-			</a>
+						<!-- Бейдж: направление / услуга -->
+						<a href="{% url 'cases:list' %}" class="case-back">
+							Case / {{ case.get_direction_display }}
+						</a>
 
-			<h1 class="case-hero-title">{{ case.title }}</h1>
-			<p class="case-hero-desc">{{ case.description }}</p>
+						<h1 class="case-hero-title">{{ case.title }}</h1>
+						<p class="case-hero-desc">{{ case.description }}</p>
 
-			<div class="case-hero-footer">
-				{% if case.year %}
-				<span class="case-hero-year">{{ case.year }}</span>
-				{% endif %}
+						<!-- Метрики 1-3 — под заголовком слева -->
+						{% if case.metrics.exists %}
+						<div class="case-hero-stats">
+							{% for m in case.metrics.all|slice:":3" %}
+							<div class="case-hero-stat">
+								<strong>{{ m.value }}</strong>
+								<span>{{ m.label }}</span>
+							</div>
+							{% endfor %}
+						</div>
+						{% endif %}
 
-				{% for tag in case.tags.all %}
-				<span class="case-tag">{{ tag.name }}</span>
-				{% endfor %}
+					</div>
 
-				{% if case.industry %}
-				<span class="case-tag">{{ case.industry }}</span>
-				{% endif %}
+					<!-- Правая колонка: декоративный дашборд -->
+					<div class="case-hero-preview">
+						<div class="case-preview-grid"></div>
+						<div class="case-preview-topo"></div>
+						<div class="case-preview-card">
 
-				{% if case.client_url %}
-				<div class="case-hero-url">
-					<div style="font-size:12px;color:var(--muted-2);margin-bottom:4px;">Адрес:</div>
-					<div style="font-size:14px;color:var(--muted);">{{ case.client_url|cut:"https://"|cut:"http://" }}</div>
+							<div class="case-preview-head">
+								<div class="case-preview-title">Dashboard preview</div>
+								<div class="case-preview-badge">{{ case.get_direction_display }} case</div>
+							</div>
+
+							<!-- Бар-чарт -->
+							<div class="case-chart-wrap">
+								<div class="case-chart-curve">
+									<svg viewBox="0 0 100 40" preserveAspectRatio="none" fill="none">
+										<path d="M0 31 C10 29, 15 28, 24 25 C33 22, 40 24, 49 19 C58 15, 64 12, 73 13 C82 14, 89 9, 100 5" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round"/>
+									</svg>
+								</div>
+								<div class="case-chart-bars">
+									<span style="height:22%"></span>
+									<span style="height:30%"></span>
+									<span style="height:42%"></span>
+									<span style="height:39%"></span>
+									<span style="height:58%"></span>
+									<span style="height:66%"></span>
+									<span style="height:76%"></span>
+									<span style="height:92%"></span>
+								</div>
+							</div>
+
+							<!-- Метрики 4-6 — в превью справа -->
+							<div class="case-preview-metrics">
+								{% for m in case.metrics.all|slice:"3:6" %}
+								<div class="case-preview-metric">
+									<small>{{ m.label }}</small>
+									<strong>{{ m.value }}</strong>
+								</div>
+								{% empty %}
+								<div class="case-preview-metric"><small>Лиды</small><strong>—</strong></div>
+								<div class="case-preview-metric"><small>CTR</small><strong>—</strong></div>
+								<div class="case-preview-metric"><small>Спрос</small><strong>—</strong></div>
+								{% endfor %}
+							</div>
+
+						</div>
+					</div>
+
 				</div>
-				<a href="{{ case.client_url }}" target="_blank" rel="noopener" class="case-goto-btn">Перейти<br>на сайт</a>
-				{% endif %}
 			</div>
-
 		</div>
 	</section>
 

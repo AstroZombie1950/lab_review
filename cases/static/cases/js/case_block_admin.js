@@ -16,7 +16,7 @@
 		ALL_TYPES.forEach(function (t) {
 			var sections = inlineDiv.querySelectorAll('.' + PREFIX + t);
 			sections.forEach(function (el) {
-				el.style.display = (t === type) ? '' : 'none';
+				el.style.display = (t === type) ? 'block' : 'none';
 			});
 		});
 	}

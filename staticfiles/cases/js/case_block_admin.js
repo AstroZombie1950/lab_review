@@ -4,14 +4,13 @@
 
 	var PREFIX = 'block-section-';
 
-	// Все известные типы
 	var ALL_TYPES = [
 		'intro', 'task_resume', 'tasks_grid',
 		'content_full', 'content_two',
 		'metrics', 'team', 'cta'
 	];
 
-	// Показать только секции для выбранного типа, остальные скрыть
+	/* Показать только секции для выбранного типа, остальные скрыть */
 	function applyType(inlineDiv, type) {
 		ALL_TYPES.forEach(function (t) {
 			var sections = inlineDiv.querySelectorAll('.' + PREFIX + t);
@@ -21,7 +20,7 @@
 		});
 	}
 
-	// Следующий порядковый номер — максимум среди существующих + 1
+	/* Следующий порядковый номер */
 	function nextOrder(currentInline) {
 		var max = -1;
 		document.querySelectorAll('.inline-related').forEach(function (il) {
@@ -34,21 +33,81 @@
 		return max + 1;
 	}
 
-	// Инициализация одного инлайна
+	/* Обновить бейдж видимости в заголовке */
+	function updateVisibilityBadge(inlineDiv) {
+		var checkbox = inlineDiv.querySelector('input[id$="-is_visible"]');
+		var heading = inlineDiv.querySelector('h3');
+		if (!heading || !checkbox) return;
+
+		var old = heading.querySelector('.cb-visibility-badge');
+		if (old) old.remove();
+
+		var badge = document.createElement('span');
+		badge.className = 'cb-visibility-badge ' + (checkbox.checked ? 'is-visible' : 'is-hidden');
+		badge.textContent = checkbox.checked ? '✓ Показан' : '✗ Скрыт';
+		heading.appendChild(badge);
+	}
+
+	/* Свернуть / развернуть — скрываем только прямой fieldset.module */
+	function toggleInline(inlineDiv, collapsed) {
+		/* Прямой дочерний fieldset — тело инлайна */
+		var module = inlineDiv.querySelector(':scope > fieldset.module');
+		if (!module) return;
+
+		module.style.display = collapsed ? 'none' : '';
+
+		var btn = inlineDiv.querySelector('.cb-toggle-btn');
+		if (btn) btn.textContent = collapsed ? '▶' : '▼';
+
+		inlineDiv.dataset.cbCollapsed = collapsed ? '1' : '0';
+	}
+
+	/* Добавить кнопку сворачивания в заголовок h3 */
+	function addToggleButton(inlineDiv) {
+		var heading = inlineDiv.querySelector('h3');
+		if (!heading || heading.querySelector('.cb-toggle-btn')) return;
+
+		var btn = document.createElement('span');
+		btn.className = 'cb-toggle-btn';
+		btn.textContent = '▶';
+		heading.insertBefore(btn, heading.firstChild);
+
+		/* По умолчанию свёрнут */
+		toggleInline(inlineDiv, true);
+
+		heading.style.cursor = 'pointer';
+		heading.addEventListener('click', function (e) {
+			if (e.target.type === 'checkbox') return;
+			var isCollapsed = inlineDiv.dataset.cbCollapsed === '1';
+			toggleInline(inlineDiv, !isCollapsed);
+		});
+	}
+
+	/* Инициализация одного инлайна */
 	function initInline(div) {
 		var select = div.querySelector('select[id$="-block_type"]');
 		if (!select) return;
 
-		// Показать правильные секции сразу
+		/* Применить тип */
 		applyType(div, select.value);
-
-		// Перерисовывать при смене типа
 		select.addEventListener('change', function () {
 			applyType(div, this.value);
 		});
+
+		/* Бейдж */
+		updateVisibilityBadge(div);
+		var checkbox = div.querySelector('input[id$="-is_visible"]');
+		if (checkbox) {
+			checkbox.addEventListener('change', function () {
+				updateVisibilityBadge(div);
+			});
+		}
+
+		/* Сворачивание */
+		addToggleButton(div);
 	}
 
-	// Следим за добавлением новых инлайнов через «Добавить ещё один»
+	/* Следим за добавлением новых инлайнов */
 	function observeInlines() {
 		var observer = new MutationObserver(function (mutations) {
 			mutations.forEach(function (m) {
@@ -58,14 +117,12 @@
 					if (node.classList && node.classList.contains('inline-related')) {
 						initInline(node);
 
-						// Автопорядок — подставить следующий номер
 						var orderInp = node.querySelector('input[id$="-order"]');
 						if (orderInp && (orderInp.value === '0' || orderInp.value === '')) {
 							orderInp.value = nextOrder(node);
 						}
 					}
 
-					// На случай если узел вложен
 					if (node.querySelectorAll) {
 						node.querySelectorAll('.inline-related').forEach(initInline);
 					}
