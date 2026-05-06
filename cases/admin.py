@@ -1,5 +1,9 @@
 import nested_admin
 from django.contrib import admin
+from django.urls import path
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.core.management import call_command
 from .models import Case, Tag, CaseBlock, CaseMetric, ResumeItem, TaskItem, MetricItem, TeamMember
 
 
@@ -144,6 +148,9 @@ class CaseAdmin(nested_admin.NestedModelAdmin):
 	filter_horizontal = ['tags']
 	inlines = [CaseMetricInline, CaseBlockInline]
 
+	# Шаблон с кнопкой импорта
+	change_list_template = 'admin/cases/case/change_list.html'
+
 	fieldsets = [
 		('Основное', {
 			'fields': ['title', 'slug', 'service', 'direction', 'industry', 'tags', 'is_published', 'published_at'],
@@ -179,3 +186,19 @@ class CaseAdmin(nested_admin.NestedModelAdmin):
 
 	class Media:
 		css = {'all': ('cases/css/case_block_admin.css',)}
+
+	def get_urls(self):
+		urls = super().get_urls()
+		custom = [
+			path('import-sheets/', self.admin_site.admin_view(self.import_sheets_view), name='cases_import_sheets'),
+		]
+		return custom + urls
+
+	def import_sheets_view(self, request):
+		"""Запускает management command и редиректит обратно в список."""
+		try:
+			call_command('import_from_sheets')
+			self.message_user(request, 'Импорт из Google Sheets выполнен успешно.', messages.SUCCESS)
+		except Exception as e:
+			self.message_user(request, f'Ошибка импорта: {e}', messages.ERROR)
+		return redirect('admin:cases_case_changelist')

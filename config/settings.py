@@ -122,9 +122,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'cases' / 'static']
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+GOOGLE_SHEET_ID = os.getenv('GOOGLE_SHEET_ID')

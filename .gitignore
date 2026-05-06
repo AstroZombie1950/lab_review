@@ -2,10 +2,9 @@
 .idea/
 __pycache__/
 *.pyc
+*.pyo
 db.sqlite3
 .env
 .DS_Store
 media/
-
 staticfiles/
-db.sqlite3
