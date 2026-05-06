@@ -843,6 +843,10 @@
 
 	document.querySelectorAll('.home-case-row').forEach(row => {
 		row.addEventListener('mouseenter', () => {
+            if (moveHandler) {
+                document.removeEventListener('mousemove', moveHandler);
+                moveHandler = null;
+            }
 			const cover = row.dataset.cover;
 			if (cover) {
 				previewImg.src = cover;

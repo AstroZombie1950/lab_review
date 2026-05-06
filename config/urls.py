@@ -12,4 +12,5 @@ urlpatterns = [
 	path('cookie-consent/', TemplateView.as_view(template_name='cookie-consent.html'), name='cookie_consent'),
 	path('requisites/', TemplateView.as_view(template_name='requisites.html'), name='requisites'),
 	path('', include('services.urls')),
+    path('nested_admin/', include('nested_admin.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

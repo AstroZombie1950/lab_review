@@ -48,5 +48,15 @@ def cases_list(request):
 
 
 def case_detail(request, slug):
-	case = get_object_or_404(Case, slug=slug, is_published=True)
+	case = get_object_or_404(
+		Case.objects.prefetch_related(
+			'content_blocks__resume_items',
+			'content_blocks__task_items',
+			'content_blocks__metric_items',
+			'content_blocks__team_members',
+			'tags',
+		).select_related(),
+		slug=slug,
+		is_published=True,
+	)
 	return render(request, 'cases/detail.html', {'case': case})

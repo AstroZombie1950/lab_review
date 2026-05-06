@@ -178,5 +178,4 @@ class CaseAdmin(nested_admin.NestedModelAdmin):
 	]
 
 	class Media:
-		js = ('cases/js/case_block_admin.js',)
 		css = {'all': ('cases/css/case_block_admin.css',)}
