@@ -381,6 +381,13 @@
 		color: rgba(255,255,255,0.8);
 	}
 
+    .cb-task-card-text {
+        margin-top: 8px;
+        font-size: 13px;
+        line-height: 1.6;
+        color: var(--muted);
+    }
+
 	/* ── content_full ── */
 	.cb-full {
 		border-radius: var(--radius-xl);
@@ -848,9 +855,12 @@
 			<h2 class="cb-tasks-title">{{ block.tasks_title }}</h2>
 			<div class="cb-tasks-grid">
 				{% for item in block.task_items.all %}
-				<div class="cb-task-card">
-					<div class="cb-task-card-title">{{ item.title }}</div>
-				</div>
+                <div class="cb-task-card">
+                    <div class="cb-task-card-title">{{ item.title }}</div>
+                    {% if item.text %}
+                    <p class="cb-task-card-text">{{ item.text }}</p>
+                    {% endif %}
+                </div>
 				{% endfor %}
 			</div>
 		</section>

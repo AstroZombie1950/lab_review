@@ -11,6 +11,14 @@
 		'metrics', 'team', 'cta'
 	];
 
+	// Маппинг типа блока → суффикс id вложенной инлайн-группы
+	var INLINE_GROUPS = {
+		'task_resume': 'resume_items-group',
+		'tasks_grid':  'task_items-group',
+		'metrics':     'metric_items-group',
+		'team':        'team_members-group',
+	};
+
 	// Показать только секции для выбранного типа, остальные скрыть
 	function applyType(inlineDiv, type) {
 		ALL_TYPES.forEach(function (t) {
@@ -18,6 +26,16 @@
 			sections.forEach(function (el) {
 				el.style.display = (t === type) ? 'block' : 'none';
 			});
+		});
+
+		// Скрыть/показать вложенные инлайн-группы по типу блока
+		var activeGroup = INLINE_GROUPS[type] || null;
+		Object.keys(INLINE_GROUPS).forEach(function (t) {
+			var suffix = INLINE_GROUPS[t];
+			var group = inlineDiv.querySelector('[id$="-' + suffix + '"]');
+			if (group) {
+				group.style.display = (suffix === activeGroup) ? '' : 'none';
+			}
 		});
 	}
 
