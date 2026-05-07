@@ -3,6 +3,7 @@ import urllib.parse
 import json
 import logging
 
+from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils import timezone
@@ -25,7 +26,7 @@ CTA_DEFAULTS = {
 
 def fetch_sheet(api_key, sheet_id):
 	"""Получить все строки из первого листа таблицы."""
-	range_ = urllib.parse.quote('A:BU')
+	range_ = urllib.parse.quote('A:BV')
 	url = (
 		f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}'
 		f'/values/{range_}?key={api_key}'
@@ -43,8 +44,19 @@ def fetch_sheet(api_key, sheet_id):
 	]
 
 
+def parse_published_at(raw):
+	"""Парсим дату ДД.ММ.ГГГГ, при ошибке возвращаем текущее время."""
+	raw = raw.strip()
+	if raw:
+		try:
+			return timezone.make_aware(datetime.strptime(raw, '%d.%m.%Y'))
+		except ValueError:
+			logger.warning('Не удалось распарсить дату: %s', raw)
+	return timezone.now()
+
+
 def get_or_create_tags(raw):
-	"""Создать теги из строки через запятую, вернуть queryset."""
+	"""Создать теги из строки через запятую, вернуть список."""
 	tags = []
 	for name in raw.split(','):
 		name = name.strip()
@@ -75,7 +87,7 @@ def import_row(row):
 		'meta_title':       row.get('meta_title', ''),
 		'meta_description': row.get('meta_description', ''),
 		'is_published':     row.get('is_published', '').lower() in ('true', '1', 'да', 'yes'),
-		'published_at':     timezone.now(),
+		'published_at':     parse_published_at(row.get('published_at', '')),
 	}
 
 	case, created = Case.objects.update_or_create(slug=slug, defaults=defaults)
