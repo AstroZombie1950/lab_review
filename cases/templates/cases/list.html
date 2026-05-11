@@ -558,7 +558,7 @@
 			{% for case in cases %}
 			<a class="case-row"
 				href="{% url 'cases:detail' case.slug %}"
-				data-cover="{% if case.cover %}{{ case.cover.url }}{% endif %}">
+				data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
 
 				<!-- Услуга вместо года -->
 				<div class="case-service">

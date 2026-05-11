@@ -104,21 +104,17 @@ class Case(models.Model):
 		'Короткое описание',
 		help_text='1–2 предложения о проекте. Отображается в карточке на странице /cases/ и в превью при наведении. Пример: «Вывели сайт в топ-3 по 47 запросам за 4 месяца»'
 	)
-	cover = models.ImageField(
-		'Обложка',
-		upload_to='cases/covers/',
+	cover = models.URLField(
+		'Обложка (URL)',
 		blank=True,
-		null=True,
-		help_text='Изображение для карточки кейса. Рекомендуемый размер: 1200×800 px, формат JPG или PNG. Если не загружена — показывается серый блок-заглушка.'
+		help_text='Ссылка на изображение для карточки кейса. Пример: https://example.com/image.jpg'
 	)
 
 	# Герой страницы кейса
-	hero_bg = models.ImageField(
-		'Фоновое изображение героя',
-		upload_to='cases/heroes/',
+	hero_bg = models.URLField(
+		'Фоновое изображение героя (URL)',
 		blank=True,
-		null=True,
-		help_text='Большое фото на весь экран в начале страницы кейса. Рекомендуемый размер: 1920×1080 px. Если не загружено — фон будет тёмный градиент.'
+		help_text='Ссылка на фоновое изображение героя. Пример: https://example.com/hero.jpg'
 	)
 	client_url = models.URLField(
 		'Сайт клиента',
@@ -276,12 +272,10 @@ class CaseBlock(models.Model):
 		blank=True,
 		help_text='Второй абзац — детали, подробности. Необязательное поле.'
 	)
-	cf_image = models.ImageField(
-		'Изображение',
-		upload_to='cases/blocks/',
+	cf_image = models.URLField(
+		'Изображение (URL)',
 		blank=True,
-		null=True,
-		help_text='Скриншот или иллюстрация. Показывается справа от текста. Рекомендуется: минимум 800×600 px.'
+		help_text='Ссылка на изображение. Показывается справа от текста.'
 	)
 	cf_link_text = models.CharField(
 		'Текст ссылки',

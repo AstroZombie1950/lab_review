@@ -943,7 +943,7 @@
 		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение: ${message || 'не указано'}`;
 
 		try {
-			const resp = await fetch('/services/send-form/', {
+			const resp = await fetch('/send-form/', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
