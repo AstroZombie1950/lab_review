@@ -22,7 +22,7 @@ DEBUG = os.getenv('DEBUG', 'False') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = Path('/home/s/seregajv/lab-review.seregajv.beget.tech/public_html/static')
 
 # Application definition
 
