@@ -10,7 +10,7 @@
 		min-height: calc(100vh - var(--header-h));
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 64px;
+		gap: 24px;
 		align-items: center;
 		padding: 80px 0;
 	}
@@ -35,7 +35,7 @@
 	}
 
 	.home-hero-title {
-		font-size: clamp(42px, 5.5vw, 80px);
+		font-size: clamp(38px, 4.5vw, 62px);
 		font-weight: 900;
 		line-height: 1.0;
 		letter-spacing: -0.04em;
@@ -48,7 +48,7 @@
 		font-size: 18px;
 		color: var(--muted);
 		line-height: 1.7;
-		max-width: 480px;
+		max-width: none;
 		margin-bottom: 40px;
 		padding-left: 48px;
 	}
@@ -559,6 +559,7 @@
 		transition: opacity .25s, transform .25s;
 		z-index: 200;
 		box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+		background: var(--bg-2);
 	}
 
 	.home-case-preview.is-visible {
@@ -628,8 +629,7 @@
 				Разработка · SEO · Реклама
 			</div>
 			<h1 class="home-hero-title">
-				Делаем сайты,<br>
-				которые<br>
+                Делаем сайты, которые<br>
 				<span>приносят</span> деньги
 			</h1>
 			<p class="home-hero-text">
@@ -813,7 +813,6 @@
 			</div>
 
 		</div>
-		</div>
 	</section>
 
 	<!-- ════ КЕЙСЫ ════ -->
@@ -834,7 +833,7 @@
 			{% for case in cases %}
 			<a class="home-case-row"
 				href="{% url 'cases:detail' case.slug %}"
-				data-cover="{% if case.cover %}{{ case.cover.url }}{% endif %}">
+				data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
 
 				<!-- Услуга -->
 				<div class="home-case-service">

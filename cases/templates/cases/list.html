@@ -5,6 +5,9 @@
 
 {% block extra_css %}
 <style>
+	/* overflow-x на html не ломает sticky у потомков */
+	html { overflow-x: hidden; }
+
 	/* ── Страница ── */
 	.cases-page {
 		min-height: 100vh;
@@ -15,18 +18,18 @@
 	.hero {
 		padding: 72px 0 56px;
 		position: relative;
-		overflow: hidden;
+		overflow: visible; /* блобы уходят за край плавно */
 	}
 
 	/* Анимированные пятна */
 	.hero-blob {
 		position: absolute;
-		top: -120px;
-		right: -80px;
-		width: 600px;
-		height: 600px;
+		top: -80px;
+		right: -120px; /* частично за краем */
+		width: 500px;
+		height: 500px;
 		border-radius: 50%;
-		background: radial-gradient(circle, rgba(232,56,42,0.18) 0%, rgba(232,56,42,0.06) 50%, transparent 70%);
+		background: radial-gradient(circle, rgba(232,56,42,0.15) 0%, rgba(232,56,42,0.05) 55%, transparent 72%);
 		animation: blob-drift 8s ease-in-out infinite;
 		pointer-events: none;
 		z-index: 0;
@@ -35,9 +38,9 @@
 	.hero-blob-2 {
 		position: absolute;
 		bottom: -200px;
-		left: -100px;
-		width: 500px;
-		height: 500px;
+		left: -200px; /* сдвинут за край */
+		width: 600px;
+		height: 600px;
 		border-radius: 50%;
 		background: radial-gradient(circle, rgba(232,56,42,0.08) 0%, transparent 65%);
 		animation: blob-drift 12s ease-in-out infinite reverse;
@@ -93,41 +96,82 @@
 		line-height: 1.6;
 	}
 
-	/* ── Табы услуг ── */
-	.service-tabs {
+	/* ════════════════════════════════
+	   ДВУХКОЛОНОЧНЫЙ LAYOUT
+	════════════════════════════════ */
+	.cases-layout {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		gap: 40px;
+		align-items: start;
+	}
+
+	/* ── Левая: направления (липкая) ── */
+	.cases-sidebar {
+		position: sticky;
+		top: calc(var(--header-h) + 24px);
+	}
+
+	.sidebar-title {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--muted-2);
+		margin-bottom: 10px;
+		padding-left: 2px;
+	}
+
+	.sidebar-nav {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.sidebar-btn {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		flex-wrap: wrap;
-		padding: 32px 0 0;
-	}
-
-	.service-tab {
-		display: inline-flex;
-		align-items: center;
-		height: 38px;
-		padding: 0 16px;
-		border-radius: 999px;
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
-		font-size: 13px;
-		font-weight: 500;
-		color: rgba(255,255,255,0.52);
+		gap: 10px;
+		height: 44px;
+		padding: 0 12px;
+		border-radius: var(--radius-md);
+		font-size: 15px;
+		font-weight: 600;
+		color: rgba(255,255,255,0.48);
+		background: transparent;
+		border: 1px solid transparent;
 		cursor: pointer;
-		transition: all .2s;
-		white-space: nowrap;
+		transition: color .2s, background .2s, border-color .2s;
+		text-align: left;
+		width: 100%;
 	}
 
-	.service-tab:hover {
+	.sidebar-btn:hover {
 		color: rgba(255,255,255,0.85);
+		background: rgba(255,255,255,0.04);
+	}
+
+	.sidebar-btn.is-active {
+		color: #fff;
+		background: rgba(255,255,255,0.07);
 		border-color: var(--stroke-2);
 	}
 
-	.service-tab.is-active {
-		background: var(--accent);
-		border-color: var(--accent);
-		color: #fff;
-		font-weight: 700;
+	/* Цветная точка */
+	.sidebar-dot {
+		width: 7px;
+		height: 7px;
+		border-radius: 50%;
+		flex-shrink: 0;
+		background: rgba(255,255,255,0.18);
+		transition: background .2s;
+	}
+
+	.sidebar-btn.is-active .sidebar-dot { background: var(--accent); }
+
+	/* ── Правая колонка ── */
+	.cases-main {
+		min-width: 0;
 	}
 
 	/* ── Панель фильтров ── */
@@ -136,11 +180,7 @@
 		align-items: center;
 		gap: 10px;
 		flex-wrap: wrap;
-		padding: 20px 0 16px;
-		position: sticky;
-		top: var(--header-h);
-		z-index: 10;
-		background: var(--bg);
+		padding: 16px 0;
 		border-bottom: 1px solid var(--stroke);
 		margin-bottom: 8px;
 	}
@@ -224,8 +264,7 @@
 	/* Поиск */
 	.search-wrap {
 		flex: 1;
-		min-width: 200px;
-		max-width: 420px;
+		min-width: 180px;
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -250,29 +289,6 @@
 
 	.search-wrap input::placeholder { color: rgba(255,255,255,0.28); }
 
-	/* Сортировка */
-	.sort-btn {
-		margin-left: auto;
-		display: inline-flex;
-		align-items: center;
-		gap: 8px;
-		height: 40px;
-		padding: 0 16px;
-		border-radius: var(--radius-lg);
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
-		color: rgba(255,255,255,0.52);
-		font-size: 13px;
-		white-space: nowrap;
-		cursor: pointer;
-		transition: color .2s, border-color .2s;
-	}
-
-	.sort-btn:hover {
-		color: rgba(255,255,255,0.85);
-		border-color: var(--stroke-2);
-	}
-
 	/* ── Список кейсов ── */
 	.cases-list {
 		display: flex;
@@ -283,7 +299,7 @@
 	/* Строка */
 	.case-row {
 		display: grid;
-		grid-template-columns: 200px minmax(0,1fr) 1fr auto;
+		grid-template-columns: minmax(0,1fr) 1fr auto;
 		align-items: center;
 		gap: 24px;
 		padding: 18px 22px;
@@ -297,31 +313,6 @@
 	.case-row:hover {
 		background: var(--bg-3);
 		border-color: var(--stroke);
-	}
-
-	/* Услуга (вместо года) */
-	.case-service {
-		font-size: 13px;
-		color: rgba(255,255,255,0.4);
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		overflow: hidden;
-	}
-
-	.case-service::before {
-		content: '';
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--accent);
-		flex-shrink: 0;
-	}
-
-	.case-service-text {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 
 	/* Название + отрасль */
@@ -373,7 +364,7 @@
 		color: rgba(255,255,255,0.22);
 	}
 
-	/* Кнопка кейса — заметная */
+	/* Кнопка */
 	.case-link {
 		display: inline-flex;
 		align-items: center;
@@ -410,6 +401,7 @@
 		transition: opacity .25s, transform .25s;
 		z-index: 200;
 		box-shadow: 0 24px 60px rgba(0,0,0,0.7);
+		background: var(--bg-2);
 	}
 
 	.case-preview.is-visible {
@@ -444,25 +436,25 @@
 
 	/* ── Адаптив ── */
 	@media (max-width: 1024px) {
-		.case-row { grid-template-columns: 160px 1fr auto; }
+		.cases-layout { grid-template-columns: 160px 1fr; gap: 24px; }
+		.case-row { grid-template-columns: 1fr auto; }
 		.case-tags { display: none; }
 	}
 
 	@media (max-width: 720px) {
 		.hero { padding: 48px 0 36px; }
-		.case-row {
-			grid-template-columns: 1fr auto;
-			gap: 12px;
-		}
-		.case-service { display: none; }
-		.sort-btn { display: none; }
+		/* Сайдбар превращается в горизонтальную полосу кнопок */
+		.cases-layout { grid-template-columns: 1fr; gap: 16px; }
+		.cases-sidebar { position: static; }
+		.sidebar-title { display: none; }
+		.sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 6px; }
+		.sidebar-btn { height: 34px; font-size: 13px; width: auto; padding: 0 12px; }
+		.case-row { grid-template-columns: 1fr auto; gap: 12px; }
 		.search-wrap { max-width: 100%; }
 	}
 
 	@media (max-width: 480px) {
 		.filters { gap: 8px; }
-		.service-tabs { gap: 6px; }
-		.service-tab { font-size: 12px; padding: 0 12px; }
 	}
 </style>
 {% endblock %}
@@ -482,116 +474,125 @@
 					Здесь про наш опыт<br>и подходы к работе
 				</h1>
 				<p class="hero-subtitle">Вы наверняка найдёте в этих историях что-то полезное.</p>
+			</div>
+		</div>
 
-				<!-- Табы услуг -->
-				<div class="service-tabs">
-					<button class="service-tab {% if not selected_service %}is-active{% endif %}" onclick="applyFilter('service', '')">
-						Все услуги
+		<!-- Двухколоночный layout: сайдбар + список -->
+		<div class="cases-layout">
+
+			<!-- ── Левая: выбор направления ── -->
+			<aside class="cases-sidebar">
+				<div class="sidebar-title">Направление</div>
+				<nav class="sidebar-nav">
+
+					<button class="sidebar-btn {% if not selected_direction %}is-active{% endif %}"
+						onclick="applyFilter('direction', '')">
+						<span class="sidebar-dot"></span>
+						Все кейсы
 					</button>
-					{% for value, label in service_choices %}
-					<button class="service-tab {% if selected_service == value %}is-active{% endif %}" onclick="applyFilter('service', '{{ value }}')">
+
+					{% for value, label in direction_choices %}
+					<button class="sidebar-btn {% if selected_direction == value %}is-active{% endif %}"
+						onclick="applyFilter('direction', '{{ value }}')">
+						<span class="sidebar-dot"></span>
 						{{ label }}
 					</button>
 					{% endfor %}
+
+				</nav>
+			</aside>
+
+			<!-- ── Правая: фильтры + список ── -->
+			<div class="cases-main">
+
+				<!-- Фильтры -->
+				<div class="filters">
+
+					<!-- По отрасли -->
+					<div class="dropdown">
+						<button class="dropdown-btn" id="industry-btn" type="button">
+							{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
+						<div class="dropdown-menu" id="industry-menu">
+							<div class="dropdown-item {% if not selected_industry %}is-active{% endif %}" onclick="applyFilter('industry', '')">
+								<span class="check">{% if not selected_industry %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+								Все отрасли
+							</div>
+							{% for ind in all_industries %}
+							<div class="dropdown-item {% if selected_industry == ind %}is-active{% endif %}" onclick="applyFilter('industry', '{{ ind }}')">
+								<span class="check">{% if selected_industry == ind %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+								{{ ind }}
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+					<!-- По тегу -->
+					<div class="dropdown">
+						<button class="dropdown-btn" id="tag-btn" type="button">
+							{% if selected_tag %}{{ selected_tag_name }}{% else %}По тегу{% endif %}
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</button>
+						<div class="dropdown-menu" id="tag-menu">
+							<div class="dropdown-item {% if not selected_tag %}is-active{% endif %}" onclick="applyFilter('tag', '')">
+								<span class="check">{% if not selected_tag %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+								Все теги
+							</div>
+							{% for tag in all_tags %}
+							<div class="dropdown-item {% if selected_tag == tag.slug %}is-active{% endif %}" onclick="applyFilter('tag', '{{ tag.slug }}')">
+								<span class="check">{% if selected_tag == tag.slug %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
+								{{ tag.name }}
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+					<!-- Поиск -->
+					<label class="search-wrap">
+						<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+						<input type="text" placeholder="По названию" id="search-input" value="{{ search }}" />
+					</label>
+
 				</div>
-			</div>
-		</div>
 
-		<!-- Фильтры -->
-		<div class="filters" id="filters">
+				<!-- Список кейсов -->
+				<div class="cases-list">
+					{% for case in cases %}
+					<a class="case-row"
+						href="{% url 'cases:detail' case.slug %}"
+						data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
 
-			<!-- По отрасли -->
-			<div class="dropdown">
-				<button class="dropdown-btn" id="industry-btn" type="button">
-					{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</button>
-				<div class="dropdown-menu" id="industry-menu">
-					<div class="dropdown-item {% if not selected_industry %}is-active{% endif %}" onclick="applyFilter('industry', '')">
-						<span class="check">{% if not selected_industry %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
-						Все отрасли
-					</div>
-					{% for ind in all_industries %}
-					<div class="dropdown-item {% if selected_industry == ind %}is-active{% endif %}" onclick="applyFilter('industry', '{{ ind }}')">
-						<span class="check">{% if selected_industry == ind %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
-						{{ ind }}
-					</div>
+						<!-- Название + отрасль -->
+						<div class="case-main">
+							<div class="case-title">{{ case.title }}</div>
+							{% if case.industry %}
+							<div class="case-industry">{{ case.industry }}</div>
+							{% endif %}
+						</div>
+
+						<!-- Теги -->
+						<div class="case-tags">
+							{% for tag in case.tags.all|slice:":3" %}
+							<span class="case-tag">{{ tag.name }}</span>
+							{% endfor %}
+							{% if case.tags.count > 3 %}
+							<span class="case-tag-more">ещё...</span>
+							{% endif %}
+						</div>
+
+						<!-- Кнопка -->
+						<div class="case-link">
+							Кейс
+							<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+						</div>
+					</a>
+					{% empty %}
+					<div class="empty">Кейсы не найдены</div>
 					{% endfor %}
 				</div>
+
 			</div>
-
-			<!-- По тегу -->
-			<div class="dropdown">
-				<button class="dropdown-btn" id="tag-btn" type="button">
-					{% if selected_tag %}{{ selected_tag_name }}{% else %}По тегу{% endif %}
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</button>
-				<div class="dropdown-menu" id="tag-menu">
-					<div class="dropdown-item {% if not selected_tag %}is-active{% endif %}" onclick="applyFilter('tag', '')">
-						<span class="check">{% if not selected_tag %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
-						Все теги
-					</div>
-					{% for tag in all_tags %}
-					<div class="dropdown-item {% if selected_tag == tag.slug %}is-active{% endif %}" onclick="applyFilter('tag', '{{ tag.slug }}')">
-						<span class="check">{% if selected_tag == tag.slug %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
-						{{ tag.name }}
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-
-			<!-- Поиск -->
-			<label class="search-wrap">
-				<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16Zm10 2-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-				<input type="text" placeholder="По названию" id="search-input" value="{{ search }}" />
-			</label>
-
-			<!-- Сортировка -->
-			<button class="sort-btn" type="button">
-				<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M7 12h13M10 17h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-				Сначала новые
-			</button>
-		</div>
-
-		<!-- Список -->
-		<div class="cases-list">
-			{% for case in cases %}
-			<a class="case-row"
-				href="{% url 'cases:detail' case.slug %}"
-				data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
-
-				<!-- Услуга вместо года -->
-				<div class="case-service">
-					<span class="case-service-text">{{ case.get_service_display }}</span>
-				</div>
-
-				<!-- Название + отрасль -->
-				<div class="case-main">
-					<div class="case-title">{{ case.title }}</div>
-					{% if case.industry %}
-					<div class="case-industry">{{ case.industry }}</div>
-					{% endif %}
-				</div>
-
-				<!-- Теги -->
-				<div class="case-tags">
-					{% for tag in case.tags.all|slice:":3" %}
-					<span class="case-tag">{{ tag.name }}</span>
-					{% endfor %}
-					{% if case.tags.count > 3 %}
-					<span class="case-tag-more">ещё...</span>
-					{% endif %}
-				</div>
-
-				<!-- Кнопка -->
-				<div class="case-link">
-					Кейс
-					<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</div>
-			</a>
-			{% empty %}
-			<div class="empty">Кейсы не найдены</div>
-			{% endfor %}
 		</div>
 
 	</div>
@@ -604,7 +605,7 @@
 </div>
 
 <script>
-	// Применяем фильтр — обновляем URL
+	// Обновляем URL с фильтром, сохраняя остальные параметры
 	function applyFilter(param, value) {
 		const url = new URL(window.location);
 		if (value) {
@@ -642,7 +643,7 @@
 		});
 	});
 
-	// Превью при ховере — следует за курсором
+	// Превью при ховере
 	const preview = document.getElementById('case-preview');
 	const previewImg = document.getElementById('preview-img');
 	const previewEmpty = document.getElementById('preview-empty');
@@ -651,7 +652,6 @@
 	document.querySelectorAll('.case-row').forEach(row => {
 		row.addEventListener('mouseenter', () => {
 			const cover = row.dataset.cover;
-
 			if (cover) {
 				previewImg.src = cover;
 				previewImg.style.display = 'block';
@@ -660,16 +660,13 @@
 				previewImg.style.display = 'none';
 				previewEmpty.style.display = 'flex';
 			}
-
 			preview.classList.add('is-visible');
-
 			moveHandler = (ev) => {
 				const x = ev.clientX + 24;
 				const y = ev.clientY - 110;
 				preview.style.left = Math.min(x, window.innerWidth - 320) + 'px';
 				preview.style.top = Math.max(8, Math.min(y, window.innerHeight - 240)) + 'px';
 			};
-
 			document.addEventListener('mousemove', moveHandler);
 		});
 

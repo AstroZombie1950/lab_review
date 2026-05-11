@@ -1,31 +1,39 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Case, Tag, SERVICE_CHOICES
+from .models import Case, Tag, DIRECTION_CHOICES
 
 
 def cases_list(request):
 	cases = Case.objects.filter(is_published=True).prefetch_related('tags')
 
-	# Фильтр по услуге
-	service = request.GET.get('service')
-	if service:
-		cases = cases.filter(service=service)
+	# Фильтр по направлению
+	direction = request.GET.get('direction')
+	if direction:
+		cases = cases.filter(direction=direction)
 
+	# Фильтр по отрасли
 	industry = request.GET.get('industry')
 	if industry:
 		cases = cases.filter(industry=industry)
 
+	# Фильтр по тегу
 	tag = request.GET.get('tag')
 	if tag:
 		cases = cases.filter(tags__slug=tag)
 
+	# Поиск по названию
 	search = request.GET.get('search')
 	if search:
 		cases = cases.filter(title__icontains=search)
 
 	all_tags = Tag.objects.all()
-	all_industries = Case.objects.filter(is_published=True).values_list('industry', flat=True).distinct()
+	all_industries = (
+		Case.objects
+		.filter(is_published=True)
+		.values_list('industry', flat=True)
+		.distinct()
+	)
 
-	# Имя выбранного тега для отображения в кнопке
+	# Имя выбранного тега для кнопки
 	selected_tag_name = ''
 	if tag:
 		try:
@@ -37,8 +45,8 @@ def cases_list(request):
 		'cases': cases,
 		'all_tags': all_tags,
 		'all_industries': [i for i in all_industries if i],
-		'service_choices': SERVICE_CHOICES,
-		'selected_service': service,
+		'direction_choices': DIRECTION_CHOICES,
+		'selected_direction': direction,
 		'selected_industry': industry,
 		'selected_tag': tag,
 		'selected_tag_name': selected_tag_name,
