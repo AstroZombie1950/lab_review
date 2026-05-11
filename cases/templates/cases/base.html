@@ -6,9 +6,9 @@
 	<title>{% block title %}Lab Review{% endblock %}</title>
 	<meta name="description" content="{% block meta_description %}{% endblock %}" />
 
-	<link rel="preconnect" href="https://fonts.googleapis.com" />
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
 	<style>
 		/* ── Переменные ── */
@@ -26,8 +26,9 @@
 			--radius-lg: 16px;
 			--radius-md: 12px;
 			--radius-sm: 8px;
-			--container: 1480px;
-			--header-h: 68px;
+			--container: 1400px;
+			--container-header: 1480px;
+			--header-h: 88px;
 		}
 
 		/* ── Сброс ── */
@@ -47,6 +48,12 @@
 		/* ── Контейнер ── */
 		.shell {
 			width: min(calc(100% - 32px), var(--container));
+			margin: 0 auto;
+		}
+
+		/* Контейнер шапки — шире основного */
+		.shell-header {
+			width: min(calc(100% - 32px), var(--container-header));
 			margin: 0 auto;
 		}
 
@@ -103,14 +110,14 @@
 		}
 
 		.logo-mark {
-			width: 36px;
-			height: 36px;
-			border-radius: 10px;
+			width: 52px;
+			height: 52px;
+			border-radius: 12px;
 			background: var(--accent);
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			font-size: 15px;
+			font-size: 20px;
 			font-weight: 900;
 			color: #fff;
 			letter-spacing: -0.05em;
@@ -118,7 +125,7 @@
 		}
 
 		.logo-name {
-			font-size: 16px;
+			font-size: 22px;
 			font-weight: 800;
 			letter-spacing: -0.03em;
 			color: #fff;
@@ -140,10 +147,10 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 5px;
-			height: 38px;
-			padding: 0 14px;
+			height: 46px;
+			padding: 0 16px;
 			border-radius: var(--radius-md);
-			font-size: 14px;
+			font-size: 16px;
 			font-weight: 500;
 			color: rgba(255,255,255,0.65);
 			transition: color .2s, background .2s;
@@ -156,7 +163,7 @@
 			background: rgba(255,255,255,0.06);
 		}
 
-		/* Выпадашка услуг */
+		/* ── Мегаменю ── */
 		.nav-dropdown {
 			position: relative;
 		}
@@ -165,10 +172,10 @@
 			display: inline-flex;
 			align-items: center;
 			gap: 5px;
-			height: 38px;
-			padding: 0 14px;
+			height: 46px;
+			padding: 0 16px;
 			border-radius: var(--radius-md);
-			font-size: 14px;
+			font-size: 16px;
 			font-weight: 500;
 			color: rgba(255,255,255,0.65);
 			transition: color .2s, background .2s;
@@ -190,54 +197,170 @@
 			transform: rotate(180deg);
 		}
 
-		.nav-dropdown-menu {
+		/* Само мегаменю */
+		.megamenu {
 			display: none;
 			position: absolute;
-			top: calc(100% + 10px);
+			top: calc(100% + 8px);
 			left: 0;
-			width: 280px;
-			background: #181818;
+			width: 660px;
+			background: #141414;
 			border: 1px solid var(--stroke-2);
 			border-radius: var(--radius-lg);
-			padding: 8px;
-			box-shadow: 0 24px 48px rgba(0,0,0,0.6);
+			box-shadow: 0 32px 64px rgba(0,0,0,0.7);
 			z-index: 200;
+			overflow: hidden;
 		}
 
-		.nav-dropdown-menu.is-open {
-			display: block;
+		.megamenu.is-open {
+			display: flex;
 		}
 
-		/* Группа услуг */
-		.nav-service-group {
-			padding: 8px 0 4px;
+		/* Левая панель — направления */
+		.megamenu-left {
+			width: 280px;
+			flex-shrink: 0;
+			padding: 8px;
+			border-right: 1px solid var(--stroke);
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
 		}
 
-		.nav-service-group:not(:first-child) {
-			border-top: 1px solid var(--stroke);
-			margin-top: 4px;
+		/* Карточка направления */
+		.megamenu-cat {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			padding: 10px 12px;
+			border-radius: var(--radius-md);
+			cursor: pointer;
+			transition: background .15s;
+			position: relative;
 		}
 
-		.nav-service-label {
+		.megamenu-cat:hover,
+		.megamenu-cat.is-active {
+			background: rgba(255,255,255,0.06);
+		}
+
+		.megamenu-cat.is-active {
+			background: rgba(255,255,255,0.08);
+		}
+
+		/* SVG-иллюстрация направления */
+		.megamenu-cat-img {
+			width: 48px;
+			height: 48px;
+			flex-shrink: 0;
+			position: relative;
+		}
+
+		/* Два скруглённых квадрата с анимацией */
+		.megamenu-cat-img .sq1,
+		.megamenu-cat-img .sq2 {
+			position: absolute;
+			border-radius: 10px;
+			transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+		}
+
+		.megamenu-cat-img .sq1 {
+			width: 34px;
+			height: 34px;
+			top: 0;
+			left: 0;
+		}
+
+		.megamenu-cat-img .sq2 {
+			width: 28px;
+			height: 28px;
+			bottom: 0;
+			right: 0;
+		}
+
+		.megamenu-cat:hover .sq1 {
+			transform: rotate(-8deg) scale(1.05);
+		}
+
+		.megamenu-cat:hover .sq2 {
+			transform: rotate(10deg) scale(1.08);
+		}
+
+		/* Текст карточки */
+		.megamenu-cat-text {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.megamenu-cat-name {
+			font-size: 15px;
+			font-weight: 700;
+			color: #fff;
+			white-space: nowrap;
+		}
+
+		.megamenu-cat-desc {
+			font-size: 13px;
+			color: var(--muted);
+			margin-top: 2px;
+			line-height: 1.4;
+		}
+
+		/* Стрелка активного пункта */
+		.megamenu-cat-arrow {
+			color: var(--muted-2);
+			flex-shrink: 0;
+			opacity: 0;
+			transition: opacity .15s;
+		}
+
+		.megamenu-cat.is-active .megamenu-cat-arrow {
+			opacity: 1;
+			color: var(--accent);
+		}
+
+		/* Правая панель — список услуг */
+		.megamenu-right {
+			flex: 1;
+			padding: 8px;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+
+		/* Панель услуг (скрыта по умолчанию) */
+		.megamenu-panel {
+			display: none;
+			flex-direction: column;
+			gap: 2px;
+		}
+
+		.megamenu-panel.is-active {
+			display: flex;
+		}
+
+		.megamenu-panel-title {
 			font-size: 11px;
 			font-weight: 700;
 			letter-spacing: 0.1em;
 			text-transform: uppercase;
 			color: var(--accent);
-			padding: 0 12px 6px;
-			display: block;
+			padding: 8px 12px 6px;
 		}
 
-		.nav-service-item {
-			display: block;
-			padding: 8px 12px;
+		/* Пункт услуги */
+		.megamenu-item {
+			display: flex;
+			align-items: center;
+			padding: 9px 12px;
 			border-radius: var(--radius-sm);
-			font-size: 13px;
+			font-size: 14px;
 			color: rgba(255,255,255,0.65);
 			transition: background .15s, color .15s;
+			white-space: nowrap;
 		}
 
-		.nav-service-item:hover {
+		.megamenu-item:hover {
 			background: rgba(255,255,255,0.06);
 			color: #fff;
 		}
@@ -257,8 +380,8 @@
 		}
 
 		.messenger-btn {
-			width: 36px;
-			height: 36px;
+			width: 42px;
+			height: 42px;
 			border-radius: var(--radius-sm);
 			background: rgba(255,255,255,0.06);
 			border: 1px solid var(--stroke);
@@ -290,7 +413,7 @@
 		}
 
 		.worktime-value {
-			font-size: 13px;
+			font-size: 16px;
 			font-weight: 700;
 			color: rgba(255,255,255,0.85);
 			white-space: nowrap;
@@ -304,37 +427,101 @@
 			border-top: 1px solid var(--stroke);
 		}
 
-		/* Верхняя часть */
+		/* Верхняя часть: nav | brand | contacts */
 		.footer-top {
-			padding: 64px 0 48px;
+			padding: 80px 0 64px;
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr;
-			gap: 48px;
+			grid-template-columns: 1fr auto 1fr;
+			gap: 64px;
 			align-items: start;
 		}
 
-		/* Колонка 1: логотип + контакты */
+		/* Колонка 1: навигация */
+		.footer-nav {
+			display: flex;
+			flex-direction: column;
+			gap: 14px;
+		}
+
+		.footer-nav-title {
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			color: var(--muted-2);
+			margin-bottom: 6px;
+		}
+
+		.footer-nav-link {
+			font-size: 17px;
+			color: rgba(255,255,255,0.6);
+			transition: color .2s;
+		}
+
+		.footer-nav-link:hover { color: #fff; }
+
+		/* Колонка 2: центр — бренд + кнопка */
 		.footer-brand {
 			display: flex;
 			flex-direction: column;
-			gap: 24px;
+			align-items: center;
+			gap: 28px;
+			text-align: center;
+		}
+
+		.footer-brand-name {
+			font-size: clamp(36px, 4vw, 56px);
+			font-weight: 900;
+			letter-spacing: -0.04em;
+			color: #fff;
+			white-space: nowrap;
+			line-height: 1;
+		}
+
+		.footer-brand-name span { color: var(--accent); }
+
+		.footer-cta-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 56px;
+			padding: 0 36px;
+			border-radius: var(--radius-lg);
+			background: var(--accent);
+			color: #fff;
+			font-size: 16px;
+			font-weight: 700;
+			white-space: nowrap;
+			transition: opacity .2s;
+		}
+
+		.footer-cta-btn:hover { opacity: 0.88; }
+
+		/* Колонка 3: контакты справа */
+		.footer-contacts {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			align-items: flex-end;
 		}
 
 		.footer-contact-block {
 			display: flex;
 			flex-direction: column;
 			gap: 8px;
+			align-items: flex-end;
 		}
 
 		.footer-phone {
-			font-size: 22px;
+			font-size: 28px;
 			font-weight: 800;
 			letter-spacing: -0.03em;
 			color: #fff;
+			white-space: nowrap;
 		}
 
 		.footer-email {
-			font-size: 15px;
+			font-size: 17px;
 			color: var(--muted);
 			transition: color .2s;
 		}
@@ -351,59 +538,10 @@
 			gap: 8px;
 		}
 
-		/* Колонка 2: навигация */
-		.footer-nav {
-			display: flex;
-			flex-direction: column;
-			gap: 12px;
-		}
-
-		.footer-nav-title {
-			font-size: 12px;
-			font-weight: 700;
-			letter-spacing: 0.1em;
-			text-transform: uppercase;
-			color: var(--muted-2);
-			margin-bottom: 4px;
-		}
-
-		.footer-nav-link {
-			font-size: 15px;
-			color: rgba(255,255,255,0.65);
-			transition: color .2s;
-		}
-
-		.footer-nav-link:hover { color: #fff; }
-
-		/* Колонка 3: CTA */
-		.footer-cta {
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 16px;
-		}
-
-		.footer-cta-btn {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			height: 52px;
-			padding: 0 28px;
-			border-radius: var(--radius-lg);
-			background: var(--accent);
-			color: #fff;
-			font-size: 15px;
-			font-weight: 700;
-			white-space: nowrap;
-			transition: opacity .2s;
-		}
-
-		.footer-cta-btn:hover { opacity: 0.88; }
-
 		/* Нижняя часть */
 		.footer-bottom {
 			border-top: 1px solid var(--stroke);
-			padding: 20px 0;
+			padding: 24px 0;
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
@@ -431,15 +569,12 @@
 
 		.footer-legal a:hover { color: rgba(255,255,255,0.65); }
 
-		.footer-social {
-			display: flex;
-			gap: 8px;
-		}
-
 		/* ── Адаптив ── */
 		@media (max-width: 1024px) {
-			.footer-top { grid-template-columns: 1fr 1fr; }
-			.footer-cta { align-items: flex-start; }
+			.footer-top { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; }
+			.footer-brand { grid-column: 1 / -1; border-bottom: 1px solid var(--stroke); padding-bottom: 40px; }
+			.footer-contacts { align-items: flex-start; }
+			.footer-contact-block { align-items: flex-start; }
 		}
 
 		@media (max-width: 720px) {
@@ -449,9 +584,11 @@
 			.header-inner { grid-template-columns: auto 1fr; }
 			.header-right { justify-self: end; }
 			.footer-top { grid-template-columns: 1fr; gap: 32px; }
+			.footer-brand { border-bottom: none; padding-bottom: 0; }
+			.footer-contacts { align-items: flex-start; }
+			.footer-contact-block { align-items: flex-start; }
 			.footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
 		}
-
 		/* ── Хлебные крошки (общие) ── */
 		.breadcrumb {
 			display: flex;
@@ -692,7 +829,7 @@
 
 <!-- ════════ ШАПКА ════════ -->
 <header class="site-header" id="site-header">
-	<div class="shell">
+	<div class="shell-header">
 		<div class="header-inner">
 
 			<!-- Логотип -->
@@ -704,36 +841,135 @@
 			<!-- Навигация -->
 			<nav class="nav">
 
-				<!-- Услуги с выпадашкой -->
+				<!-- Мегаменю услуг -->
 				<div class="nav-dropdown">
 					<button class="nav-dropdown-btn" id="services-btn">
 						Услуги
 						<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 					</button>
-					<div class="nav-dropdown-menu" id="services-menu">
-						<div class="nav-service-group">
-							<span class="nav-service-label">Авито</span>
-							<a href="#" class="nav-service-item">Создание и ведение рекламной кампании</a>
-							<a href="#" class="nav-service-item">Авитолог на день</a>
-							<a href="#" class="nav-service-item">Консультация Авитолога</a>
-							<a href="#" class="nav-service-item">Создание автозагрузочных файлов</a>
+
+					<div class="megamenu" id="services-menu">
+
+						<!-- Левая панель: направления -->
+						<div class="megamenu-left">
+
+							<div class="megamenu-cat is-active" data-cat="avito">
+								<div class="megamenu-cat-img">
+									<svg class="sq1" viewBox="0 0 34 34" fill="none" width="34" height="34">
+										<rect width="34" height="34" rx="10" fill="#1a1a2e"/>
+										<circle cx="12" cy="13" r="4" fill="#e8382a" opacity="0.9"/>
+										<circle cx="22" cy="13" r="4" fill="#e8382a" opacity="0.5"/>
+										<rect x="8" y="19" width="18" height="2.5" rx="1.25" fill="#e8382a" opacity="0.7"/>
+										<rect x="10" y="23" width="14" height="2" rx="1" fill="#e8382a" opacity="0.4"/>
+									</svg>
+									<svg class="sq2" viewBox="0 0 28 28" fill="none" width="28" height="28">
+										<rect width="28" height="28" rx="8" fill="#2a1a1a"/>
+										<path d="M8 20l4-8 4 8M10.5 16h3" stroke="#e8382a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+								<div class="megamenu-cat-text">
+									<div class="megamenu-cat-name">Авито</div>
+									<div class="megamenu-cat-desc">Объявления и реклама на площадке</div>
+								</div>
+								<svg class="megamenu-cat-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+							</div>
+
+							<div class="megamenu-cat" data-cat="dev">
+								<div class="megamenu-cat-img">
+									<svg class="sq1" viewBox="0 0 34 34" fill="none" width="34" height="34">
+										<rect width="34" height="34" rx="10" fill="#0d1f1a"/>
+										<rect x="7" y="10" width="20" height="14" rx="3" stroke="#34c97a" stroke-width="1.5" fill="none" opacity="0.6"/>
+										<path d="M12 15l-3 2 3 2M22 15l3 2-3 2" stroke="#34c97a" stroke-width="1.5" stroke-linecap="round"/>
+										<path d="M15 20l4-6" stroke="#34c97a" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+									</svg>
+									<svg class="sq2" viewBox="0 0 28 28" fill="none" width="28" height="28">
+										<rect width="28" height="28" rx="8" fill="#1a2e1f"/>
+										<rect x="6" y="8" width="16" height="2" rx="1" fill="#34c97a" opacity="0.8"/>
+										<rect x="6" y="13" width="12" height="2" rx="1" fill="#34c97a" opacity="0.5"/>
+										<rect x="6" y="18" width="8" height="2" rx="1" fill="#34c97a" opacity="0.3"/>
+									</svg>
+								</div>
+								<div class="megamenu-cat-text">
+									<div class="megamenu-cat-name">Разработка</div>
+									<div class="megamenu-cat-desc">Сайты, лендинги, интернет-магазины</div>
+								</div>
+								<svg class="megamenu-cat-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+							</div>
+
+							<div class="megamenu-cat" data-cat="seo">
+								<div class="megamenu-cat-img">
+									<svg class="sq1" viewBox="0 0 34 34" fill="none" width="34" height="34">
+										<rect width="34" height="34" rx="10" fill="#1a1f0d"/>
+										<polyline points="7,24 13,16 18,20 24,10" stroke="#a3e635" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+										<circle cx="24" cy="10" r="2.5" fill="#a3e635" opacity="0.9"/>
+									</svg>
+									<svg class="sq2" viewBox="0 0 28 28" fill="none" width="28" height="28">
+										<rect width="28" height="28" rx="8" fill="#1f2a0d"/>
+										<circle cx="13" cy="13" r="5" stroke="#a3e635" stroke-width="1.5" fill="none" opacity="0.7"/>
+										<path d="M17 17l3 3" stroke="#a3e635" stroke-width="1.8" stroke-linecap="round"/>
+									</svg>
+								</div>
+								<div class="megamenu-cat-text">
+									<div class="megamenu-cat-name">SEO</div>
+									<div class="megamenu-cat-desc">Продвижение и вывод в топ Яндекса</div>
+								</div>
+								<svg class="megamenu-cat-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+							</div>
+
+							<div class="megamenu-cat" data-cat="direct">
+								<div class="megamenu-cat-img">
+									<svg class="sq1" viewBox="0 0 34 34" fill="none" width="34" height="34">
+										<rect width="34" height="34" rx="10" fill="#1f1a0d"/>
+										<rect x="7" y="20" width="4" height="7" rx="1.5" fill="#f59e0b" opacity="0.5"/>
+										<rect x="13" y="15" width="4" height="12" rx="1.5" fill="#f59e0b" opacity="0.7"/>
+										<rect x="19" y="9" width="4" height="18" rx="1.5" fill="#f59e0b" opacity="0.9"/>
+										<path d="M7 18l6-6 4 3 5-7" stroke="#f59e0b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
+									</svg>
+									<svg class="sq2" viewBox="0 0 28 28" fill="none" width="28" height="28">
+										<rect width="28" height="28" rx="8" fill="#2e1f0d"/>
+										<path d="M8 14h12M16 10l4 4-4 4" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+								</div>
+								<div class="megamenu-cat-text">
+									<div class="megamenu-cat-name">Яндекс Директ</div>
+									<div class="megamenu-cat-desc">Контекстная реклама и кампании</div>
+								</div>
+								<svg class="megamenu-cat-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+							</div>
+
 						</div>
-						<div class="nav-service-group">
-							<span class="nav-service-label">Разработка</span>
-							<a href="/internet-shop/" class="nav-service-item">Разработка интернет-магазина</a>
-							<a href="/landing/" class="nav-service-item">Разработка лендинга</a>
-							<a href="/website/" class="nav-service-item">Разработка сайта</a>
-							<a href="/html-css/" class="nav-service-item">Верстка сайтов</a>
-						</div>
-						<div class="nav-service-group">
-							<span class="nav-service-label">СЕО</span>
-							<a href="/seo-setup/" class="nav-service-item">Внутренняя настройка СЕО</a>
-							<a href="/seo-full/" class="nav-service-item">Ведение проекта под ключ</a>
-							<a href="/seo-top/" class="nav-service-item">Вывод сайта в топ Яндекса</a>
-						</div>
-						<div class="nav-service-group">
-							<span class="nav-service-label">Яндекс Директ</span>
-							<a href="/yandex-direct/" class="nav-service-item">Ведение рекламных кампаний</a>
+
+						<!-- Правая панель: услуги -->
+						<div class="megamenu-right">
+
+							<div class="megamenu-panel is-active" data-panel="avito">
+								<span class="megamenu-panel-title">Авито</span>
+								<a href="#" class="megamenu-item">Создание и ведение рекламной кампании</a>
+								<a href="#" class="megamenu-item">Авитолог на день</a>
+								<a href="#" class="megamenu-item">Консультация Авитолога</a>
+								<a href="#" class="megamenu-item">Создание автозагрузочных файлов</a>
+							</div>
+
+							<div class="megamenu-panel" data-panel="dev">
+								<span class="megamenu-panel-title">Разработка</span>
+								<a href="/internet-shop/" class="megamenu-item">Разработка интернет-магазина</a>
+								<a href="/landing/" class="megamenu-item">Разработка лендинга</a>
+								<a href="/website/" class="megamenu-item">Разработка сайта</a>
+								<a href="/html-css/" class="megamenu-item">Верстка сайтов</a>
+							</div>
+
+							<div class="megamenu-panel" data-panel="seo">
+								<span class="megamenu-panel-title">SEO</span>
+								<a href="/seo-setup/" class="megamenu-item">Внутренняя настройка СЕО</a>
+								<a href="/seo-full/" class="megamenu-item">Ведение проекта под ключ</a>
+								<a href="/seo-top/" class="megamenu-item">Вывод сайта в топ Яндекса</a>
+							</div>
+
+							<div class="megamenu-panel" data-panel="direct">
+								<span class="megamenu-panel-title">Яндекс Директ</span>
+								<a href="/yandex-direct/" class="megamenu-item">Ведение рекламных кампаний</a>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -746,18 +982,18 @@
 
 			<!-- Правая часть -->
 			<div class="header-right">
-				<div class="messengers">
+			<div class="messengers">
 					<!-- Telegram -->
 					<a href="#" class="messenger-btn" title="Telegram">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
-					</a>
-					<!-- WhatsApp -->
-					<a href="#" class="messenger-btn" title="WhatsApp">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 					</a>
 					<!-- Max -->
 					<a href="#" class="messenger-btn" title="Max">
 						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+					</a>
+					<!-- Email -->
+					<a href="mailto:contact@lab-review.ru" class="messenger-btn" title="contact@lab-review.ru">
+						<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
 					</a>
 				</div>
 
@@ -832,14 +1068,17 @@
 		<a href="tel:+74952223333" class="mobile-foot-phone">+7 (495) 222-33-33</a>
 		<span class="mobile-foot-worktime">с 09:00 до 19:00, пн–пт</span>
 		<div class="mobile-foot-messengers">
+			<!-- Telegram -->
 			<a href="#" class="messenger-btn" title="Telegram">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 			</a>
-			<a href="#" class="messenger-btn" title="WhatsApp">
-				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
-			</a>
+			<!-- Max -->
 			<a href="#" class="messenger-btn" title="Max">
 				<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+			</a>
+			<!-- Email -->
+			<a href="mailto:contact@lab-review.ru" class="messenger-btn" title="contact@lab-review.ru">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
 			</a>
 		</div>
 	</div>
@@ -850,18 +1089,10 @@
 <footer class="site-footer">
 	<div class="shell">
 
-		<!-- Верхняя часть -->
+		<!-- Верхняя часть: nav | brand | contacts -->
 		<div class="footer-top">
 
-			<!-- Бренд -->
-			<div class="footer-brand">
-				<a href="/" class="logo">
-					<div class="logo-mark">LR</div>
-					<div class="logo-name">Lab<span>Review</span></div>
-				</a>
-			</div>
-
-			<!-- Навигация -->
+			<!-- Колонка 1: навигация -->
 			<div class="footer-nav">
 				<span class="footer-nav-title">Навигация</span>
 				<a href="/" class="footer-nav-link">Главная</a>
@@ -872,23 +1103,31 @@
 				<a href="/requisites/" class="footer-nav-link">Реквизиты</a>
 			</div>
 
-			<!-- CTA + контакты -->
-			<div class="footer-cta">
+			<!-- Колонка 2: бренд + кнопка -->
+			<div class="footer-brand">
+				<a href="/" class="footer-brand-name">Lab<span>Review</span></a>
 				<a href="#" class="footer-cta-btn">Обсудить проект</a>
+			</div>
+
+			<!-- Колонка 3: контакты -->
+			<div class="footer-contacts">
 				<div class="footer-contact-block">
 					<a href="tel:+74952223333" class="footer-phone">+7 (495) 222-33-33</a>
 					<a href="mailto:contact@lab-review.ru" class="footer-email">contact@lab-review.ru</a>
 					<span class="footer-worktime">с 09:00 до 19:00, пн–пт</span>
 				</div>
 				<div class="footer-messengers">
+					<!-- Telegram -->
 					<a href="#" class="messenger-btn" title="Telegram">
 						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 					</a>
-					<a href="#" class="messenger-btn" title="WhatsApp">
-						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
-					</a>
+					<!-- Max -->
 					<a href="#" class="messenger-btn" title="Max">
 						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
+					</a>
+					<!-- Email -->
+					<a href="mailto:contact@lab-review.ru" class="messenger-btn" title="contact@lab-review.ru">
+						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
 					</a>
 				</div>
 			</div>
@@ -903,14 +1142,6 @@
 				<a href="/oferta">Оферта</a>
 				<a href="/cookie-consent">Политика Cookie</a>
 				<a href="/requisites/">Реквизиты</a>
-			</div>
-			<div class="footer-social">
-				<a href="#" class="messenger-btn" title="Telegram">
-					<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
-				</a>
-				<a href="#" class="messenger-btn" title="WhatsApp">
-					<svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.2-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4C8.6 8 8 8.7 8 10.1c0 1.4 1 2.7 1.1 2.9.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5C8.3 21.5 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z" fill="currentColor"/></svg>
-				</a>
 			</div>
 		</div>
 
@@ -931,20 +1162,37 @@
 		lastY = y;
 	}, { passive: true });
 
-	// Выпадашка услуг (десктоп)
+	// Мегаменю: открытие по клику
 	const servicesBtn = document.getElementById('services-btn');
 	const servicesMenu = document.getElementById('services-menu');
+	const navDropdown = servicesBtn.closest('.nav-dropdown');
+
 	servicesBtn.addEventListener('click', (e) => {
 		e.stopPropagation();
-		servicesBtn.classList.toggle('is-open');
-		servicesMenu.classList.toggle('is-open');
-	});
-	document.addEventListener('click', () => {
-		servicesBtn.classList.remove('is-open');
-		servicesMenu.classList.remove('is-open');
+		const isOpen = servicesMenu.classList.toggle('is-open');
+		servicesBtn.classList.toggle('is-open', isOpen);
 	});
 
-	// Мобильное меню
+	document.addEventListener('click', (e) => {
+		if (!navDropdown.contains(e.target)) {
+			servicesBtn.classList.remove('is-open');
+			servicesMenu.classList.remove('is-open');
+		}
+	});
+
+	// Переключение панелей по hover
+	document.querySelectorAll('.megamenu-cat').forEach(cat => {
+		cat.addEventListener('mouseenter', () => {
+			const target = cat.dataset.cat;
+			document.querySelectorAll('.megamenu-cat').forEach(c => c.classList.remove('is-active'));
+			document.querySelectorAll('.megamenu-panel').forEach(p => p.classList.remove('is-active'));
+			cat.classList.add('is-active');
+			const panel = document.querySelector('.megamenu-panel[data-panel="' + target + '"]');
+			if (panel) panel.classList.add('is-active');
+		});
+	});
+
+		// Мобильное меню
 	const mobileMenu = document.getElementById('mobile-menu');
 	const burgerBtn = document.getElementById('burger-btn');
 	const mobileClose = document.getElementById('mobile-close');
