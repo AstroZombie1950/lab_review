@@ -17,7 +17,7 @@ TG_CHAT = os.getenv('TG_CHAT')
 
 # Главная страница
 def home(request):
-    cases = Case.objects.filter(is_published=True)[:3]
+    cases = Case.objects.filter(is_published=True)[:7]
     return render(request, 'home.html', {'cases': cases})
 
 def contacts(request):
