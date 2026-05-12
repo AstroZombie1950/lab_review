@@ -20,6 +20,8 @@ def home(request):
     cases = Case.objects.filter(is_published=True)[:3]
     return render(request, 'home.html', {'cases': cases})
 
+def contacts(request):
+    return render(request, 'contacts.html')
 
 def internet_shop(request):
     return render(request, 'services/internet-shop.html')
@@ -45,6 +47,19 @@ def seo_top(request):
 
 def yandex_direct(request):
     return render(request, 'services/yandex-direct.html')
+
+# Авито-страницы
+def avito_ads(request):
+    return render(request, 'services/avito-ads.html')
+
+def avito_day(request):
+    return render(request, 'services/avito-day.html')
+
+def avito_consult(request):
+    return render(request, 'services/avito-consult.html')
+
+def avito_autoload(request):
+    return render(request, 'services/avito-autoload.html')
 
 
 # Отправка формы в Telegram

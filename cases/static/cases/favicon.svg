@@ -1,0 +1,20 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Lab Review favicon</title>
+<desc>Буква L с красным акцентом на прозрачном фоне</desc>
+
+<style>
+@media (prefers-color-scheme: dark) {
+	.letter { fill: #ffffff; }
+}
+@media (prefers-color-scheme: light) {
+	.letter { fill: #0a0a0a; }
+}
+</style>
+
+<!-- Вертикальная часть L -->
+<rect class="letter" x="28" y="18" width="22" height="72" rx="4"/>
+<!-- Горизонтальная часть L -->
+<rect class="letter" x="28" y="68" width="58" height="22" rx="4"/>
+<!-- Акцент: красная точка в углу -->
+<circle cx="91" cy="26" r="10" fill="#e8382a"/>
+</svg>

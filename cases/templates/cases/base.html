@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,6 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>{% block title %}Lab Review{% endblock %}</title>
 	<meta name="description" content="{% block meta_description %}{% endblock %}" />
+
+    <link rel="icon" type="image/svg+xml" href="{% static 'cases/favicon.svg' %}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -944,10 +947,10 @@
 
 							<div class="megamenu-panel is-active" data-panel="avito">
 								<span class="megamenu-panel-title">Авито</span>
-								<a href="#" class="megamenu-item">Создание и ведение рекламной кампании</a>
-								<a href="#" class="megamenu-item">Авитолог на день</a>
-								<a href="#" class="megamenu-item">Консультация Авитолога</a>
-								<a href="#" class="megamenu-item">Создание автозагрузочных файлов</a>
+								<a href="/avito-ads/" class="megamenu-item">Создание и ведение рекламной кампании</a>
+								<a href="/avito-day/" class="megamenu-item">Авитолог на день</a>
+								<a href="/avito-consult/" class="megamenu-item">Консультация Авитолога</a>
+								<a href="/avito-autoload/" class="megamenu-item">Создание автозагрузочных файлов</a>
 							</div>
 
 							<div class="megamenu-panel" data-panel="dev">
@@ -977,18 +980,18 @@
 				<a href="{% url 'cases:list' %}" class="nav-link">Кейсы</a>
 				<a href="#" class="nav-link">Блог</a>
 				<a href="/requisites/" class="nav-link">Реквизиты</a>
-				<a href="#" class="nav-link">Контакты</a>
+				<a href="/contacts/" class="nav-link">Контакты</a>
 			</nav>
 
 			<!-- Правая часть -->
 			<div class="header-right">
 			<div class="messengers">
 					<!-- Telegram -->
-					<a href="#" class="messenger-btn" title="Telegram">
+					<a href="https://t.me/Lab_Review_bot" target="_blank" rel="noopener" class="messenger-btn" title="Telegram">
 						<svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 					</a>
 					<!-- Max -->
-					<a href="#" class="messenger-btn" title="Max">
+					<a href="https://max.ru/id234813866415_bot" target="_blank" rel="noopener" class="messenger-btn" title="Max">
 						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
 					</a>
 					<!-- Email -->
@@ -1039,10 +1042,10 @@
 			</button>
 			<div class="mobile-services-list" id="mobile-services-list">
 				<span class="mobile-service-group-label">Авито</span>
-				<a href="#" class="mobile-service-link">Создание и ведение рекламной кампании</a>
-				<a href="#" class="mobile-service-link">Авитолог на день</a>
-				<a href="#" class="mobile-service-link">Консультация Авитолога</a>
-				<a href="#" class="mobile-service-link">Создание автозагрузочных файлов</a>
+				<a href="/avito-ads/" class="mobile-service-link">Создание и ведение рекламной кампании</a>
+				<a href="/avito-day/" class="mobile-service-link">Авитолог на день</a>
+				<a href="/avito-consult/" class="mobile-service-link">Консультация Авитолога</a>
+				<a href="/avito-autoload/" class="mobile-service-link">Создание автозагрузочных файлов</a>
 				<span class="mobile-service-group-label">Разработка</span>
 				<a href="/internet-shop/" class="mobile-service-link">Разработка интернет-магазина</a>
 				<a href="/landing/" class="mobile-service-link">Разработка лендинга</a>
@@ -1060,7 +1063,7 @@
 		<a href="{% url 'cases:list' %}" class="mobile-nav-link">Кейсы</a>
 		<a href="#" class="mobile-nav-link">Блог</a>
 		<a href="/requisites/" class="mobile-nav-link">Реквизиты</a>
-		<a href="#" class="mobile-nav-link">Контакты</a>
+		<a href="/contacts/" class="mobile-nav-link">Контакты</a>
 	</nav>
 
 	<!-- Низ меню: контакты + мессенджеры -->
@@ -1069,11 +1072,11 @@
 		<span class="mobile-foot-worktime">с 09:00 до 19:00, пн–пт</span>
 		<div class="mobile-foot-messengers">
 			<!-- Telegram -->
-			<a href="#" class="messenger-btn" title="Telegram">
+			<a href="https://t.me/Lab_Review_bot" target="_blank" rel="noopener" class="messenger-btn" title="Telegram">
 				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 			</a>
 			<!-- Max -->
-			<a href="#" class="messenger-btn" title="Max">
+			<a href="https://max.ru/id234813866415_bot" target="_blank" rel="noopener" class="messenger-btn" title="Max">
 				<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
 			</a>
 			<!-- Email -->
@@ -1097,9 +1100,8 @@
 				<span class="footer-nav-title">Навигация</span>
 				<a href="/" class="footer-nav-link">Главная</a>
 				<a href="{% url 'cases:list' %}" class="footer-nav-link">Кейсы</a>
-				<a href="#" class="footer-nav-link">Услуги</a>
 				<a href="#" class="footer-nav-link">Блог</a>
-				<a href="#" class="footer-nav-link">Контакты</a>
+				<a href="/contacts/" class="footer-nav-link">Контакты</a>
 				<a href="/requisites/" class="footer-nav-link">Реквизиты</a>
 			</div>
 
@@ -1118,11 +1120,11 @@
 				</div>
 				<div class="footer-messengers">
 					<!-- Telegram -->
-					<a href="#" class="messenger-btn" title="Telegram">
+					<a href="https://t.me/Lab_Review_bot" target="_blank" rel="noopener" class="messenger-btn" title="Telegram">
 						<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.8 3.2L1.2 11.1c-1.3.5-1.3 1.3-.2 1.6l5.1 1.6 2 6.3c.3.7.1 1 .8.9.5 0 .8-.3 1.1-.6l2.5-2.4 5.2 3.8c1 .5 1.6.3 1.8-.9l3.3-15.5c.4-1.5-.6-2.2-1.9-1.7z" fill="currentColor"/></svg>
 					</a>
 					<!-- Max -->
-					<a href="#" class="messenger-btn" title="Max">
+					<a href="https://max.ru/id234813866415_bot" target="_blank" rel="noopener" class="messenger-btn" title="Max">
 						<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;">Max</span>
 					</a>
 					<!-- Email -->
