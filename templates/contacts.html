@@ -49,12 +49,12 @@
 		max-width: 560px;
 	}
 
-	/* ── Основная сетка ── */
-	.contacts-grid {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
+	/* ── Стек всех блоков по левому краю ── */
+	.contacts-stack {
+		display: flex;
+		flex-direction: column;
 		gap: 24px;
-		margin-bottom: 24px;
+		max-width: 680px;
 	}
 
 	/* ── Карточка ── */
@@ -123,13 +123,7 @@
 		color: var(--muted);
 	}
 
-	/* ── Карточки-советы ── */
-	.contacts-tips {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 24px;
-		margin-bottom: 24px;
-	}
+	/* ── Советы — одиночные блоки в стеке ── */
 
 	.contacts-tip {
 		background: var(--bg-2);
@@ -280,7 +274,6 @@
 
 	.contacts-btns {
 		display: flex;
-		flex-wrap: wrap;
 		gap: 12px;
 	}
 
@@ -306,8 +299,7 @@
 
 	/* ── Адаптив ── */
 	@media (max-width: 900px) {
-		.contacts-grid,
-		.contacts-tips { grid-template-columns: 1fr; }
+		.contacts-stack { max-width: 100%; }
 	}
 
 	@media (max-width: 640px) {
@@ -347,9 +339,10 @@
 			<p class="contacts-subtitle">Свяжитесь с нами удобным способом — обсудим задачу, подскажем по формату работы и сориентируем по следующим шагам.</p>
 		</div>
 
-		<!-- ════ ОСНОВНОЙ БЛОК: КОНТАКТЫ ════ -->
-		<div class="contacts-grid">
-			<div class="contacts-card">
+		<!-- ════ БЛОКИ: КОНТАКТЫ / 01 / 02 / ФОРМА ════ -->
+		<div class="contacts-stack">
+
+		<div class="contacts-card">
 				<div class="contacts-card-title">Напишите нам</div>
 
 				<!-- Телефон -->
@@ -401,11 +394,7 @@
 						ВКонтакте
 					</a>
 				</div>
-			</div>
 		</div>
-
-		<!-- ════ СОВЕТЫ ════ -->
-		<div class="contacts-tips">
 			<div class="contacts-tip">
 				<div class="contacts-tip-num">01</div>
 				<div class="contacts-tip-title">Как быстрее получить ответ</div>
@@ -415,10 +404,7 @@
 				<div class="contacts-tip-num">02</div>
 				<div class="contacts-tip-title">Что будет дальше</div>
 				<p class="contacts-tip-text">Мы посмотрим задачу, уточним важные детали и предложим понятный формат работы. Если проект уже запущен — разберём текущую ситуацию. Если всё только планируется — поможем определить, с чего лучше начать.</p>
-			</div>
 		</div>
-
-		<!-- ════ CTA ════ -->
 		<div class="contacts-cta">
 			<div class="contacts-cta-header">
 				<div class="contacts-cta-title">Готовы обсудить проект?</div>
@@ -463,9 +449,11 @@
 					Отправить на почту
 				</a>
 			</div>
-		</div>
+		</div><!-- /contacts-cta -->
 
-	</div>
+		</div><!-- /contacts-stack -->
+
+	</div><!-- /shell -->
 </main>
 
 <script>

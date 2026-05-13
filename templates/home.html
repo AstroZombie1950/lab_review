@@ -283,15 +283,16 @@
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		min-height: 300px;
+		min-height: 420px;
 		position: relative;
 		cursor: pointer;
 		transition: border-color .25s, transform .25s;
 	}
 
-	/* Крупная карточка */
+	/* Крупная карточка — квадрат */
 	.home-service-card--hero {
-		min-height: 460px;
+		aspect-ratio: 1 / 1;
+		min-height: unset;
 	}
 
 	.home-service-card--hero .home-service-name {
