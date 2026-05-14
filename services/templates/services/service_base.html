@@ -9,9 +9,11 @@
 
 	/* ── Герой ── */
 	.svc-hero {
-		padding: 64px 0 80px;
+		min-height: calc(100vh - 88px);
+		padding: 10px 0 64px;
 		position: relative;
-		overflow: hidden;
+		display: flex;
+		align-items: center;
 	}
 
 	.svc-hero-blob {
@@ -38,6 +40,7 @@
 		align-items: center;
 		position: relative;
 		z-index: 1;
+		width: 100%;
 	}
 
 	.svc-hero-label {
@@ -46,7 +49,7 @@
 		color: var(--accent);
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
-		margin-bottom: 20px;
+		margin-bottom: 8px;
 		display: flex;
 		align-items: center;
 		gap: 8px;
@@ -106,6 +109,14 @@
 		margin-top: 2px;
 	}
 
+	/* Кнопка + приписка рядом */
+	.svc-hero-cta {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		flex-wrap: wrap;
+	}
+
 	.svc-hero-btn {
 		display: inline-flex;
 		align-items: center;
@@ -117,9 +128,19 @@
 		font-size: 16px;
 		font-weight: 700;
 		transition: opacity .2s;
+		white-space: nowrap;
+		flex-shrink: 0;
 	}
 
 	.svc-hero-btn:hover { opacity: 0.88; }
+
+	/* Приписка справа от кнопки */
+	.svc-hero-note {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.5;
+		max-width: 220px;
+	}
 
 	.svc-hero-image {
 		border-radius: var(--radius-xl);
@@ -251,6 +272,113 @@
 		margin-top: 2px;
 	}
 
+	/* ── Что входит в услугу ── */
+	.svc-includes {
+		border-radius: var(--radius-xl);
+		background: linear-gradient(135deg, #161616 0%, #1a1118 100%);
+		border: 1px solid var(--stroke);
+		padding: 56px;
+		position: relative;
+		overflow: hidden;
+	}
+
+	/* Декоративный акцент-угол */
+	.svc-includes::before {
+		content: '';
+		position: absolute;
+		top: -80px;
+		right: -80px;
+		width: 320px;
+		height: 320px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.1) 0%, transparent 70%);
+		pointer-events: none;
+	}
+
+	.svc-includes-header {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		gap: 32px;
+		align-items: start;
+		margin-bottom: 48px;
+	}
+
+	.svc-includes-title {
+		font-size: clamp(28px, 3vw, 42px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+	}
+
+	.svc-includes-title span { color: var(--muted); }
+
+	.svc-includes-btn {
+		display: inline-flex;
+		align-items: center;
+		height: 52px;
+		padding: 0 28px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 15px;
+		font-weight: 700;
+		transition: opacity .2s;
+		white-space: nowrap;
+		flex-shrink: 0;
+	}
+
+	.svc-includes-btn:hover { opacity: 0.88; }
+
+	.svc-includes-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2px;
+	}
+
+	.svc-include-item {
+		display: flex;
+		gap: 20px;
+		padding: 28px;
+		border-radius: var(--radius-lg);
+		background: rgba(255,255,255,0.03);
+		border: 1px solid transparent;
+		transition: background .2s, border-color .2s;
+		position: relative;
+	}
+
+	.svc-include-item:hover {
+		background: rgba(255,255,255,0.05);
+		border-color: var(--stroke);
+	}
+
+	.svc-include-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: var(--radius-md);
+		background: rgba(232,56,42,0.12);
+		border: 1px solid rgba(232,56,42,0.25);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: var(--accent);
+	}
+
+	.svc-include-body {}
+
+	.svc-include-title {
+		font-size: 16px;
+		font-weight: 700;
+		margin-bottom: 6px;
+		line-height: 1.3;
+	}
+
+	.svc-include-text {
+		font-size: 14px;
+		color: var(--muted);
+		line-height: 1.6;
+	}
+
 	/* ── Тарифы ── */
 	.svc-plans { display: flex; flex-direction: column; gap: 16px; }
 
@@ -375,11 +503,53 @@
 		border-radius: var(--radius-xl);
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
-		padding: 64px;
+		overflow: hidden;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
-		gap: 64px;
-		align-items: start;
+		position: relative;
+	}
+
+	/* Левая часть — текст + контакты */
+	.svc-form-left {
+		padding: 64px;
+		background: linear-gradient(160deg, rgba(232,56,42,0.08) 0%, transparent 60%);
+		border-right: 1px solid var(--stroke);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+	}
+
+	/* Декоративные линии на фоне */
+	.svc-form-left::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+		background-size: 40px 40px;
+		pointer-events: none;
+	}
+
+	.svc-form-left-eyebrow {
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		margin-bottom: 16px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		position: relative;
+	}
+
+	.svc-form-left-eyebrow::before {
+		content: '';
+		width: 20px;
+		height: 2px;
+		background: var(--accent);
 	}
 
 	.svc-form-left-title {
@@ -388,6 +558,7 @@
 		letter-spacing: -0.03em;
 		line-height: 1.1;
 		margin-bottom: 16px;
+		position: relative;
 	}
 
 	.svc-form-left-title span { color: var(--muted); }
@@ -396,18 +567,46 @@
 		font-size: 15px;
 		color: var(--muted);
 		line-height: 1.65;
-		margin-bottom: 32px;
+		margin-bottom: 40px;
+		position: relative;
 	}
 
-	.svc-form-contacts { display: flex; flex-direction: column; gap: 8px; }
+	.svc-form-contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		position: relative;
+	}
 
 	.svc-form-contact-item {
+		display: flex;
+		align-items: center;
+		gap: 12px;
 		font-size: 15px;
 		color: rgba(255,255,255,0.65);
 		transition: color .2s;
 	}
 
 	.svc-form-contact-item:hover { color: #fff; }
+
+	.svc-form-contact-icon {
+		width: 36px;
+		height: 36px;
+		border-radius: var(--radius-sm);
+		background: rgba(255,255,255,0.05);
+		border: 1px solid var(--stroke);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: var(--muted-2);
+	}
+
+	/* Правая часть — форма */
+	.svc-form-right {
+		padding: 64px;
+		background: var(--bg-3);
+	}
 
 	.svc-form { display: flex; flex-direction: column; gap: 16px; }
 
@@ -421,7 +620,7 @@
 
 	.svc-field input,
 	.svc-field textarea {
-		background: var(--bg-3);
+		background: var(--bg-2);
 		border: 1px solid var(--stroke);
 		border-radius: var(--radius-md);
 		padding: 14px 16px;
@@ -434,7 +633,7 @@
 	}
 
 	.svc-field input:focus,
-	.svc-field textarea:focus { border-color: var(--stroke-2); }
+	.svc-field textarea:focus { border-color: rgba(232,56,42,0.5); }
 
 	.svc-field input::placeholder,
 	.svc-field textarea::placeholder { color: rgba(255,255,255,0.22); }
@@ -454,6 +653,7 @@
 		border: none;
 		cursor: pointer;
 		width: 100%;
+		margin-top: 4px;
 	}
 
 	.svc-form-submit:hover { opacity: 0.88; }
@@ -466,28 +666,33 @@
 	}
 
 	/* ── Как мы работаем ── */
-.svc-steps-grid {
-	display: grid;
-	grid-template-columns: 1fr auto 1fr auto 1fr;
-	gap: 0 16px;
-	margin-top: 48px;
-	align-items: stretch;
-	row-gap: 24px;
-}
+	.svc-steps-wrap {
+		margin-top: 48px;
+		position: relative;
+	}
 
-	/* Стрелка между карточками */
-	.svc-step-arrow {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--accent);
-		opacity: 0.7;
-		padding-top: 40px; /* выравниваем по середине карточки */
+	/* SVG-линия со змейкой поверх сетки */
+	.svc-steps-svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: none;
+		overflow: visible;
+	}
+
+	.svc-steps-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 80px 40px;
+		position: relative;
+		z-index: 1;
 	}
 
 	/* Карточка шага */
 	.svc-step {
-		padding: 20px;
+		padding: 24px;
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
 		border-radius: var(--radius-xl);
@@ -568,66 +773,114 @@
 		color: var(--muted);
 		line-height: 1.4;
 	}
-/* ── FAQ ── */
-.svc-faq { display: flex; flex-direction: column; gap: 3px; margin-top: 48px; }
 
-.svc-faq-item {
-	border-radius: var(--radius-lg);
-	background: var(--bg-2);
-	border: 1px solid var(--stroke);
-	overflow: hidden;
-}
+	/* ── FAQ ── */
+	.svc-faq {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-top: 48px;
+	}
 
-.svc-faq-btn {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 16px;
-	padding: 24px 28px;
-	text-align: left;
-	font-size: 16px;
-	font-weight: 700;
-	color: rgba(255,255,255,0.88);
-	cursor: pointer;
-	transition: color .2s;
-}
+	.svc-faq-item {
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		border-radius: var(--radius-lg);
+		overflow: hidden;
+		transition: background .2s, border-color .2s;
+		position: relative;
+	}
 
-.svc-faq-btn:hover { color: #fff; }
+	/* Акцентная полоса слева у открытого */
+	.svc-faq-item.is-open {
+		background: var(--bg-3);
+		border-color: rgba(232,56,42,0.25);
+	}
 
-.svc-faq-icon {
-	width: 32px;
-	height: 32px;
-	border-radius: var(--radius-sm);
-	background: rgba(255,255,255,0.06);
-	border: 1px solid var(--stroke);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-shrink: 0;
-	transition: transform .25s;
-}
+	.svc-faq-item.is-open::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 3px;
+		background: var(--accent);
+		border-radius: 0;
+	}
 
-.svc-faq-item.is-open .svc-faq-icon { transform: rotate(45deg); }
+	.svc-faq-btn {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		padding: 24px 28px;
+		text-align: left;
+		font-size: 16px;
+		font-weight: 700;
+		color: rgba(255,255,255,0.75);
+		cursor: pointer;
+		transition: color .2s;
+	}
 
-.svc-faq-body {
-	display: grid;
-	grid-template-rows: 0fr;
-	transition: grid-template-rows .3s ease, padding .3s ease;
-	padding: 0 28px;
-	font-size: 15px;
-	color: var(--muted);
-	line-height: 1.7;
-}
+	.svc-faq-btn:hover { color: #fff; }
+	.svc-faq-item.is-open .svc-faq-btn { color: #fff; }
 
-.svc-faq-body-inner {
-	overflow: hidden;
-}
+	/* Номер вопроса */
+	.svc-faq-num {
+		font-size: 12px;
+		font-weight: 700;
+		color: var(--accent);
+		letter-spacing: 0.06em;
+		flex-shrink: 0;
+		width: 24px;
+		opacity: 0.7;
+	}
 
-.svc-faq-item.is-open .svc-faq-body {
-	grid-template-rows: 1fr;
-	padding: 0 28px 24px;
-}
+	.svc-faq-question { flex: 1; }
+
+	.svc-faq-icon {
+		width: 28px;
+		height: 28px;
+		border-radius: var(--radius-sm);
+		background: rgba(255,255,255,0.05);
+		border: 1px solid var(--stroke);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		transition: transform .25s, background .2s, border-color .2s;
+		color: var(--muted-2);
+	}
+
+	.svc-faq-item:hover .svc-faq-icon {
+		background: rgba(255,255,255,0.08);
+		color: var(--muted);
+	}
+
+	.svc-faq-item.is-open .svc-faq-icon {
+		transform: rotate(45deg);
+		background: rgba(232,56,42,0.15);
+		border-color: rgba(232,56,42,0.35);
+		color: var(--accent);
+	}
+
+	.svc-faq-body {
+		display: grid;
+		grid-template-rows: 0fr;
+		transition: grid-template-rows .3s ease, padding .3s ease;
+		padding: 0 28px 0 68px;
+		font-size: 15px;
+		color: var(--muted);
+		line-height: 1.75;
+	}
+
+	.svc-faq-body-inner { overflow: hidden; }
+
+	.svc-faq-item.is-open .svc-faq-body {
+		grid-template-rows: 1fr;
+		padding: 0 28px 24px 68px;
+	}
+
 	/* ── Другие услуги ── */
 	.svc-others-grid {
 		display: grid;
@@ -653,7 +906,6 @@
 		border-color: var(--stroke-2);
 	}
 
-	/* Категория вверху */
 	.svc-other-cat {
 		font-size: 12px;
 		font-weight: 700;
@@ -663,7 +915,6 @@
 		margin-bottom: 20px;
 	}
 
-	/* Картинка + название в ряд */
 	.svc-other-top {
 		display: flex;
 		align-items: center;
@@ -672,7 +923,6 @@
 		flex: 1;
 	}
 
-	/* Заглушка картинки — квадрат с иконкой */
 	.svc-other-img {
 		width: 60px;
 		height: 60px;
@@ -693,7 +943,6 @@
 		color: rgba(255,255,255,0.88);
 	}
 
-	/* Нижняя строка: кнопка + стрелка */
 	.svc-other-bottom {
 		display: flex;
 		align-items: center;
@@ -716,7 +965,6 @@
 
 	.svc-other-btn:hover { opacity: 0.88; }
 
-	/* Круглая кнопка стрелки */
 	.svc-other-arrow {
 		width: 40px;
 		height: 40px;
@@ -736,6 +984,112 @@
 		color: #fff;
 	}
 
+	/* ── Финальный CTA ── */
+	.svc-final-cta {
+		margin-top: 80px;
+		border-radius: var(--radius-xl);
+		background: linear-gradient(120deg, #1a0a08 0%, #0a0a0a 50%, #160a18 100%);
+		border: 1px solid rgba(232,56,42,0.2);
+		overflow: hidden;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		min-height: 320px;
+		position: relative;
+	}
+
+	/* Фоновое свечение */
+	.svc-final-cta::before {
+		content: '';
+		position: absolute;
+		top: -60px;
+		left: -60px;
+		width: 400px;
+		height: 400px;
+		border-radius: 50%;
+		background: radial-gradient(circle, rgba(232,56,42,0.12) 0%, transparent 65%);
+		pointer-events: none;
+	}
+
+	.svc-final-cta-left {
+		padding: 64px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		gap: 24px;
+		position: relative;
+		z-index: 1;
+	}
+
+	.svc-final-cta-title {
+		font-size: clamp(28px, 3.5vw, 48px);
+		font-weight: 900;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+	}
+
+	.svc-final-cta-title span { color: var(--accent); }
+
+	.svc-final-cta-text {
+		font-size: 16px;
+		color: var(--muted);
+		line-height: 1.65;
+		max-width: 400px;
+	}
+
+	.svc-final-cta-btn {
+		display: inline-flex;
+		align-items: center;
+		height: 56px;
+		padding: 0 32px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 16px;
+		font-weight: 700;
+		transition: opacity .2s;
+		align-self: flex-start;
+	}
+
+	.svc-final-cta-btn:hover { opacity: 0.88; }
+
+	/* Правая часть — заглушка изображения */
+	.svc-final-cta-right {
+		position: relative;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.svc-final-cta-right img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* Заглушка */
+	.svc-final-cta-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+		color: var(--muted-2);
+		opacity: 0.4;
+	}
+
+	.svc-final-cta-placeholder span { font-size: 13px; }
+
+	/* Декоративный разделитель между колонками */
+	.svc-final-cta-right::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 10%;
+		bottom: 10%;
+		width: 1px;
+		background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent);
+	}
+
 	/* ── Адаптив ── */
 	@media (max-width: 1024px) {
 		.svc-hero-inner { grid-template-columns: 1fr; }
@@ -744,25 +1098,40 @@
 		.svc-plan { grid-template-columns: 1fr; }
 		.svc-plan-right { min-height: 200px; }
 		.svc-plan-left { border-right: none; border-bottom: 1px solid var(--stroke); }
-		.svc-form-wrap { grid-template-columns: 1fr; gap: 40px; padding: 40px; }
-		.svc-steps-grid { grid-template-columns: 1fr auto 1fr; }
+		.svc-form-wrap { grid-template-columns: 1fr; }
+		.svc-form-left { border-right: none; border-bottom: 1px solid var(--stroke); }
+		.svc-steps-grid { grid-template-columns: 1fr 1fr; }
 		.svc-team-grid { grid-template-columns: repeat(2, 1fr); }
 		.svc-others-grid { grid-template-columns: 1fr 1fr; }
+		.svc-includes-header { grid-template-columns: 1fr; }
+		.svc-includes-btn { align-self: flex-start; }
+		.svc-final-cta { grid-template-columns: 1fr; }
+		.svc-final-cta-right { min-height: 240px; }
+		.svc-final-cta-right::before { display: none; }
 	}
 
 	@media (max-width: 720px) {
-		.svc-hero { padding: 40px 0 56px; }
+		.svc-hero { padding: 40px 0; min-height: calc(100svh - 88px); }
 		.svc-info-card { padding: 28px; }
 		.svc-plan-left { padding: 28px; }
 		.svc-plan-features { grid-template-columns: 1fr; }
-		.svc-form-wrap { padding: 28px; }
+		.svc-form-left { padding: 32px; }
+		.svc-form-right { padding: 32px; }
 		.svc-steps-grid { grid-template-columns: 1fr; }
-		.svc-step-arrow { display: none; }
 		.svc-others-grid { grid-template-columns: 1fr; }
+		.svc-includes { padding: 32px; }
+		.svc-includes-grid { grid-template-columns: 1fr; }
+		.svc-final-cta-left { padding: 40px 32px; }
+		.svc-faq-btn { padding: 20px 24px; }
+		.svc-faq-body { padding: 0 24px 0 24px; }
+		.svc-faq-item.is-open .svc-faq-body { padding: 0 24px 24px; }
+		.svc-faq-num { display: none; }
 	}
 
 	@media (max-width: 480px) {
 		.svc-team-grid { grid-template-columns: 1fr 1fr; }
+		.svc-hero-cta { flex-direction: column; align-items: flex-start; }
+		.svc-hero-note { max-width: 100%; }
 	}
 </style>
 {% endblock %}
@@ -787,7 +1156,10 @@
 					<h1 class="svc-hero-title">{% block hero_title %}{% endblock %}</h1>
 					<p class="svc-hero-text">{% block hero_text %}{% endblock %}</p>
 					<div class="svc-hero-checks">{% block hero_checks %}{% endblock %}</div>
-					<a href="#" class="svc-hero-btn js-modal-open">Обсудить проект</a>
+					<div class="svc-hero-cta">
+						<a href="#" class="svc-hero-btn js-modal-open">Обсудить проект</a>
+						<p class="svc-hero-note">Ответим, уточним задачу и предложим подходящий формат работы.</p>
+					</div>
 				</div>
 				<div class="svc-hero-image">
 					{% block hero_image %}
@@ -807,6 +1179,22 @@
 			<div class="svc-info-grid">{% block info_cards %}{% endblock %}</div>
 		</section>
 
+		<!-- ════ ЧТО ВХОДИТ В УСЛУГУ ════ -->
+		<section class="svc-section">
+			<div class="svc-includes">
+				<div class="svc-includes-header">
+					<div>
+						<div class="svc-section-label" style="margin-bottom: 12px;">Состав услуги</div>
+						<h2 class="svc-includes-title">{% block includes_title %}Что входит <span>в услугу</span>{% endblock %}</h2>
+					</div>
+					<a href="#" class="svc-includes-btn js-modal-open">Обсудить проект</a>
+				</div>
+				<div class="svc-includes-grid">
+					{% block includes %}{% endblock %}
+				</div>
+			</div>
+		</section>
+
 		<!-- ════ ТАРИФЫ ════ -->
 		<section class="svc-section">
 			<div class="svc-section-label">Стоимость</div>
@@ -818,33 +1206,53 @@
 		<!-- ════ ФОРМА ════ -->
 		<section class="svc-section" id="contact">
 			<div class="svc-form-wrap">
-				<div>
-					<h2 class="svc-form-left-title">Обсудим <span>ваш проект?</span></h2>
-					<p class="svc-form-left-text">Оставьте заявку — перезвоним в течение 30 минут и ответим на все вопросы.</p>
+				<div class="svc-form-left">
+					<div>
+						<div class="svc-form-left-eyebrow">Заявка</div>
+						<h2 class="svc-form-left-title">Обсудим <span>ваш проект?</span></h2>
+						<p class="svc-form-left-text">Оставьте заявку — перезвоним в течение 30 минут и ответим на все вопросы.</p>
+					</div>
 					<div class="svc-form-contacts">
-						<a href="tel:+74952223333" class="svc-form-contact-item">+7 (495) 222-33-33</a>
-						<a href="mailto:contact@lab-review.ru" class="svc-form-contact-item">contact@lab-review.ru</a>
-						<span class="svc-form-contact-item" style="cursor:default;">с 09:00 до 19:00, пн–пт</span>
+						<a href="tel:+74952223333" class="svc-form-contact-item">
+							<span class="svc-form-contact-icon">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+							</span>
+							+7 (495) 222-33-33
+						</a>
+						<a href="mailto:contact@lab-review.ru" class="svc-form-contact-item">
+							<span class="svc-form-contact-icon">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+							</span>
+							contact@lab-review.ru
+						</a>
+						<span class="svc-form-contact-item" style="cursor:default;">
+							<span class="svc-form-contact-icon">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+							</span>
+							с 09:00 до 19:00, пн–пт
+						</span>
 					</div>
 				</div>
-				<form class="svc-form" id="svc-contact-form">
-					{% csrf_token %}
-					<div class="svc-field">
-						<label>Имя</label>
-						<input type="text" name="name" placeholder="Иван Иванов" required />
-					</div>
-					<div class="svc-field">
-						<label>Телефон или e-mail</label>
-						<input type="text" name="contact" placeholder="+7 (999) 000-00-00" required />
-					</div>
-					<div class="svc-field">
-						<label>Сообщение</label>
-						<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
-					</div>
-					<button type="submit" class="svc-form-submit">Отправить заявку</button>
-					<p class="svc-form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/" style="color:var(--muted);">политикой конфиденциальности</a></p>
-					<div id="form-status" style="display:none;text-align:center;font-size:14px;padding:12px;border-radius:var(--radius-md);"></div>
-				</form>
+				<div class="svc-form-right">
+					<form class="svc-form" id="svc-contact-form">
+						{% csrf_token %}
+						<div class="svc-field">
+							<label>Имя</label>
+							<input type="text" name="name" placeholder="Иван Иванов" required />
+						</div>
+						<div class="svc-field">
+							<label>Телефон или e-mail</label>
+							<input type="text" name="contact" placeholder="+7 (999) 000-00-00" required />
+						</div>
+						<div class="svc-field">
+							<label>Сообщение</label>
+							<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
+						</div>
+						<button type="submit" class="svc-form-submit">Отправить заявку</button>
+						<p class="svc-form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/" style="color:var(--muted);">политикой конфиденциальности</a></p>
+						<div id="form-status" style="display:none;text-align:center;font-size:14px;padding:12px;border-radius:var(--radius-md);"></div>
+					</form>
+				</div>
 			</div>
 		</section>
 
@@ -852,7 +1260,11 @@
 		<section class="svc-section">
 			<div class="svc-section-label">Процесс</div>
 			<h2 class="svc-section-title">Как мы <span>работаем</span></h2>
-			<div class="svc-steps-grid" id="svc-steps-grid">{% block steps %}{% endblock %}</div>
+			<div class="svc-steps-wrap">
+				<!-- SVG-змейка рисуется JS'ом -->
+				<svg class="svc-steps-svg" id="svc-steps-svg" aria-hidden="true"></svg>
+				<div class="svc-steps-grid" id="svc-steps-grid">{% block steps %}{% endblock %}</div>
+			</div>
 		</section>
 
 		<!-- ════ СОТРУДНИКИ ════ -->
@@ -876,68 +1288,168 @@
 			<div class="svc-others-grid">{% block others %}{% endblock %}</div>
 		</section>
 
+		<!-- ════ ФИНАЛЬНЫЙ CTA ════ -->
+		<div class="svc-final-cta">
+			<div class="svc-final-cta-left">
+				<h2 class="svc-final-cta-title">{% block cta_title %}Готовы <span>начать?</span>{% endblock %}</h2>
+				<p class="svc-final-cta-text">{% block cta_text %}Расскажите о задаче — подберём формат работы и ответим на вопросы.{% endblock %}</p>
+				<a href="#" class="svc-final-cta-btn js-modal-open">Обсудить проект</a>
+			</div>
+			<div class="svc-final-cta-right">
+				{% block cta_image %}
+				<div class="svc-final-cta-placeholder">
+					<svg width="56" height="56" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+					<span>Финальное изображение</span>
+				</div>
+				{% endblock %}
+			</div>
+		</div>
+
 	</div>
 </main>
 
 <script>
-	/* Горизонтальные стрелки между шагами в ряду */
+	/* ── Змейка-стрелка для блока шагов ── */
 	(function() {
 		const grid = document.getElementById('svc-steps-grid');
-		if (!grid) return;
-		const steps = Array.from(grid.querySelectorAll('.svc-step'));
-		if (!steps.length) return;
-
-		const arrowSvg = `<svg width="36" height="16" viewBox="0 0 36 16" fill="none">
-			<line x1="0" y1="8" x2="28" y2="8" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 3"/>
-			<path d="M24 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-		</svg>`;
+		const svg  = document.getElementById('svc-steps-svg');
+		if (!grid || !svg) return;
 
 		function getCols() {
 			const w = window.innerWidth;
-			if (w <= 720) return 1;
+			if (w <= 720)  return 1;
 			if (w <= 1024) return 2;
 			return 3;
 		}
 
-		function buildArrows() {
-			grid.querySelectorAll('.svc-step-arrow').forEach(el => el.remove());
+		function draw() {
+			svg.innerHTML = '';
+			const steps = Array.from(grid.querySelectorAll('.svc-step'));
+			if (steps.length < 2) return;
 			const cols = getCols();
 			if (cols === 1) return;
 
-			steps.forEach((step, i) => {
-				/* Не последний в ряду и не последний шаг */
-				if ((i + 1) % cols !== 0 && i < steps.length - 1) {
-					const arrow = document.createElement('div');
-					arrow.className = 'svc-step-arrow';
-					arrow.innerHTML = arrowSvg;
-					step.insertAdjacentElement('afterend', arrow);
-				}
+			const wrapRect = grid.getBoundingClientRect();
+			const scrollY  = window.scrollY;
+
+			/* Центры каждой карточки */
+			const centers = steps.map(s => {
+				const r = s.getBoundingClientRect();
+				return {
+					x: r.left - wrapRect.left + r.width / 2,
+					y: r.top  + scrollY - (wrapRect.top + scrollY) + r.height / 2,
+					right:  r.right  - wrapRect.left,
+					left:   r.left   - wrapRect.left,
+					top:    r.top    + scrollY - (wrapRect.top + scrollY),
+					bottom: r.bottom + scrollY - (wrapRect.top + scrollY),
+				};
 			});
+
+			/* Строим путь: горизонталь по ряду, потом изгиб вниз на следующий ряд */
+			let d = '';
+			for (let i = 0; i < steps.length - 1; i++) {
+				const cur  = centers[i];
+				const next = centers[i + 1];
+				const posInRow = i % cols;
+				const isLastInRow = posInRow === cols - 1;
+
+				if (!isLastInRow) {
+					/* горизонтальная стрелка внутри ряда */
+					const x1 = cur.right  + 4;
+					const x2 = next.left  - 4;
+					const y  = cur.y;
+					d += `M ${x1} ${y} L ${x2} ${y} `;
+				} else {
+					/* змейка: вниз с правого края, потом влево к левому краю следующего ряда */
+                    const x1 = cur.right - 20;
+                    const y1 = cur.bottom + 4;
+                    const x2 = next.left + 20;
+                    const y2 = next.top   - 4;
+					const mx = (x1 + x2) / 2;
+					const dy = y2 - y1;
+					d += `M ${x1} ${y1} C ${x1} ${y1 + dy * 0.7}, ${x2} ${y2 - dy * 1.8}, ${x2} ${y2} `;
+				}
+			}
+
+			/* Основная линия */
+			const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+			path.setAttribute('d', d);
+			path.setAttribute('fill', 'none');
+			path.setAttribute('stroke', 'rgba(232,56,42,0.55)');
+			path.setAttribute('stroke-width', '1.5');
+			path.setAttribute('stroke-dasharray', '5 4');
+			path.setAttribute('stroke-linecap', 'round');
+			svg.appendChild(path);
+
+			/* Стрелочки-наконечники на горизонтальных отрезках */
+			for (let i = 0; i < steps.length - 1; i++) {
+				const cur  = centers[i];
+				const next = centers[i + 1];
+				const posInRow = i % cols;
+				const isLastInRow = posInRow === cols - 1;
+
+				if (!isLastInRow) {
+					const ax = next.left - 10;
+					const ay = cur.y;
+					const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+					arrow.setAttribute('d', `M ${ax} ${ay - 5} L ${ax + 8} ${ay} L ${ax} ${ay + 5}`);
+					arrow.setAttribute('fill', 'none');
+					arrow.setAttribute('stroke', 'rgba(232,56,42,0.8)');
+					arrow.setAttribute('stroke-width', '1.5');
+					arrow.setAttribute('stroke-linecap', 'round');
+					arrow.setAttribute('stroke-linejoin', 'round');
+					svg.appendChild(arrow);
+				} else {
+					/* наконечник вниз у следующей карточки */
+                    const ax = next.left + 20;
+                    const ay = next.top - 4;
+					const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+					arrow.setAttribute('d', `M ${ax - 5} ${ay - 8} L ${ax} ${ay} L ${ax + 5} ${ay - 8}`);
+					arrow.setAttribute('fill', 'none');
+					arrow.setAttribute('stroke', 'rgba(232,56,42,0.8)');
+					arrow.setAttribute('stroke-width', '1.5');
+					arrow.setAttribute('stroke-linecap', 'round');
+					arrow.setAttribute('stroke-linejoin', 'round');
+					svg.appendChild(arrow);
+				}
+			}
 		}
 
-		buildArrows();
-		window.addEventListener('resize', buildArrows);
-	})();
-    document.querySelectorAll('.svc-faq-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.closest('.svc-faq-item');
-            const isOpen = item.classList.contains('is-open');
-            document.querySelectorAll('.svc-faq-item').forEach(i => i.classList.remove('is-open'));
-            if (!isOpen) item.classList.add('is-open');
-        });
-    });
+		/* Размер SVG = размер сетки */
+		function resize() {
+			const r = grid.getBoundingClientRect();
+			svg.style.width  = r.width  + 'px';
+			svg.style.height = r.height + 'px';
+			draw();
+		}
 
-	/* Отправка формы в Telegram */
+		/* Ждём загрузки, потом рисуем */
+		if (document.readyState === 'complete') { resize(); }
+		else { window.addEventListener('load', resize); }
+		window.addEventListener('resize', resize);
+	})();
+
+	/* ── FAQ ── */
+	document.querySelectorAll('.svc-faq-btn').forEach(btn => {
+		btn.addEventListener('click', () => {
+			const item   = btn.closest('.svc-faq-item');
+			const isOpen = item.classList.contains('is-open');
+			document.querySelectorAll('.svc-faq-item').forEach(i => i.classList.remove('is-open'));
+			if (!isOpen) item.classList.add('is-open');
+		});
+	});
+
+	/* ── Отправка формы в Telegram ── */
 	document.getElementById('svc-contact-form').addEventListener('submit', async function(e) {
 		e.preventDefault();
-		const btn = this.querySelector('.svc-form-submit');
-		const status = document.getElementById('form-status');
-		const name = this.querySelector('[name="name"]').value.trim();
+		const btn     = this.querySelector('.svc-form-submit');
+		const status  = document.getElementById('form-status');
+		const name    = this.querySelector('[name="name"]').value.trim();
 		const contact = this.querySelector('[name="contact"]').value.trim();
 		const message = this.querySelector('[name="message"]').value.trim();
-		const page = document.title;
+		const page    = document.title;
 
-		btn.disabled = true;
+		btn.disabled    = true;
 		btn.textContent = 'Отправляем...';
 
 		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение: ${message || 'не указано'}`;
@@ -953,20 +1465,20 @@
 			});
 			const data = await resp.json();
 			if (data.ok) {
-				status.style.display = 'block';
-				status.style.background = 'rgba(232,56,42,0.1)';
-				status.style.color = '#fff';
-				status.textContent = 'Заявка отправлена! Перезвоним в течение 30 минут.';
+				status.style.display     = 'block';
+				status.style.background  = 'rgba(232,56,42,0.1)';
+				status.style.color       = '#fff';
+				status.textContent       = 'Заявка отправлена! Перезвоним в течение 30 минут.';
 				this.reset();
 			} else { throw new Error(); }
 		} catch {
-			status.style.display = 'block';
+			status.style.display    = 'block';
 			status.style.background = 'rgba(255,255,255,0.05)';
-			status.style.color = 'var(--muted)';
-			status.textContent = 'Что-то пошло не так. Позвоните нам напрямую.';
+			status.style.color      = 'var(--muted)';
+			status.textContent      = 'Что-то пошло не так. Позвоните нам напрямую.';
 		}
 
-		btn.disabled = false;
+		btn.disabled    = false;
 		btn.textContent = 'Отправить заявку';
 	});
 </script>

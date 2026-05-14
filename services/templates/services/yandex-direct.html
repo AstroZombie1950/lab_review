@@ -56,6 +56,51 @@
 	</div>
 {% endblock %}
 
+{% block includes %}
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Подбор семантики</div>
+						<p class="svc-include-text">Собираем ключевые слова, минус-фразы и формируем структуру кампаний.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Создание объявлений</div>
+						<p class="svc-include-text">Пишем конверсионные тексты с сильными офферами и быстрыми ссылками.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Настройка таргетинга</div>
+						<p class="svc-include-text">Гео, время показов, аудитории, ставки — настраиваем под вашу задачу.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Оптимизация кампаний</div>
+						<p class="svc-include-text">Снижаем стоимость клика, отключаем неэффективные ключи, масштабируем рабочее.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Ретаргетинг</div>
+						<p class="svc-include-text">Настраиваем возврат аудитории, которая уже была на сайте.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4zM9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Прозрачная аналитика</div>
+						<p class="svc-include-text">Еженедельный отчёт по расходам, кликам, конверсиям и стоимости заявки.</p>
+					</div>
+				</div>
+{% endblock %}
+
 {% block plans %}
 	<div class="svc-plan">
 		<div class="svc-plan-left">
@@ -129,70 +174,37 @@
 {% endblock %}
 
 {% block others %}
-	<a href="/seo-setup/" class="svc-other-card">
-					<div class="svc-other-cat">SEO</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-						<div class="svc-other-name">Внутренняя настройка SEO</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
-	<a href="/seo-full/" class="svc-other-card">
-					<div class="svc-other-cat">SEO</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.4"/></svg></div>
-						<div class="svc-other-name">Ведение SEO-проекта под ключ</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
-	<a href="/seo-top/" class="svc-other-card">
-					<div class="svc-other-cat">SEO</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 7 22 7 22 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-						<div class="svc-other-name">Вывод сайта в топ Яндекса</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
-	<a href="/website/" class="svc-other-card">
-					<div class="svc-other-cat">Разработка</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.4"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20" stroke="currentColor" stroke-width="1.4"/></svg></div>
-						<div class="svc-other-name">Разработка сайта</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
 	<a href="/landing/" class="svc-other-card">
-					<div class="svc-other-cat">Разработка</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-						<div class="svc-other-name">Разработка лендинга</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
-	<a href="/internet-shop/" class="svc-other-card">
-					<div class="svc-other-cat">Разработка</div>
-					<div class="svc-other-top">
-						<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="1.4"/><line x1="3" y1="6" x2="21" y2="6" stroke="currentColor" stroke-width="1.4"/><path d="M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.4"/></svg></div>
-						<div class="svc-other-name">Разработка интернет-магазина</div>
-					</div>
-					<div class="svc-other-bottom">
-						<span class="svc-other-btn">Подробнее</span>
-						<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-					</div>
-				</a>
+		<div class="svc-other-cat">Разработка</div>
+		<div class="svc-other-top">
+			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></div>
+			<div class="svc-other-name">Разработка лендинга</div>
+		</div>
+		<div class="svc-other-bottom">
+			<span class="svc-other-btn">Подробнее</span>
+			<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		</div>
+	</a>
+	<a href="/seo-top/" class="svc-other-card">
+		<div class="svc-other-cat">SEO</div>
+		<div class="svc-other-top">
+			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><polyline points="16 7 22 7 22 13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+			<div class="svc-other-name">Вывод сайта в топ Яндекса</div>
+		</div>
+		<div class="svc-other-bottom">
+			<span class="svc-other-btn">Подробнее</span>
+			<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		</div>
+	</a>
+	<a href="/website/" class="svc-other-card">
+		<div class="svc-other-cat">Разработка</div>
+		<div class="svc-other-top">
+			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.4"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20" stroke="currentColor" stroke-width="1.4"/></svg></div>
+			<div class="svc-other-name">Разработка сайта</div>
+		</div>
+		<div class="svc-other-bottom">
+			<span class="svc-other-btn">Подробнее</span>
+			<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+		</div>
+	</a>
 {% endblock %}

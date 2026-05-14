@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Case, Tag, DIRECTION_CHOICES
 
 
@@ -55,6 +55,11 @@ def cases_list(request):
 	return render(request, 'cases/list.html', context)
 
 
+def web_dev_redirect(request):
+	"""Редирект /cases/web-dev/ → /cases/?direction=dev"""
+	return redirect('/cases/?direction=dev', permanent=True)
+
+
 def case_detail(request, slug):
 	case = get_object_or_404(
 		Case.objects.prefetch_related(
@@ -67,4 +72,17 @@ def case_detail(request, slug):
 		slug=slug,
 		is_published=True,
 	)
+	# Dev-кейсы открываются в своём шаблоне
+	if case.direction == 'dev':
+		# Сайдбар: все другие опубликованные dev-кейсы
+		sidebar_cases = (
+			Case.objects
+			.filter(is_published=True, direction='dev')
+			.exclude(pk=case.pk)
+			.only('title', 'slug', 'service')
+		)
+		return render(request, 'cases/detail_dev.html', {
+			'case': case,
+			'sidebar_cases': sidebar_cases,
+		})
 	return render(request, 'cases/detail.html', {'case': case})

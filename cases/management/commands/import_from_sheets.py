@@ -11,6 +11,7 @@ from django.utils import timezone
 from cases.models import (
 	Case, Tag, CaseMetric, CaseBlock,
 	ResumeItem, TaskItem, MetricItem, TeamMember,
+	DevCaseImage,
 )
 
 logger = logging.getLogger(__name__)
@@ -168,6 +169,15 @@ def import_row(row):
 	# Блок: CTA — фиксированный
 	_make_block(case, order, 'cta', CTA_DEFAULTS)
 
+	# Изображения ленты (только для dev-кейсов)
+	case.dev_images.all().delete()
+	images_raw = row.get('dev_images', '').strip()
+	if images_raw:
+		for idx, url in enumerate(images_raw.split(','), start=1):
+			url = url.strip()
+			if url:
+				DevCaseImage.objects.create(case=case, url=url, order=idx)
+
 	return case, 'created' if created else 'updated'
 
 
@@ -185,12 +195,31 @@ def _make_block(case, order, block_type, fields):
 class Command(BaseCommand):
 	help = 'Импорт кейсов из Google Sheets'
 
-	def handle(self, *args, **kwargs):
-		api_key  = settings.GOOGLE_API_KEY
-		sheet_id = settings.GOOGLE_SHEET_ID
+	def add_arguments(self, parser):
+		parser.add_argument(
+			'--dev',
+			action='store_true',
+			help='Импортировать только кейсы разработки (direction=dev)',
+		)
 
-		if not api_key or not sheet_id:
-			self.stderr.write('GOOGLE_API_KEY или GOOGLE_SHEET_ID не заданы в .env')
+	def handle(self, *args, **kwargs):
+		dev_only = kwargs['dev']
+		api_key  = settings.GOOGLE_API_KEY
+
+		# Выбираем таблицу в зависимости от режима
+		if dev_only:
+			sheet_id = settings.GOOGLE_SHEET_ID_DEV
+			if not sheet_id:
+				self.stderr.write('GOOGLE_SHEET_ID_DEV не задан в .env')
+				return
+		else:
+			sheet_id = settings.GOOGLE_SHEET_ID
+			if not sheet_id:
+				self.stderr.write('GOOGLE_SHEET_ID не задан в .env')
+				return
+
+		if not api_key:
+			self.stderr.write('GOOGLE_API_KEY не задан в .env')
 			return
 
 		self.stdout.write('Загружаем данные из таблицы...')

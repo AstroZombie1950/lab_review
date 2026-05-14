@@ -56,6 +56,44 @@
 	</div>
 {% endblock %}
 
+{% block includes %}
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Аудит аккаунта</div>
+						<p class="svc-include-text">Разбираем текущее состояние объявлений, категорий и настроек продвижения.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Исправление объявлений</div>
+						<p class="svc-include-text">Переписываем заголовки и тексты, подбираем лучшие фото и структуру.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Настройка продвижения</div>
+						<p class="svc-include-text">Пересматриваем стратегию ставок и пакеты продвижения для роста обращений.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Консультация по площадке</div>
+						<p class="svc-include-text">Объясняем логику алгоритмов Авито и даём рекомендации по дальнейшей работе.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4zM9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Итоговый отчёт</div>
+						<p class="svc-include-text">В конце дня передаём что сделали, что изменили и что рекомендуем делать дальше.</p>
+					</div>
+				</div>
+{% endblock %}
+
 {% block plans %}
 	<div class="svc-plan">
 		<div class="svc-plan-left">
@@ -102,22 +140,22 @@
 {% endblock %}
 
 {% block others %}
-	<a href="/avito-ads/" class="svc-other-card">
+	<a href="/avito-consult/" class="svc-other-card">
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-			<div class="svc-other-name">Создание и ведение рекламной кампании</div>
+			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+			<div class="svc-other-name">Консультация авитолога</div>
 		</div>
 		<div class="svc-other-bottom">
 			<span class="svc-other-btn">Подробнее</span>
 			<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
 		</div>
 	</a>
-	<a href="/avito-consult/" class="svc-other-card">
+	<a href="/avito-ads/" class="svc-other-card">
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-			<div class="svc-other-name">Консультация Авитолога</div>
+			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+			<div class="svc-other-name">Ведение рекламы на Авито</div>
 		</div>
 		<div class="svc-other-bottom">
 			<span class="svc-other-btn">Подробнее</span>
@@ -128,18 +166,7 @@
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
 			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 12l-4 4-4-4M12 16V4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-			<div class="svc-other-name">Создание автозагрузочных файлов</div>
-		</div>
-		<div class="svc-other-bottom">
-			<span class="svc-other-btn">Подробнее</span>
-			<span class="svc-other-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		</div>
-	</a>
-	<a href="/yandex-direct/" class="svc-other-card">
-		<div class="svc-other-cat">Реклама</div>
-		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="28" height="28" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-			<div class="svc-other-name">Ведение Яндекс Директ</div>
+			<div class="svc-other-name">Создание файлов для Авито</div>
 		</div>
 		<div class="svc-other-bottom">
 			<span class="svc-other-btn">Подробнее</span>

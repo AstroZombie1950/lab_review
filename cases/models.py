@@ -527,3 +527,45 @@ class TeamMember(models.Model):
 
 	def __str__(self):
 		return f'{self.name} — {self.role}'
+
+
+# ── Изображения кейса разработки ─────────────────────────────────────────────
+
+class DevCaseImage(models.Model):
+	"""Одно изображение в ленте кейса направления «Разработка»."""
+	case = models.ForeignKey(
+		Case,
+		on_delete=models.CASCADE,
+		related_name='dev_images',
+		verbose_name='Кейс'
+	)
+	url = models.URLField(
+		'URL изображения',
+		help_text='Прямая ссылка на изображение. Пример: https://example.com/screen1.jpg'
+	)
+	order = models.PositiveSmallIntegerField('Порядок', default=0)
+
+	class Meta:
+		verbose_name = 'Изображение'
+		verbose_name_plural = 'Изображения (лента)'
+		ordering = ['order']
+
+	def __str__(self):
+		return f'#{self.order} — {self.url[:60]}'
+
+# ── Прокси-модели для разделения в админке ───────────────────────────────────
+
+class DevCase(Case):
+	"""Прокси для кейсов разработки — отдельный раздел в админке."""
+	class Meta:
+		proxy = True
+		verbose_name = 'Кейс по веб-разработке'
+		verbose_name_plural = 'Кейсы по веб-разработке'
+
+
+class CaseNonDev(Case):
+	"""Прокси для кейсов Авито / СЕО / Директ — отдельный раздел в админке."""
+	class Meta:
+		proxy = True
+		verbose_name = 'Кейс (Авито / СЕО / Директ)'
+		verbose_name_plural = 'Кейсы (Авито, СЕО, Директ)'

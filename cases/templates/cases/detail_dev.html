@@ -1,0 +1,224 @@
+{% extends "cases/base.html" %}
+
+{% block title %}{{ case.meta_title|default:case.title }}{% endblock %}
+{% block meta_description %}{{ case.meta_description|default:case.description }}{% endblock %}
+
+{# Страницы кейсов разработки не индексируются #}
+{% block extra_meta %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block extra_css %}
+<style>
+	.dev-case-page {
+		display: grid;
+		grid-template-columns: 280px 1fr;
+		gap: 0;
+		min-height: 100vh;
+		padding-top: 88px; /* высота хедера */
+	}
+
+	/* ── Сайдбар ── */
+	.dev-sidebar {
+		position: sticky;
+		top: 88px;
+		height: calc(100vh - 88px);
+		overflow-y: auto;
+		border-right: 1px solid var(--stroke);
+		padding: 32px 0;
+		background: var(--bg-2);
+	}
+
+	.dev-sidebar-title {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		color: var(--muted);
+		padding: 0 24px 16px;
+	}
+
+	.dev-sidebar-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.dev-sidebar-item a {
+		display: block;
+		padding: 12px 24px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--muted);
+		text-decoration: none;
+		border-left: 2px solid transparent;
+		transition: color .2s, border-color .2s, background .2s;
+	}
+
+	.dev-sidebar-item a:hover,
+	.dev-sidebar-item a.is-active {
+		color: var(--text);
+		border-left-color: var(--accent);
+		background: rgba(255,255,255,0.03);
+	}
+
+	.dev-sidebar-item .dev-sidebar-service {
+		display: block;
+		font-size: 11px;
+		color: var(--muted);
+		margin-top: 2px;
+		font-weight: 400;
+	}
+
+	/* ── Основной контент ── */
+	.dev-case-main {
+		min-width: 0;
+	}
+
+	/* Шапка кейса */
+	.dev-case-header {
+		padding: 48px 64px 32px;
+		border-bottom: 1px solid var(--stroke);
+	}
+
+	.dev-case-service {
+		display: inline-block;
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: .1em;
+		text-transform: uppercase;
+		color: var(--accent);
+		margin-bottom: 12px;
+	}
+
+	.dev-case-title {
+		font-size: clamp(28px, 3vw, 48px);
+		font-weight: 800;
+		line-height: 1.15;
+		margin: 0 0 16px;
+	}
+
+	.dev-case-meta {
+		display: flex;
+		gap: 16px;
+		flex-wrap: wrap;
+		align-items: center;
+		font-size: 13px;
+		color: var(--muted);
+	}
+
+	.dev-case-meta a {
+		color: var(--muted);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		transition: color .2s;
+	}
+
+	.dev-case-meta a:hover { color: var(--text); }
+
+	/* ── Лента изображений ── */
+	.dev-case-images {
+		display: flex;
+		flex-direction: column;
+		/* Без отступов — картинки впритык */
+	}
+
+	.dev-case-images img {
+		display: block;
+		width: 100%;
+		height: auto;
+		/* Убираем любые зазоры между inline-элементами */
+		vertical-align: top;
+	}
+
+	/* ── Блоки контента (если есть) ── */
+	.dev-case-blocks {
+		padding: 64px;
+	}
+
+	/* ── Адаптив ── */
+	@media (max-width: 960px) {
+		.dev-case-page {
+			grid-template-columns: 1fr;
+		}
+
+		.dev-sidebar {
+			position: static;
+			height: auto;
+			border-right: none;
+			border-bottom: 1px solid var(--stroke);
+			padding: 20px 0;
+		}
+
+		.dev-case-header,
+		.dev-case-blocks {
+			padding: 32px 24px;
+		}
+	}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dev-case-page">
+
+	<!-- ════ САЙДБАР: другие кейсы разработки ════ -->
+	<aside class="dev-sidebar">
+		<div class="dev-sidebar-title">Другие проекты</div>
+		<ul class="dev-sidebar-list">
+			{% for c in sidebar_cases %}
+			<li class="dev-sidebar-item">
+				<a href="{% url 'cases:detail' c.slug %}">
+					{{ c.title }}
+					<span class="dev-sidebar-service">{{ c.get_service_display }}</span>
+				</a>
+			</li>
+			{% empty %}
+			<li style="padding: 0 24px; font-size:13px; color:var(--muted)">Других проектов пока нет</li>
+			{% endfor %}
+		</ul>
+	</aside>
+
+	<!-- ════ ОСНОВНОЙ КОНТЕНТ ════ -->
+	<main class="dev-case-main">
+
+		<!-- Шапка -->
+		<div class="dev-case-header">
+			<span class="dev-case-service">{{ case.get_service_display }}</span>
+			<h1 class="dev-case-title">{{ case.title }}</h1>
+			<div class="dev-case-meta">
+				{% if case.year %}<span>{{ case.year }}</span>{% endif %}
+				{% if case.client_url %}
+				<a href="{{ case.client_url }}" target="_blank" rel="noopener">Перейти на сайт ↗</a>
+				{% endif %}
+				{% for tag in case.tags.all %}
+				<span>{{ tag.name }}</span>
+				{% endfor %}
+			</div>
+		</div>
+
+		<!-- Лента изображений — без швов, без отступов -->
+		{% if case.dev_images.all %}
+		<div class="dev-case-images">
+			{% for img in case.dev_images.all %}
+			<img src="{{ img.url }}" alt="{{ case.title }}" loading="lazy">
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		<!-- Блоки контента (необязательные) -->
+		{% with blocks=case.content_blocks.all %}
+		{% if blocks %}
+		<div class="dev-case-blocks">
+			{% for block in blocks %}
+			{% if block.is_visible %}
+			{# блоки подключаются аналогично detail.html — добавить при необходимости #}
+			{% endif %}
+			{% endfor %}
+		</div>
+		{% endif %}
+		{% endwith %}
+
+	</main>
+
+</div>
+{% endblock %}
