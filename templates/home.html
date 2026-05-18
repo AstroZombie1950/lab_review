@@ -289,9 +289,9 @@
 		transition: border-color .25s, transform .25s;
 	}
 
-	/* Крупная карточка — квадрат */
+	/* Крупная карточка — чуть шире чем высота */
 	.home-service-card--hero {
-		aspect-ratio: 1 / 1;
+		aspect-ratio: 4 / 3;
 		min-height: unset;
 	}
 
@@ -346,7 +346,8 @@
 		flex-direction: column;
 		flex: 1;
 		padding: 24px 24px 28px;
-		justify-content: space-between;
+		justify-content: flex-start;
+		gap: 16px;
 	}
 
 	/* Верхняя часть: категория + стрелка */
@@ -391,20 +392,21 @@
 	}
 
 	.home-service-card:hover .home-service-arrow {
-		background: rgba(255,255,255,0.18);
+		background: var(--accent);
+		border-color: var(--accent);
 		transform: translate(2px, -2px);
 		color: #fff;
 	}
 
-	/* Название внизу */
+	/* Название */
 	.home-service-name {
 		font-size: clamp(20px, 2vw, 26px);
 		font-weight: 800;
 		line-height: 1.2;
 		letter-spacing: -0.02em;
 		color: #fff;
-		margin-top: auto;
-		padding-top: 40px;
+		margin-top: 0;
+		padding-top: 0;
 	}
 
 	/* Кнопка «Показать ещё» */
