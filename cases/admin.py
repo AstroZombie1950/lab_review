@@ -8,7 +8,7 @@ from .models import (
 	Case, CaseNonDev, DevCase, Tag,
 	CaseBlock, CaseMetric,
 	ResumeItem, TaskItem, MetricItem, TeamMember,
-	DevCaseImage,
+	DevCaseImage, Employee,
 )
 
 
@@ -16,6 +16,12 @@ from .models import (
 class TagAdmin(admin.ModelAdmin):
 	list_display = ['name', 'slug']
 	prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Employee)
+class EmployeeAdmin(admin.ModelAdmin):
+	list_display = ['name', 'role', 'photo']
+	search_fields = ['name', 'role']
 
 
 # ── Метрики карточки кейса ────────────────────────────────────────────────────
@@ -61,7 +67,7 @@ class MetricItemInline(nested_admin.NestedTabularInline):
 class TeamMemberInline(nested_admin.NestedTabularInline):
 	model = TeamMember
 	extra = 1
-	fields = ['name', 'role', 'order']
+	fields = ['employee', 'name', 'role', 'order']
 	verbose_name_plural = 'Участники команды'
 
 
@@ -167,6 +173,17 @@ BASE_FIELDSETS = [
 	}),
 	('Герой страницы кейса', {
 		'fields': ['hero_bg', 'client_url', 'year'],
+	}),
+	('Изображение в герое', {
+		'fields': ['hero_image', 'hero_arrow_x', 'hero_arrow_y', 'hero_arrow_label', 'hero_arrow_value'],
+		'description': (
+			'<div style="background:#0a3a1a;border:1px solid #1a7a3a;border-radius:6px;padding:14px 16px;margin-bottom:8px;font-size:13px;line-height:1.7;color:#b0ffe0">'
+			'Если заполнено поле <strong style="color:#fff">Изображение</strong> — в правой части героя покажется ваша картинка вместо стандартного дашборда.<br>'
+			'<strong style="color:#fff">Стрелка</strong> рисуется поверх картинки. Позиция задаётся в процентах: X=0 — левый край, X=100 — правый. Y=0 — верх, Y=100 — низ.<br>'
+			'<strong style="color:#fff">Текст сверху</strong> — подпись над стрелкой. <strong style="color:#fff">Текст снизу</strong> — значение под стрелкой.<br>'
+			'Если X и Y не заполнены — стрелка не показывается.'
+			'</div>'
+		),
 	}),
 	('SEO', {
 		'fields': ['meta_title', 'meta_description'],

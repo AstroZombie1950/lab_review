@@ -1260,15 +1260,19 @@
 					</div>
 				</div>
 				<div class="svc-form-right">
-					<form class="svc-form" id="svc-contact-form">
+					<form class="svc-form" id="svc-contact-form" novalidate>
 						{% csrf_token %}
 						<div class="svc-field">
 							<label>Имя</label>
-							<input type="text" name="name" placeholder="Иван Иванов" />
+							<input type="text" id="svc-name" name="name" placeholder="Иван Иванов" />
 						</div>
 						<div class="svc-field">
-							<label>Телефон или e-mail</label>
-							<input type="text" name="contact" placeholder="+7 (999) 000-00-00" />
+							<label>Телефон *</label>
+							<input type="tel" id="svc-phone" name="phone" placeholder="+7 (999) 000-00-00" autocomplete="tel" />
+						</div>
+						<div class="svc-field">
+							<label>E-mail *</label>
+							<input type="text" id="svc-email" name="email" placeholder="name@example.com" autocomplete="email" />
 						</div>
 						<div class="svc-field">
 							<label>Сообщение</label>
@@ -1462,58 +1466,41 @@
 		const btn     = this.querySelector('.svc-form-submit');
 		const status  = document.getElementById('form-status');
 		const consent = this.querySelector('#svc-consent');
-		const name    = this.querySelector('[name="name"]').value.trim();
-		const contact = this.querySelector('[name="contact"]').value.trim();
+		const name    = document.getElementById('svc-name').value.trim();
+		const phone   = document.getElementById('svc-phone').value.trim();
+		const email   = document.getElementById('svc-email').value.trim();
 		const message = this.querySelector('[name="message"]').value.trim();
 		const page    = document.title;
 
-		/* Валидация полей */
-		const nameInput    = this.querySelector('[name="name"]');
-		const contactInput = this.querySelector('[name="contact"]');
-		nameInput.style.borderColor    = '';
-		contactInput.style.borderColor = '';
+		/* Сброс ошибок */
+		[document.getElementById('svc-name'),
+		 document.getElementById('svc-phone'),
+		 document.getElementById('svc-email')].forEach(el => el.style.borderColor = '');
 
-		if (!name) {
-			nameInput.style.borderColor = 'rgba(232,56,42,0.6)';
-			nameInput.focus();
-			status.style.display    = 'block';
-			status.style.background = 'rgba(232,56,42,0.08)';
-			status.style.color      = '#fff';
-			status.style.border     = '1px solid rgba(232,56,42,0.3)';
-			status.textContent      = '⚠ Укажите ваше имя';
-			setTimeout(() => { status.style.display = 'none'; nameInput.style.borderColor = ''; }, 4000);
-			return;
+		function showErr(msg, focusEl) {
+			status.style.cssText = 'display:block;background:rgba(232,56,42,0.08);color:#fff;border:1px solid rgba(232,56,42,0.3);border-radius:var(--radius-md);padding:12px 16px;';
+			status.textContent = msg;
+			if (focusEl) { focusEl.style.borderColor = 'rgba(232,56,42,0.6)'; focusEl.focus(); }
+			status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+			setTimeout(() => { status.style.display = 'none'; if (focusEl) focusEl.style.borderColor = ''; }, 4000);
 		}
 
-		if (!contact) {
-			contactInput.style.borderColor = 'rgba(232,56,42,0.6)';
-			contactInput.focus();
-			status.style.display    = 'block';
-			status.style.background = 'rgba(232,56,42,0.08)';
-			status.style.color      = '#fff';
-			status.style.border     = '1px solid rgba(232,56,42,0.3)';
-			status.textContent      = '⚠ Укажите телефон или e-mail';
-			setTimeout(() => { status.style.display = 'none'; contactInput.style.borderColor = ''; }, 4000);
-			return;
-		}
-
+		/* Валидация */
+		if (!name) { showErr('⚠ Укажите ваше имя', document.getElementById('svc-name')); return; }
+		const phoneClean = phone.replace(/\D/g, '');
+		if (!phone || phoneClean.length !== 11) { showErr('⚠ Укажите телефон в формате +7 (999) 000-00-00', document.getElementById('svc-phone')); return; }
+		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('⚠ Укажите корректный e-mail', document.getElementById('svc-email')); return; }
 		if (!consent.checked) {
 			consent.classList.add('is-error');
 			consent.addEventListener('change', () => consent.classList.remove('is-error'), { once: true });
-			status.style.display    = 'block';
-			status.style.background = 'rgba(232,56,42,0.08)';
-			status.style.color      = '#fff';
-			status.style.border     = '1px solid rgba(232,56,42,0.3)';
-			status.textContent      = '⚠ Подтвердите согласие на обработку персональных данных';
-			status.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-			setTimeout(() => { status.style.display = 'none'; }, 4000);
+			showErr('⚠ Подтвердите согласие на обработку персональных данных');
 			return;
 		}
 
 		btn.disabled    = true;
 		btn.textContent = 'Отправляем...';
 
-		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение: ${message || 'не указано'}`;
+		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 E-mail: ${email}\n💬 Сообщение: ${message || 'не указано'}`;
 
 		try {
 			const resp = await fetch('/send-form/', {

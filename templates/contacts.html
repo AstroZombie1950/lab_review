@@ -49,12 +49,20 @@
 		max-width: 560px;
 	}
 
-	/* ── Стек всех блоков по левому краю ── */
-	.contacts-stack {
+	/* ── Основной grid: левая карточка + правая колонка ── */
+	.contacts-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+		align-items: start;
+		margin-bottom: 24px;
+	}
+
+	/* ── Правая колонка: два совета ── */
+	.contacts-tips-col {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
-		max-width: 680px;
 	}
 
 	/* ── Карточка ── */
@@ -160,6 +168,10 @@
 		border: 1px solid var(--stroke);
 		border-radius: var(--radius-xl);
 		padding: 56px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
 	}
 
 	.contacts-cta-header {
@@ -225,7 +237,7 @@
 	}
 
 	.contacts-form-submit {
-		align-self: flex-start;
+		align-self: center;
 		background: var(--accent);
 		color: #fff;
 		font-size: 14px;
@@ -297,9 +309,43 @@
 		border-color: var(--stroke-2);
 	}
 
+	/* ── Чекбокс согласия ── */
+	.contacts-consent-field {
+		margin-top: 4px;
+	}
+
+	.contacts-consent-label {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		cursor: pointer;
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--muted);
+	}
+
+	.contacts-consent-label input[type="checkbox"] {
+		margin-top: 2px;
+		flex-shrink: 0;
+		accent-color: var(--accent);
+		width: 16px;
+		height: 16px;
+		cursor: pointer;
+	}
+
+	.contacts-consent-label a {
+		color: var(--muted);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+
+	.contacts-field input.is-error {
+		border-color: rgba(232,56,42,0.6);
+	}
+
 	/* ── Адаптив ── */
 	@media (max-width: 900px) {
-		.contacts-stack { max-width: 100%; }
+		.contacts-grid { grid-template-columns: 1fr; }
 	}
 
 	@media (max-width: 640px) {
@@ -339,8 +385,8 @@
 			<p class="contacts-subtitle">Свяжитесь с нами удобным способом — обсудим задачу, подскажем по формату работы и сориентируем по следующим шагам.</p>
 		</div>
 
-		<!-- ════ БЛОКИ: КОНТАКТЫ / 01 / 02 / ФОРМА ════ -->
-		<div class="contacts-stack">
+		<!-- ════ GRID: карточка контактов + советы ════ -->
+		<div class="contacts-grid">
 
 		<div class="contacts-card">
 				<div class="contacts-card-title">Напишите нам</div>
@@ -395,6 +441,9 @@
 					</a>
 				</div>
 		</div>
+
+			<!-- Правая колонка: советы -->
+			<div class="contacts-tips-col">
 			<div class="contacts-tip">
 				<div class="contacts-tip-num">01</div>
 				<div class="contacts-tip-title">Как быстрее получить ответ</div>
@@ -405,6 +454,11 @@
 				<div class="contacts-tip-title">Что будет дальше</div>
 				<p class="contacts-tip-text">Мы посмотрим задачу, уточним важные детали и предложим понятный формат работы. Если проект уже запущен — разберём текущую ситуацию. Если всё только планируется — поможем определить, с чего лучше начать.</p>
 		</div>
+			</div><!-- /contacts-tips-col -->
+
+		</div><!-- /contacts-grid -->
+
+		<!-- ════ CTA во всю ширину ════ -->
 		<div class="contacts-cta">
 			<div class="contacts-cta-header">
 				<div class="contacts-cta-title">Готовы обсудить проект?</div>
@@ -412,22 +466,31 @@
 			</div>
 
 			<!-- Форма -->
-			<form class="contacts-form" id="contacts-form">
+			<form class="contacts-form" id="contacts-form" novalidate>
 				{% csrf_token %}
 				<div class="contacts-field">
 					<label>Имя</label>
-					<input type="text" name="name" placeholder="Иван Иванов" required />
+					<input type="text" id="contacts-name" name="name" placeholder="Иван Иванов" />
 				</div>
 				<div class="contacts-field">
-					<label>Телефон или e-mail</label>
-					<input type="text" name="contact" placeholder="+7 (999) 000-00-00" required />
+					<label>Телефон *</label>
+					<input type="tel" id="contacts-phone" name="phone" placeholder="+7 (999) 000-00-00" autocomplete="tel" />
+				</div>
+				<div class="contacts-field">
+					<label>E-mail *</label>
+					<input type="text" id="contacts-email" name="email" placeholder="name@example.com" autocomplete="email" />
 				</div>
 				<div class="contacts-field">
 					<label>Сообщение</label>
 					<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
 				</div>
+				<div class="contacts-consent-field">
+					<label class="contacts-consent-label">
+						<input type="checkbox" name="consent" id="contacts-consent" />
+						<span>Я соглашаюсь на обработку персональных данных и принимаю <a href="/privacy-policy/" target="_blank">политику конфиденциальности</a></span>
+					</label>
+				</div>
 				<button type="submit" class="contacts-form-submit">Отправить заявку</button>
-				<p class="contacts-form-note">Нажимая кнопку, вы соглашаетесь с <a href="/privacy-policy/" style="color:var(--muted);">политикой конфиденциальности</a></p>
 				<div id="contacts-form-status"></div>
 			</form>
 
@@ -451,8 +514,6 @@
 			</div>
 		</div><!-- /contacts-cta -->
 
-		</div><!-- /contacts-stack -->
-
 	</div><!-- /shell -->
 </main>
 
@@ -460,17 +521,56 @@
 	/* Отправка формы в Telegram */
 	document.getElementById('contacts-form').addEventListener('submit', async function(e) {
 		e.preventDefault();
-		const btn = this.querySelector('.contacts-form-submit');
-		const status = document.getElementById('contacts-form-status');
-		const name = this.querySelector('[name="name"]').value.trim();
-		const contact = this.querySelector('[name="contact"]').value.trim();
+		const btn     = this.querySelector('.contacts-form-submit');
+		const status  = document.getElementById('contacts-form-status');
+		const name    = document.getElementById('contacts-name').value.trim();
+		const phone   = document.getElementById('contacts-phone').value.trim();
+		const email   = document.getElementById('contacts-email').value.trim();
 		const message = this.querySelector('[name="message"]').value.trim();
-		const page = document.title;
+		const consent = document.getElementById('contacts-consent');
+		const page    = document.title;
+
+		/* Сброс ошибок */
+		[document.getElementById('contacts-name'),
+		 document.getElementById('contacts-phone'),
+		 document.getElementById('contacts-email')].forEach(el => el.classList.remove('is-error'));
+
+		function showErr(msg) {
+			status.style.display = 'block';
+			status.style.background = 'rgba(232,56,42,0.08)';
+			status.style.color = '#fff';
+			status.style.border = '1px solid rgba(232,56,42,0.3)';
+			status.style.borderRadius = 'var(--radius-md)';
+			status.style.padding = '12px 16px';
+			status.textContent = msg;
+			setTimeout(() => { status.style.display = 'none'; }, 4000);
+		}
+
+		/* Валидация */
+		if (!name) {
+			document.getElementById('contacts-name').classList.add('is-error');
+			document.getElementById('contacts-name').focus();
+			showErr('⚠ Укажите ваше имя'); return;
+		}
+		const phoneClean = phone.replace(/\D/g, '');
+		if (!phone || phoneClean.length !== 11) {
+			document.getElementById('contacts-phone').classList.add('is-error');
+			document.getElementById('contacts-phone').focus();
+			showErr('⚠ Укажите телефон в формате +7 (999) 000-00-00'); return;
+		}
+		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+			document.getElementById('contacts-email').classList.add('is-error');
+			document.getElementById('contacts-email').focus();
+			showErr('⚠ Укажите корректный e-mail'); return;
+		}
+		if (!consent.checked) {
+			showErr('⚠ Подтвердите согласие на обработку персональных данных'); return;
+		}
 
 		btn.disabled = true;
 		btn.textContent = 'Отправляем...';
 
-		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Контакт: ${contact}\n💬 Сообщение: ${message || 'не указано'}`;
+		const text = `🆕 Заявка с сайта\n📄 Страница: ${page}\n\n👤 Имя: ${name}\n📞 Телефон: ${phone}\n📧 E-mail: ${email}\n💬 Сообщение: ${message || 'не указано'}`;
 
 		try {
 			const resp = await fetch('/send-form/', {
@@ -484,20 +584,105 @@
 			const data = await resp.json();
 			if (data.ok) {
 				status.style.display = 'block';
-				status.style.background = 'rgba(232,56,42,0.1)';
-				status.style.color = '#fff';
-				status.textContent = 'Заявка отправлена! Свяжемся с вами в ближайшее время.';
+				status.style.background = 'rgba(74,222,128,0.08)';
+				status.style.color = '#4ade80';
+				status.style.border = '1px solid rgba(74,222,128,0.3)';
+				status.textContent = '✓ Заявка отправлена! Свяжемся с вами в ближайшее время.';
 				this.reset();
 			} else { throw new Error(); }
 		} catch {
-			status.style.display = 'block';
-			status.style.background = 'rgba(255,255,255,0.05)';
-			status.style.color = 'var(--muted)';
-			status.textContent = 'Что-то пошло не так. Напишите нам напрямую.';
+			showErr('Что-то пошло не так. Напишите нам напрямую.');
 		}
 
 		btn.disabled = false;
 		btn.textContent = 'Отправить заявку';
 	});
 </script>
+
+<script>
+/* ── Маски полей формы контактов ── */
+(function() {
+
+	/* Имя: только буквы (кириллица, латиница), пробел, дефис */
+	const nameInput = document.getElementById('contacts-name');
+	if (nameInput) {
+		nameInput.addEventListener('input', function() {
+			const pos = this.selectionStart;
+			const cleaned = this.value.replace(/[^а-яёА-ЯЁa-zA-Z\s\-]/g, '');
+			if (this.value !== cleaned) {
+				this.value = cleaned;
+				this.setSelectionRange(pos - 1, pos - 1);
+			}
+		});
+		nameInput.addEventListener('keydown', function(e) {
+			/* Разрешаем служебные клавиши */
+			if (e.ctrlKey || e.metaKey || e.altKey) return;
+			if (['Backspace','Delete','ArrowLeft','ArrowRight','Tab','Home','End'].includes(e.key)) return;
+			if (!/^[а-яёА-ЯЁa-zA-Z\s\-]$/.test(e.key)) e.preventDefault();
+		});
+	}
+
+	/* Телефон: маска +7 (___) ___-__-__ */
+	const phoneInput = document.getElementById('contacts-phone');
+	if (phoneInput) {
+		function formatPhone(val) {
+			/* Оставляем только цифры */
+			let digits = val.replace(/\D/g, '');
+			/* Приводим к 11 цифрам с 7 в начале */
+			if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+			if (digits.startsWith('9')) digits = '7' + digits;
+			if (!digits.startsWith('7')) digits = '7' + digits;
+			digits = digits.slice(0, 11);
+
+			let result = '+7';
+			if (digits.length > 1) result += ' (' + digits.slice(1, 4);
+			if (digits.length >= 4) result += ') ' + digits.slice(4, 7);
+			if (digits.length >= 7) result += '-' + digits.slice(7, 9);
+			if (digits.length >= 9) result += '-' + digits.slice(9, 11);
+			return result;
+		}
+
+		phoneInput.addEventListener('focus', function() {
+			if (!this.value) this.value = '+7 ';
+		});
+
+		phoneInput.addEventListener('input', function() {
+			const pos = this.selectionStart;
+			const formatted = formatPhone(this.value);
+			this.value = formatted;
+			/* Держим курсор в конце */
+			this.setSelectionRange(formatted.length, formatted.length);
+		});
+
+		phoneInput.addEventListener('keydown', function(e) {
+			/* Backspace: не даём удалить +7 */
+			if (e.key === 'Backspace' && this.value.length <= 3) {
+				e.preventDefault();
+			}
+		});
+
+		phoneInput.addEventListener('blur', function() {
+			if (this.value === '+7 ' || this.value === '+7') this.value = '';
+		});
+	}
+
+	/* Email: подсветка ошибки в реальном времени */
+	const emailInput = document.getElementById('contacts-email');
+	if (emailInput) {
+		emailInput.addEventListener('blur', function() {
+			const val = this.value.trim();
+			if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+				this.classList.add('is-error');
+			} else {
+				this.classList.remove('is-error');
+			}
+		});
+		emailInput.addEventListener('input', function() {
+			this.classList.remove('is-error');
+		});
+	}
+
+})();
+</script>
+
 {% endblock %}

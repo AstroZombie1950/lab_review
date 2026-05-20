@@ -128,6 +128,37 @@ class Case(models.Model):
 		help_text='Год выполнения проекта. Показывается в герое рядом с тегами. Пример: 2024'
 	)
 
+	# Изображение в герое (опционально, только для CaseNonDev)
+	hero_image = models.URLField(
+		'Изображение в герое (URL)',
+		blank=True,
+		help_text='Скриншот или картинка для правой части героя. Если не заполнено — показывается стандартный дашборд.'
+	)
+	hero_arrow_x = models.PositiveSmallIntegerField(
+		'Стрелка: позиция X (%)',
+		blank=True,
+		null=True,
+		help_text='Горизонтальная позиция стрелки в процентах от ширины блока. Пример: 65'
+	)
+	hero_arrow_y = models.PositiveSmallIntegerField(
+		'Стрелка: позиция Y (%)',
+		blank=True,
+		null=True,
+		help_text='Вертикальная позиция стрелки в процентах от высоты блока. Пример: 40'
+	)
+	hero_arrow_label = models.CharField(
+		'Стрелка: текст сверху',
+		max_length=100,
+		blank=True,
+		help_text='Текст над стрелкой. Пример: «Конверсия в продажу»'
+	)
+	hero_arrow_value = models.CharField(
+		'Стрелка: текст снизу',
+		max_length=100,
+		blank=True,
+		help_text='Текст под стрелкой. Пример: «10%»'
+	)
+
 	# Мета
 	meta_title = models.CharField(
 		'Meta Title',
@@ -405,6 +436,36 @@ class CaseBlock(models.Model):
 		return f'{self.get_block_type_display()} (порядок {self.order})'
 
 
+
+# ── База сотрудников ─────────────────────────────────────────────────────────
+
+class Employee(models.Model):
+	"""Сотрудник компании — используется в блоке команды кейса."""
+	name = models.CharField(
+		'Имя',
+		max_length=100,
+		help_text='Пример: «Иван Петров»'
+	)
+	role = models.CharField(
+		'Роль',
+		max_length=150,
+		help_text='Пример: «SEO-специалист»'
+	)
+	photo = models.URLField(
+		'Фото (URL)',
+		blank=True,
+		help_text='Ссылка на фото сотрудника. Рекомендуется квадратное, минимум 200×200 px.'
+	)
+
+	class Meta:
+		verbose_name = 'Сотрудник'
+		verbose_name_plural = 'Сотрудники'
+		ordering = ['name']
+
+	def __str__(self):
+		return f'{self.name} — {self.role}'
+
+
 # ── Инлайн-модели для блоков ─────────────────────────────────────────────────
 
 class ResumeItem(models.Model):
@@ -508,16 +569,43 @@ class TeamMember(models.Model):
 		related_name='team_members',
 		verbose_name='Блок'
 	)
+	# Привязка к базе сотрудников (необязательно)
+	employee = models.ForeignKey(
+		'Employee',
+		on_delete=models.SET_NULL,
+		null=True,
+		blank=True,
+		verbose_name='Сотрудник из базы',
+		help_text='Выберите сотрудника — имя, роль и фото подтянутся автоматически. Или заполните вручную ниже.'
+	)
 	name = models.CharField(
-		'Имя',
+		'Имя (вручную)',
 		max_length=100,
-		help_text='Пример: «Иван Петров»'
+		blank=True,
+		help_text='Заполняется автоматически из базы сотрудников. Можно переопределить вручную.'
 	)
 	role = models.CharField(
-		'Роль',
+		'Роль (вручную)',
 		max_length=150,
-		help_text='Пример: «SEO-специалист», «Копирайтер»'
+		blank=True,
+		help_text='Заполняется автоматически из базы сотрудников. Можно переопределить вручную.'
 	)
+
+	# Хелперы для шаблона
+	@property
+	def display_name(self):
+		return self.name or (self.employee.name if self.employee else '')
+
+	@property
+	def display_role(self):
+		return self.role or (self.employee.role if self.employee else '')
+
+	@property
+	def display_photo(self):
+		if self.employee and self.employee.photo:
+			return self.employee.photo
+		return ''
+
 	order = models.PositiveSmallIntegerField('Порядок', default=0)
 
 	class Meta:

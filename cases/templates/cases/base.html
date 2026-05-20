@@ -1462,8 +1462,8 @@
 
 			<!-- E-mail -->
 			<div class="modal-field">
-				<label for="modal-email">E-mail</label>
-				<input type="email" id="modal-email" name="email" placeholder="name@example.com" autocomplete="email">
+				<label for="modal-email">E-mail *</label>
+				<input type="text" id="modal-email" name="email" placeholder="name@example.com" autocomplete="email">
 			</div>
 
 			<!-- Сообщение -->
@@ -1486,7 +1486,7 @@
 
 			<!-- Кнопка отправки -->
 			<div class="modal-footer">
-				<div class="modal-note">* Обязательно имя и хотя бы один контакт</div>
+				<div class="modal-note">* Все поля обязательны</div>
 				<button type="submit" class="btn btn-primary">Оставить заявку</button>
 			</div>
 
@@ -1691,29 +1691,21 @@
 			valid = false;
 		}
 
-		// Хотя бы один контакт
+		// Телефон — обязательный
 		const phoneClean = phone.replace(/\D/g, '');
 		const phoneValid = phoneClean.length === 11;
 		const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-		if (!phone && !email) {
-			// Оба пустые
+		if (!phone || !phoneValid) {
 			document.getElementById('modal-phone').classList.add('is-error');
-			document.getElementById('modal-email').classList.add('is-error');
-			errors.push('введите телефон или e-mail');
+			errors.push('введите телефон в формате +7 (999) 000-00-00');
 			valid = false;
-		} else {
-			// Проверяем корректность заполненных
-			if (phone && !phoneValid) {
-				document.getElementById('modal-phone').classList.add('is-error');
-				errors.push('введите корректный телефон');
-				valid = false;
-			}
-			if (email && !emailValid) {
-				document.getElementById('modal-email').classList.add('is-error');
-				errors.push('введите корректный e-mail');
-				valid = false;
-			}
+		}
+		// E-mail — обязательный
+		if (!email || !emailValid) {
+			document.getElementById('modal-email').classList.add('is-error');
+			errors.push('введите корректный e-mail');
+			valid = false;
 		}
 
 		if (!consent) {

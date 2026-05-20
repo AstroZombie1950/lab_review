@@ -263,6 +263,138 @@
 		letter-spacing: -0.03em;
 	}
 
+	/* Изображение в герое */
+	.case-hero-img-wrap {
+		position: absolute;
+		inset: 0;
+		overflow: hidden;
+		border-radius: 0;
+	}
+
+	.case-hero-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top left;
+		display: block;
+	}
+
+	/* Стрелка поверх изображения */
+	.case-hero-arrow {
+		position: absolute;
+		transform: translate(-50%, -50%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		pointer-events: none;
+	}
+
+	.case-hero-arrow-svg {
+		width: 88px;
+		height: 88px;
+		filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+	}
+
+	/* Верхний текст над стрелкой */
+	.case-hero-arrow-label {
+		font-size: 18px;
+		font-weight: 900;
+		color: var(--accent);
+		letter-spacing: -0.02em;
+		text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+		white-space: nowrap;
+		text-align: center;
+		line-height: 1.2;
+	}
+
+	/* Нижний текст под стрелкой */
+	.case-hero-arrow-value {
+		font-size: 28px;
+		font-weight: 900;
+		color: var(--accent);
+		letter-spacing: -0.03em;
+		text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+		white-space: nowrap;
+	}
+
+	/* Метрики под картинкой */
+	.case-hero-img-metrics {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		background: rgba(10,10,10,0.75);
+		backdrop-filter: blur(6px);
+		border-top: 1px solid var(--stroke);
+	}
+
+	.case-hero-img-metric {
+		padding: 12px 16px;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		border-right: 1px solid var(--stroke);
+	}
+
+	.case-hero-img-metric:last-child { border-right: none; }
+
+	.case-hero-img-metric small {
+		font-size: 11px;
+		color: var(--muted);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	.case-hero-img-metric strong {
+		font-size: 18px;
+		font-weight: 800;
+		color: #fff;
+		letter-spacing: -0.02em;
+	}
+
+	/* Кликабельная картинка — курсор */
+	.case-hero-img-wrap { cursor: zoom-in; }
+
+	/* Лайтбокс */
+	.case-lightbox {
+		display: none;
+		position: fixed;
+		inset: 0;
+		z-index: 9999;
+		background: rgba(0,0,0,0.92);
+		align-items: center;
+		justify-content: center;
+		padding: 24px;
+	}
+
+	.case-lightbox.is-open { display: flex; }
+
+	.case-lightbox img {
+		max-width: 100%;
+		max-height: 100%;
+		object-fit: contain;
+		border-radius: 8px;
+	}
+
+	.case-lightbox-close {
+		position: absolute;
+		top: 20px;
+		right: 24px;
+		font-size: 36px;
+		line-height: 1;
+		color: #fff;
+		cursor: pointer;
+		background: none;
+		border: none;
+		opacity: 0.7;
+		transition: opacity 0.15s;
+	}
+
+	.case-lightbox-close:hover { opacity: 1; }
+
 	/* Адаптив героя */
 	@media (max-width: 1024px) {
 		.case-hero-grid { grid-template-columns: 1fr; min-height: auto; }
@@ -362,31 +494,44 @@
 	.cb-tasks-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		gap: 3px;
+		gap: 20px;
 	}
 
 	.cb-task-card {
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
-		border-radius: var(--radius-lg);
-		padding: 24px;
-		cursor: pointer;
-		transition: background .2s;
+		border-radius: var(--radius-xl);
+		padding: 28px 28px 32px;
+		transition: background .2s, border-color .2s;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
 	}
-	.cb-task-card:hover { background: var(--bg-3); }
+	.cb-task-card:hover {
+		background: var(--bg-3);
+		border-color: var(--stroke-2);
+	}
+
+	/* Первые три карточки чуть выше (имитация разного размера) */
+	.cb-tasks-grid .cb-task-card:nth-child(1),
+	.cb-tasks-grid .cb-task-card:nth-child(2),
+	.cb-tasks-grid .cb-task-card:nth-child(3) {
+		padding-bottom: 40px;
+	}
 
 	.cb-task-card-title {
-		font-size: 15px;
+		font-size: 16px;
+		font-weight: 700;
 		line-height: 1.4;
-		color: rgba(255,255,255,0.8);
+		letter-spacing: -0.01em;
+		color: rgba(255,255,255,0.9);
 	}
 
-    .cb-task-card-text {
-        margin-top: 8px;
-        font-size: 13px;
-        line-height: 1.6;
-        color: var(--muted);
-    }
+	.cb-task-card-text {
+		font-size: 13px;
+		line-height: 1.65;
+		color: var(--muted);
+	}
 
 	/* ── content_full ── */
 	.cb-full {
@@ -613,6 +758,19 @@
 		border: 1px solid var(--stroke);
 	}
 
+	.cb-team-avatar--photo {
+		padding: 0;
+		overflow: hidden;
+		background: none;
+	}
+
+	.cb-team-avatar--photo img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
 	.cb-team-avatar {
 		width: 48px;
 		height: 48px;
@@ -763,51 +921,96 @@
 
 					</div>
 
-					<!-- Правая колонка: декоративный дашборд -->
+					<!-- Правая колонка: картинка или декоративный дашборд -->
 					<div class="case-hero-preview">
-						<div class="case-preview-grid"></div>
-						<div class="case-preview-topo"></div>
-						<div class="case-preview-card">
-
-							<div class="case-preview-head">
-								<div class="case-preview-title">Dashboard preview</div>
-								<div class="case-preview-badge">{{ case.get_direction_display }} case</div>
-							</div>
-
-							<!-- Бар-чарт -->
-							<div class="case-chart-wrap">
-								<div class="case-chart-curve">
-									<svg viewBox="0 0 100 40" preserveAspectRatio="none" fill="none">
-										<path d="M0 31 C10 29, 15 28, 24 25 C33 22, 40 24, 49 19 C58 15, 64 12, 73 13 C82 14, 89 9, 100 5" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round"/>
+						{% if case.hero_image %}
+							<!-- Пользовательское изображение -->
+							<div class="case-hero-img-wrap" id="caseHeroImgWrap">
+								<img src="{{ case.hero_image }}" alt="{{ case.title }}" class="case-hero-img">
+								{% if case.hero_arrow_x and case.hero_arrow_y %}
+								<!-- Стрелка: верхний текст → SVG → нижний текст -->
+								<div class="case-hero-arrow" id="caseHeroArrow" style="left:{{ case.hero_arrow_x }}%;top:{{ case.hero_arrow_y }}%;opacity:0;transition:opacity 0.6s ease;">
+									{% if case.hero_arrow_label %}
+									<span class="case-hero-arrow-label">{{ case.hero_arrow_label }}</span>
+									{% endif %}
+									<svg class="case-hero-arrow-svg" viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<defs>
+											<marker id="arrowhead" markerWidth="4" markerHeight="4" refX="2" refY="2" orient="auto">
+												<path d="M0 0 L4 2 L0 4 Z" fill="#e8382a"/>
+											</marker>
+										</defs>
+										<path d="M14 6 C14 6, 54 20, 46 68" stroke="#e8382a" stroke-width="5" stroke-linecap="round" fill="none" marker-end="url(#arrowhead)"/>
 									</svg>
+									{% if case.hero_arrow_value %}
+									<span class="case-hero-arrow-value">{{ case.hero_arrow_value }}</span>
+									{% endif %}
 								</div>
-								<div class="case-chart-bars">
-									<span style="height:22%"></span>
-									<span style="height:30%"></span>
-									<span style="height:42%"></span>
-									<span style="height:39%"></span>
-									<span style="height:58%"></span>
-									<span style="height:66%"></span>
-									<span style="height:76%"></span>
-									<span style="height:92%"></span>
+								{% endif %}
+								<!-- Метрики поверх картинки снизу -->
+								{% with metrics=case.metrics.all %}
+								{% if metrics %}
+								<div class="case-hero-img-metrics">
+									{% for m in metrics|slice:"3:6" %}
+									<div class="case-hero-img-metric">
+										<small>{{ m.label }}</small>
+										<strong>{{ m.value }}</strong>
+									</div>
+									{% endfor %}
 								</div>
+								{% endif %}
+								{% endwith %}
 							</div>
-
-							<!-- Метрики 4-6 — в превью справа -->
-							<div class="case-preview-metrics">
-								{% for m in case.metrics.all|slice:"3:6" %}
-								<div class="case-preview-metric">
-									<small>{{ m.label }}</small>
-									<strong>{{ m.value }}</strong>
-								</div>
-								{% empty %}
-								<div class="case-preview-metric"><small>Лиды</small><strong>—</strong></div>
-								<div class="case-preview-metric"><small>CTR</small><strong>—</strong></div>
-								<div class="case-preview-metric"><small>Спрос</small><strong>—</strong></div>
-								{% endfor %}
+							<!-- Лайтбокс -->
+							<div class="case-lightbox" id="caseLightbox">
+								<button class="case-lightbox-close" id="caseLightboxClose">&times;</button>
+								<img src="{{ case.hero_image }}" alt="{{ case.title }}">
 							</div>
+						{% else %}
+							<!-- Стандартный декоративный дашборд -->
+							<div class="case-preview-grid"></div>
+							<div class="case-preview-topo"></div>
+							<div class="case-preview-card">
 
-						</div>
+								<div class="case-preview-head">
+									<div class="case-preview-title">Dashboard preview</div>
+									<div class="case-preview-badge">{{ case.get_direction_display }} case</div>
+								</div>
+
+								<!-- Бар-чарт -->
+								<div class="case-chart-wrap">
+									<div class="case-chart-curve">
+										<svg viewBox="0 0 100 40" preserveAspectRatio="none" fill="none">
+											<path d="M0 31 C10 29, 15 28, 24 25 C33 22, 40 24, 49 19 C58 15, 64 12, 73 13 C82 14, 89 9, 100 5" stroke="rgba(255,255,255,0.9)" stroke-width="1.8" stroke-linecap="round"/>
+										</svg>
+									</div>
+									<div class="case-chart-bars">
+										<span style="height:22%"></span>
+										<span style="height:30%"></span>
+										<span style="height:42%"></span>
+										<span style="height:39%"></span>
+										<span style="height:58%"></span>
+										<span style="height:66%"></span>
+										<span style="height:76%"></span>
+										<span style="height:92%"></span>
+									</div>
+								</div>
+
+								<!-- Метрики 4-6 — в превью справа -->
+								<div class="case-preview-metrics">
+									{% for m in case.metrics.all|slice:"3:6" %}
+									<div class="case-preview-metric">
+										<small>{{ m.label }}</small>
+										<strong>{{ m.value }}</strong>
+									</div>
+									{% empty %}
+									<div class="case-preview-metric"><small>Лиды</small><strong>—</strong></div>
+									<div class="case-preview-metric"><small>CTR</small><strong>—</strong></div>
+									<div class="case-preview-metric"><small>Спрос</small><strong>—</strong></div>
+									{% endfor %}
+								</div>
+
+							</div>
+						{% endif %}
 					</div>
 
 				</div>
@@ -855,12 +1058,12 @@
 			<h2 class="cb-tasks-title">{{ block.tasks_title }}</h2>
 			<div class="cb-tasks-grid">
 				{% for item in block.task_items.all %}
-                <div class="cb-task-card">
-                    <div class="cb-task-card-title">{{ item.title }}</div>
-                    {% if item.text %}
-                    <p class="cb-task-card-text">{{ item.text }}</p>
-                    {% endif %}
-                </div>
+				<div class="cb-task-card">
+					<div class="cb-task-card-title">{{ item.title }}</div>
+					{% if item.text %}
+					<p class="cb-task-card-text">{{ item.text }}</p>
+					{% endif %}
+				</div>
 				{% endfor %}
 			</div>
 		</section>
@@ -994,12 +1197,20 @@
 				<div class="cb-team-grid">
 					{% for member in block.team_members.all %}
 					<div class="cb-team-card">
-						<div class="cb-team-avatar">
-							{{ member.name|first }}
-						</div>
+						{% if member.display_photo %}
+							<!-- Фото из базы сотрудников -->
+							<div class="cb-team-avatar cb-team-avatar--photo">
+								<img src="{{ member.display_photo }}" alt="{{ member.display_name }}">
+							</div>
+						{% else %}
+							<!-- Заглушка — первая буква имени -->
+							<div class="cb-team-avatar">
+								{{ member.display_name|first }}
+							</div>
+						{% endif %}
 						<div>
-							<div class="cb-team-name">{{ member.name }}</div>
-							<div class="cb-team-role">{{ member.role }}</div>
+							<div class="cb-team-name">{{ member.display_name }}</div>
+							<div class="cb-team-role">{{ member.display_role }}</div>
 						</div>
 					</div>
 					{% endfor %}
@@ -1027,6 +1238,41 @@
 
 	{% endif %}
 	{% endfor %}
+
+<script>
+/* Появление стрелки через 2 секунды */
+(function() {
+	var arrow = document.getElementById('caseHeroArrow');
+	if (!arrow) return;
+	setTimeout(function() { arrow.style.opacity = '1'; }, 1000);
+})();
+
+/* Лайтбокс для hero-изображения */
+(function() {
+	const wrap  = document.getElementById('caseHeroImgWrap');
+	const box   = document.getElementById('caseLightbox');
+	const close = document.getElementById('caseLightboxClose');
+	if (!wrap || !box) return;
+
+	wrap.addEventListener('click', function() {
+		box.classList.add('is-open');
+		document.body.style.overflow = 'hidden';
+	});
+
+	function closeLightbox() {
+		box.classList.remove('is-open');
+		document.body.style.overflow = '';
+	}
+
+	close.addEventListener('click', closeLightbox);
+	box.addEventListener('click', function(e) {
+		if (e.target === box) closeLightbox();
+	});
+	document.addEventListener('keydown', function(e) {
+		if (e.key === 'Escape') closeLightbox();
+	});
+})();
+</script>
 
 	</div>
 </main>
