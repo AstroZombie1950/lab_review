@@ -662,7 +662,8 @@
 		});
 	});
 
-	// Превью при ховере
+	// Превью при ховере — только на нетач-устройствах
+	if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
 	const preview = document.getElementById('case-preview');
 	const previewImg = document.getElementById('preview-img');
 	const previewEmpty = document.getElementById('preview-empty');
@@ -697,5 +698,6 @@
 			}
 		});
 	});
+	} // end hover check
 </script>
 {% endblock %}

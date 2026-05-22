@@ -614,8 +614,13 @@
 			.worktime { display: none; }
 			.messengers { display: none; }
 			.header-inner { grid-template-columns: auto 1fr; }
-			.header-right { justify-self: end; }
+			.header-right { justify-self: end; gap: 10px; }
 			.header-cta-btn { display: inline-flex; }
+		}
+
+		/* На узких — скрываем название логотипа, кнопка остаётся */
+		@media (max-width: 480px) {
+			.logo-name { display: none; }
 		}
 
 		@media (max-width: 720px) {
@@ -626,10 +631,6 @@
 			.footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
 		}
 
-		/* Скрываем текст логотипа на совсем малых экранах */
-		@media (max-width: 400px) {
-			.logo-name { display: none; }
-		}
 		/* ── Хлебные крошки (общие) ── */
 		.breadcrumb {
 			display: flex;
@@ -735,6 +736,30 @@
 			border-bottom: 1px solid var(--stroke);
 			flex-shrink: 0;
 		}
+
+		/* Правая часть шапки меню: кнопка + крестик */
+		.mobile-menu-head-right {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+
+		/* CTA-кнопка внутри мобильного меню */
+		.mobile-menu-cta {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			height: 36px;
+			padding: 0 16px;
+			border-radius: var(--radius-md);
+			background: var(--accent);
+			color: #fff;
+			font-size: 13px;
+			font-weight: 700;
+			white-space: nowrap;
+			transition: opacity .2s;
+		}
+		.mobile-menu-cta:hover { opacity: 0.88; }
 
 		.mobile-close {
 			width: 36px;
@@ -1305,9 +1330,12 @@
 			<div class="logo-mark">LR</div>
 			<div class="logo-name">Lab<span>Review</span></div>
 		</a>
-		<button class="mobile-close" id="mobile-close" aria-label="Закрыть меню">
-			<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-		</button>
+		<div class="mobile-menu-head-right">
+			<a href="#" class="mobile-menu-cta js-modal-open">Обсудить проект</a>
+			<button class="mobile-close" id="mobile-close" aria-label="Закрыть меню">
+				<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+			</button>
+		</div>
 	</div>
 
 	<!-- Навигация -->

@@ -457,14 +457,28 @@
 	.cb-resume-item-label {
 		font-size: 13px;
 		color: var(--muted);
-		margin-bottom: 8px;
+		margin-bottom: 10px;
 	}
 
 	.cb-resume-item-value {
-		font-size: clamp(22px, 2.5vw, 32px);
+		display: flex;
+		align-items: baseline;
+		gap: 6px;
+		flex-wrap: wrap;
+	}
+
+	.cb-resume-item-num {
+		font-size: 32px;
 		font-weight: 900;
 		letter-spacing: -0.03em;
-		line-height: 1.1;
+		line-height: 1;
+	}
+
+	.cb-resume-item-unit {
+		font-size: 14px;
+		font-weight: 700;
+		color: rgba(255,255,255,0.75);
+		letter-spacing: -0.02em;
 	}
 
 	/* ── tasks_grid ── */
@@ -479,19 +493,15 @@
 
 	.cb-tasks-grid {
 		display: grid;
-		grid-template-columns: repeat(6, 1fr);
+		grid-template-columns: repeat(60, 1fr);
 		gap: 20px;
 	}
 
-	/* Строка 1: узкая(2) / широкая(3) / узкая(1) */
-	.cb-tasks-grid .cb-task-card:nth-child(1) { grid-column: span 2; }
-	.cb-tasks-grid .cb-task-card:nth-child(2) { grid-column: span 3; }
-	.cb-tasks-grid .cb-task-card:nth-child(3) { grid-column: span 1; }
-
-	/* Строка 2: узкая(1) / средняя(2) / широкая(3) */
-	.cb-tasks-grid .cb-task-card:nth-child(4) { grid-column: span 1; }
-	.cb-tasks-grid .cb-task-card:nth-child(5) { grid-column: span 2; }
-	.cb-tasks-grid .cb-task-card:nth-child(6) { grid-column: span 3; }
+	/* Span задаётся JS через --task-span, классы как fallback */
+	.cb-tasks-grid .cb-task-card          { grid-column: span var(--task-span, 20); }
+	.cb-tasks-grid .cb-task-card.card--sm { grid-column: span var(--task-span, 15); }
+	.cb-tasks-grid .cb-task-card.card--md { grid-column: span var(--task-span, 20); }
+	.cb-tasks-grid .cb-task-card.card--lg { grid-column: span var(--task-span, 25); }
 
 	.cb-task-card {
 		background: var(--bg-2);
@@ -522,109 +532,6 @@
 		font-size: 13px;
 		line-height: 1.65;
 		color: var(--muted);
-	}
-
-	/* ── content_full ── */
-	.cb-full {
-		border-radius: var(--radius-xl);
-		background: var(--bg-2);
-		border: 1px solid var(--stroke);
-		overflow: hidden;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		min-height: 480px;
-	}
-
-	.cb-full-text {
-		padding: 48px;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		gap: 16px;
-	}
-
-	.cb-full-label {
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		font-size: 13px;
-		font-weight: 700;
-		color: var(--accent);
-		letter-spacing: 0.1em;
-		text-transform: uppercase;
-	}
-	.cb-full-label::before {
-		content: '';
-		width: 8px;
-		height: 8px;
-		border-radius: 50%;
-		background: var(--accent);
-	}
-
-	.cb-full-title {
-		font-size: clamp(22px, 2.5vw, 36px);
-		font-weight: 900;
-		line-height: 1.15;
-		letter-spacing: -0.03em;
-	}
-
-	.cb-full-main {
-		font-size: 16px;
-		line-height: 1.7;
-		color: rgba(255,255,255,0.88);
-	}
-
-	.cb-full-secondary {
-		font-size: 14px;
-		line-height: 1.65;
-		color: var(--muted);
-	}
-
-	.cb-full-link {
-		margin-top: 8px;
-	}
-
-	.cb-full-link-label {
-		font-size: 13px;
-		color: var(--muted);
-		margin-bottom: 8px;
-	}
-
-	.cb-link-btn {
-		display: inline-flex;
-		align-items: center;
-		gap: 12px;
-		height: 48px;
-		padding: 0 20px;
-		border-radius: var(--radius-md);
-		background: var(--bg-3);
-		border: 1px solid var(--stroke);
-		font-size: 14px;
-		color: rgba(255,255,255,0.7);
-		transition: border-color .2s, color .2s;
-		max-width: 320px;
-		overflow: hidden;
-	}
-	.cb-link-btn:hover { border-color: var(--stroke-2); color: #fff; }
-
-	.cb-full-img {
-		position: relative;
-		overflow: hidden;
-	}
-	.cb-full-img img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	.cb-full-img-placeholder {
-		width: 100%;
-		height: 100%;
-		background: var(--bg-3);
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		color: var(--muted-2);
-		font-size: 13px;
 	}
 
 	/* ── content_two ── */
@@ -889,28 +796,30 @@
 
 	/* ── Адаптив ── */
 	@media (max-width: 1024px) {
-		.cb-full { grid-template-columns: 1fr; }
-		.cb-full-img { min-height: 280px; }
 		.cb-task-grid { grid-template-columns: 1fr; }
 		.cb-two-grid { grid-template-columns: 1fr; }
 		.cb-metrics-grid { grid-template-columns: repeat(2, 1fr); }
 		.cb-team-inner { grid-template-columns: 1fr; gap: 24px; }
-		.cb-tasks-grid { grid-template-columns: repeat(2, 1fr); }
-		.cb-tasks-grid .cb-task-card:nth-child(n) { grid-column: span 1; }
 		.cb-cta { grid-template-columns: 1fr; }
 		.cb-cta-img { min-height: 240px; }
 		.cb-cta-img::after { display: none; }
 		.cb-resume-grid { grid-template-columns: repeat(2, 1fr); }
+		/* Планшет — две колонки */
+		.cb-tasks-grid { grid-template-columns: repeat(2, 1fr); }
+		.cb-tasks-grid .cb-task-card,
+		.cb-tasks-grid .cb-task-card.card--sm,
+		.cb-tasks-grid .cb-task-card.card--md,
+		.cb-tasks-grid .cb-task-card.card--lg { grid-column: span 1; }
 	}
 
 	@media (max-width: 720px) {
 		.case-hero-title { font-size: clamp(28px, 8vw, 48px); }
-		.cb-full-text { padding: 28px; }
 		.cb-two-col { padding: 28px; }
 		.cb-metrics { padding: 28px; }
 		.cb-metrics-grid { grid-template-columns: 1fr; }
 		.cb-team-grid { grid-template-columns: 1fr; }
 		.cb-cta-body { padding: 32px 28px; }
+		/* Мобила — одна колонка */
 		.cb-tasks-grid { grid-template-columns: 1fr; }
 		.cb-resume-grid { grid-template-columns: 1fr; }
 		.case-hero-url { display: none; }
@@ -1059,8 +968,11 @@
 					<div class="cb-resume-grid">
 						{% for item in block.resume_items.all %}
 						<div>
-							<div class="cb-resume-item-label">{{ item.label }}:</div>
-							<div class="cb-resume-item-value">{{ item.value }}</div>
+							<div class="cb-resume-item-label">{{ item.label }}</div>
+							<div class="cb-resume-item-value">
+								<span class="cb-resume-item-num">{{ item.value }}</span>
+								{% if item.unit %}<span class="cb-resume-item-unit">{{ item.unit }}</span>{% endif %}
+							</div>
 						</div>
 						{% endfor %}
 					</div>
@@ -1084,46 +996,7 @@
 			</div>
 		</section>
 
-		{% elif block.block_type == 'content_full' %}
-		<!-- Контент на всю ширину -->
-		<section class="cb">
-			<div class="cb-full">
-				<div class="cb-full-text">
-					{% if block.cf_label %}
-					<div class="cb-full-label">{{ block.cf_label }}</div>
-					{% endif %}
-					{% if block.cf_title %}
-					<h2 class="cb-full-title">{{ block.cf_title }}</h2>
-					{% endif %}
-					{% if block.cf_text_main %}
-					<p class="cb-full-main">{{ block.cf_text_main }}</p>
-					{% endif %}
-					{% if block.cf_text_secondary %}
-					<p class="cb-full-secondary">{{ block.cf_text_secondary }}</p>
-					{% endif %}
-					{% if block.cf_link_url %}
-					<div class="cb-full-link">
-						{% if block.cf_link_text %}
-						<div class="cb-full-link-label">{{ block.cf_link_text }}</div>
-						{% endif %}
-						<a href="{{ block.cf_link_url }}" target="_blank" rel="noopener" class="cb-link-btn">
-							{{ block.cf_link_url|cut:"https://"|cut:"http://" }}
-							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-						</a>
-					</div>
-					{% endif %}
-				</div>
-				<div class="cb-full-img">
-					{% if block.cf_image %}
-					<img src="{{ block.cf_image }}" alt="{{ block.cf_title }}">
-					{% else %}
-					<div class="cb-full-img-placeholder">Нет изображения</div>
-					{% endif %}
-				</div>
-			</div>
-		</section>
-
-			{% elif block.block_type == 'content_two' %}
+		{% elif block.block_type == 'content_two' %}
 		<!-- Две колонки -->
 		<section class="cb">
 			<div class="cb-two-grid">
@@ -1240,8 +1113,8 @@
 			<div class="cb-cta">
 				<!-- Картинка слева -->
 				<div class="cb-cta-img">
-					{% if block.cta_btn_url and block.cta_btn_url != '#contact' %}
-					<img src="{{ block.cta_btn_url }}" alt="">
+					{% if block.cta_image %}
+					<img src="{{ block.cta_image }}" alt="">
 					{% endif %}
 				</div>
 				<!-- Текст справа -->
@@ -1314,6 +1187,59 @@
 		if (e.key === 'Escape') closeLightbox();
 		if (e.key === 'ArrowLeft')  showSlide(current - 1);
 		if (e.key === 'ArrowRight') showSlide(current + 1);
+	});
+})();
+</script>
+
+<script>
+/* Динамическая ширина карточек задач — ровно 3 в строке, сумма span = 60 */
+(function () {
+	var COLS = 3;
+	var TOTAL = 60;
+	var MIN_SPAN = 15; /* минимум ~25% */
+	var MAX_SPAN = 30; /* максимум ~50% */
+
+	document.querySelectorAll('.cb-tasks-grid').forEach(function (grid) {
+		var cards = Array.from(grid.querySelectorAll('.cb-task-card'));
+		if (!cards.length) return;
+
+		var lengths = cards.map(function (c) { return c.innerText.trim().length || 1; });
+
+		for (var row = 0; row < Math.ceil(cards.length / COLS); row++) {
+			var slice = cards.slice(row * COLS, row * COLS + COLS);
+			if (slice.length < COLS) {
+				/* Неполная строка — равные span'ы */
+				slice.forEach(function (card) {
+					card.classList.remove('card--sm', 'card--md', 'card--lg');
+					card.classList.add('card--md');
+				});
+				continue;
+			}
+
+			var rowLens = lengths.slice(row * COLS, row * COLS + COLS);
+			var total = rowLens.reduce(function (a, b) { return a + b; }, 0);
+
+			/* Считаем span пропорционально, зажимаем в [MIN, MAX] */
+			var spans = rowLens.map(function (l) {
+				var raw = Math.round((l / total) * TOTAL);
+				return Math.min(MAX_SPAN, Math.max(MIN_SPAN, raw));
+			});
+
+			/* Корректируем до ровно TOTAL */
+			var diff = TOTAL - spans.reduce(function (a, b) { return a + b; }, 0);
+			/* Отдаём остаток самой длинной карточке */
+			var maxIdx = rowLens.indexOf(Math.max.apply(null, rowLens));
+			spans[maxIdx] = Math.min(MAX_SPAN, Math.max(MIN_SPAN, spans[maxIdx] + diff));
+
+			/* Назначаем классы по span */
+			slice.forEach(function (card, i) {
+				card.classList.remove('card--sm', 'card--md', 'card--lg');
+				card.style.setProperty('--task-span', spans[i]);
+				if (spans[i] <= 17) card.classList.add('card--sm');
+				else if (spans[i] >= 24) card.classList.add('card--lg');
+				else card.classList.add('card--md');
+			});
+		}
 	});
 })();
 </script>

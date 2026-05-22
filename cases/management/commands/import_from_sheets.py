@@ -11,7 +11,7 @@ from django.utils import timezone
 from cases.models import (
 	Case, Tag, CaseMetric, CaseBlock,
 	ResumeItem, TaskItem, MetricItem, TeamMember,
-	DevCaseImage,
+	DevCaseImage, Employee,
 )
 
 logger = logging.getLogger(__name__)
@@ -22,6 +22,7 @@ CTA_DEFAULTS = {
 	'cta_text':     'Расскажите о проекте — обсудим и предложим решение.',
 	'cta_btn_text': 'Написать',
 	'cta_btn_url':  '#contact',
+	'cta_image':    '',
 }
 
 
@@ -122,8 +123,9 @@ def import_row(row):
 	for i in range(1, 4):
 		label = row.get(f'resume_{i}_label', '').strip()
 		value = row.get(f'resume_{i}_value', '').strip()
+		unit  = row.get(f'resume_{i}_unit',  '').strip()
 		if label or value:
-			ResumeItem.objects.create(block=block, label=label, value=value, order=i)
+			ResumeItem.objects.create(block=block, label=label, value=value, unit=unit, order=i)
 
 	# Блок: tasks_grid
 	block = _make_block(case, order, 'tasks_grid', {'tasks_title': row.get('tasks_title', '')})
@@ -153,11 +155,22 @@ def import_row(row):
 	for i in range(1, 5):
 		name = row.get(f'member_{i}_name', '').strip()
 		role = row.get(f'member_{i}_role', '').strip()
-		if name:
-			TeamMember.objects.create(block=block, name=name, role=role, order=i)
+		if not name:
+			continue
+		# Ищем сотрудника по имени без учёта регистра
+		employee = Employee.objects.filter(name__iexact=name).first()
+		if not employee:
+			employee = Employee.objects.create(name=name, role=role)
+		elif role and employee.role != role:
+			# Обновляем роль если изменилась
+			employee.role = role
+			employee.save(update_fields=['role'])
+		TeamMember.objects.create(block=block, employee=employee, order=i)
 
-	# Блок: CTA — фиксированный
-	_make_block(case, order, 'cta', CTA_DEFAULTS)
+	# Блок: CTA — фиксированный текст, картинка из таблицы
+	cta_fields = dict(CTA_DEFAULTS)
+	cta_fields['cta_image'] = row.get('cta_image', '').strip()
+	_make_block(case, order, 'cta', cta_fields)
 
 	# Изображения ленты (только для dev-кейсов)
 	case.dev_images.all().delete()

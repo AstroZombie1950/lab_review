@@ -406,6 +406,11 @@ class CaseBlock(models.Model):
 		default='#contact',
 		help_text='Куда ведёт кнопка. Можно указать якорь (#contact) или полный URL.'
 	)
+	cta_image = models.URLField(
+		'Изображение CTA (URL)',
+		blank=True,
+		help_text='Картинка в левой части CTA-блока. Необязательное поле.'
+	)
 
 	class Meta:
 		verbose_name = 'Блок кейса'
@@ -464,7 +469,14 @@ class ResumeItem(models.Model):
 	value = models.CharField(
 		'Значение',
 		max_length=100,
-		help_text='Пример: «январь 2024», «6 месяцев»'
+		blank=True,
+		help_text='Число или текст. Пример: «2,5», «январь»'
+	)
+	unit = models.CharField(
+		'Единица / уточнение',
+		max_length=100,
+		blank=True,
+		help_text='Отображается рядом с значением меньшим шрифтом. Пример: «месяца», «2022»'
 	)
 	order = models.PositiveSmallIntegerField('Порядок', default=0)
 

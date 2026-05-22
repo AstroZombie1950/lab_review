@@ -7,7 +7,7 @@
 	// Все известные типы
 	var ALL_TYPES = [
 		'intro', 'task_resume', 'tasks_grid',
-		'content_full', 'content_two',
+		'content_two',
 		'metrics', 'team', 'cta'
 	];
 

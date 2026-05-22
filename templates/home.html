@@ -662,12 +662,12 @@
 		.home-hero-title { font-size: clamp(28px, 8vw, 42px); }
 		.home-hero-text { font-size: clamp(14px, 3.5vw, 17px); padding-left: 0; }
 		.home-hero-btns { padding-left: 0; flex-direction: column; align-items: flex-start; }
-		/* Hero-карточки — крупные, сохраняем 2 колонки */
-		.home-services-row-hero { grid-template-columns: 1fr 1fr; }
-		.home-service-card--hero { min-height: 240px; aspect-ratio: unset; }
-		/* Normal-карточки — компактные, 2 колонки, фиксированная высота */
-		.home-services-row-normal { grid-template-columns: repeat(2, 1fr); }
-		.home-services-row-normal .home-service-card { min-height: 0; height: 162px; }
+		/* Hero-карточки — одна колонка, крупные */
+		.home-services-row-hero { grid-template-columns: 1fr; }
+		.home-service-card--hero { min-height: 220px; aspect-ratio: unset; }
+		/* Normal-карточки — одна колонка, компактные */
+		.home-services-row-normal { grid-template-columns: 1fr; }
+		.home-services-row-normal .home-service-card { min-height: 0; height: 200px; }
 		/* Все карточки: категория сверху, название снизу */
 		.home-service-body {
 			padding: 14px 14px 16px;

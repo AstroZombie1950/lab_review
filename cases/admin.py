@@ -46,7 +46,7 @@ class DevCaseImageInline(nested_admin.NestedTabularInline):
 class ResumeItemInline(nested_admin.NestedTabularInline):
 	model = ResumeItem
 	extra = 1
-	fields = ['label', 'value', 'order']
+	fields = ['label', 'value', 'unit', 'order']
 	verbose_name_plural = 'Резюме проекта (строки)'
 
 
@@ -67,7 +67,7 @@ class MetricItemInline(nested_admin.NestedTabularInline):
 class TeamMemberInline(nested_admin.NestedTabularInline):
 	model = TeamMember
 	extra = 1
-	fields = ['employee', 'name', 'role', 'order']
+	fields = ['employee', 'order']
 	verbose_name_plural = 'Участники команды'
 
 
@@ -129,7 +129,7 @@ class CaseBlockInline(nested_admin.NestedStackedInline):
 			'description': 'Участников добавьте ниже через «Участники команды».',
 		}),
 		('Призыв к действию (CTA)', {
-			'fields': ['cta_title', 'cta_text', 'cta_btn_text', 'cta_btn_url'],
+			'fields': ['cta_title', 'cta_text', 'cta_btn_text', 'cta_btn_url', 'cta_image'],
 			'classes': ['block-section-cta'],
 			'description': 'Финальный блок страницы с кнопкой.',
 		}),
