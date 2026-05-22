@@ -443,19 +443,32 @@
 	/* ── Адаптив ── */
 	@media (max-width: 1024px) {
 		.cases-layout { grid-template-columns: 160px 1fr; gap: 24px; }
-		.case-row { grid-template-columns: 1fr auto; }
 		.case-tags { display: none; }
+		.case-industry { display: none; }
+		/* Строка: заголовок сверху на всю ширину, кнопка-стрелка справа */
+		.case-row {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 8px;
+			padding: 14px 16px;
+		}
+		.case-main {
+			flex: 1 1 100%;
+			overflow: hidden;
+		}
+		.case-title { font-size: 16px; white-space: normal; }
+		.case-link { margin-left: auto; padding: 0 12px; height: 36px; }
+		.case-link-text { display: none; }
 	}
 
 	@media (max-width: 720px) {
 		.hero { padding: 48px 0 36px; }
-		/* Сайдбар превращается в горизонтальную полосу кнопок */
 		.cases-layout { grid-template-columns: 1fr; gap: 16px; }
 		.cases-sidebar { position: static; }
 		.sidebar-title { display: none; }
 		.sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 6px; }
 		.sidebar-btn { height: 34px; font-size: 13px; width: auto; padding: 0 12px; }
-		.case-row { grid-template-columns: 1fr auto; gap: 12px; }
 		.search-wrap { max-width: 100%; }
 	}
 
@@ -589,7 +602,7 @@
 
 						<!-- Кнопка -->
 						<div class="case-link">
-							Кейс
+							<span class="case-link-text">Кейс</span>
 							<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</div>
 					</a>
