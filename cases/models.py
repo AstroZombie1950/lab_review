@@ -35,7 +35,6 @@ BLOCK_TYPE_CHOICES = [
 	('intro',         'Вводный текст'),
 	('task_resume',   'Задача + резюме проекта'),
 	('tasks_grid',    'Сетка задач (что мы решали)'),
-	('content_full',  'Контент-блок: на всю ширину'),
 	('content_two',   'Контент-блок: две колонки'),
 	('metrics',       'Результаты / цифры'),
 	('team',          'Команда'),
@@ -132,31 +131,12 @@ class Case(models.Model):
 	hero_image = models.URLField(
 		'Изображение в герое (URL)',
 		blank=True,
-		help_text='Скриншот или картинка для правой части героя. Если не заполнено — показывается стандартный дашборд.'
+		help_text='Скриншот статистики для правой части героя. Если не заполнено — показывается стандартный дашборд.'
 	)
-	hero_arrow_x = models.PositiveSmallIntegerField(
-		'Стрелка: позиция X (%)',
+	hero_arrow_svg = models.URLField(
+		'Стрелка поверх (SVG, URL)',
 		blank=True,
-		null=True,
-		help_text='Горизонтальная позиция стрелки в процентах от ширины блока. Пример: 65'
-	)
-	hero_arrow_y = models.PositiveSmallIntegerField(
-		'Стрелка: позиция Y (%)',
-		blank=True,
-		null=True,
-		help_text='Вертикальная позиция стрелки в процентах от высоты блока. Пример: 40'
-	)
-	hero_arrow_label = models.CharField(
-		'Стрелка: текст сверху',
-		max_length=100,
-		blank=True,
-		help_text='Текст над стрелкой. Пример: «Конверсия в продажу»'
-	)
-	hero_arrow_value = models.CharField(
-		'Стрелка: текст снизу',
-		max_length=100,
-		blank=True,
-		help_text='Текст под стрелкой. Пример: «10%»'
+		help_text='SVG с прозрачным фоном того же размера, что и основное изображение. Накладывается поверх. Если не заполнено — стрелка не показывается.'
 	)
 
 	# Мета

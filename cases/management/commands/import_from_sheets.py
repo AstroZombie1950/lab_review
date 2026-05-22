@@ -83,6 +83,8 @@ def import_row(row):
 		'description':      row.get('description', ''),
 		'cover':            row.get('cover', ''),
 		'hero_bg':          row.get('hero_bg', ''),
+		'hero_image':       row.get('hero_image', ''),
+		'hero_arrow_svg':   row.get('hero_arrow_svg', ''),
 		'client_url':       row.get('client_url', ''),
 		'year':             row.get('year', ''),
 		'meta_title':       row.get('meta_title', ''),
@@ -97,9 +99,9 @@ def import_row(row):
 	tags = get_or_create_tags(row.get('tags', ''))
 	case.tags.set(tags)
 
-	# Метрики карточки (Hero) — 6 штук
+	# Метрики карточки (Hero) — только 3
 	case.metrics.all().delete()
-	for i in range(1, 7):
+	for i in range(1, 4):
 		value = row.get(f'metric_{i}_value', '').strip()
 		label = row.get(f'metric_{i}_label', '').strip()
 		if value or label:
@@ -131,18 +133,6 @@ def import_row(row):
 		text  = row.get(f'task_{i}_text', '').strip()
 		if title:
 			TaskItem.objects.create(block=block, title=title, text=text, order=i)
-
-	# Блок: content_full
-	_make_block(case, order, 'content_full', {
-		'cf_label':          row.get('cf_label', ''),
-		'cf_title':          row.get('cf_title', ''),
-		'cf_text_main':      row.get('cf_text_main', ''),
-		'cf_text_secondary': row.get('cf_text_secondary', ''),
-		'cf_image':          row.get('cf_image', ''),
-		'cf_link_text':      row.get('cf_link_text', ''),
-		'cf_link_url':       row.get('cf_link_url', ''),
-	})
-	order += 1
 
 	# Блок: metrics (результаты/цифры)
 	block = _make_block(case, order, 'metrics', {

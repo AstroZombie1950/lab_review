@@ -299,7 +299,7 @@
 	/* Строка */
 	.case-row {
 		display: grid;
-		grid-template-columns: minmax(0,1fr) 1fr auto;
+		grid-template-columns: minmax(260px, 2fr) minmax(0, 1fr) auto;
 		align-items: center;
 		gap: 24px;
 		padding: 18px 22px;
@@ -321,6 +321,7 @@
 		align-items: center;
 		gap: 12px;
 		min-width: 0;
+		overflow: hidden;
 	}
 
 	.case-title {
@@ -346,22 +347,27 @@
 		flex-shrink: 0;
 	}
 
-	/* Теги */
+	/* Теги — не вылезают за свою колонку */
 	.case-tags {
 		display: flex;
 		align-items: center;
 		gap: 8px;
+		overflow: hidden;
+		min-width: 0;
 	}
 
 	.case-tag {
 		font-size: 15px;
 		color: rgba(255,255,255,0.38);
 		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 
 	.case-tag-more {
 		font-size: 15px;
 		color: rgba(255,255,255,0.22);
+		flex-shrink: 0;
 	}
 
 	/* Кнопка */

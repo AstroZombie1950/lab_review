@@ -101,15 +101,6 @@ class CaseBlockInline(nested_admin.NestedStackedInline):
 			'classes': ['block-section-tasks_grid'],
 			'description': 'Заголовок над сеткой карточек. Сами карточки — ниже через «Карточки задач».',
 		}),
-		('Контент на всю ширину', {
-			'fields': [
-				'cf_label', 'cf_title',
-				'cf_text_main', 'cf_text_secondary',
-				'cf_image', 'cf_link_text', 'cf_link_url',
-			],
-			'classes': ['block-section-content_full'],
-			'description': 'Текст слева, картинка справа. Картинка необязательна.',
-		}),
 		('Две колонки — левая', {
 			'fields': [
 				'left_label', 'left_title',
@@ -175,13 +166,11 @@ BASE_FIELDSETS = [
 		'fields': ['hero_bg', 'client_url', 'year'],
 	}),
 	('Изображение в герое', {
-		'fields': ['hero_image', 'hero_arrow_x', 'hero_arrow_y', 'hero_arrow_label', 'hero_arrow_value'],
+		'fields': ['hero_image', 'hero_arrow_svg'],
 		'description': (
 			'<div style="background:#0a3a1a;border:1px solid #1a7a3a;border-radius:6px;padding:14px 16px;margin-bottom:8px;font-size:13px;line-height:1.7;color:#b0ffe0">'
-			'Если заполнено поле <strong style="color:#fff">Изображение</strong> — в правой части героя покажется ваша картинка вместо стандартного дашборда.<br>'
-			'<strong style="color:#fff">Стрелка</strong> рисуется поверх картинки. Позиция задаётся в процентах: X=0 — левый край, X=100 — правый. Y=0 — верх, Y=100 — низ.<br>'
-			'<strong style="color:#fff">Текст сверху</strong> — подпись над стрелкой. <strong style="color:#fff">Текст снизу</strong> — значение под стрелкой.<br>'
-			'Если X и Y не заполнены — стрелка не показывается.'
+			'<strong style="color:#fff">Изображение</strong> — скриншот статистики для правой части героя. Если не заполнено — показывается стандартный дашборд.<br>'
+			'<strong style="color:#fff">Стрелка (SVG)</strong> — файл SVG с прозрачным фоном, того же размера что и основное изображение. Накладывается поверх и масштабируется вместе с картинкой. Если не заполнено — стрелка не показывается.'
 			'</div>'
 		),
 	}),
