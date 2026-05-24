@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Ведение Яндекс Директ | Lab Review{% endblock %}
 {% block meta_description %}Настраиваем и ведём рекламные кампании в Яндекс Директ. Снижаем стоимость заявки, повышаем конверсию и контролируем бюджет.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/yandex-direct.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Ведение Яндекс Директ{% endblock %}
 {% block hero_label %}Реклама{% endblock %}

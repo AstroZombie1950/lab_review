@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Верстка сайтов | Lab Review{% endblock %}
 {% block meta_description %}Верстаем сайты по макетам Figma. Пиксельная точность, адаптив, быстрая загрузка.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/webdev-html-css.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Верстка сайтов{% endblock %}
 {% block hero_label %}Разработка{% endblock %}

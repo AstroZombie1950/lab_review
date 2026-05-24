@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Консультация Авитолога | Lab Review{% endblock %}
 {% block meta_description %}Консультация специалиста по Авито — разбираем ваш аккаунт, объявления и стратегию продвижения. Конкретные ответы и чёткий план действий.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/avito-consult.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Консультация Авитолога{% endblock %}
 {% block hero_label %}Авито{% endblock %}

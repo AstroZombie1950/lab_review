@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Разработка сайта | Lab Review{% endblock %}
 {% block meta_description %}Разрабатываем многостраничные и корпоративные сайты под ключ. Дизайн, вёрстка, CMS, интеграции.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/webdev-website.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Разработка сайта{% endblock %}
 {% block hero_label %}Разработка{% endblock %}

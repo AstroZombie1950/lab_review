@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Ведение SEO-проекта под ключ | Lab Review{% endblock %}
 {% block meta_description %}Берём на себя полное SEO-продвижение сайта: от аудита и семантики до наращивания ссылочной массы и роста трафика. Отчёт каждый месяц.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/seo-full.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Ведение SEO под ключ{% endblock %}
 {% block hero_label %}SEO{% endblock %}

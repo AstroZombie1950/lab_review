@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Вывод сайта в топ Яндекса | Lab Review{% endblock %}
 {% block meta_description %}Выводим сайты в топ-10 Яндекса по целевым запросам. Работаем с коммерческими факторами, поведенческими метриками и внешним продвижением.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/seo-top.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Вывод сайта в топ Яндекса{% endblock %}
 {% block hero_label %}SEO{% endblock %}

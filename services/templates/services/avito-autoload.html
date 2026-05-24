@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Создание автозагрузочных файлов для Авито | Lab Review{% endblock %}
 {% block meta_description %}Создаём XML-файлы для автозагрузки объявлений на Авито. Структурируем каталог, настраиваем обновление и подключаем к вашей системе.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/avito-autoload.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Автозагрузка для Авито{% endblock %}
 {% block hero_label %}Авито{% endblock %}

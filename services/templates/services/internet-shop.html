@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Разработка интернет-магазина | Lab Review{% endblock %}
 {% block meta_description %}Создаём удобные интернет-магазины с высокой скоростью работы, стильным дизайном и продуманной навигацией.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/webdev-internet-shop.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Разработка интернет-магазина{% endblock %}
 {% block hero_label %}Разработка{% endblock %}

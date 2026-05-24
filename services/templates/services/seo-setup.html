@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Внутренняя настройка SEO | Lab Review{% endblock %}
 {% block meta_description %}Проводим техническую и контентную SEO-оптимизацию сайта. Исправляем ошибки, настраиваем метатеги, ускоряем загрузку и готовим сайт к продвижению.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/seo-setup.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Внутренняя настройка SEO{% endblock %}
 {% block hero_label %}SEO{% endblock %}

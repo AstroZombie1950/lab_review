@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Разработка лендинга | Lab Review{% endblock %}
 {% block meta_description %}Создаём продающие лендинги с высокой конверсией. Быстро, красиво, с умом.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/webdev-landing.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Разработка лендинга{% endblock %}
 {% block hero_label %}Разработка{% endblock %}

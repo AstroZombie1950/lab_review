@@ -1,4 +1,5 @@
 {% extends "cases/base.html" %}
+{% load static %}
 
 {% block title %}Lab Review — разработка, SEO и Яндекс Директ{% endblock %}
 {% block meta_description %}Делаем сайты, настраиваем SEO и ведём рекламу в Яндекс Директ. Работаем на результат — трафик, заявки, продажи.{% endblock %}
@@ -769,7 +770,7 @@
 				<!-- 1. Разработка сайта -->
 				<a href="/website/" class="home-service-card home-service-card--hero color-blue">
 					<div class="home-service-bg">
-						<img src="/static/cases/img/serv_1.webp" alt="Разработка сайта" />
+						<img src="{% static 'services/img/webdev-website.png' %}" alt="Разработка сайта" />
 					</div>
 					<div class="home-service-body">
 						<div class="home-service-top">
@@ -783,7 +784,7 @@
 				<!-- 2. SEO под ключ -->
 				<a href="/seo-full/" class="home-service-card home-service-card--hero color-green">
 					<div class="home-service-bg">
-						<img src="/static/cases/img/serv_2.webp" alt="SEO-продвижение" />
+						<img src="{% static 'services/img/seo-full.png' %}" alt="SEO-продвижение" />
 					</div>
 					<div class="home-service-body">
 						<div class="home-service-top">
@@ -802,7 +803,7 @@
 				<!-- 3. Авито: ведение кампании -->
 				<a href="/avito-ads/" class="home-service-card color-red">
 					<div class="home-service-bg">
-						<img src="/static/cases/img/serv_3.webp" alt="Реклама на Авито" />
+						<img src="{% static 'services/img/avito-ads.png' %}" alt="Реклама на Авито" />
 					</div>
 					<div class="home-service-body">
 						<div class="home-service-top">
@@ -816,7 +817,7 @@
 				<!-- 4. Яндекс Директ -->
 				<a href="/yandex-direct/" class="home-service-card color-grey">
 					<div class="home-service-bg">
-						<img src="/static/cases/img/serv_4.webp" alt="Яндекс Директ" />
+						<img src="{% static 'services/img/yandex-direct.png' %}" alt="Яндекс Директ" />
 					</div>
 					<div class="home-service-body">
 						<div class="home-service-top">
@@ -830,7 +831,7 @@
 				<!-- 5. Разработка лендинга -->
 				<a href="/landing/" class="home-service-card color-blue">
 					<div class="home-service-bg">
-						<img src="/static/cases/img/serv_5.webp" alt="Разработка лендинга" />
+						<img src="{% static 'services/img/webdev-landing.png' %}" alt="Разработка лендинга" />
 					</div>
 					<div class="home-service-body">
 						<div class="home-service-top">
@@ -856,8 +857,11 @@
 				<div class="home-services-row-normal">
 
 					<a href="/avito-day/" class="home-service-card color-red">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/avito-day.png' %}" alt="Авитолог на день" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -866,8 +870,11 @@
 					</a>
 
 					<a href="/avito-consult/" class="home-service-card color-grey">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/avito-consult.png' %}" alt="Консультация Авитолога" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -876,8 +883,11 @@
 					</a>
 
 					<a href="/avito-autoload/" class="home-service-card color-green">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/avito-autoload.png' %}" alt="Создание автозагрузочных файлов" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -886,8 +896,11 @@
 					</a>
 
 					<a href="/internet-shop/" class="home-service-card color-blue">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/webdev-internet-shop.png' %}" alt="Разработка интернет-магазина" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -896,8 +909,11 @@
 					</a>
 
 					<a href="/seo-setup/" class="home-service-card color-blue">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/seo-setup.png' %}" alt="Внутренняя настройка SEO" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -906,8 +922,11 @@
 					</a>
 
 					<a href="/seo-top/" class="home-service-card color-green">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/seo-top.png' %}" alt="Вывод сайта в топ Яндекса" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>
@@ -916,8 +935,11 @@
 					</a>
 
 					<a href="/html-css/" class="home-service-card color-grey">
-						<div class="home-service-body" style="position:relative;z-index:1;">
-						<div class="home-service-top">
+						<div class="home-service-bg">
+							<img src="{% static 'services/img/webdev-html-css.png' %}" alt="Верстка сайтов" />
+						</div>
+						<div class="home-service-body">
+							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
 								<div class="home-service-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 							</div>

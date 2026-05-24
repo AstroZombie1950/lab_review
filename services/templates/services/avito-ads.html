@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Создание и ведение рекламной кампании на Авито | Lab Review{% endblock %}
 {% block meta_description %}Создаём и ведём рекламные кампании на Авито. Настраиваем объявления, контролируем ставки и повышаем количество обращений.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/avito-ads.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Реклама на Авито{% endblock %}
 {% block hero_label %}Авито{% endblock %}

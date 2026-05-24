@@ -1,7 +1,12 @@
 {% extends "services/service_base.html" %}
+{% load static %}
 
 {% block title %}Авитолог на день | Lab Review{% endblock %}
 {% block meta_description %}Нанимаете авитолога на один день — он разбирается в вашем аккаунте, исправляет ошибки, настраивает объявления и объясняет, что делать дальше.{% endblock %}
+
+{% block hero_image %}
+<img src="{% static 'services/img/avito-day.png' %}" alt="">
+{% endblock %}
 
 {% block breadcrumb_title %}Авитолог на день{% endblock %}
 {% block hero_label %}Авито{% endblock %}
