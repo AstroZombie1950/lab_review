@@ -436,10 +436,11 @@ class Employee(models.Model):
 		max_length=150,
 		help_text='Пример: «SEO-специалист»'
 	)
-	photo = models.URLField(
-		'Фото (URL)',
+	photo = models.ImageField(
+		'Фото',
+		upload_to='employees/',
 		blank=True,
-		help_text='Ссылка на фото сотрудника. Рекомендуется квадратное, минимум 200×200 px.'
+		help_text='Загрузите фото сотрудника. Рекомендуется квадратное, минимум 200×200 px.'
 	)
 
 	class Meta:
@@ -595,7 +596,7 @@ class TeamMember(models.Model):
 	@property
 	def display_photo(self):
 		if self.employee and self.employee.photo:
-			return self.employee.photo
+			return self.employee.photo.url
 		return ''
 
 	order = models.PositiveSmallIntegerField('Порядок', default=0)

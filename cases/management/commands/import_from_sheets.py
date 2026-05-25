@@ -2,17 +2,84 @@ import urllib.request
 import urllib.parse
 import json
 import logging
+import hashlib
+import os
+import urllib.error
 
+from pathlib import Path
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils import timezone
+from django.core.files.base import ContentFile
 
 from cases.models import (
 	Case, Tag, CaseMetric, CaseBlock,
 	ResumeItem, TaskItem, MetricItem, TeamMember,
 	DevCaseImage, Employee,
 )
+
+logger = logging.getLogger(__name__)
+
+
+def download_image(url, subfolder):
+	"""
+	Скачать изображение по URL и сохранить в media/{subfolder}/.
+	Имя файла = MD5(url).ext — повторно не скачивается если файл уже есть.
+	Возвращает относительный путь для сохранения в поле модели (строку).
+	"""
+	url = url.strip()
+	if not url:
+		return ''
+
+	# Определяем расширение из URL (берём последнюю часть пути без параметров)
+	path_part = urllib.parse.urlparse(url).path
+	ext = os.path.splitext(path_part)[1].lower() or '.jpg'
+	# Ограничиваем допустимые расширения
+	if ext not in ('.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg'):
+		ext = '.jpg'
+
+	# Имя файла — MD5 от URL
+	md5 = hashlib.md5(url.encode()).hexdigest()
+	filename = f'{md5}{ext}'
+	rel_path = f'{subfolder}/{filename}'
+	abs_path = settings.MEDIA_ROOT / rel_path
+
+	# Если файл уже есть — не скачиваем
+	if abs_path.exists():
+		return f'/media/{rel_path}'
+
+	# Создаём папку если нет
+	abs_path.parent.mkdir(parents=True, exist_ok=True)
+
+	try:
+		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+		with urllib.request.urlopen(req, timeout=15) as resp:
+			data = resp.read()
+			# Определяем расширение по Content-Type
+			content_type = resp.headers.get('Content-Type', '').split(';')[0].strip()
+			ct_map = {
+				'image/jpeg':    '.jpg',
+				'image/png':     '.png',
+				'image/gif':     '.gif',
+				'image/webp':    '.webp',
+				'image/svg+xml': '.svg',
+			}
+			detected_ext = ct_map.get(content_type)
+			if detected_ext:
+				ext = detected_ext
+				# Пересчитываем пути если расширение изменилось
+				filename = f'{md5}{ext}'
+				rel_path = f'{subfolder}/{filename}'
+				abs_path = settings.MEDIA_ROOT / rel_path
+				abs_path.parent.mkdir(parents=True, exist_ok=True)
+		with open(abs_path, 'wb') as f:
+			f.write(data)
+		logger.info('Скачано: %s → %s', url, rel_path)
+		return f'/media/{rel_path}'
+	except Exception as e:
+		logger.warning('Не удалось скачать %s: %s', url, e)
+		return url  # fallback — оставляем оригинальный URL
 
 logger = logging.getLogger(__name__)
 
@@ -75,17 +142,17 @@ def import_row(row):
 		logger.warning('Пропущена строка без slug')
 		return None, 'skip'
 
-	# Основные поля кейса
+	# Основные поля кейса — картинки скачиваем локально
 	defaults = {
 		'title':            row.get('title', ''),
 		'service':          row.get('service', ''),
 		'direction':        row.get('direction', ''),
 		'industry':         row.get('industry', ''),
 		'description':      row.get('description', ''),
-		'cover':            row.get('cover', ''),
-		'hero_bg':          row.get('hero_bg', ''),
-		'hero_image':       row.get('hero_image', ''),
-		'hero_arrow_svg':   row.get('hero_arrow_svg', ''),
+		'cover':            download_image(row.get('cover', ''),            'cases/cover'),
+		'hero_bg':          download_image(row.get('hero_bg', ''),          'cases/hero_bg'),
+		'hero_image':       download_image(row.get('hero_image', ''),       'cases/hero_image'),
+		'hero_arrow_svg':   download_image(row.get('hero_arrow_svg', ''),   'cases/hero_arrow'),
 		'client_url':       row.get('client_url', ''),
 		'year':             row.get('year', ''),
 		'meta_title':       row.get('meta_title', ''),
@@ -153,8 +220,9 @@ def import_row(row):
 	block = _make_block(case, order, 'team', {})
 	order += 1
 	for i in range(1, 5):
-		name = row.get(f'member_{i}_name', '').strip()
-		role = row.get(f'member_{i}_role', '').strip()
+		name  = row.get(f'member_{i}_name',  '').strip()
+		role  = row.get(f'member_{i}_role',  '').strip()
+		photo = row.get(f'member_{i}_photo', '').strip()
 		if not name:
 			continue
 		# Ищем сотрудника по имени без учёта регистра
@@ -162,14 +230,21 @@ def import_row(row):
 		if not employee:
 			employee = Employee.objects.create(name=name, role=role)
 		elif role and employee.role != role:
-			# Обновляем роль если изменилась
 			employee.role = role
 			employee.save(update_fields=['role'])
+		# Скачиваем фото если передан URL и это новый файл
+		if photo:
+			local_photo = download_image(photo, 'employees')
+			# Сохраняем только если изменилось (сравниваем без /media/ префикса)
+			stored = str(employee.photo)
+			if stored != local_photo and f'/media/{stored}' != local_photo:
+				employee.photo = local_photo
+				employee.save(update_fields=['photo'])
 		TeamMember.objects.create(block=block, employee=employee, order=i)
 
 	# Блок: CTA — фиксированный текст, картинка из таблицы
 	cta_fields = dict(CTA_DEFAULTS)
-	cta_fields['cta_image'] = row.get('cta_image', '').strip()
+	cta_fields['cta_image'] = download_image(row.get('cta_image', '').strip(), 'cases/cta')
 	_make_block(case, order, 'cta', cta_fields)
 
 	# Изображения ленты (только для dev-кейсов)
@@ -179,7 +254,8 @@ def import_row(row):
 		for idx, url in enumerate(images_raw.split(','), start=1):
 			url = url.strip()
 			if url:
-				DevCaseImage.objects.create(case=case, url=url, order=idx)
+				local = download_image(url, 'cases/dev')
+				DevCaseImage.objects.create(case=case, url=local, order=idx)
 
 	return case, 'created' if created else 'updated'
 
