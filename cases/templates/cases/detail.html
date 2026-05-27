@@ -275,22 +275,25 @@
 	.case-hero-img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		object-position: top left;
+		object-fit: contain;
+		object-position: center;
 		display: block;
 	}
 
-	/* SVG-стрелка поверх картинки */
+	/* SVG-стрелка поверх картинки — те же параметры что у основной */
 	.case-hero-arrow-svg-layer {
 		position: absolute;
 		inset: 0;
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		object-position: top left;
+		object-fit: contain;
+		object-position: center;
 		pointer-events: none;
 		opacity: 0;
 		transition: opacity 0.6s ease;
+	}
+	@media (hover: none) {
+		.case-hero-arrow-svg-layer { transition: opacity 2s ease; }
 	}
 
 	/* Кликабельная картинка — курсор */
@@ -390,9 +393,53 @@
 	}
 
 	@media (max-width: 720px) {
-		.case-hero-stats { grid-template-columns: 1fr; }
-		.case-hero-preview { min-height: 340px; }
+		/* Метрики остаются горизонтальными на мобиле */
+		.case-hero-stats { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+		.case-hero-stat { padding: 12px 14px; }
+		.case-hero-stat strong { font-size: 20px; }
+		/* Превью: убираем min-height, ширина как у контента */
+		.case-hero-preview { min-height: 0; padding: 0 20px 28px; }
 		.case-preview-card { left: 18px; right: 18px; top: 18px; bottom: 18px; padding: 16px; }
+		/* Убираем границы, скругления и фон блока hero на мобиле */
+		.case-hero { padding: 0; }
+		/* Shell внутри hero — убираем боковые отступы */
+		/* Shell внутри hero на мобиле — растягиваем на всю ширину */
+		.case-hero .shell { width: 100%; }
+		.case-hero-shell {
+			border-radius: 0;
+			border: none;
+			box-shadow: none;
+			background: none !important;
+		}
+		.case-hero-content {
+			border-bottom: none;
+			padding: 28px 20px;
+			background: none !important;
+		}
+		.case-hero-preview { background: none !important; }
+		.case-preview-grid { display: none; }
+		/* imgWrap на мобиле — статичный, по ширине контента */
+		.case-hero-img-wrap {
+			position: relative;
+			inset: auto;
+			border-radius: 16px;
+			overflow: hidden;
+			width: 100%;
+			height: auto;
+		}
+		.case-hero-img {
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+		.case-hero-arrow-svg-layer {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+		}
+		/* Скрываем вводный текст (intro блок) на мобиле */
+		.cb-intro { display: none; }
 	}
 
 	/* ── Общие стили секций ── */
@@ -831,6 +878,17 @@
 {% block content %}
 <main class="case-page">
 
+	<!-- Хлебные крошки -->
+	<div class="shell">
+		<div class="breadcrumb">
+			<a href="/">Главная</a>
+			<span class="breadcrumb-sep">•</span>
+			<a href="{% url 'cases:list' %}">Кейсы</a>
+			<span class="breadcrumb-sep">•</span>
+			<span>{{ case.title }}</span>
+		</div>
+	</div>
+
 	<!-- ════ ГЕРОЙ ════ -->
 	<section class="case-hero">
 		<div class="shell">
@@ -971,8 +1029,22 @@
 						<div>
 							<div class="cb-resume-item-label">{{ item.label }}</div>
 							<div class="cb-resume-item-value">
-								<span class="cb-resume-item-num">{{ item.value }}</span>
-								{% if item.unit %}<span class="cb-resume-item-unit">{{ item.unit }}</span>{% endif %}
+								{% comment %}Рендерим unit/text/text_add в порядке их *_order полей{% endcomment %}
+								{% for slot in "123" %}
+									{% if slot == "1" %}
+										{% if item.unit_order == 1 and item.unit %}<span class="cb-resume-item-num">{{ item.unit }}</span>{% endif %}
+										{% if item.text_order == 1 and item.text %}<span class="cb-resume-item-unit">{{ item.text }}</span>{% endif %}
+										{% if item.text_add_order == 1 and item.text_add %}<span class="cb-resume-item-unit">{{ item.text_add }}</span>{% endif %}
+									{% elif slot == "2" %}
+										{% if item.unit_order == 2 and item.unit %}<span class="cb-resume-item-num">{{ item.unit }}</span>{% endif %}
+										{% if item.text_order == 2 and item.text %}<span class="cb-resume-item-unit">{{ item.text }}</span>{% endif %}
+										{% if item.text_add_order == 2 and item.text_add %}<span class="cb-resume-item-unit">{{ item.text_add }}</span>{% endif %}
+									{% elif slot == "3" %}
+										{% if item.unit_order == 3 and item.unit %}<span class="cb-resume-item-num">{{ item.unit }}</span>{% endif %}
+										{% if item.text_order == 3 and item.text %}<span class="cb-resume-item-unit">{{ item.text }}</span>{% endif %}
+										{% if item.text_add_order == 3 and item.text_add %}<span class="cb-resume-item-unit">{{ item.text_add }}</span>{% endif %}
+									{% endif %}
+								{% endfor %}
 							</div>
 						</div>
 						{% endfor %}
@@ -1135,11 +1207,38 @@
 	{% endfor %}
 
 <script>
-/* Появление SVG-стрелки через 1 секунду */
+/* SVG-стрелка */
 (function() {
-	var arrow = document.getElementById('caseHeroArrow');
+	var arrow   = document.getElementById('caseHeroArrow');
 	if (!arrow) return;
-	setTimeout(function() { arrow.style.opacity = '1'; }, 1000);
+	var imgWrap = document.getElementById('caseHeroImgWrap');
+
+	if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+		/* ПК: появляется через 1с, исчезает при наведении на imgWrap */
+		setTimeout(function() { arrow.style.opacity = '1'; }, 1000);
+		if (imgWrap) {
+			imgWrap.addEventListener('mouseenter', function() { arrow.style.opacity = '0'; });
+			imgWrap.addEventListener('mouseleave', function() { arrow.style.opacity = '1'; });
+		}
+	} else {
+		/* Мобиле/планшет: вешаем observer на case-hero-preview — он крупнее и
+		   точнее уходит из viewport при скролле */
+		var preview = imgWrap ? imgWrap.closest('.case-hero-preview') : null;
+		var target  = preview || imgWrap;
+		if (!target) return;
+		var timer = null;
+		var observer = new IntersectionObserver(function(entries) {
+			if (entries[0].isIntersecting) {
+				/* Пауза 300мс — пользователь видит появление */
+				timer = setTimeout(function() { arrow.style.opacity = '1'; }, 300);
+			} else {
+				/* Ушёл из viewport — сбрасываем таймер и скрываем */
+				clearTimeout(timer);
+				arrow.style.opacity = '0';
+			}
+		}, { threshold: 0.1 });
+		observer.observe(target);
+	}
 })();
 
 /* Лайтбокс со слайдером (2 слайда) */

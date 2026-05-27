@@ -463,23 +463,47 @@ class ResumeItem(models.Model):
 		verbose_name='Блок'
 	)
 	label = models.CharField(
-		'Метка',
+		'Заголовок',
 		max_length=100,
 		help_text='Пример: «Старт работ», «Сдача проекта», «Длительность»'
 	)
-	value = models.CharField(
-		'Значение',
+	# Мелкий текст
+	text = models.CharField(
+		'Текст (мелкий)',
 		max_length=100,
 		blank=True,
-		help_text='Число или текст. Пример: «2,5», «январь»'
+		help_text='Мелкий шрифт. Пример: «месяца», «с января»'
 	)
+	text_order = models.PositiveSmallIntegerField(
+		'Порядок текста',
+		default=2,
+		help_text='Позиция в строке: 1, 2 или 3'
+	)
+	# Крупное значение
 	unit = models.CharField(
-		'Единица / уточнение',
+		'Значение (крупное)',
 		max_length=100,
 		blank=True,
-		help_text='Отображается рядом с значением меньшим шрифтом. Пример: «месяца», «2022»'
+		help_text='Крупный шрифт. Пример: «2,5», «топ-3»'
 	)
-	order = models.PositiveSmallIntegerField('Порядок', default=0)
+	unit_order = models.PositiveSmallIntegerField(
+		'Порядок значения',
+		default=1,
+		help_text='Позиция в строке: 1, 2 или 3'
+	)
+	# Дополнительный мелкий текст
+	text_add = models.CharField(
+		'Доп. текст (мелкий)',
+		max_length=100,
+		blank=True,
+		help_text='Необязательно. Мелкий шрифт. Пример: «2022», «года»'
+	)
+	text_add_order = models.PositiveSmallIntegerField(
+		'Порядок доп. текста',
+		default=3,
+		help_text='Позиция в строке: 1, 2 или 3'
+	)
+	order = models.PositiveSmallIntegerField('Порядок строки', default=0)
 
 	class Meta:
 		verbose_name = 'Строка резюме'
@@ -487,7 +511,7 @@ class ResumeItem(models.Model):
 		ordering = ['order']
 
 	def __str__(self):
-		return f'{self.label}: {self.value}'
+		return f'{self.label}: {self.unit}'
 
 
 class TaskItem(models.Model):

@@ -43,10 +43,10 @@ class DevCaseImageInline(nested_admin.NestedTabularInline):
 
 # ── Вложенные инлайны для блоков ─────────────────────────────────────────────
 
-class ResumeItemInline(nested_admin.NestedTabularInline):
+class ResumeItemInline(nested_admin.NestedStackedInline):
 	model = ResumeItem
 	extra = 1
-	fields = ['label', 'value', 'unit', 'order']
+	fields = ['label', 'unit', 'unit_order', 'text', 'text_order', 'text_add', 'text_add_order', 'order']
 	verbose_name_plural = 'Резюме проекта (строки)'
 
 

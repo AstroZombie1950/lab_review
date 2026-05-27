@@ -188,11 +188,22 @@ def import_row(row):
 	block = _make_block(case, order, 'task_resume', {'task_text': row.get('task_text', '')})
 	order += 1
 	for i in range(1, 4):
-		label = row.get(f'resume_{i}_label', '').strip()
-		value = row.get(f'resume_{i}_value', '').strip()
-		unit  = row.get(f'resume_{i}_unit',  '').strip()
-		if label or value:
-			ResumeItem.objects.create(block=block, label=label, value=value, unit=unit, order=i)
+		label    = row.get(f'resume_{i}_label',         '').strip()
+		unit     = row.get(f'resume_{i}_unit',          '').strip()
+		text     = row.get(f'resume_{i}_text',          '').strip()
+		text_add = row.get(f'resume_{i}_text_add',      '').strip()
+		# Порядки — дефолты: unit=1, text=2, text_add=3
+		unit_order     = int(row.get(f'resume_{i}_unit_order',     1) or 1)
+		text_order     = int(row.get(f'resume_{i}_text_order',     2) or 2)
+		text_add_order = int(row.get(f'resume_{i}_text_add_order', 3) or 3)
+		if label or unit:
+			ResumeItem.objects.create(
+				block=block, label=label,
+				unit=unit, unit_order=unit_order,
+				text=text, text_order=text_order,
+				text_add=text_add, text_add_order=text_add_order,
+				order=i,
+			)
 
 	# Блок: tasks_grid
 	block = _make_block(case, order, 'tasks_grid', {'tasks_title': row.get('tasks_title', '')})

@@ -144,10 +144,10 @@
 	}
 
 	.svc-hero-image {
-		border-radius: var(--radius-xl);
-		background: var(--bg-2);
-		border: 1px solid var(--stroke);
-		overflow: hidden;
+		border-radius: 0;
+		background: transparent;
+		border: none;
+		overflow: visible;
 		aspect-ratio: 4/3;
 		display: flex;
 		align-items: center;
@@ -333,16 +333,16 @@
 	.svc-includes-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 2px;
+		gap: 16px;
 	}
 
 	.svc-include-item {
 		display: flex;
 		gap: 20px;
-		padding: 28px;
+		padding: 16px;
 		border-radius: var(--radius-lg);
 		background: rgba(255,255,255,0.03);
-		border: 1px solid transparent;
+		border: 1px solid var(--stroke);
 		transition: background .2s, border-color .2s;
 		position: relative;
 	}
@@ -480,13 +480,17 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 240px;
 	}
 
+	/* Картинка-заглушка — абсолютное наложение, не тянет высоту */
 	.svc-plan-right img {
+		position: absolute;
+		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		opacity: 0.6;
+		opacity: 0.55;
 	}
 
 	.svc-plan-right-placeholder {
@@ -849,6 +853,7 @@
 		align-items: center;
 		justify-content: center;
 		flex-shrink: 0;
+		margin-left: auto; /* всегда прижата вправо */
 		transition: transform .25s, background .2s, border-color .2s;
 		color: var(--muted-2);
 	}
@@ -1144,7 +1149,7 @@
 		.svc-plan-features { grid-template-columns: 1fr; }
 		.svc-form-left { padding: 32px; }
 		.svc-form-right { padding: 32px; }
-		.svc-steps-grid { grid-template-columns: 1fr; }
+		.svc-steps-grid { grid-template-columns: 1fr; gap: 16px; }
 		.svc-others-grid { grid-template-columns: 1fr; }
 		.svc-includes { padding: 32px; }
 		.svc-includes-grid { grid-template-columns: 1fr; }

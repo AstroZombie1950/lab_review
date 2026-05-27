@@ -482,6 +482,13 @@
 <main class="cases-page">
 	<div class="shell">
 
+		<!-- Хлебные крошки -->
+		<div class="breadcrumb">
+			<a href="/">Главная</a>
+			<span class="breadcrumb-sep">•</span>
+			<span>Кейсы</span>
+		</div>
+
 		<!-- Герой -->
 		<div class="hero">
 			<div class="hero-blob"></div>
@@ -576,7 +583,7 @@
 				</div>
 
 				<!-- Список кейсов -->
-				<div class="cases-list">
+				<div class="cases-list" id="cases-list">
 					{% for case in cases %}
 					<a class="case-row"
 						href="{% url 'cases:detail' case.slug %}"
@@ -624,7 +631,7 @@
 </div>
 
 <script>
-	// Обновляем URL с фильтром, сохраняя остальные параметры
+	// Применяем фильтр без перезагрузки страницы
 	function applyFilter(param, value) {
 		const url = new URL(window.location);
 		if (value) {
@@ -632,7 +639,41 @@
 		} else {
 			url.searchParams.delete(param);
 		}
-		window.location = url;
+		loadCases(url);
+	}
+
+	function loadCases(url) {
+		const list = document.getElementById('cases-list');
+		list.style.opacity = '0.4';
+		list.style.transition = 'opacity .15s';
+		fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+			.then(r => r.text())
+			.then(html => {
+				const doc = new DOMParser().parseFromString(html, 'text/html');
+				const newList = doc.getElementById('cases-list');
+				if (newList) {
+					list.innerHTML = newList.innerHTML;
+					/* Обновляем активные кнопки направления */
+					updateActiveButtons(doc);
+				}
+				history.pushState({}, '', url);
+				list.style.opacity = '1';
+			})
+			.catch(() => { list.style.opacity = '1'; });
+	}
+
+	function updateActiveButtons(doc) {
+		/* Синхронизируем is-active на кнопках направления */
+		doc.querySelectorAll('.sidebar-btn').forEach((btn, i) => {
+			const local = document.querySelectorAll('.sidebar-btn')[i];
+			if (local) local.classList.toggle('is-active', btn.classList.contains('is-active'));
+		});
+		/* Синхронизируем текст дропдаунов */
+		['industry-btn', 'tag-btn'].forEach(id => {
+			const remote = doc.getElementById(id);
+			const local  = document.getElementById(id);
+			if (remote && local) local.innerHTML = remote.innerHTML;
+		});
 	}
 
 	// Поиск с задержкой

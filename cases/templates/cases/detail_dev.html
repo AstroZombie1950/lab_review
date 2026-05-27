@@ -159,6 +159,15 @@
 {% endblock %}
 
 {% block content %}
+<div class="shell">
+	<div class="breadcrumb">
+		<a href="/">Главная</a>
+		<span class="breadcrumb-sep">•</span>
+		<a href="{% url 'cases:list' %}?direction=dev">Кейсы разработки</a>
+		<span class="breadcrumb-sep">•</span>
+		<span>{{ case.title }}</span>
+	</div>
+</div>
 <div class="dev-case-page">
 
 	<!-- ════ САЙДБАР: другие кейсы разработки ════ -->

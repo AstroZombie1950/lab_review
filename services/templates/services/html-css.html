@@ -5,7 +5,7 @@
 {% block meta_description %}Верстаем сайты по макетам Figma. Пиксельная точность, адаптив, быстрая загрузка.{% endblock %}
 
 {% block hero_image %}
-<img src="{% static 'services/img/webdev-html-css.png' %}" alt="">
+<img src="{% static 'services/img/hero/webdev-html-css.png' %}" alt="">
 {% endblock %}
 
 {% block breadcrumb_title %}Верстка сайтов{% endblock %}
@@ -127,7 +127,7 @@
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
-		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+		<div class="svc-plan-right"><img src="{% static 'cases/img/services_temp.jpeg' %}" alt="Пример проекта"></div>
 	</div>
 
 	<div class="svc-plan">
@@ -150,7 +150,7 @@
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
-		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+		<div class="svc-plan-right"><img src="{% static 'cases/img/services_temp.jpeg' %}" alt="Пример проекта"></div>
 	</div>
 {% endblock %}
 
@@ -167,10 +167,19 @@
 {% endblock %}
 
 {% block team %}
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">АИ</div></div><div class="svc-team-name">Алексей Иванов</div><div class="svc-team-role">Руководитель проектов</div></div>
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">МС</div></div><div class="svc-team-name">Мария Смирнова</div><div class="svc-team-role">UI/UX дизайнер</div></div>
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ДК</div></div><div class="svc-team-name">Дмитрий Козлов</div><div class="svc-team-role">Frontend-разработчик</div></div>
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ОП</div></div><div class="svc-team-name">Ольга Петрова</div><div class="svc-team-role">Backend-разработчик</div></div>
+	{% for emp in employees %}
+	<div class="svc-team-card">
+		<div class="svc-team-avatar">
+			{% if emp.photo %}
+			<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
+			{% else %}
+			<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
+			{% endif %}
+		</div>
+		<div class="svc-team-name">{{ emp.name }}</div>
+		<div class="svc-team-role">{{ emp.role }}</div>
+	</div>
+	{% endfor %}
 {% endblock %}
 
 {% block faq %}

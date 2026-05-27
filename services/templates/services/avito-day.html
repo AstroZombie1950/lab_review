@@ -5,7 +5,7 @@
 {% block meta_description %}Нанимаете авитолога на один день — он разбирается в вашем аккаунте, исправляет ошибки, настраивает объявления и объясняет, что делать дальше.{% endblock %}
 
 {% block hero_image %}
-<img src="{% static 'services/img/avito-day.png' %}" alt="">
+<img src="{% static 'services/img/hero/avito-day.png' %}" alt="">
 {% endblock %}
 
 {% block breadcrumb_title %}Авитолог на день{% endblock %}
@@ -119,7 +119,7 @@
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
-		<div class="svc-plan-right"><div class="svc-plan-right-placeholder"><svg width="48" height="48" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/></svg><span>Скриншот проекта</span></div></div>
+		<div class="svc-plan-right"><img src="{% static 'cases/img/services_temp.jpeg' %}" alt="Пример проекта"></div>
 	</div>
 {% endblock %}
 
@@ -132,9 +132,19 @@
 {% endblock %}
 
 {% block team %}
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">АИ</div></div><div class="svc-team-name">Алексей Иванов</div><div class="svc-team-role">Руководитель проектов</div></div>
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ЕК</div></div><div class="svc-team-name">Екатерина Кузьмина</div><div class="svc-team-role">Специалист по Авито</div></div>
-	<div class="svc-team-card"><div class="svc-team-avatar"><div class="svc-team-avatar-placeholder">ОП</div></div><div class="svc-team-name">Ольга Петрова</div><div class="svc-team-role">Копирайтер</div></div>
+	{% for emp in employees %}
+	<div class="svc-team-card">
+		<div class="svc-team-avatar">
+			{% if emp.photo %}
+			<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
+			{% else %}
+			<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
+			{% endif %}
+		</div>
+		<div class="svc-team-name">{{ emp.name }}</div>
+		<div class="svc-team-role">{{ emp.role }}</div>
+	</div>
+	{% endfor %}
 {% endblock %}
 
 {% block faq %}

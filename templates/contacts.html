@@ -49,13 +49,25 @@
 		max-width: 560px;
 	}
 
-	/* ── Основной grid: левая карточка + правая колонка ── */
-	.contacts-grid {
+	/* ── Внешний grid: левая колонка (карточка+советы) + правая (форма) ── */
+	.contacts-main-grid {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 24px;
-		align-items: start;
-		margin-bottom: 24px;
+		align-items: stretch;
+	}
+	.contacts-left-col {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+	/* Три карточки слева растягиваются равномерно */
+	.contacts-left-col > * { flex: 1; }
+	/* ── Внутренний grid карточки + советов ── */
+	.contacts-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
 	}
 
 	/* ── Правая колонка: два совета ── */
@@ -167,11 +179,13 @@
 		background: var(--bg-2);
 		border: 1px solid var(--stroke);
 		border-radius: var(--radius-xl);
-		padding: 56px;
+		padding: 48px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
-		text-align: center;
+		align-items: flex-start;
+		text-align: left;
+		height: 100%;
+		box-sizing: border-box;
 	}
 
 	.contacts-cta-header {
@@ -197,7 +211,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
-		max-width: 560px;
+		width: 100%;
 		margin-bottom: 40px;
 	}
 
@@ -214,6 +228,7 @@
 	.contacts-field input,
 	.contacts-field textarea {
 		width: 100%;
+		box-sizing: border-box;
 		background: var(--bg-3);
 		border: 1px solid var(--stroke);
 		border-radius: var(--radius-md);
@@ -237,7 +252,7 @@
 	}
 
 	.contacts-form-submit {
-		align-self: center;
+		align-self: flex-start;
 		background: var(--accent);
 		color: #fff;
 		font-size: 14px;
@@ -345,15 +360,24 @@
 
 	/* ── Адаптив ── */
 	@media (max-width: 900px) {
-		.contacts-grid { grid-template-columns: 1fr; }
+		.contacts-main-grid { grid-template-columns: 1fr; }
+		/* На планшете и мобиле кнопки — только иконка */
+		.contacts-btn { padding: 12px 16px; }
+		.contacts-btn .btn-label { display: none; }
+		.contacts-btns { flex-wrap: wrap; }
 	}
 
 	@media (max-width: 640px) {
 		.contacts-card,
 		.contacts-tip,
-		.contacts-cta { padding: 28px 24px; }
-
+		.contacts-cta { padding: 28px 20px; }
 		.contacts-cta-title { font-size: 26px; }
+		/* Фикс обрезания полей формы */
+		.contacts-field input,
+		.contacts-field textarea { width: 100%; box-sizing: border-box; }
+		.contacts-form { width: 100%; }
+		/* Левая колонка — убираем flex: 1 чтобы карточки не растягивались */
+		.contacts-left-col > * { flex: none; }
 	}
 </style>
 {% endblock %}
@@ -371,20 +395,15 @@
 			<span>Контакты</span>
 		</div>
 
-		<button class="back-nav" onclick="history.back()">
-			<span class="back-nav-icon">
-				<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M12 5l-7 7 7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-			</span>
-			Назад
-		</button>
-
 		<!-- ════ ЗАГОЛОВОК ════ -->
 		<div class="contacts-header">
-			<div class="contacts-label">Контакты</div>
 			<h1 class="contacts-title">Контакты</h1>
 			<p class="contacts-subtitle">Свяжитесь с нами удобным способом — обсудим задачу, подскажем по формату работы и сориентируем по следующим шагам.</p>
 		</div>
 
+		<!-- ════ Двухколоночный layout: левая (карточка+советы) + правая (форма) ════ -->
+		<div class="contacts-main-grid">
+		<div class="contacts-left-col">
 		<!-- ════ GRID: карточка контактов + советы ════ -->
 		<div class="contacts-grid">
 
@@ -457,8 +476,9 @@
 			</div><!-- /contacts-tips-col -->
 
 		</div><!-- /contacts-grid -->
+		</div><!-- /contacts-left-col -->
 
-		<!-- ════ CTA во всю ширину ════ -->
+		<!-- ════ CTA — правая колонка ════ -->
 		<div class="contacts-cta">
 			<div class="contacts-cta-header">
 				<div class="contacts-cta-title">Готовы обсудить проект?</div>
@@ -469,20 +489,20 @@
 			<form class="contacts-form" id="contacts-form" novalidate>
 				{% csrf_token %}
 				<div class="contacts-field">
-					<label>Имя</label>
-					<input type="text" id="contacts-name" name="name" placeholder="Иван Иванов" />
+					<label>Имя *</label>
+					<input type="text" id="contacts-name" name="name" placeholder="Иван Иванов" required />
 				</div>
 				<div class="contacts-field">
 					<label>Телефон *</label>
-					<input type="tel" id="contacts-phone" name="phone" placeholder="+7 (999) 000-00-00" autocomplete="tel" />
+					<input type="tel" id="contacts-phone" name="phone" placeholder="+7 (999) 000-00-00" autocomplete="tel" required />
 				</div>
 				<div class="contacts-field">
 					<label>E-mail *</label>
-					<input type="text" id="contacts-email" name="email" placeholder="name@example.com" autocomplete="email" />
+					<input type="email" id="contacts-email" name="email" placeholder="name@example.com" autocomplete="email" required />
 				</div>
 				<div class="contacts-field">
-					<label>Сообщение</label>
-					<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
+					<label>Сообщение *</label>
+					<textarea name="message" rows="4" placeholder="Расскажите о проекте..." required></textarea>
 				</div>
 				<div class="contacts-consent-field">
 					<label class="contacts-consent-label">
@@ -501,18 +521,19 @@
 			<div class="contacts-btns">
 				<a href="https://t.me/Lab_Review_bot" target="_blank" rel="noopener" class="contacts-btn">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M21.2 4.27L2.49 11.6c-1.3.52-1.29 1.25-.24 1.57l4.82 1.5 11.1-7c.52-.32 1-.15.6.2L8.54 16.6l-.34 5.1c.5 0 .72-.23 1-.5l2.4-2.32 5 3.67c.92.5 1.58.25 1.82-.85L22.9 5.4c.34-1.36-.52-1.97-1.7-1.13z" fill="currentColor"/></svg>
-					Обсудить в Telegram
+					<span class="btn-label">Обсудить в Telegram</span>
 				</a>
 				<a href="https://max.ru/id234813866415_bot" target="_blank" rel="noopener" class="contacts-btn">
 					<span style="font-size:12px;font-weight:800;letter-spacing:-0.05em;line-height:1;">Max</span>
-					Написать в MAX
+					<span class="btn-label">Написать в MAX</span>
 				</a>
 				<a href="mailto:contact@lab-review.ru" class="contacts-btn">
 					<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-					Отправить на почту
+					<span class="btn-label">Отправить на почту</span>
 				</a>
 			</div>
 		</div><!-- /contacts-cta -->
+		</div><!-- /contacts-main-grid -->
 
 	</div><!-- /shell -->
 </main>
