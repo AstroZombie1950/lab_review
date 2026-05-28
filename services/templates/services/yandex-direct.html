@@ -1,129 +1,141 @@
 {% extends "services/service_base.html" %}
 {% load static %}
 
-{% block title %}Ведение Яндекс Директ | Lab Review{% endblock %}
-{% block meta_description %}Настраиваем и ведём рекламные кампании в Яндекс Директ. Снижаем стоимость заявки, повышаем конверсию и контролируем бюджет.{% endblock %}
+{% block title %}Настройка и ведение Яндекс Директ | Lab Review{% endblock %}
+{% block meta_description %}Делаем Яндекс Директ рабочим источником обращений: настраиваем кампании, подключаем аналитику и ведём рекламу по реальным данным.{% endblock %}
 
-{% block hero_image %}
-<img src="{% static 'services/img/hero/yandex-direct.png' %}" alt="">
-{% endblock %}
-
-{% block breadcrumb_title %}Ведение Яндекс Директ{% endblock %}
+{% block hero_image %}<img src="{% static 'services/img/hero/yandex-direct.png' %}" alt="">{% endblock %}
+{% block breadcrumb_title %}Яндекс Директ{% endblock %}
 {% block hero_label %}Реклама{% endblock %}
 
 {% block hero_title %}
-	Ведение<br><span>Яндекс Директ</span>
+	Настройка и ведение<br><span>Яндекс Директ</span>
 {% endblock %}
 
 {% block hero_text %}
-	Настраиваем рекламные кампании, которые приводят клиентов, а не сжигают бюджет. Постоянно оптимизируем ставки, объявления и аудитории — чтобы каждый рубль работал эффективнее.
+	Делаем Яндекс Директ рабочим источником обращений: проверяем сайт перед запуском, собираем кампании по направлениям, подключаем аналитику и дальше ведём рекламу по реальным данным — запросам, расходам, заявкам и стоимости обращения.
 {% endblock %}
 
 {% block hero_checks %}
 	<div class="svc-check">
-		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Настройка кампаний с нуля или аудит текущих
-	</div>
+			<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+			Настройка кампаний под услуги, регион и бюджет
+		</div>
 	<div class="svc-check">
-		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Ежедневный контроль расходов и ставок
-	</div>
+			<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+			Ключевые запросы, минус-слова и объявления
+		</div>
 	<div class="svc-check">
-		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Снижение стоимости заявки со временем
-	</div>
+			<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+			Яндекс Метрика, цели и контроль заявок
+		</div>
 	<div class="svc-check">
-		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Подробная аналитика и отчётность
-	</div>
+			<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+			Ведение рекламы после запуска
+		</div>
 {% endblock %}
+
+{% block hero_btn_text %}Запустить рекламу{% endblock %}
+{% block hero_btn_note %}Ответим, уточним задачу и предложим подходящий формат работы.{% endblock %}
+
+{% block info_label %}Об услуге{% endblock %}
+{% block info_title %}Что вы получаете{% endblock %}
 
 {% block info_cards %}
 	<div class="svc-info-card is-accent">
-		<div class="svc-info-card-title">Настройка и запуск</div>
-		<p class="svc-info-card-text">Правильная структура кампании с самого начала — это половина успеха. Мы собираем семантику, минус-слова, пишем объявления и настраиваем таргетинг так, чтобы реклама показывалась нужной аудитории.</p>
+		<div class="svc-info-card-title">Реклама, которой можно управлять</div>
+		<p class="svc-info-card-text">Кампании не сваливаются в одну общую массу. Видно, какие направления дают отклик, где расходуется бюджет и какие участки рекламы требуют внимания.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Сбор семантики и минус-слов</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Написание продающих объявлений</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Настройка аудиторий и геотаргетинга</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Подключение Метрики и настройка целей</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>понятная структура кампаний</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>расходы видны по направлениям</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>проще оценивать эффективность</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>реклама не живёт сама по себе</div>
 		</div>
 	</div>
 	<div class="svc-info-card is-dark">
-		<div class="svc-info-card-title">Постоянное ведение</div>
-		<p class="svc-info-card-text">Запустить кампанию — это только начало. Настоящая оптимизация происходит в процессе: убираем неработающие объявления, снижаем ставки по дорогим запросам, масштабируем то, что приносит результат.</p>
+		<div class="svc-info-card-title">Понятные данные для решений</div>
+		<p class="svc-info-card-text">После запуска ориентируемся не на ощущения, а на цифры: клики, заявки, стоимость обращения, поисковые фразы и поведение пользователей после перехода на сайт.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ежедневный контроль расходов</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>А/Б тест объявлений и посадочных страниц</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Оптимизация ставок и стратегий</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Еженедельный отчёт по ключевым метрикам</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>видно, откуда приходят обращения</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>понятна стоимость заявки</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>можно отсекать лишний трафик</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>сильные связки легче масштабировать</div>
 		</div>
 	</div>
 {% endblock %}
+
+{% block includes_label %}Состав услуги{% endblock %}
+{% block includes_title %}Что входит в настройку и ведение Яндекс Директ{% endblock %}
 
 {% block includes %}
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Подбор семантики</div>
-						<p class="svc-include-text">Собираем ключевые слова, минус-фразы и формируем структуру кампаний.</p>
+						<div class="svc-include-title">Анализ сайта и вводных</div>
+						<p class="svc-include-text">Смотрим посадочную страницу, предложение, регион, бюджет, нишу и текущие рекламные данные, если кампании уже запускались.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke="currentColor" stroke-width="1.5"/><polyline points="14 2 14 8 20 8" stroke="currentColor" stroke-width="1.5"/><path d="M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Семантика и минус-слова</div>
+						<p class="svc-include-text">Собираем целевые запросы, распределяем их по группам и добавляем минус-слова, чтобы отсечь лишние показы.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Создание объявлений</div>
-						<p class="svc-include-text">Пишем конверсионные тексты с сильными офферами и быстрыми ссылками.</p>
+						<div class="svc-include-title">Кампании и объявления</div>
+						<p class="svc-include-text">Готовим кампании, группы объявлений, тексты, быстрые ссылки, уточнения, регионы, расписание и ограничения бюджета.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Настройка таргетинга</div>
-						<p class="svc-include-text">Гео, время показов, аудитории, ставки — настраиваем под вашу задачу.</p>
+						<div class="svc-include-title">Метрика, цели и UTM</div>
+						<p class="svc-include-text">Проверяем аналитику, цели, формы, звонки и UTM-метки, чтобы отслеживать обращения после клика.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Оптимизация кампаний</div>
-						<p class="svc-include-text">Снижаем стоимость клика, отключаем неэффективные ключи, масштабируем рабочее.</p>
+						<div class="svc-include-title">Ведение рекламы</div>
+						<p class="svc-include-text">Работаем с поисковыми фразами, минус-словами, объявлениями, настройками, расходами и результатами кампаний.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="6" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="2" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Ретаргетинг</div>
-						<p class="svc-include-text">Настраиваем возврат аудитории, которая уже была на сайте.</p>
-					</div>
-				</div>
-				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4zM9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-					<div class="svc-include-body">
-						<div class="svc-include-title">Прозрачная аналитика</div>
-						<p class="svc-include-text">Еженедельный отчёт по расходам, кликам, конверсиям и стоимости заявки.</p>
+						<div class="svc-include-title">Отчётность</div>
+						<p class="svc-include-text">Показываем расходы, клики, заявки, стоимость обращения, внесённые изменения и дальнейшие действия.</p>
 					</div>
 				</div>
 {% endblock %}
+
+{% block plans_label %}Стоимость{% endblock %}
+{% block plans_title %}Стоимость ведения Яндекс Директ{% endblock %}
+{% block plans_intro %}{% endblock %}
 
 {% block plans %}
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
-				<div class="svc-plan-name">Старт</div>
-				<div class="svc-plan-desc">Настройка и ведение одной кампании для небольшого бюджета</div>
+				<div class="svc-plan-name">Услуги</div>
+				<div class="svc-plan-desc">Для сайтов услуг, где рекламируется одно направление или несколько близких направлений.</div>
 				<div class="svc-plan-includes">Что входит:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Сбор семантики</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Написание объявлений</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Настройка Метрики</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ежедневный контроль</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ежемесячный отчёт</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Бюджет до 50 000 ₽/мес</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>настройка и ведение рекламы для сайта услуг</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>работа с ограниченным числом направлений</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>структура кампаний под услуги и регион</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>семантика, минус-слова и объявления</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>быстрые ссылки, уточнения и базовые настройки</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>проверка Метрики, целей и заявок</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ведение рекламы по статистике</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>отчётность по расходам и обращениям</div>
 				</div>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>15 000 ₽</strong>/мес</div>
+				<div class="svc-plan-price"><strong>от 30 000 ₽</strong></div>
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
@@ -132,20 +144,22 @@
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
-				<div class="svc-plan-name">Про</div>
-				<div class="svc-plan-desc">Полноценное ведение нескольких кампаний с активной оптимизацией</div>
-				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-name">Товары / каталог</div>
+				<div class="svc-plan-desc">Для сайтов с ассортиментом, категориями и большим количеством товарных групп. Здесь объём работы выше: нужно разделять рекламу по направлениям, собирать больше семантики и не смешивать разные товары в одну общую кампанию.</div>
+				<div class="svc-plan-includes">Чем отличается от тарифа «Услуги»:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из Старта</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>До 5 кампаний</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>А/Б тест объявлений</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ретаргетинг</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Еженедельный отчёт</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Персональный менеджер</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>больше рекламных направлений</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>больше групп объявлений</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>отдельная семантика под категории товаров</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>больше объём минус-слов</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>сложнее структура кампаний</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>больше времени на ведение и аналитику</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>отдельный разбор эффективности по товарным группам</div>
 				</div>
+			<p class="svc-plan-note">Рекламный бюджет оплачивается отдельно напрямую в Яндекс Директ.</p>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>35 000 ₽</strong>/мес</div>
+				<div class="svc-plan-price"><strong>от 50 000 ₽</strong></div>
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
@@ -153,24 +167,26 @@
 	</div>
 {% endblock %}
 
+{% block steps_label %}Процесс{% endblock %}
+{% block steps_title %}Как мы работаем{% endblock %}
+
 {% block steps %}
-	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Бриф</div><p class="svc-step-text">Изучаем продукт, аудиторию, конкурентов и цели рекламы.</p></div>
-	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Семантика</div><p class="svc-step-text">Собираем целевые запросы и минус-слова для точного таргетинга.</p></div>
-	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Объявления</div><p class="svc-step-text">Пишем продающие объявления с сильным оффером и расширениями.</p></div>
-	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Настройка</div><p class="svc-step-text">Настраиваем кампании, аудитории, геотаргетинг и стратегии ставок.</p></div>
-	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Запуск</div><p class="svc-step-text">Запускаем рекламу и ведём плотный мониторинг первые дни.</p></div>
-	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Оптимизация</div><p class="svc-step-text">Отключаем неэффективное, масштабируем то, что приносит заявки.</p></div>
-	<div class="svc-step"><div class="svc-step-num">7</div><div class="svc-step-title">Отчётность</div><p class="svc-step-text">Регулярно отчитываемся по расходам, заявкам и стоимости привлечения.</p></div>
+	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Изучаем задачу</div><p class="svc-step-text">Разбираем бизнес, сайт, регион, бюджет, цели рекламы и текущую ситуацию.</p></div>
+	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Проверяем сайт</div><p class="svc-step-text">Смотрим, готова ли посадочная страница к трафику: понятно ли предложение, есть ли формы, контакты и путь до заявки.</p></div>
+	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Планируем запуск</div><p class="svc-step-text">Определяем, с каких направлений начинать, как разделить рекламу и какие ограничения учесть до старта.</p></div>
+	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Собираем рекламу</div><p class="svc-step-text">Готовим кампании к запуску, проверяем настройки и согласуем финальный вариант перед модерацией.</p></div>
+	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Запускаем показы</div><p class="svc-step-text">Отправляем кампании на модерацию, запускаем рекламу и начинаем собирать первые данные.</p></div>
+	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Отсекаем лишнее</div><p class="svc-step-text">Убираем то, что даёт нецелевые переходы, пустые расходы или слабый отклик.</p></div>
+	<div class="svc-step"><div class="svc-step-num">7</div><div class="svc-step-title">Усиливаем рабочее</div><p class="svc-step-text">Оставляем и развиваем направления, которые дают обращения по приемлемой стоимости.</p></div>
+	<div class="svc-step"><div class="svc-step-num">8</div><div class="svc-step-title">Показываем результат</div><p class="svc-step-text">Передаём понятный отчёт: что сделано, что сработало, что изменили и какие шаги нужны дальше.</p></div>
 {% endblock %}
 
 {% block team %}
 	{% for emp in employees %}
 	<div class="svc-team-card">
 		<div class="svc-team-avatar">
-			{% if emp.photo %}
-			<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
-			{% else %}
-			<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
+			{% if emp.photo %}<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
+			{% else %}<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
 			{% endif %}
 		</div>
 		<div class="svc-team-name">{{ emp.name }}</div>
@@ -179,12 +195,18 @@
 	{% endfor %}
 {% endblock %}
 
+{% block faq_label %}FAQ{% endblock %}
+{% block faq_title %}Часто спрашивают{% endblock %}
+
 {% block faq %}
-	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько нужно бюджета на рекламу?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Минимальный рекомендуемый рекламный бюджет — 30 000 ₽ в месяц. Это отдельно от стоимости ведения. С меньшим бюджетом сложно получить достаточно данных для нормальной оптимизации.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Вы работаете с нашим аккаунтом Директа или создаёте новый?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Работаем в вашем аккаунте — вы всегда видите кампании и расходы. Бюджет пополняете сами напрямую в Яндекс. Никаких непрозрачных схем.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Когда появятся первые заявки?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Первые клики и заявки появляются в первый же день после запуска. Оптимизация и снижение стоимости заявки — процесс постепенный, занимает 2–4 недели после старта.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Можете взять кампании, которые уже настроены?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Проводим аудит текущих кампаний, находим точки роста и берём в ведение. Если что-то настроено плохо — честно скажем и предложим план переработки.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Что входит в еженедельный отчёт?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Расходы, клики, показы, CTR, количество заявок и стоимость заявки. Плюс комментарий — что сделали на неделе и что планируем.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько стоит настройка и ведение Яндекс Директ?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Стоимость работы начинается от 30 000 ₽. Для сайтов услуг тариф обычно начинается от 30 000 ₽, для сайтов с товарами, категориями и большим количеством групп — от 50 000 ₽.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Рекламный бюджет входит в стоимость?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Нет, рекламный бюджет оплачивается отдельно напрямую в Яндекс Директ. В стоимость услуги входит наша работа по настройке, ведению и оптимизации рекламы.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Какой бюджет нужен для запуска?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Рекламный бюджет зависит от ниши, региона и конкуренции. Как ориентир, на старт лучше закладывать бюджет на рекламу от стоимости выбранного тарифа. Если работа стоит 30 000 ₽, заходить с бюджетом 10 000 ₽ обычно не имеет смысла.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Вы можете взять уже запущенную кампанию?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Если реклама уже работает, смотрим текущие настройки, статистику, расходы, поисковые фразы и слабые места, после чего дорабатываем кампании.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Когда будут первые заявки?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Первые обращения могут появиться после запуска показов. Но результат зависит от ниши, бюджета, сайта, конкуренции и того, как обрабатываются заявки.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Можно заранее понять, сколько будет заявок?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Точное количество заявок заранее назвать нельзя. Можно оценить нишу, бюджет, конкуренцию и после запуска смотреть реальные данные: клики, обращения, стоимость заявки и качество трафика.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Что входит в ведение Яндекс Директ?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Ведение включает анализ статистики, работу с поисковыми фразами, минус-словами, объявлениями, настройками кампаний, расходами и отчётностью.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Нужен ли сайт для запуска рекламы?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, сайт нужен. Рекламу нужно вести на страницу, где понятно описано предложение, есть контакты, формы или другой удобный способ оставить заявку.</div></div></div>
 {% endblock %}
 
 {% block others %}

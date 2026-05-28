@@ -1189,8 +1189,8 @@
 					<p class="svc-hero-text">{% block hero_text %}{% endblock %}</p>
 					<div class="svc-hero-checks">{% block hero_checks %}{% endblock %}</div>
 					<div class="svc-hero-cta">
-						<a href="#" class="svc-hero-btn js-modal-open">Обсудить проект</a>
-						<p class="svc-hero-note">Ответим, уточним задачу и предложим подходящий формат работы.</p>
+						<a href="#" class="svc-hero-btn js-modal-open">{% block hero_btn_text %}Обсудить проект{% endblock %}</a>
+						<p class="svc-hero-note">{% block hero_btn_note %}Ответим, уточним задачу и предложим подходящий формат работы.{% endblock %}</p>
 					</div>
 				</div>
 				<div class="svc-hero-image">
@@ -1206,8 +1206,8 @@
 
 		<!-- ════ ИНФО-БЛОКИ ════ -->
 		<section class="svc-section">
-			<div class="svc-section-label">О услуге</div>
-			<h2 class="svc-section-title">Что вы получаете</h2>
+			<div class="svc-section-label">{% block info_label %}Об услуге{% endblock %}</div>
+			<h2 class="svc-section-title">{% block info_title %}Что вы получаете{% endblock %}</h2>
 			<div class="svc-info-grid">{% block info_cards %}{% endblock %}</div>
 		</section>
 
@@ -1216,7 +1216,7 @@
 			<div class="svc-includes">
 				<div class="svc-includes-header">
 					<div>
-						<div class="svc-section-label" style="margin-bottom: 12px;">Состав услуги</div>
+						<div class="svc-section-label" style="margin-bottom: 12px;">{% block includes_label %}Состав услуги{% endblock %}</div>
 						<h2 class="svc-includes-title">{% block includes_title %}Что входит <span>в услугу</span>{% endblock %}</h2>
 					</div>
 					<a href="#" class="svc-includes-btn js-modal-open">Обсудить проект</a>
@@ -1229,9 +1229,9 @@
 
 		<!-- ════ ТАРИФЫ ════ -->
 		<section class="svc-section">
-			<div class="svc-section-label">Стоимость</div>
-			<h2 class="svc-section-title">Варианты <span>тарифов</span></h2>
-			<p class="svc-section-text">Каждый проект рассчитываем индивидуально. Ниже — ориентировочные пакеты для разных задач.</p>
+			<div class="svc-section-label">{% block plans_label %}Стоимость{% endblock %}</div>
+			<h2 class="svc-section-title">{% block plans_title %}Варианты <span>тарифов</span>{% endblock %}</h2>
+			{% block plans_intro %}<p class="svc-section-text">Каждый проект рассчитываем индивидуально. Ниже — ориентировочные пакеты для разных задач.</p>{% endblock %}
 			<div class="svc-plans">{% block plans %}{% endblock %}</div>
 		</section>
 
@@ -1300,8 +1300,8 @@
 
 		<!-- ════ КАК МЫ РАБОТАЕМ ════ -->
 		<section class="svc-section">
-			<div class="svc-section-label">Процесс</div>
-			<h2 class="svc-section-title">Как мы <span>работаем</span></h2>
+			<div class="svc-section-label">{% block steps_label %}Процесс{% endblock %}</div>
+			<h2 class="svc-section-title">{% block steps_title %}Как мы <span>работаем</span>{% endblock %}</h2>
 			<div class="svc-steps-wrap">
 				<!-- SVG-змейка рисуется JS'ом -->
 				<svg class="svc-steps-svg" id="svc-steps-svg" aria-hidden="true"></svg>
@@ -1318,8 +1318,8 @@
 
 		<!-- ════ FAQ ════ -->
 		<section class="svc-section">
-			<div class="svc-section-label">Вопросы</div>
-			<h2 class="svc-section-title">Часто <span>спрашивают</span></h2>
+			<div class="svc-section-label">{% block faq_label %}Вопросы{% endblock %}</div>
+			<h2 class="svc-section-title">{% block faq_title %}Часто <span>спрашивают</span>{% endblock %}</h2>
 			<div class="svc-faq">{% block faq %}{% endblock %}</div>
 		</section>
 

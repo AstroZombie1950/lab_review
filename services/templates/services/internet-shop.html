@@ -2,129 +2,134 @@
 {% load static %}
 
 {% block title %}Разработка интернет-магазина | Lab Review{% endblock %}
-{% block meta_description %}Создаём удобные интернет-магазины с высокой скоростью работы, стильным дизайном и продуманной навигацией.{% endblock %}
+{% block meta_description %}Делаем интернет-магазин, где ассортимент не просто лежит на сайте, а ведёт покупателя к покупке: от выбора товара до оформления заказа и оплаты.{% endblock %}
 
-{% block hero_image %}
-<img src="{% static 'services/img/hero/webdev-internet-shop.png' %}" alt="">
-{% endblock %}
-
+{% block hero_image %}<img src="{% static 'services/img/hero/webdev-internet-shop.png' %}" alt="">{% endblock %}
 {% block breadcrumb_title %}Разработка интернет-магазина{% endblock %}
 {% block hero_label %}Разработка{% endblock %}
 
 {% block hero_title %}
-	Разработка<br>
-	<span>интернет-</span>магазина
+	Разработка<br><span>интернет-магазина</span>
 {% endblock %}
 
 {% block hero_text %}
-	Создаём удобные в управлении интернет-магазины с высокой скоростью работы, стильным дизайном и продуманной навигацией для ваших отличных продаж.
+	Делаем интернет-магазин, где ассортимент не просто лежит на сайте, а ведёт покупателя к покупке: от выбора товара до оформления заказа и оплаты. Подходит для бизнеса, которому нужен управляемый канал продаж, а не витрина «для галочки».
 {% endblock %}
 
 {% block hero_checks %}
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Детальное проектирование интерфейса
+		Каталог с категориями и товарами
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Интеграции с системами оплаты и учёта
+		Корзина и оформление заказа
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Продающее оформление и контент
+		Оплата, доставка и уведомления
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Верстка для всех видов устройств
+		Управление товарами через админку
 	</div>
 {% endblock %}
+
+{% block hero_btn_text %}Заказать интернет-магазин{% endblock %}
+{% block hero_btn_note %}Ответим, уточним задачу и предложим подходящий формат работы.{% endblock %}
+
+{% block info_label %}Об услуге{% endblock %}
+{% block info_title %}Что вы получаете{% endblock %}
 
 {% block info_cards %}
 	<div class="svc-info-card is-accent">
-		<div class="svc-info-card-title">Компоненты успешного интернет-магазина</div>
-		<p class="svc-info-card-text">Качественный ресурс не случается сам по себе. Мы тщательно продумываем ваш продающий магазин — от общей концепции до работы составляющих частей.</p>
+		<div class="svc-info-card-title">Магазин, где можно купить</div>
+		<p class="svc-info-card-text">Покупатель видит ассортимент, открывает карточку товара, выбирает нужный вариант и проходит понятный путь к заказу без лишней переписки на каждом шаге.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Проектирование каталога и карточек товаров</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Корзина, оформление заказа, личный кабинет</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Подключение платёжных систем</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>SEO-оптимизация с первого дня</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>товары собраны в одном месте</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>покупка проходит по понятному сценарию</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>меньше ручных уточнений</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>заказ не теряется в переписке</div>
 		</div>
 	</div>
 	<div class="svc-info-card is-dark">
-		<div class="svc-info-card-title">Удобство пользователя</div>
-		<p class="svc-info-card-text">Путь к заказу товара должен быть лёгким. Мы продумываем каждый шаг покупателя, чтобы конверсия была максимальной.</p>
+		<div class="svc-info-card-title">Управление ассортиментом</div>
+		<p class="svc-info-card-text">Интернет-магазин даёт контроль над товарами, ценами, описаниями и заказами. Основные изменения можно вносить через админку без постоянного обращения к разработчику.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Сортировка товаров по категориям</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Логика расположения кнопок для быстрого перехода</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Призывы к действию в правильных местах</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Адаптивность на всех устройствах</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>можно обновлять товары и цены</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>удобно менять описания и изображения</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>заказы видны в панели управления</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>магазин можно развивать по мере роста</div>
 		</div>
 	</div>
 {% endblock %}
 
+{% block includes_label %}Состав услуги{% endblock %}
+{% block includes_title %}Что входит в разработку интернет-магазина{% endblock %}
+
 {% block includes %}
-				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-					<div class="svc-include-body">
-						<div class="svc-include-title">Анализ и ТЗ</div>
-						<p class="svc-include-text">Изучаем бизнес, конкурентов и требования — составляем подробное техзадание.</p>
-					</div>
-				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.5"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">UX и структура каталога</div>
-						<p class="svc-include-text">Проектируем удобную навигацию, фильтры и карточки товаров для роста конверсии.</p>
+						<div class="svc-include-title">Каталог и карточки товаров</div>
+						<p class="svc-include-text">Собираем витрину магазина: разделы, товары, карточки, цены, описания, изображения и основные параметры.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6h18M16 10a4 4 0 01-8 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Дизайн</div>
-						<p class="svc-include-text">Разрабатываем дизайн с учётом специфики e-commerce и вашего бренда.</p>
+						<div class="svc-include-title">Корзина и оформление заказа</div>
+						<p class="svc-include-text">Делаем сценарий покупки: выбор товара, добавление в корзину, оформление заказа и передачу данных покупателя.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M1 10h22" stroke="currentColor" stroke-width="1.5"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Оплата и доставка</div>
+						<p class="svc-include-text">Настраиваем способы оплаты и доставки в рамках выбранного тарифа и задачи проекта.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M12 18h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Адаптивная версия</div>
+						<p class="svc-include-text">Настраиваем корректное отображение магазина на компьютере, планшете и телефоне.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Разработка функционала</div>
-						<p class="svc-include-text">Корзина, оплата, доставка, личный кабинет, управление товарами — всё под ключ.</p>
-					</div>
-				</div>
-				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-					<div class="svc-include-body">
-						<div class="svc-include-title">Тестирование</div>
-						<p class="svc-include-text">Проверяем все сценарии покупки, интеграции с оплатой и работу на мобильных.</p>
-					</div>
-				</div>
-				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-					<div class="svc-include-body">
-						<div class="svc-include-title">SEO-настройка при запуске</div>
-						<p class="svc-include-text">Базовая техническая SEO-оптимизация сразу при сдаче проекта.</p>
+						<div class="svc-include-title">Админка и запуск</div>
+						<p class="svc-include-text">Настраиваем управление товарами и заказами, размещаем магазин на хостинге и готовим его к работе.</p>
 					</div>
 				</div>
 {% endblock %}
+
+{% block plans_label %}Стоимость{% endblock %}
+{% block plans_title %}Стоимость разработки интернет-магазина{% endblock %}
+{% block plans_intro %}{% endblock %}
 
 {% block plans %}
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
 				<div class="svc-plan-name">Start</div>
-				<div class="svc-plan-desc">Магазин для начинающих предпринимателей</div>
+				<div class="svc-plan-desc">Небольшой интернет-магазин для старта продаж через сайт без сложной логики, интеграций и автоматизации.</div>
 				<div class="svc-plan-includes">Что входит:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Дизайн с нуля или по брендбуку</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Каталог до 100 позиций</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Подключение оплаты</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Адаптив + базовое SEO</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>2 месяца поддержки</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Тестирование</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>каталог товаров</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>карточки товаров</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>корзина</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>оформление заказа</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>мобильная версия</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>базовые страницы: доставка, оплата, контакты</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>админка для управления товарами</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>установка на хостинг</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>добавление небольшого количества товаров на старт</div>
 				</div>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>150 000 ₽</strong></div>
+				<div class="svc-plan-price"><strong>от 30 000 ₽</strong></div>
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
@@ -133,20 +138,23 @@
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
-				<div class="svc-plan-name">Shop</div>
-				<div class="svc-plan-desc">Полноценный многостраничный магазин</div>
+				<div class="svc-plan-name">Business</div>
+				<div class="svc-plan-desc">Интернет-магазин для бизнеса, которому нужен полноценный сценарий покупки: товары, заказ, оплата, доставка и управление заказами.</div>
 				<div class="svc-plan-includes">Что входит:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из Start</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Каталог до 1000 позиций</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Личный кабинет покупателя</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>CMS + интеграции</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Промо-страницы</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>3 месяца поддержки</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>всё из тарифа Start</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>онлайн-оплата</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>настройка способов доставки</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>промокоды</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>расширенная карточка товара</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>фильтры или сортировка по каталогу</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>уведомления о заказах</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>базовая настройка статусов заказов</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>больше товаров на старт</div>
 				</div>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>350 000 ₽</strong></div>
+				<div class="svc-plan-price"><strong>от 70 000 ₽</strong></div>
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
@@ -155,20 +163,23 @@
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
-				<div class="svc-plan-name">Market</div>
-				<div class="svc-plan-desc">Крупный магазин с маркетплейс-функционалом</div>
-				<div class="svc-plan-includes">Что входит:</div>
+				<div class="svc-plan-name">Pro</div>
+				<div class="svc-plan-desc">Интернет-магазин с дополнительной логикой, интеграциями или нестандартными сценариями работы.</div>
+				<div class="svc-plan-includes">Что может входить:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Всё из Shop</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Неограниченный каталог</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Интеграция с 1С / ERP</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Службы доставки</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Корпоративные интеграции</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>6 месяцев поддержки</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>интеграции с CRM, складом, 1С или внешними сервисами</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>импорт или экспорт товаров</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>сложные фильтры</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>личный кабинет</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>бонусная система</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>разные роли пользователей</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>нестандартная логика доставки или оплаты</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>автоматизация обработки заказов</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>доработка под конкретный процесс бизнеса</div>
 				</div>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>700 000 ₽</strong></div>
+				<div class="svc-plan-price"><strong>от 150 000 ₽</strong></div>
 				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
@@ -176,26 +187,25 @@
 	</div>
 {% endblock %}
 
+{% block steps_label %}Процесс{% endblock %}
+{% block steps_title %}Как мы работаем{% endblock %}
+
 {% block steps %}
-	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Обсуждаем требования</div><p class="svc-step-text">Узнаём о вашем бизнесе, целевой аудитории и задачах магазина.</p></div>
-	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Исследуем рынок</div><p class="svc-step-text">Изучаем конкурентов и лучшие практики в вашей нише.</p></div>
-	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Составляем ТЗ</div><p class="svc-step-text">Фиксируем все требования, структуру и функционал в документе.</p></div>
-	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Проектируем интерфейс</div><p class="svc-step-text">Создаём прототипы страниц на основе пути пользователя.</p></div>
-	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Разрабатываем дизайн</div><p class="svc-step-text">Отрисовываем макеты в Figma с соблюдением вашего брендбука.</p></div>
-	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Верстаем и кодим</div><p class="svc-step-text">Реализуем магазин, подключаем CMS и все необходимые сервисы.</p></div>
-	<div class="svc-step"><div class="svc-step-num">7</div><div class="svc-step-title">Тестируем</div><p class="svc-step-text">Проверяем работу на всех устройствах и браузерах.</p></div>
-	<div class="svc-step"><div class="svc-step-num">8</div><div class="svc-step-title">Запускаем</div><p class="svc-step-text">Переносим на боевой хостинг, обучаем работе с CMS.</p></div>
-	<div class="svc-step"><div class="svc-step-num">9</div><div class="svc-step-title">Поддерживаем</div><p class="svc-step-text">Консультируем и помогаем развивать магазин после запуска.</p></div>
+	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Разбираем задачу</div><p class="svc-step-text">Уточняем нишу, ассортимент, количество товаров, способы оплаты, доставку и нужный сценарий заказа.</p></div>
+	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Согласуем решение</div><p class="svc-step-text">Определяем структуру магазина, тариф, объём работ, сроки и функционал, который нужен на старте.</p></div>
+	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Готовим основу магазина</div><p class="svc-step-text">Собираем основные страницы, каталог, карточки товаров, корзину и оформление заказа.</p></div>
+	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Добавляем товары</div><p class="svc-step-text">Вносим стартовый ассортимент или готовим магазин к дальнейшему наполнению через админку.</p></div>
+	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Подключаем функции</div><p class="svc-step-text">Настраиваем оплату, доставку, уведомления, промокоды, фильтры или другие элементы по выбранному тарифу.</p></div>
+	<div class="svc-step"><div class="svc-step-num">6</div><div class="svc-step-title">Проверяем магазин</div><p class="svc-step-text">Проверяем каталог, карточки, корзину, оформление заказа, мобильную версию и основные сценарии покупки.</p></div>
+	<div class="svc-step"><div class="svc-step-num">7</div><div class="svc-step-title">Передаём результат</div><p class="svc-step-text">Размещаем магазин на хостинге и показываем, как управлять товарами, заказами и основными настройками.</p></div>
 {% endblock %}
 
 {% block team %}
 	{% for emp in employees %}
 	<div class="svc-team-card">
 		<div class="svc-team-avatar">
-			{% if emp.photo %}
-			<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
-			{% else %}
-			<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
+			{% if emp.photo %}<img src="{{ emp.photo.url }}" alt="{{ emp.name }}">
+			{% else %}<div class="svc-team-avatar-placeholder">{{ emp.name|slice:":1" }}</div>
 			{% endif %}
 		</div>
 		<div class="svc-team-name">{{ emp.name }}</div>
@@ -204,48 +214,51 @@
 	{% endfor %}
 {% endblock %}
 
+{% block faq_label %}FAQ{% endblock %}
+{% block faq_title %}Часто спрашивают{% endblock %}
+
 {% block faq %}
-	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько времени занимает разработка интернет-магазина?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">В среднем от 6 до 16 недель в зависимости от сложности. Start — 6–8 недель, Shop — 10–12 недель, Market — от 14 недель. После брифинга даём точные сроки.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">На какой CMS вы разрабатываете магазины?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Работаем с 1С-Битрикс, WordPress + WooCommerce, а также делаем кастомные решения на Python/Django. Выбор зависит от задач и бюджета.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Можно ли перенести существующий магазин на новую платформу?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, делаем миграции с сохранением каталога, заказов, клиентской базы и SEO-позиций. Обсудим детали на звонке.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Входит ли наполнение товарами в стоимость?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">В тарифе Start — до 25 карточек. В Shop и Market наполнение рассчитывается отдельно. Можем сделать шаблоны для самостоятельного заполнения.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Что происходит после запуска?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Бесплатная поддержка на 2–6 месяцев в зависимости от тарифа. Исправляем баги, консультируем по CMS, помогаем с развитием.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Подключаете ли вы Яндекс.Метрику и аналитику?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, подключаем Метрику с настройкой целей. По запросу — расширенная электронная коммерция и дашборды.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Работаете ли вы с ИП и физическими лицами?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Работаем с ООО, ИП и самозанятыми. Заключаем договор, выставляем счёт. Оплата поэтапная — 50% аванс, 50% после сдачи.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Даёте ли вы гарантию на работу?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Гарантийный срок — 3 месяца после сдачи. В этот период исправляем все ошибки по нашей вине бесплатно.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько стоит разработка интернет-магазина?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Стоимость разработки интернет-магазина начинается от 30 000 ₽. Итоговая цена зависит от количества товаров, структуры каталога, оплаты, доставки, интеграций и дополнительного функционала.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько времени занимает создание интернет-магазина?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Срок зависит от объёма магазина и готовности материалов. Небольшой интернет-магазин обычно занимает от двух недель, проекты с интеграциями и сложной логикой — дольше.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Что нужно подготовить перед началом?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Желательно подготовить список товаров, цены, описания, изображения, контакты, информацию об оплате и доставке, а также примеры магазинов, которые нравятся по стилю.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Онлайн-оплата входит в стоимость?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">В тарифе Start онлайн-оплата не входит. В тарифе Business её можно подключить в рамках проекта, если выбран провайдер оплаты и есть данные для настройки.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Можно ли подключить доставку?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, доставку можно настроить по задаче проекта: самовывоз, фиксированная стоимость, доставка по зонам или другой понятный сценарий. Сложная логика рассчитывается отдельно.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Смогу ли я сам добавлять товары?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, магазин делается с админкой. Через неё можно добавлять товары, менять цены, редактировать описания, изображения и основные данные.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Можно ли подключить CRM, 1С или склад?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да, такие задачи возможны, но относятся к более сложной разработке. Интеграции с CRM, 1С, складом и внешними сервисами оцениваются отдельно.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Домен и хостинг входят в стоимость?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Домен и хостинг оплачиваются отдельно. Мы подскажем, где зарегистрировать домен, и предложим подходящий вариант размещения магазина.</div></div></div>
 {% endblock %}
 
 {% block others %}
 	<a href="/seo-setup/" class="svc-other-card">
 		<div class="svc-other-cat">SEO</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1131)"> <mask id="mask0_14_1131" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1131)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#67141C"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1131)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1131)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <mask id="mask1_14_1131" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="22" y="22" width="76" height="76"> <path d="M97.5 22.5H22.5V97.5H97.5V22.5Z" fill="white"/> </mask> <g mask="url(#mask1_14_1131)"> <path d="M76.4937 71.7363C77.874 71.7367 78.9937 72.8559 78.9937 74.2363C78.9935 75.6167 77.874 76.7359 76.4937 76.7363H62.8823C61.5017 76.7363 60.3825 75.6169 60.3823 74.2363C60.3823 72.8556 61.5016 71.7363 62.8823 71.7363H76.4937Z" fill="#FF6070"/> <path d="M40.6978 55.4551C41.6741 54.4788 43.2566 54.4788 44.2329 55.4551L52.7397 63.9619C53.7159 64.9382 53.716 66.5208 52.7397 67.4971L44.2329 76.0039C43.2566 76.9799 41.674 76.9799 40.6978 76.0039C39.7216 75.0277 39.7217 73.445 40.6978 72.4688L47.437 65.7295L40.6978 58.9902C39.7215 58.014 39.7217 56.4314 40.6978 55.4551Z" fill="#FF6070"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M45.1177 27.5C49.5694 27.5 53.7913 29.4776 56.6411 32.8975L57.6519 34.1104C59.5517 36.3901 62.366 37.7079 65.3335 37.708H88.4028C89.9682 37.708 91.4696 38.3303 92.5767 39.4375L92.7788 39.6494C93.7592 40.7322 94.3052 42.1438 94.3052 43.6113V87.8477C94.3051 89.4131 93.6836 90.9146 92.5767 92.0215C91.4697 93.1284 89.9681 93.75 88.4028 93.75H30.5552C28.9898 93.7499 27.4882 93.1282 26.3813 92.0215C25.2746 90.9146 24.653 89.413 24.6528 87.8477V33.4023C24.653 31.837 25.2745 30.3354 26.3813 29.2285C27.4883 28.1216 28.9898 27.5001 30.5552 27.5H45.1177ZM30.5552 32.5C30.316 32.5001 30.0868 32.5954 29.9175 32.7646C29.7484 32.9338 29.653 33.163 29.6528 33.4023V87.8477C29.653 88.0869 29.7483 88.3161 29.9175 88.4854C30.0868 88.6546 30.316 88.7499 30.5552 88.75H88.4028C88.6423 88.75 88.8723 88.6546 89.0415 88.4854C89.2106 88.3161 89.3051 88.0868 89.3052 87.8477V43.6113C89.3052 43.4018 89.2327 43.1996 89.1011 43.0391L89.0415 42.9727C88.8723 42.8035 88.6422 42.708 88.4028 42.708H65.3335C60.8822 42.7079 56.6608 40.731 53.811 37.3115L52.8003 36.0986C50.9004 33.8188 48.0855 32.5 45.1177 32.5H30.5552Z" fill="#FF6070"/> </g> </g> </g> <defs> <linearGradient id="paint0_linear_14_1131" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1131" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1131"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_ss)"><mask id="m_ss" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_ss)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#67141C"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg0_ss)" fill-opacity="0.72" style="mix-blend-mode:overlay"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg1_ss)" fill-opacity="0.28"/><path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/><path d="M76.49 71.74C77.87 71.74 78.99 72.86 78.99 74.24C78.99 75.62 77.87 76.74 76.49 76.74H62.88C61.5 76.74 60.38 75.62 60.38 74.24C60.38 72.86 61.5 71.74 62.88 71.74H76.49Z" fill="#FF6070"/><path d="M40.7 55.46C41.67 54.48 43.26 54.48 44.23 55.46L52.74 63.96C53.72 64.94 53.72 66.52 52.74 67.5L44.23 76C43.26 76.98 41.67 76.98 40.7 76C39.72 75.03 39.72 73.45 40.7 72.47L47.44 65.73L40.7 58.99C39.72 58.01 39.72 56.43 40.7 55.46Z" fill="#FF6070"/><path fill-rule="evenodd" clip-rule="evenodd" d="M45.12 27.5C49.57 27.5 53.79 29.48 56.64 32.9L57.65 34.11C59.55 36.39 62.37 37.71 65.33 37.71H88.4C89.97 37.71 91.47 38.33 92.58 39.44L92.78 39.65C93.76 40.73 94.31 42.14 94.31 43.61V87.85C94.31 89.41 93.68 90.91 92.58 92.02C91.47 93.13 89.97 93.75 88.4 93.75H30.56C28.99 93.75 27.49 93.13 26.38 92.02C25.27 90.91 24.65 89.41 24.65 87.85V33.4C24.65 31.84 25.27 30.34 26.38 29.23C27.49 28.12 28.99 27.5 30.56 27.5H45.12ZM30.56 32.5C30.32 32.5 30.09 32.6 29.92 32.76C29.75 32.93 29.65 33.16 29.65 33.4V87.85C29.65 88.09 29.75 88.32 29.92 88.49C30.09 88.65 30.32 88.75 30.56 88.75H88.4C88.64 88.75 88.87 88.65 89.04 88.49C89.21 88.32 89.31 88.09 89.31 87.85V43.61C89.31 43.4 89.23 43.2 89.1 43.04L89.04 42.97C88.87 42.8 88.64 42.71 88.4 42.71H65.33C60.88 42.71 56.66 40.73 53.81 37.31L52.8 36.1C50.9 33.82 48.09 32.5 45.12 32.5H30.56Z" fill="#FF6070"/></g></g><defs><linearGradient id="pg0_ss" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white"/></linearGradient><linearGradient id="pg1_ss" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#FF3A34"/><stop offset="0.587" stop-color="#FF3A34" stop-opacity="0"/></linearGradient><clipPath id="c_ss"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">Внутренняя настройка SEO</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>20 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>20 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>
 	<a href="/yandex-direct/" class="svc-other-card">
 		<div class="svc-other-cat">Яндекс Директ</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1094)"> <mask id="mask0_14_1094" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1094)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#115377"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1094)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1094)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <mask id="mask1_14_1094" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="22" y="22" width="76" height="76"> <path d="M97.5 22.5H22.5V97.5H97.5V22.5Z" fill="white"/> </mask> <g mask="url(#mask1_14_1094)"> <g opacity="0.72"> <path d="M90 60C90 43.4314 76.5686 30 60 30C43.4314 30 30 43.4314 30 60C30 76.5686 43.4314 90 60 90C76.5686 90 90 76.5686 90 60ZM95 60C95 79.33 79.33 95 60 95C40.67 95 25 79.33 25 60C25 40.67 40.67 25 60 25C79.33 25 95 40.67 95 60Z" fill="#29E6FB"/> </g> <g opacity="0.72"> <path d="M76.25 60C76.25 51.0254 68.9746 43.75 60 43.75C51.0254 43.75 43.75 51.0254 43.75 60C43.75 68.9746 51.0254 76.25 60 76.25C68.9746 76.25 76.25 68.9746 76.25 60ZM81.25 60C81.25 71.736 71.736 81.25 60 81.25C48.264 81.25 38.75 71.736 38.75 60C38.75 48.264 48.264 38.75 60 38.75C71.736 38.75 81.25 48.264 81.25 60Z" fill="#29E6FB"/> </g> <g opacity="0.72"> <path d="M60 67.5C64.1421 67.5 67.5 64.1421 67.5 60C67.5 55.8579 64.1421 52.5 60 52.5C55.8579 52.5 52.5 55.8579 52.5 60C52.5 64.1421 55.8579 67.5 60 67.5Z" fill="#29E6FB"/> </g> </g> </g> </g> <defs> <linearGradient id="paint0_linear_14_1094" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1094" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1094"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_d2)"><mask id="m_d2" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_d2)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#115377"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg0_d2)" fill-opacity="0.72" style="mix-blend-mode:overlay"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg1_d2)" fill-opacity="0.28"/><path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/><g opacity="0.72"><path d="M90 60C90 43.431 76.569 30 60 30C43.431 30 30 43.431 30 60C30 76.569 43.431 90 60 90C76.569 90 90 76.569 90 60ZM95 60C95 79.33 79.33 95 60 95C40.67 95 25 79.33 25 60C25 40.67 40.67 25 60 25C79.33 25 95 40.67 95 60Z" fill="#29E6FB"/></g><g opacity="0.72"><path d="M76.25 60C76.25 51.025 68.975 43.75 60 43.75C51.025 43.75 43.75 51.025 43.75 60C43.75 68.975 51.025 76.25 60 76.25C68.975 76.25 76.25 68.975 76.25 60ZM81.25 60C81.25 71.736 71.736 81.25 60 81.25C48.264 81.25 38.75 71.736 38.75 60C38.75 48.264 48.264 38.75 60 38.75C71.736 38.75 81.25 48.264 81.25 60Z" fill="#29E6FB"/></g><g opacity="0.72"><path d="M60 67.5C64.142 67.5 67.5 64.142 67.5 60C67.5 55.858 64.142 52.5 60 52.5C55.858 52.5 52.5 55.858 52.5 60C52.5 64.142 55.858 67.5 60 67.5Z" fill="#29E6FB"/></g></g></g><defs><linearGradient id="pg0_d2" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white"/></linearGradient><linearGradient id="pg1_d2" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#FF3A34"/><stop offset="0.587" stop-color="#FF3A34" stop-opacity="0"/></linearGradient><clipPath id="c_d2"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">Ведение рекламы в Яндекс Директ</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>20 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>20 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>
 	<a href="/seo-full/" class="svc-other-card">
 		<div class="svc-other-cat">SEO</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1269)"> <mask id="mask0_14_1269" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1269)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#532692"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1269)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1269)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <path d="M79.4824 66.9824C80.4587 66.0061 82.0413 66.0062 83.0176 66.9824C83.9939 67.9587 83.9939 69.5413 83.0176 70.5176L70.5176 83.0176C69.5413 83.9939 67.9587 83.9939 66.9824 83.0176L61.9824 78.0176C61.0062 77.0413 61.0061 75.4587 61.9824 74.4824C62.9587 73.5061 64.5413 73.5062 65.5176 74.4824L68.75 77.7148L79.4824 66.9824Z" fill="#F08CFF"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M48.0752 35.001C49.8312 34.9824 51.5738 35.3133 53.2002 35.9756C54.8265 36.638 56.3044 37.6184 57.5479 38.8584C58.7912 40.0984 59.7748 41.5737 60.4414 43.1982C61.1081 44.8229 61.4446 46.5643 61.4307 48.3203C61.4167 50.0763 61.0527 51.8119 60.3604 53.4258C60.0045 54.2553 59.565 55.0438 59.0508 55.7803L64.1318 60.875C65.1067 61.8526 65.1045 63.4362 64.127 64.4111C63.1493 65.3861 61.5658 65.3839 60.5908 64.4062L55.4639 59.2646C53.2956 60.687 50.74 61.4516 48.1104 61.4307C44.6483 61.4031 41.3353 60.018 38.8838 57.5732C36.4322 55.1281 35.0377 51.8177 35.001 48.3555C34.9644 44.8934 36.2875 41.555 38.6865 39.0586C39.9034 37.7923 41.3608 36.7816 42.9727 36.085C44.5846 35.3883 46.3192 35.0196 48.0752 35.001ZM48.1279 40C47.0366 40.0116 45.9581 40.2408 44.9561 40.6738C43.954 41.1069 43.0483 41.7355 42.292 42.5225C40.8006 44.0744 39.9772 46.1505 40 48.3027C40.0228 50.4551 40.8899 52.5131 42.4141 54.0332C43.9381 55.553 45.9981 56.4135 48.1504 56.4307C50.3028 56.4478 52.3758 55.6196 53.9238 54.124C54.7089 53.3656 55.3352 52.4582 55.7656 51.4551C56.196 50.452 56.4219 49.3729 56.4307 48.2812C56.4382 47.3259 56.2795 46.3773 55.9619 45.4785L55.8164 45.0967C55.4021 44.0868 54.7905 43.1693 54.0176 42.3984C53.2445 41.6275 52.3255 41.0183 51.3145 40.6064C50.3033 40.1947 49.2196 39.9884 48.1279 40Z" fill="#F08CFF"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M78.75 26.25C87.0343 26.25 93.75 32.9657 93.75 41.25V78.75C93.75 87.0343 87.0343 93.75 78.75 93.75H41.25C32.9657 93.75 26.25 87.0343 26.25 78.75V41.25C26.25 32.9657 32.9657 26.25 41.25 26.25H78.75ZM41.25 31.25C35.7271 31.25 31.25 35.7271 31.25 41.25V78.75C31.25 84.2729 35.7271 88.75 41.25 88.75H78.75C84.2729 88.75 88.75 84.2729 88.75 78.75V41.25C88.75 35.7271 84.2729 31.25 78.75 31.25H41.25Z" fill="#F08CFF"/> </g> </g> <defs> <linearGradient id="paint0_linear_14_1269" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1269" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1269"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_sf)"><mask id="m_sf" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_sf)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#4A0E14"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg0_sf)" fill-opacity="0.72" style="mix-blend-mode:overlay"/><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="url(#pg1_sf)" fill-opacity="0.28"/><path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/><path fill-rule="evenodd" clip-rule="evenodd" d="M60 30C43.431 30 30 43.431 30 60C30 76.569 43.431 90 60 90C76.569 90 90 76.569 90 60C90 43.431 76.569 30 60 30ZM35 60C35 46.193 46.193 35 60 35C73.807 35 85 46.193 85 60C85 73.807 73.807 85 60 85C46.193 85 35 73.807 35 60Z" fill="#FF8090"/><path d="M60 45L63.09 54.51H73.13L65.02 60.49L68.11 70L60 64.02L51.89 70L54.98 60.49L46.87 54.51H56.91L60 45Z" fill="#FF8090"/></g></g><defs><linearGradient id="pg0_sf" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="white" stop-opacity="0"/><stop offset="1" stop-color="white"/></linearGradient><linearGradient id="pg1_sf" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"><stop stop-color="#FF3A34"/><stop offset="0.587" stop-color="#FF3A34" stop-opacity="0"/></linearGradient><clipPath id="c_sf"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">SEO под ключ</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>30 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>30 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>

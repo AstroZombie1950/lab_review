@@ -1,134 +1,147 @@
 {% extends "services/service_base.html" %}
 {% load static %}
 
-{% block title %}Консультация Авитолога | Lab Review{% endblock %}
-{% block meta_description %}Консультация специалиста по Авито — разбираем ваш аккаунт, объявления и стратегию продвижения. Конкретные ответы и чёткий план действий.{% endblock %}
+{% block title %}Консультация авитолога | Lab Review{% endblock %}
+{% block meta_description %}Разберём вашу ситуацию на Авито: аккаунт, объявления, просмотры, контакты, блокировки и продвижение. Найдём слабые места, ответим на вопросы и подскажем, что мешает результату.{% endblock %}
 
-{% block hero_image %}
-<img src="{% static 'services/img/hero/avito-consult.png' %}" alt="">
-{% endblock %}
-
-{% block breadcrumb_title %}Консультация Авитолога{% endblock %}
+{% block hero_image %}<img src="{% static 'services/img/hero/avito-consult.png' %}" alt="">{% endblock %}
+{% block breadcrumb_title %}Консультация авитолога{% endblock %}
 {% block hero_label %}Авито{% endblock %}
 
 {% block hero_title %}
-	Консультация<br><span>Авитолога</span>
+	Консультация<br><span>авитолога</span>
 {% endblock %}
 
 {% block hero_text %}
-	Разбираем вашу ситуацию на Авито: смотрим аккаунт, объявления и стратегию продвижения. Вы получаете конкретные ответы на свои вопросы и понятный план — что делать, чтобы получать больше обращений.
+	Разберём вашу ситуацию на Авито: аккаунт, объявления, просмотры, контакты, блокировки и продвижение. Найдём слабые места, ответим на вопросы и подскажем, что мешает результату.
 {% endblock %}
 
 {% block hero_checks %}
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Разбор вашего аккаунта и объявлений
+		Разбор аккаунта, объявлений или ниши
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Ответы на конкретные вопросы по площадке
+		Поиск ошибок и слабых мест
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Рекомендации по текстам и продвижению
+		Разбор блокировок и отклонённых объявлений
 	</div>
 	<div class="svc-check">
 		<span class="svc-check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-		Письменное резюме после встречи
+		Ответы на вопросы по Авито
 	</div>
 {% endblock %}
 
+{% block hero_btn_text %}Обсудить проект{% endblock %}
+{% block hero_btn_note %}Ответим, уточним задачу и предложим подходящий формат работы.{% endblock %}
+
+{% block info_label %}Об услуге{% endblock %}
+{% block info_title %}Что вы получаете{% endblock %}
+
 {% block info_cards %}
 	<div class="svc-info-card is-accent">
-		<div class="svc-info-card-title">Как проходит консультация</div>
-		<p class="svc-info-card-text">Встречаемся онлайн или созваниваемся. Вы рассказываете о своей ситуации, задаёте вопросы — специалист разбирает аккаунт вместе с вами, объясняет причины низких показателей и подсказывает конкретные решения.</p>
+		<div class="svc-info-card-title">Разбор запроса</div>
+		<p class="svc-info-card-text">Фиксируем, с чем вы пришли: нет заявок, просели просмотры, отклонили объявления, заблокировали аккаунт или есть вопросы по продвижению. Разбираем ситуацию по сути и объясняем, где может быть проблема.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Онлайн-встреча или звонок до 60 минут</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Разбор аккаунта и объявлений в реальном времени</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ответы на все вопросы по площадке</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Конкретные рекомендации по улучшениям</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Разбор вашего вопроса</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Поиск ошибок и слабых мест</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Объяснение причин проблемы</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ответы по ситуации</div>
 		</div>
 	</div>
 	<div class="svc-info-card is-dark">
-		<div class="svc-info-card-title">Что получаете в итоге</div>
-		<p class="svc-info-card-text">После консультации вы точно знаете, что мешает росту и что нужно изменить. Специалист формирует письменное резюме со всеми выводами и списком приоритетных действий — можно сразу брать и делать.</p>
+		<div class="svc-info-card-title">Рекомендации по проблемам</div>
+		<p class="svc-info-card-text">Даём рекомендации по найденным ошибкам: что можно поправить, на что обратить внимание и каких действий лучше избегать. Полную стратегию ведения в рамках консультации не формируем.</p>
 		<div class="svc-info-checks">
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Письменное резюме с выводами</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Список приоритетных правок</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Рекомендации по стратегии продвижения</div>
-			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Ответы на вопросы в течение 3 дней после</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Рекомендации по объявлениям</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Разбор причин блокировок</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Комментарии по продвижению</div>
+			<div class="svc-info-check"><span class="svc-info-check-dot"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Общие рекомендации по дальнейшим действиям</div>
 		</div>
 	</div>
 {% endblock %}
+
+{% block includes_label %}Состав услуги{% endblock %}
+{% block includes_title %}Что входит в консультацию{% endblock %}
 
 {% block includes %}
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Разбор вашей ситуации</div>
-						<p class="svc-include-text">Слушаем задачу, смотрим аккаунт и объявления — понимаем, где точки роста.</p>
-					</div>
-				</div>
-				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-					<div class="svc-include-body">
-						<div class="svc-include-title">Анализ конкурентов</div>
-						<p class="svc-include-text">Смотрим как работают конкуренты в вашей нише и что можно применить у вас.</p>
+						<div class="svc-include-title">Разбор задачи</div>
+						<p class="svc-include-text">Уточняем ваш вопрос и контекст: что произошло, что не работает или что нужно понять по Авито.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="1.5"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Рекомендации по настройке</div>
-						<p class="svc-include-text">Даём конкретные советы по объявлениям, категориям, ставкам и продвижению.</p>
+						<div class="svc-include-title">Ответ по ситуации</div>
+						<p class="svc-include-text">Объясняем причину проблемы и даём решение в рамках консультации: по аккаунту, объявлениям, продвижению, заявкам или бюджету.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
-					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M11 19a8 8 0 100-16 8 8 0 000 16zM21 21l-4.35-4.35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Шаблоны и структуры</div>
-						<p class="svc-include-text">Показываем, как должны выглядеть сильные объявления в вашей категории.</p>
+						<div class="svc-include-title">Разбор блокировок и ошибок</div>
+						<p class="svc-include-text">Помогаем понять, почему могли отклонить объявления, ограничить показы или заблокировать аккаунт.</p>
+					</div>
+				</div>
+				<div class="svc-include-item">
+					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+					<div class="svc-include-body">
+						<div class="svc-include-title">Анализ конкурентов</div>
+						<p class="svc-include-text">Смотрим, как конкуренты оформляют объявления, подают услугу или товар и работают с продвижением.</p>
 					</div>
 				</div>
 				<div class="svc-include-item">
 					<div class="svc-include-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4zM9 9h6M9 13h6M9 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
 					<div class="svc-include-body">
-						<div class="svc-include-title">Итоговый план действий</div>
-						<p class="svc-include-text">Формируем список конкретных шагов, которые можно сделать сразу после консультации.</p>
+						<div class="svc-include-title">Общие рекомендации</div>
+						<p class="svc-include-text">Подсказываем, что можно улучшить и каких ошибок избегать дальше. Полный план работ и ведение сюда не входят.</p>
 					</div>
 				</div>
 {% endblock %}
+
+{% block plans_label %}Стоимость{% endblock %}
+{% block plans_title %}Консультация авитолога{% endblock %}
+{% block plans_intro %}{% endblock %}
 
 {% block plans %}
 	<div class="svc-plan">
 		<div class="svc-plan-left">
 			<div>
 				<div class="svc-plan-name">Консультация</div>
-				<div class="svc-plan-desc">Онлайн-разбор аккаунта и ситуации с письменным резюме</div>
+				<div class="svc-plan-desc">Ответы на вопросы по Авито и разбор вашей ситуации до 60 минут.</div>
 				<div class="svc-plan-includes">Что входит:</div>
 				<div class="svc-plan-features">
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Онлайн-встреча до 60 минут</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Разбор аккаунта и объявлений</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Ответы на вопросы</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Письменное резюме</div>
-					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Поддержка 3 дня после встречи</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>консультация до 60 минут</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>разбор вашего вопроса</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>объяснение причин проблемы</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>рекомендации по ситуации</div>
+					<div class="svc-plan-feature"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="color:var(--accent);flex-shrink:0;margin-top:2px"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ответы по аккаунту, объявлениям, блокировкам или продвижению</div>
 				</div>
 			</div>
 			<div class="svc-plan-bottom">
-				<div class="svc-plan-price">от <strong>3 500 ₽</strong></div>
-				<a href="#contact" class="svc-plan-btn">Записаться</a>
+				<div class="svc-plan-price"><strong>3 000 ₽</strong></div>
+				<a href="#contact" class="svc-plan-btn">Заказать</a>
 			</div>
 		</div>
 		<div class="svc-plan-right"><img src="{% static 'cases/img/services_temp.jpeg' %}" alt="Пример проекта"></div>
 	</div>
 {% endblock %}
 
+{% block steps_label %}Процесс{% endblock %}
+{% block steps_title %}Как проходит консультация{% endblock %}
+
 {% block steps %}
-	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Заявка</div><p class="svc-step-text">Оставляете заявку, коротко описываете задачу и удобное время для встречи.</p></div>
-	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Подготовка</div><p class="svc-step-text">Заранее изучаем ваш аккаунт, чтобы встреча прошла продуктивно.</p></div>
-	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Консультация</div><p class="svc-step-text">Проводим онлайн-встречу: разбираем аккаунт, отвечаем на вопросы, даём рекомендации.</p></div>
-	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Резюме</div><p class="svc-step-text">Отправляем письменное резюме с выводами и списком приоритетных действий.</p></div>
-	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Поддержка</div><p class="svc-step-text">В течение 3 дней после встречи отвечаем на уточняющие вопросы в мессенджере.</p></div>
+	<div class="svc-step"><div class="svc-step-num">1</div><div class="svc-step-title">Заявка</div><p class="svc-step-text">Уточняем задачу, нишу и вопрос, который нужно разобрать.</p></div>
+	<div class="svc-step"><div class="svc-step-num">2</div><div class="svc-step-title">Вводные данные</div><p class="svc-step-text">Вы присылаете ссылку на аккаунт, объявления или скриншоты статистики, если они нужны для разбора.</p></div>
+	<div class="svc-step"><div class="svc-step-num">3</div><div class="svc-step-title">Разбор ситуации</div><p class="svc-step-text">Разбираем проблему, объясняем возможные причины и отвечаем на ваши вопросы по Авито.</p></div>
+	<div class="svc-step"><div class="svc-step-num">4</div><div class="svc-step-title">Рекомендации</div><p class="svc-step-text">Даём рекомендации по найденным ошибкам и объясняем, что можно улучшить.</p></div>
+	<div class="svc-step"><div class="svc-step-num">5</div><div class="svc-step-title">Итог</div><p class="svc-step-text">Фиксируем ключевые выводы консультации и дальнейшие варианты работы, если они нужны.</p></div>
 {% endblock %}
 
 {% block team %}
@@ -147,44 +160,50 @@
 	{% endfor %}
 {% endblock %}
 
+{% block faq_label %}FAQ{% endblock %}
+{% block faq_title %}Часто спрашивают{% endblock %}
+
 {% block faq %}
-	<div class="svc-faq-item"><button class="svc-faq-btn">Нужно ли давать доступ к аккаунту для консультации?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Не обязательно. На консультации вы можете сами показывать аккаунт через демонстрацию экрана. Если хотите, чтобы специалист изучил аккаунт заранее — даёте доступ на просмотр.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Подходит ли консультация для тех, кто ещё не начинал на Авито?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Если вы только планируете выйти на Авито — разберём нишу, конкурентов и стратегию старта. Такая консультация поможет не тратить бюджет на типичные ошибки.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">В каком формате проходит встреча?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Видеозвонок в Zoom, Google Meet или Telegram. Выбираете удобный вариант при записи. Длительность — до 60 минут, обычно этого достаточно для полноценного разбора.</div></div></div>
-	<div class="svc-faq-item"><button class="svc-faq-btn">Можно ли после консультации перейти на постоянное ведение?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Конечно. После консультации специалист уже знает вашу ситуацию, поэтому переход на ведение происходит быстро и без лишних повторений.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Что можно разобрать на консультации авитолога?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Можно разобрать аккаунт, объявления, статистику, продвижение, бюджет, блокировки, отклонённые объявления и причины слабых заявок. Формат зависит от вашего вопроса.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Подойдёт ли консультация, если я только хочу выйти на Авито?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Можно обсудить нишу, примерный бюджет, риски, частые ошибки и понять, на что обратить внимание перед запуском.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Подойдёт ли консультация, если объявления уже размещены?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Смотрим текущую ситуацию: просмотры, контакты, расходы, подачу объявлений и продвижение. После этого даём рекомендации, что можно исправить.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Нужно ли давать доступ к аккаунту Авито?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Для консультации логин и пароль не нужны. Достаточно ссылки на аккаунт и скриншотов внутренней статистики, если они нужны для разбора. Если потребуется работа внутри профиля, доступ можно подтвердить отдельно через рекламное агентство.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Сколько длится консультация?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Консультация длится до 60 минут. Этого обычно хватает, чтобы разобрать основной вопрос, объяснить причину проблемы и дать рекомендации по ситуации.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Вы дадите готовую стратегию продвижения?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Нет, в консультацию не входит полноценная стратегия ведения. Мы разбираем вашу ситуацию, находим ошибки, отвечаем на вопросы и даём общие рекомендации. Если нужен подробный план работ или правки внутри аккаунта, лучше выбрать услугу «Авитолог на день» или постоянное ведение.</div></div></div>
+	<div class="svc-faq-item"><button class="svc-faq-btn">Можно ли после консультации перейти на ведение Авито?<span class="svc-faq-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></button><div class="svc-faq-body"><div class="svc-faq-body-inner">Да. Если после консультации понадобится не только разбор, но и регулярная работа с объявлениями и продвижением, можно перейти на ведение Авито.</div></div></div>
 {% endblock %}
 
 {% block others %}
 	<a href="/avito-day/" class="svc-other-card">
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1283)"> <mask id="mask0_14_1283" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1283)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#7E4026"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1283)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1283)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <path d="M63.1309 82.5H58.4736V63.8027L54.0186 65.0508L52.8711 61.0684L59.0811 58.875H63.1309V82.5Z" fill="#FFBD87"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M75.625 27.8125C77.0057 27.8125 78.125 28.9318 78.125 30.3125V32.7529C78.8871 32.8132 79.6113 32.888 80.2988 32.9805C83.98 33.4756 86.9848 34.5217 89.3564 36.8955C91.727 39.2682 92.773 42.2715 93.2686 45.9521C93.7543 49.5611 93.75 54.1782 93.75 60V66.25C93.75 72.0715 93.755 76.6895 93.2695 80.2988C92.7744 83.98 91.7283 86.9848 89.3545 89.3564C86.9818 91.727 83.9785 92.773 80.2979 93.2686C76.6889 93.7543 72.0718 93.75 66.25 93.75H53.75C47.9285 93.75 43.3105 93.755 39.7012 93.2695C36.02 92.7744 33.0153 91.7283 30.6436 89.3545C28.273 86.9818 27.227 83.9785 26.7314 80.2979C26.2457 76.6889 26.25 72.0718 26.25 66.25V60C26.25 54.1785 26.245 49.5605 26.7305 45.9512C27.2256 42.27 28.2717 39.2653 30.6455 36.8936C33.0182 34.523 36.0214 33.477 39.7022 32.9814C40.3893 32.8889 41.1133 32.8143 41.875 32.7539V30.3125C41.875 28.9318 42.9943 27.8125 44.375 27.8125C45.7557 27.8125 46.875 28.9318 46.875 30.3125V32.5391C48.9532 32.501 51.2396 32.5 53.75 32.5H66.25C68.7602 32.5 71.0467 32.5012 73.125 32.5391V30.3125C73.125 28.9318 74.2443 27.8125 75.625 27.8125ZM31.291 53.125C31.254 55.1245 31.25 57.3962 31.25 60V66.25C31.25 72.2125 31.256 76.4328 31.6865 79.6309C32.1074 82.7567 32.8921 84.5305 34.1807 85.8203C35.4682 87.109 37.2408 87.8939 40.3672 88.3145C43.5657 88.7446 47.7871 88.75 53.75 88.75H66.25C72.2125 88.75 76.4328 88.744 79.6309 88.3135C82.7567 87.8926 84.5305 87.1079 85.8203 85.8193C87.109 84.5318 87.8939 82.7592 88.3145 79.6328C88.7446 76.4343 88.75 72.2129 88.75 66.25V60C88.75 57.396 88.7461 55.1244 88.709 53.125H31.291ZM53.75 37.5C47.7875 37.5 43.5672 37.506 40.3691 37.9365C37.2432 38.3574 35.4695 39.1421 34.1797 40.4307C32.891 41.7182 32.1061 43.4908 31.6855 46.6172C31.6211 47.096 31.5673 47.5979 31.5205 48.125H88.4785C88.4317 47.5986 88.3779 47.0974 88.3135 46.6191C87.8926 43.4932 87.1079 41.7195 85.8193 40.4297C84.5318 39.141 82.7592 38.3561 79.6328 37.9355C76.4343 37.5054 72.2129 37.5 66.25 37.5H53.75Z" fill="#FFBD87"/> </g> </g> <defs> <linearGradient id="paint0_linear_14_1283" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1283" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1283"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_day)"><mask id="m_day" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_day)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#7E4026"/><path d="M63.13 82.5H58.47V63.8L54.02 65.05L52.87 61.07L59.08 58.88H63.13V82.5Z" fill="#FFBD87"/><path fill-rule="evenodd" clip-rule="evenodd" d="M75.625 27.8125C77.006 27.8125 78.125 28.932 78.125 30.3125V32.753C78.887 32.813 79.611 32.888 80.299 32.981C83.98 33.476 86.985 34.522 89.356 36.896C91.727 39.268 92.773 42.272 93.269 45.952C93.754 49.561 93.75 54.178 93.75 60V66.25C93.75 72.072 93.755 76.69 93.27 80.299C92.774 83.98 91.728 86.985 89.355 89.356C86.982 91.727 83.979 92.773 80.298 93.269C76.689 93.754 72.072 93.75 66.25 93.75H53.75C47.929 93.75 43.311 93.755 39.701 93.27C36.02 92.774 33.015 91.728 30.644 89.355C28.273 86.982 27.227 83.979 26.731 80.298C26.246 76.689 26.25 72.072 26.25 66.25V60C26.25 54.179 26.245 49.561 26.731 45.951C27.226 42.27 28.272 39.265 30.646 36.894C33.018 34.523 36.021 33.477 39.702 32.981C40.389 32.889 41.113 32.814 41.875 32.754V30.3125C41.875 28.932 42.994 27.8125 44.375 27.8125C45.756 27.8125 46.875 28.932 46.875 30.3125V32.539C48.953 32.501 51.24 32.5 53.75 32.5H66.25C68.76 32.5 71.047 32.501 73.125 32.539V30.3125C73.125 28.932 74.244 27.8125 75.625 27.8125ZM31.291 53.125C31.254 55.124 31.25 57.396 31.25 60V66.25C31.25 72.213 31.256 76.433 31.687 79.631C32.107 82.757 32.892 84.531 34.181 85.82C35.468 87.109 37.241 87.894 40.367 88.315C43.566 88.745 47.787 88.75 53.75 88.75H66.25C72.213 88.75 76.433 88.744 79.631 88.314C82.757 87.893 84.531 87.108 85.82 85.819C87.109 84.532 87.894 82.759 88.315 79.633C88.745 76.434 88.75 72.213 88.75 66.25V60C88.75 57.396 88.746 55.124 88.709 53.125H31.291ZM53.75 37.5C47.788 37.5 43.567 37.506 40.369 37.937C37.243 38.357 35.47 39.142 34.18 40.431C32.891 41.718 32.106 43.491 31.686 46.617C31.621 47.096 31.567 47.598 31.521 48.125H88.479C88.432 47.599 88.378 47.097 88.314 46.619C87.893 43.493 87.108 41.72 85.819 40.43C84.532 39.141 82.759 38.356 79.633 37.936C76.434 37.505 72.213 37.5 66.25 37.5H53.75Z" fill="#FFBD87"/></g></g><defs><clipPath id="c_day"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">Авитолог на день</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>7 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>10 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>
 	<a href="/avito-ads/" class="svc-other-card">
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1163)"> <mask id="mask0_14_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1163)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#06534A"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1163)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1163)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <mask id="mask1_14_1163" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="22" y="22" width="76" height="76"> <path d="M97.5 22.5H22.5V97.5H97.5V22.5Z" fill="white"/> </mask> <g mask="url(#mask1_14_1163)"> <path d="M88.4375 68.3887V42.2393C88.4375 40.2767 88.4359 38.954 88.3525 37.9346C88.2715 36.9443 88.1262 36.4625 87.9619 36.1406L87.9609 36.1387C87.5415 35.3155 86.872 34.646 86.0488 34.2266C85.7241 34.0613 85.2403 33.916 84.249 33.835C83.2281 33.7515 81.9037 33.75 79.9375 33.75H40.0625C38.0963 33.75 36.7719 33.7515 35.751 33.835C34.7596 33.916 34.2758 34.0613 33.9512 34.2266V34.2275C33.1271 34.6472 32.4605 35.3109 32.04 36.1318L32.041 36.1328C31.8748 36.46 31.7285 36.9462 31.6475 37.9395C31.564 38.9618 31.5625 40.287 31.5625 42.2529V81.6816C31.5625 83.5633 31.5646 84.8019 31.6455 85.6953C31.6993 86.2886 31.7768 86.5304 31.7988 86.5938C31.8813 86.6874 31.9807 86.7648 32.0938 86.8193C32.2049 86.8729 32.3261 86.9024 32.4492 86.9092C32.5127 86.8869 32.7509 86.7964 33.251 86.4658C33.9999 85.9707 34.968 85.1996 36.4375 84.0264L41.6768 79.833L41.6953 79.8184C42.7275 78.9906 43.5038 78.3582 44.3975 77.9014C45.147 77.5172 45.9455 77.2356 46.7705 77.0645L46.7852 77.0615C47.7696 76.8637 48.7789 76.875 50.1104 76.875H79.9512C81.9138 76.875 83.2354 76.8734 84.2539 76.79C85.2428 76.7091 85.7245 76.5639 86.0469 76.3994L86.0488 76.3984C86.8719 75.9791 87.5405 75.3093 87.96 74.4863C88.1256 74.1612 88.2716 73.6783 88.3525 72.6895C88.4359 71.6708 88.4375 70.3498 88.4375 68.3887ZM68.5449 46.6699C69.5212 45.6936 71.1038 45.6936 72.0801 46.6699C73.0564 47.6462 73.0564 49.2288 72.0801 50.2051L58.3301 63.9551C57.3538 64.9314 55.7712 64.9314 54.7949 63.9551L47.9199 57.0801C46.9436 56.1038 46.9436 54.5212 47.9199 53.5449C48.8962 52.5686 50.4788 52.5686 51.4551 53.5449L56.5625 58.6523L68.5449 46.6699ZM93.4375 68.3887C93.4375 70.267 93.4399 71.8268 93.3359 73.0967C93.2296 74.3961 92.9997 75.6098 92.416 76.7559C91.5174 78.5194 90.0827 79.9528 88.3193 80.8516L88.3203 80.8525C87.1749 81.4373 85.9613 81.6671 84.6621 81.7734C83.3922 81.8774 81.8313 81.875 79.9512 81.875H50.1104C48.5818 81.875 48.1543 81.8867 47.7705 81.9639L47.7695 81.9629C47.3898 82.0431 47.0224 82.1742 46.6768 82.3516L46.6729 82.3535C46.332 82.5277 45.9965 82.7799 44.8135 83.7285C44.8026 83.7372 44.7903 83.7444 44.7793 83.7529L39.5625 87.9297L39.5596 87.9326C38.1676 89.0439 36.9899 89.9875 36.0078 90.6367C35.0644 91.2604 33.8839 91.9081 32.5107 91.9121H32.5049C31.6118 91.9127 30.7298 91.7118 29.9248 91.3242C29.1212 90.9372 28.4157 90.3736 27.8594 89.6758L27.8584 89.6768C27.0003 88.6021 26.7681 87.2726 26.666 86.1465C26.5597 84.9733 26.5625 83.4637 26.5625 81.6816V42.2529C26.5625 40.3695 26.5602 38.806 26.6641 37.5332C26.7703 36.2312 27 35.0156 27.583 33.8682L27.585 33.8633C28.4846 32.1015 29.9154 30.671 31.6816 29.7715L31.8975 29.666C32.9804 29.1593 34.1241 28.9512 35.3438 28.8516C36.6156 28.7476 38.1788 28.75 40.0625 28.75H79.9375C81.8212 28.75 83.3844 28.7476 84.6563 28.8516C85.876 28.9512 87.0196 29.1593 88.1025 29.666L88.3184 29.7715L88.6455 29.9463C90.2594 30.8506 91.5724 32.214 92.415 33.8672L92.5205 34.083C93.028 35.1653 93.2363 36.3091 93.3359 37.5273C93.4399 38.7979 93.4375 40.3593 93.4375 42.2393V68.3887Z" fill="#47EBD7"/> </g> </g> </g> <defs> <linearGradient id="paint0_linear_14_1163" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1163" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1163"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_ads)"><mask id="m_ads" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_ads)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#06534A"/><path d="M88.4375 68.389V42.239C88.4375 40.277 88.436 38.954 88.353 37.935C88.272 36.944 88.126 36.463 87.962 36.141L87.961 36.139C87.542 35.316 86.872 34.646 86.049 34.227C85.724 34.061 85.24 33.916 84.249 33.835C83.228 33.752 81.904 33.75 79.938 33.75H40.063C38.096 33.75 36.772 33.752 35.751 33.835C34.76 33.916 34.276 34.061 33.951 34.227V34.228C33.127 34.647 32.461 35.311 32.04 36.132L32.041 36.133C31.875 36.46 31.729 36.946 31.648 37.940C31.564 38.962 31.563 40.287 31.563 42.253V81.682C31.563 83.563 31.565 84.802 31.646 85.695C31.699 86.289 31.777 86.530 31.799 86.594C31.881 86.687 31.981 86.765 32.094 86.819C32.205 86.873 32.326 86.902 32.449 86.909C32.513 86.887 32.751 86.796 33.251 86.466C33.100 85.971 34.968 85.200 36.438 84.026L41.677 79.833L41.695 79.818C42.728 78.991 43.504 78.358 44.398 77.901C45.147 77.517 45.946 77.236 46.771 77.065L46.785 77.062C47.770 76.864 48.779 76.875 50.110 76.875H79.951C81.914 76.875 83.235 76.873 84.254 76.790C85.243 76.709 85.725 76.564 86.047 76.399L86.049 76.398C86.872 75.979 87.541 75.309 87.960 74.486C88.126 74.161 88.272 73.678 88.353 72.690C88.436 71.671 88.438 70.350 88.438 68.389H88.4375ZM68.545 46.670C69.521 45.694 71.104 45.694 72.080 46.670C73.056 47.646 73.056 49.229 72.080 50.205L58.330 63.955C57.354 64.931 55.771 64.931 54.795 63.955L47.920 57.080C46.944 56.104 46.944 54.521 47.920 53.545C48.896 52.569 50.479 52.569 51.455 53.545L56.563 58.652L68.545 46.670ZM93.438 68.389C93.438 70.267 93.440 71.827 93.336 73.097C93.230 74.396 92.100 75.610 92.416 76.756C91.517 78.519 90.083 79.953 88.319 80.852L88.320 80.853C87.175 81.437 85.961 81.667 84.662 81.773C83.392 81.877 81.831 81.875 79.951 81.875H50.110C48.582 81.875 48.154 81.887 47.771 81.964L47.770 81.963C47.390 82.043 47.022 82.174 46.677 82.352L46.673 82.354C46.332 82.528 45.997 82.780 44.814 83.729C44.803 83.737 44.790 83.744 44.779 83.753L39.563 87.930L39.560 87.933C38.168 89.044 36.990 89.988 36.008 90.637C35.064 91.260 33.884 91.908 32.511 91.912H32.505C31.612 91.913 30.730 91.712 29.925 91.324C29.121 90.937 28.416 90.374 27.859 89.676L27.858 89.677C27.000 88.602 26.768 87.273 26.666 86.147C26.560 84.973 26.563 83.464 26.563 81.682V42.253C26.563 40.370 26.560 38.806 26.664 37.533C26.770 36.231 27.000 35.016 27.583 33.868L27.585 33.863C28.485 32.102 29.915 30.671 31.682 29.772L31.898 29.666C32.980 29.159 34.124 28.951 35.344 28.852C36.616 28.748 38.179 28.75 40.063 28.75H79.938C81.821 28.75 83.384 28.748 84.656 28.852C85.876 28.951 87.020 29.159 88.103 29.666L88.319 29.772L88.646 29.946C90.259 30.851 91.572 32.214 92.415 33.867L92.521 34.083C93.028 35.165 93.236 36.309 93.336 37.527C93.440 38.798 93.438 40.359 93.438 42.239V68.389Z" fill="#47EBD7"/></g></g><defs><clipPath id="c_ads"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">Ведение рекламы на Авито</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>2 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>20 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>
 	<a href="/avito-autoload/" class="svc-other-card">
 		<div class="svc-other-cat">Авито</div>
 		<div class="svc-other-top">
-			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"> <g clip-path="url(#clip0_14_1247)"> <mask id="mask0_14_1247" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="white"/> </mask> <g mask="url(#mask0_14_1247)"> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="#712D14"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint0_linear_14_1247)" fill-opacity="0.72" style="mix-blend-mode:overlay"/> <path d="M96 0H24C10.7452 0 0 10.7452 0 24V96C0 109.255 10.7452 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.7452 109.255 0 96 0Z" fill="url(#paint1_linear_14_1247)" fill-opacity="0.28"/> <path d="M20.5 19.5H98.5V-20H100.5V19.5H140V21.5H100.5V99.5H140V101.5H100.5V140H98.5V101.5H20.5V140H18.5V101.5H-20V99.5H18.5V21.5H-20V19.5H18.5V-20H20.5V19.5ZM20.5 21.5V99.5H98.5V21.5H20.5Z" fill="white" fill-opacity="0.22" style="mix-blend-mode:overlay"/> <mask id="mask1_14_1247" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="22" y="22" width="76" height="76"> <path d="M97.5 22.5H22.5V97.5H97.5V22.5Z" fill="white"/> </mask> <g mask="url(#mask1_14_1247)"> <mask id="mask2_14_1247" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="28" y="27" width="64" height="63"> <path d="M91.25 27.5H28.75V90H91.25V27.5Z" fill="white"/> </mask> <g mask="url(#mask2_14_1247)"> <path d="M58.5733 27.2321C65.8667 27.2322 72.8614 30.1296 78.0186 35.2868L78.999 36.2673C84.1562 41.4245 87.0537 48.4192 87.0537 55.7126V83.3034C87.0537 85.1504 86.3197 86.9222 85.0137 88.2282C83.7076 89.5342 81.9359 90.2682 80.0889 90.2682H39.9102C38.0634 90.2681 36.2923 89.534 34.9864 88.2282C33.6803 86.9222 32.9463 85.1505 32.9463 83.3034V34.196C32.9464 32.3491 33.6804 30.5781 34.9864 29.2722C36.2923 27.9662 38.0633 27.2322 39.9102 27.2321H58.5733ZM39.9102 32.2321C39.3894 32.2322 38.8898 32.439 38.5215 32.8073C38.1532 33.1756 37.9464 33.6752 37.9463 34.196V83.3034C37.9463 83.8242 38.1533 84.3237 38.5215 84.6921C38.8898 85.0604 39.3894 85.2681 39.9102 85.2682H80.0889C80.6098 85.2682 81.1102 85.0604 81.4785 84.6921C81.8466 84.3237 82.0537 83.8242 82.0537 83.3034V55.7126C82.0537 54.748 81.9899 53.79 81.8682 52.8434C81.7825 52.8523 81.6955 52.8571 81.6074 52.8571H68.75C64.608 52.8571 61.2502 49.4991 61.25 45.3571V32.4997C61.25 32.464 61.2534 32.4286 61.2549 32.3932C60.3694 32.287 59.4742 32.2321 58.5733 32.2321H39.9102ZM66.25 45.3571C66.2502 46.7377 67.3694 47.8571 68.75 47.8571H80.6367C79.5201 44.8606 77.7676 42.1071 75.4629 39.8024L74.4834 38.822C72.133 36.4716 69.3159 34.6955 66.25 33.5827V45.3571Z" fill="#FF9A61"/> </g> </g> </g> </g> <defs> <linearGradient id="paint0_linear_14_1247" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="white" stop-opacity="0"/> <stop offset="1" stop-color="white"/> </linearGradient> <linearGradient id="paint1_linear_14_1247" x1="60" y1="120" x2="60" y2="0" gradientUnits="userSpaceOnUse"> <stop stop-color="#FF3A34"/> <stop offset="0.58682" stop-color="#FF3A34" stop-opacity="0"/> </linearGradient> <clipPath id="clip0_14_1247"> <rect width="120" height="120" fill="white"/> </clipPath> </defs> </svg></div>
+			<div class="svc-other-img"><svg width="48" height="48" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c_al)"><mask id="m_al" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="white"/></mask><g mask="url(#m_al)"><path d="M96 0H24C10.745 0 0 10.745 0 24V96C0 109.255 10.745 120 24 120H96C109.255 120 120 109.255 120 96V24C120 10.745 109.255 0 96 0Z" fill="#712D14"/><path d="M58.57 27.23C65.87 27.23 72.86 30.13 78.02 35.29L79 36.27C84.16 41.42 87.05 48.42 87.05 55.71V83.3C87.05 85.15 86.32 86.92 85.01 88.23C83.71 89.53 81.94 90.27 80.09 90.27H39.91C38.06 90.27 36.29 89.53 34.99 88.23C33.68 86.92 32.95 85.15 32.95 83.3V34.2C32.95 32.35 33.68 30.58 34.99 29.27C36.29 27.97 38.06 27.23 39.91 27.23H58.57ZM39.91 32.23C39.39 32.23 38.89 32.44 38.52 32.81C38.15 33.18 37.95 33.68 37.95 34.2V83.3C37.95 83.82 38.15 84.32 38.52 84.69C38.89 85.06 39.39 85.27 39.91 85.27H80.09C80.61 85.27 81.11 85.06 81.48 84.69C81.85 84.32 82.05 83.82 82.05 83.3V55.71C82.05 54.75 81.99 53.79 81.87 52.84C81.78 52.85 81.7 52.86 81.61 52.86H68.75C64.61 52.86 61.25 49.5 61.25 45.36V32.5C61.25 32.46 61.25 32.43 61.25 32.39C60.37 32.29 59.47 32.23 58.57 32.23H39.91ZM66.25 45.36C66.25 46.74 67.37 47.86 68.75 47.86H80.64C79.52 44.86 77.77 42.11 75.46 39.8L74.48 38.82C72.13 36.47 69.32 34.7 66.25 33.58V45.36Z" fill="#FF9A61"/></g></g><defs><clipPath id="c_al"><rect width="120" height="120" fill="white"/></clipPath></defs></svg></div>
 			<div class="svc-other-name">Создание файлов для Авито</div>
 		</div>
 		<div class="svc-other-bottom">
-			<div class="svc-other-price">от <strong>5 000 ₽</strong></div>
+			<div class="svc-other-price">от <strong>5 000 ₽</strong></div>
 			<span class="svc-other-btn">Подробнее</span>
 		</div>
 	</a>
