@@ -989,8 +989,17 @@
 		border-color: var(--accent);
 	}
 	.modal-field textarea {
-		resize: vertical;
+		resize: none;
+		overflow: hidden;
 		min-height: 100px;
+	}
+
+	.modal-char-counter {
+		font-size: 12px;
+		color: var(--muted-2);
+		text-align: right;
+		margin-top: 4px;
+		display: block;
 	}
 
 	/* Согласие */
@@ -1532,8 +1541,9 @@
 
 			<!-- Сообщение -->
 			<div class="modal-field">
-				<label for="modal-message">Сообщение</label>
-				<textarea id="modal-message" name="message" placeholder="Кратко опишите задачу"></textarea>
+				<label for="modal-message">Сообщение *</label>
+				<textarea id="modal-message" name="message" placeholder="Кратко опишите задачу" required maxlength="500"></textarea>
+				<span class="modal-char-counter" id="modal-msg-counter">0 / 500</span>
 			</div>
 
 			<!-- Согласие -->
@@ -1736,6 +1746,17 @@
 		}
 	});
 
+	// ── Автовысота textarea ──
+	const modalTextarea = document.getElementById('modal-message');
+	const modalMsgCounter = document.getElementById('modal-msg-counter');
+	if (modalTextarea) {
+		modalTextarea.addEventListener('input', function() {
+			this.style.height = 'auto';
+			this.style.height = this.scrollHeight + 'px';
+			if (modalMsgCounter) modalMsgCounter.textContent = this.value.length + ' / 500';
+		});
+	}
+
 	// ── Маска телефона ──
 	const phoneInput = document.getElementById('modal-phone');
 	phoneInput.addEventListener('focus', () => {
@@ -1783,7 +1804,7 @@
 		const consent = modalForm.consent.checked;
 
 		// Сброс ошибок полей
-		['modal-name', 'modal-phone', 'modal-email'].forEach(id => {
+		['modal-name', 'modal-phone', 'modal-email', 'modal-message'].forEach(id => {
 			document.getElementById(id).classList.remove('is-error');
 		});
 
@@ -1811,6 +1832,13 @@
 		if (!email || !emailValid) {
 			document.getElementById('modal-email').classList.add('is-error');
 			errors.push('введите корректный e-mail');
+			valid = false;
+		}
+
+		// Сообщение — обязательное
+		if (!message) {
+			document.getElementById('modal-message').classList.add('is-error');
+			errors.push('напишите сообщение');
 			valid = false;
 		}
 
@@ -1843,9 +1871,9 @@
 				body: JSON.stringify({ text }),
 			});
 			if (!res.ok) throw new Error();
-			// Успех: сразу очищаем, показываем сообщение 5 сек, потом закрываем
+			// Успех: сбрасываем форму, закрываем попап через 2 сек
 			resetModal();
-			showStatus('Заявка отправлена! Свяжемся с вами в ближайшее время 👍', 'is-success', 5000, () => {
+			showStatus('Заявка отправлена! Свяжемся с вами в ближайшее время 👍', 'is-success', 2000, () => {
 				closeModal();
 			});
 		} catch {
@@ -1861,6 +1889,107 @@
 		const val = document.cookie.split('; ').find(r => r.startsWith(name + '='));
 		return val ? val.split('=')[1] : '';
 	}
+</script>
+
+<!-- ════ COOKIE CONSENT ════ -->
+<div class="cookie-banner" id="cookieBanner">
+	<p class="cookie-text">
+		Мы используем cookies и Яндекс.Метрику для анализа трафика и улучшения сайта. Продолжая пользоваться сайтом, вы соглашаетесь с нашей
+		<a href="/privacy-policy/" class="cookie-link">политикой конфиденциальности</a>.
+	</p>
+	<button class="cookie-btn" id="cookieAccept">Хорошо</button>
+</div>
+
+<style>
+	.cookie-banner {
+		position: fixed;
+		bottom: 24px;
+		right: 24px;
+		z-index: 9998;
+		max-width: 360px;
+		background: var(--bg-2);
+		border: 1px solid var(--stroke);
+		border-radius: var(--radius-xl);
+		padding: 20px 24px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity .3s ease, transform .3s ease;
+		transform: translateY(16px);
+	}
+	.cookie-banner.is-visible {
+		opacity: 1;
+		pointer-events: auto;
+		transform: translateY(0);
+	}
+	.cookie-banner.is-hiding {
+		opacity: 0;
+		transform: translateY(16px);
+	}
+	.cookie-text {
+		font-size: 13px;
+		line-height: 1.6;
+		color: var(--muted);
+	}
+	.cookie-link {
+		color: #fff;
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.cookie-link:hover { color: var(--accent); }
+	.cookie-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		height: 40px;
+		padding: 0 20px;
+		border-radius: var(--radius-lg);
+		background: var(--accent);
+		color: #fff;
+		font-size: 13px;
+		font-weight: 700;
+		font-family: inherit;
+		border: none;
+		cursor: pointer;
+		transition: opacity .2s;
+		align-self: flex-start;
+	}
+	.cookie-btn:hover { opacity: 0.88; }
+	@media (max-width: 540px) {
+		.cookie-banner {
+			bottom: 0;
+			right: 0;
+			left: 0;
+			max-width: 100%;
+			border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+			border-bottom: none;
+		}
+		.cookie-btn { align-self: stretch; }
+	}
+</style>
+
+<script>
+(function() {
+	var banner = document.getElementById('cookieBanner');
+	var btn    = document.getElementById('cookieAccept');
+	if (!banner || !btn) return;
+	if (localStorage.getItem('cookieAccepted')) {
+		banner.style.display = 'none';
+		return;
+	}
+	/* Показываем через 3 секунды */
+	setTimeout(function() {
+		banner.classList.add('is-visible');
+	}, 3000);
+	btn.addEventListener('click', function() {
+		localStorage.setItem('cookieAccepted', '1');
+		banner.classList.add('is-hiding');
+		setTimeout(function() { banner.style.display = 'none'; }, 300);
+	});
+})();
 </script>
 
 </body>

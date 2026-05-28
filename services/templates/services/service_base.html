@@ -334,6 +334,7 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 16px;
+		align-items: stretch;
 	}
 
 	.svc-include-item {
@@ -345,6 +346,7 @@
 		border: 1px solid var(--stroke);
 		transition: background .2s, border-color .2s;
 		position: relative;
+		align-items: center;
 	}
 
 	.svc-include-item:hover {
@@ -642,6 +644,14 @@
 
 	.svc-field input::placeholder,
 	.svc-field textarea::placeholder { color: rgba(255,255,255,0.22); }
+
+	.svc-char-counter {
+		font-size: 12px;
+		color: var(--muted-2);
+		text-align: right;
+		margin-top: 4px;
+		display: block;
+	}
 
 	.svc-form-submit {
 		display: inline-flex;
@@ -1136,7 +1146,7 @@
 		.svc-team-grid { grid-template-columns: repeat(2, 1fr); }
 		.svc-others-grid { grid-template-columns: 1fr 1fr; }
 		.svc-includes-header { grid-template-columns: 1fr; }
-		.svc-includes-btn { align-self: flex-start; }
+		.svc-includes-btn { align-self: flex-start; width: fit-content; }
 		.svc-final-cta { grid-template-columns: 1fr; }
 		.svc-final-cta-right { min-height: 240px; }
 		.svc-final-cta-right::before { display: none; }
@@ -1269,7 +1279,7 @@
 					<form class="svc-form" id="svc-contact-form" novalidate>
 						{% csrf_token %}
 						<div class="svc-field">
-							<label>Имя</label>
+							<label>Имя *</label>
 							<input type="text" id="svc-name" name="name" placeholder="Иван Иванов" />
 						</div>
 						<div class="svc-field">
@@ -1281,8 +1291,9 @@
 							<input type="text" id="svc-email" name="email" placeholder="name@example.com" autocomplete="email" />
 						</div>
 						<div class="svc-field">
-							<label>Сообщение</label>
-							<textarea name="message" rows="4" placeholder="Расскажите о проекте..."></textarea>
+							<label>Сообщение *</label>
+							<textarea id="svc-message" name="message" rows="4" placeholder="Расскажите о проекте..." maxlength="500"></textarea>
+							<span class="svc-char-counter" id="svc-msg-counter">0 / 500</span>
 						</div>
 						<div class="svc-field svc-consent-field">
 							<label class="svc-consent-label">
@@ -1464,6 +1475,49 @@
 	});
 
 	/* ── Отправка формы в Telegram ── */
+	/* Автовысота textarea */
+	const svcTextarea = document.getElementById('svc-message');
+	const svcMsgCounter = document.getElementById('svc-msg-counter');
+	if (svcTextarea) {
+		svcTextarea.addEventListener('input', function() {
+			this.style.height = 'auto';
+			this.style.height = this.scrollHeight + 'px';
+			if (svcMsgCounter) svcMsgCounter.textContent = this.value.length + ' / 500';
+		});
+	}
+
+	/* Маска телефона */
+	const svcPhone = document.getElementById('svc-phone');
+	if (svcPhone) {
+		function formatSvcPhone(val) {
+			let digits = val.replace(/\D/g, '');
+			if (digits.startsWith('8')) digits = '7' + digits.slice(1);
+			if (digits.startsWith('9')) digits = '7' + digits;
+			if (!digits.startsWith('7')) digits = '7' + digits;
+			digits = digits.slice(0, 11);
+			let result = '+7';
+			if (digits.length > 1) result += ' (' + digits.slice(1, 4);
+			if (digits.length >= 4) result += ') ' + digits.slice(4, 7);
+			if (digits.length >= 7) result += '-' + digits.slice(7, 9);
+			if (digits.length >= 9) result += '-' + digits.slice(9, 11);
+			return result;
+		}
+		svcPhone.addEventListener('focus', function() {
+			if (!this.value) this.value = '+7 ';
+		});
+		svcPhone.addEventListener('input', function() {
+			const formatted = formatSvcPhone(this.value);
+			this.value = formatted;
+			this.setSelectionRange(formatted.length, formatted.length);
+		});
+		svcPhone.addEventListener('keydown', function(e) {
+			if (e.key === 'Backspace' && this.value.length <= 3) e.preventDefault();
+		});
+		svcPhone.addEventListener('blur', function() {
+			if (this.value === '+7 ' || this.value === '+7') this.value = '';
+		});
+	}
+
 	document.getElementById('svc-contact-form').addEventListener('submit', async function(e) {
 		e.preventDefault();
 		const btn     = this.querySelector('.svc-form-submit');
@@ -1478,7 +1532,8 @@
 		/* Сброс ошибок */
 		[document.getElementById('svc-name'),
 		 document.getElementById('svc-phone'),
-		 document.getElementById('svc-email')].forEach(el => el.style.borderColor = '');
+		 document.getElementById('svc-email'),
+		 document.getElementById('svc-message')].forEach(el => el && (el.style.borderColor = ''));
 
 		function showErr(msg, focusEl) {
 			status.style.cssText = 'display:block;background:rgba(232,56,42,0.08);color:#fff;border:1px solid rgba(232,56,42,0.3);border-radius:var(--radius-md);padding:12px 16px;';
@@ -1493,6 +1548,7 @@
 		const phoneClean = phone.replace(/\D/g, '');
 		if (!phone || phoneClean.length !== 11) { showErr('⚠ Укажите телефон в формате +7 (999) 000-00-00', document.getElementById('svc-phone')); return; }
 		if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr('⚠ Укажите корректный e-mail', document.getElementById('svc-email')); return; }
+		if (!message) { showErr('⚠ Напишите сообщение', document.getElementById('svc-message')); return; }
 		if (!consent.checked) {
 			consent.classList.add('is-error');
 			consent.addEventListener('change', () => consent.classList.remove('is-error'), { once: true });
@@ -1519,7 +1575,7 @@
 				status.style.display     = 'block';
 				status.style.background  = 'rgba(232,56,42,0.1)';
 				status.style.color       = '#fff';
-				status.textContent       = 'Заявка отправлена! Перезвоним в течение 30 минут.';
+				status.textContent       = 'Заявка отправлена! Мы свяжемся с вами в ближайшее время.';
 				this.reset();
 			} else { throw new Error(); }
 		} catch {
