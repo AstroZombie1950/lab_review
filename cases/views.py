@@ -1,39 +1,52 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.db.models import Q
 from .models import Case, Tag, DIRECTION_CHOICES
 
 
 def cases_list(request):
-	cases = Case.objects.filter(is_published=True).prefetch_related('tags')
+	base_qs = Case.objects.filter(is_published=True).prefetch_related('tags')
 
 	# Фильтр по направлению
-	direction = request.GET.get('direction')
-	if direction:
-		cases = cases.filter(direction=direction)
+	direction = request.GET.get('direction', '')
+	industry  = request.GET.get('industry', '')
+	tag       = request.GET.get('tag', '')
+	search    = request.GET.get('search', '')
 
-	# Фильтр по отрасли
-	industry = request.GET.get('industry')
-	if industry:
-		cases = cases.filter(industry=industry)
+	# База для динамических списков — только по direction
+	filtered_by_dir = base_qs.filter(direction=direction) if direction else base_qs
 
-	# Фильтр по тегу
-	tag = request.GET.get('tag')
-	if tag:
-		cases = cases.filter(tags__slug=tag)
-
-	# Поиск по названию
-	search = request.GET.get('search')
-	if search:
-		cases = cases.filter(title__icontains=search)
-
-	all_tags = Tag.objects.all()
+	# Отрасли и теги только из кейсов текущего направления
 	all_industries = (
-		Case.objects
-		.filter(is_published=True)
+		filtered_by_dir
+		.exclude(industry='')
 		.values_list('industry', flat=True)
 		.distinct()
+		.order_by('industry')
+	)
+	all_tags = (
+		Tag.objects
+		.filter(case__in=filtered_by_dir, case__is_published=True)
+		.distinct()
+		.order_by('name')
 	)
 
-	# Имя выбранного тега для кнопки
+	# Применяем остальные фильтры к итоговой выборке
+	cases = filtered_by_dir
+	if industry:
+		cases = cases.filter(industry=industry)
+	if tag:
+		cases = cases.filter(tags__slug=tag)
+	if search:
+		# SQLite не умеет icontains для кириллицы — ищем по обоим регистрам
+		s = search.strip()
+		cases = cases.filter(
+			Q(title__icontains=s) |
+			Q(title__icontains=s.lower()) |
+			Q(title__icontains=s.upper()) |
+			Q(title__icontains=s.capitalize())
+		)
+
+	# Имя выбранного тега для кнопки дропдауна
 	selected_tag_name = ''
 	if tag:
 		try:
@@ -42,15 +55,15 @@ def cases_list(request):
 			pass
 
 	context = {
-		'cases': cases,
-		'all_tags': all_tags,
-		'all_industries': [i for i in all_industries if i],
-		'direction_choices': DIRECTION_CHOICES,
+		'cases':              cases,
+		'all_tags':           all_tags,
+		'all_industries':     list(all_industries),
+		'direction_choices':  DIRECTION_CHOICES,
 		'selected_direction': direction,
-		'selected_industry': industry,
-		'selected_tag': tag,
-		'selected_tag_name': selected_tag_name,
-		'search': search or '',
+		'selected_industry':  industry,
+		'selected_tag':       tag,
+		'selected_tag_name':  selected_tag_name,
+		'search':             search,
 	}
 	return render(request, 'cases/list.html', context)
 
@@ -74,7 +87,6 @@ def case_detail(request, slug):
 	)
 	# Dev-кейсы открываются в своём шаблоне
 	if case.direction == 'dev':
-		# Сайдбар: все другие опубликованные dev-кейсы
 		sidebar_cases = (
 			Case.objects
 			.filter(is_published=True, direction='dev')

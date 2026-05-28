@@ -5,7 +5,6 @@
 
 {% block extra_css %}
 <style>
-	/* overflow-x на html не ломает sticky у потомков */
 	html { overflow-x: hidden; }
 
 	/* ── Страница ── */
@@ -18,14 +17,13 @@
 	.hero {
 		padding: 72px 0 56px;
 		position: relative;
-		overflow: visible; /* блобы уходят за край плавно */
+		overflow: visible;
 	}
 
-	/* Анимированные пятна */
 	.hero-blob {
 		position: absolute;
 		top: -80px;
-		right: -120px; /* частично за краем */
+		right: -120px;
 		width: 500px;
 		height: 500px;
 		border-radius: 50%;
@@ -38,7 +36,7 @@
 	.hero-blob-2 {
 		position: absolute;
 		bottom: -200px;
-		left: -200px; /* сдвинут за край */
+		left: -200px;
 		width: 600px;
 		height: 600px;
 		border-radius: 50%;
@@ -54,10 +52,7 @@
 		66%       { transform: translate(20px, -30px) scale(0.96); }
 	}
 
-	.hero-inner {
-		position: relative;
-		z-index: 1;
-	}
+	.hero-inner { position: relative; z-index: 1; }
 
 	.hero-label {
 		font-size: 14px;
@@ -157,7 +152,6 @@
 		border-color: var(--stroke-2);
 	}
 
-	/* Цветная точка */
 	.sidebar-dot {
 		width: 7px;
 		height: 7px;
@@ -170,9 +164,7 @@
 	.sidebar-btn.is-active .sidebar-dot { background: var(--accent); }
 
 	/* ── Правая колонка ── */
-	.cases-main {
-		min-width: 0;
-	}
+	.cases-main { min-width: 0; }
 
 	/* ── Панель фильтров ── */
 	.filters {
@@ -226,7 +218,15 @@
 		padding: 8px;
 		z-index: 100;
 		box-shadow: 0 20px 48px rgba(0,0,0,0.6);
+		/* Лимит высоты — ~9 пунктов */
+		max-height: 320px;
+		overflow-y: auto;
 	}
+
+	/* Скроллбар в меню */
+	.dropdown-menu::-webkit-scrollbar { width: 4px; }
+	.dropdown-menu::-webkit-scrollbar-track { background: transparent; }
+	.dropdown-menu::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
 
 	.dropdown-menu.is-open { display: block; }
 
@@ -240,6 +240,7 @@
 		color: rgba(255,255,255,0.65);
 		cursor: pointer;
 		transition: background .15s, color .15s;
+		white-space: nowrap;
 	}
 
 	.dropdown-item:hover { background: rgba(255,255,255,0.06); color: #fff; }
@@ -285,6 +286,7 @@
 		color: rgba(255,255,255,0.85);
 		font-size: 16px;
 		outline: none;
+		font-family: inherit;
 	}
 
 	.search-wrap input::placeholder { color: rgba(255,255,255,0.28); }
@@ -296,18 +298,22 @@
 		gap: 3px;
 	}
 
-	/* Строка */
+	/* ── Строка кейса ──
+	   3 колонки: [название+отрасль] [теги] [кнопка]
+	   Теги получают остаток места и не вылезают за него
+	── */
 	.case-row {
 		display: grid;
-		grid-template-columns: minmax(260px, 2fr) minmax(0, 1fr) auto;
+		grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
 		align-items: center;
-		gap: 24px;
+		gap: 20px;
 		padding: 18px 22px;
 		border-radius: var(--radius-lg);
 		background: var(--bg-2);
 		border: 1px solid transparent;
 		transition: background .2s, border-color .2s;
 		cursor: pointer;
+		text-decoration: none;
 	}
 
 	.case-row:hover {
@@ -319,9 +325,8 @@
 	.case-main {
 		display: flex;
 		align-items: center;
-		gap: 12px;
+		gap: 10px;
 		min-width: 0;
-		overflow: hidden;
 	}
 
 	.case-title {
@@ -331,6 +336,8 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		flex-shrink: 1;
+		min-width: 0;
 	}
 
 	.case-industry {
@@ -341,32 +348,38 @@
 		border-radius: 999px;
 		background: rgba(255,255,255,0.05);
 		border: 1px solid var(--stroke);
-		font-size: 14px;
+		font-size: 13px;
 		color: rgba(255,255,255,0.4);
 		white-space: nowrap;
 		flex-shrink: 0;
 	}
 
-	/* Теги — не вылезают за свою колонку */
+	/* Теги — колонка целиком, теги не вылезают */
 	.case-tags {
 		display: flex;
 		align-items: center;
-		gap: 8px;
-		overflow: hidden;
+		gap: 6px;
 		min-width: 0;
+		overflow: hidden;
 	}
 
+	/* Каждый тег занимает ровно свою долю, не больше */
 	.case-tag {
-		font-size: 15px;
-		color: rgba(255,255,255,0.38);
+		font-size: 14px;
+		color: rgba(255,255,255,0.35);
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		/* Два тега делят колонку поровну, но не больше своего контента */
+		min-width: 0;
+		flex: 0 1 auto;
+		max-width: calc(50% - 12px);
 	}
 
 	.case-tag-more {
-		font-size: 15px;
-		color: rgba(255,255,255,0.22);
+		font-size: 14px;
+		color: rgba(255,255,255,0.2);
+		white-space: nowrap;
 		flex-shrink: 0;
 	}
 
@@ -415,11 +428,7 @@
 		transform: scale(1) translateY(0);
 	}
 
-	.case-preview img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+	.case-preview img { width: 100%; height: 100%; object-fit: cover; }
 
 	.case-preview-empty {
 		width: 100%;
@@ -440,28 +449,34 @@
 		font-size: 18px;
 	}
 
-	/* ── Адаптив ── */
-	@media (max-width: 1024px) {
-		.cases-layout { grid-template-columns: 160px 1fr; gap: 24px; }
-		.case-tags { display: none; }
-		.case-industry { display: none; }
-		/* Строка: заголовок сверху на всю ширину, кнопка-стрелка справа */
-		.case-row {
-			display: flex;
-			flex-wrap: wrap;
-			align-items: center;
-			gap: 8px;
-			padding: 14px 16px;
-		}
-		.case-main {
-			flex: 1 1 100%;
-			overflow: hidden;
-		}
-		.case-title { font-size: 16px; white-space: normal; }
-		.case-link { margin-left: auto; padding: 0 12px; height: 36px; }
-		.case-link-text { display: none; }
+	/* ════════════════════════════════
+	   АДАПТИВ
+	════════════════════════════════ */
+
+	/* Планшет широкий: теги оставляем, но сетку сужаем */
+	@media (max-width: 1100px) {
+		.cases-layout { grid-template-columns: 180px 1fr; gap: 24px; }
+		.case-row { gap: 14px; }
+		.case-title { font-size: 17px; }
 	}
 
+	/* Планшет: убираем теги, сетка 2 колонки */
+	@media (max-width: 900px) {
+		.cases-layout { grid-template-columns: 160px 1fr; gap: 20px; }
+		/* Строка: 2 колонки — [название+отрасль] [кнопка] */
+		.case-row {
+			grid-template-columns: minmax(0, 1fr) auto;
+			gap: 12px;
+			padding: 14px 16px;
+		}
+		/* Теги скрыты — занимают нулевую колонку */
+		.case-tags { display: none; }
+		.case-title { font-size: 16px; }
+		/* Отрасль показываем, но мельче */
+		.case-industry { font-size: 12px; height: 24px; }
+	}
+
+	/* Мобиль: сайдбар горизонтально, фильтры в столбик */
 	@media (max-width: 720px) {
 		.hero { padding: 48px 0 36px; }
 		.cases-layout { grid-template-columns: 1fr; gap: 16px; }
@@ -469,11 +484,36 @@
 		.sidebar-title { display: none; }
 		.sidebar-nav { flex-direction: row; flex-wrap: wrap; gap: 6px; }
 		.sidebar-btn { height: 34px; font-size: 13px; width: auto; padding: 0 12px; }
+		/* Строка: flex, название + кнопка в одну строку */
+		.case-row {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+			padding: 14px 14px;
+		}
+		.case-main {
+			flex: 1;
+			min-width: 0;
+			/* Отрасль на мобиле убираем — оставляем только название */
+		}
+		.case-industry { display: none; }
+		.case-title { font-size: 15px; }
+		/* Кнопка — только иконка */
+		.case-link {
+			flex-shrink: 0;
+			padding: 0;
+			width: 36px;
+			height: 36px;
+			justify-content: center;
+		}
+		.case-link-text { display: none; }
 		.search-wrap { max-width: 100%; }
 	}
 
 	@media (max-width: 480px) {
 		.filters { gap: 8px; }
+		.dropdown-btn { font-size: 14px; height: 36px; padding: 0 12px; }
+		.search-wrap { height: 36px; font-size: 14px; }
 	}
 </style>
 {% endblock %}
@@ -509,17 +549,17 @@
 			<!-- ── Левая: выбор направления ── -->
 			<aside class="cases-sidebar">
 				<div class="sidebar-title">Направление</div>
-				<nav class="sidebar-nav">
+				<nav class="sidebar-nav" id="sidebar-nav">
 
 					<button class="sidebar-btn {% if not selected_direction %}is-active{% endif %}"
-						onclick="applyFilter('direction', '')">
+						data-direction="">
 						<span class="sidebar-dot"></span>
 						Все кейсы
 					</button>
 
 					{% for value, label in direction_choices %}
 					<button class="sidebar-btn {% if selected_direction == value %}is-active{% endif %}"
-						onclick="applyFilter('direction', '{{ value }}')">
+						data-direction="{{ value }}">
 						<span class="sidebar-dot"></span>
 						{{ label }}
 					</button>
@@ -532,21 +572,21 @@
 			<div class="cases-main">
 
 				<!-- Фильтры -->
-				<div class="filters">
+				<div class="filters" id="filters-bar">
 
 					<!-- По отрасли -->
-					<div class="dropdown">
-						<button class="dropdown-btn" id="industry-btn" type="button">
-							{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}
+					<div class="dropdown" id="dd-industry">
+						<button class="dropdown-btn" type="button">
+							<span class="dd-label">{% if selected_industry %}{{ selected_industry }}{% else %}По отрасли{% endif %}</span>
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</button>
 						<div class="dropdown-menu" id="industry-menu">
-							<div class="dropdown-item {% if not selected_industry %}is-active{% endif %}" onclick="applyFilter('industry', '')">
+							<div class="dropdown-item {% if not selected_industry %}is-active{% endif %}" data-filter="industry" data-value="">
 								<span class="check">{% if not selected_industry %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
 								Все отрасли
 							</div>
 							{% for ind in all_industries %}
-							<div class="dropdown-item {% if selected_industry == ind %}is-active{% endif %}" onclick="applyFilter('industry', '{{ ind }}')">
+							<div class="dropdown-item {% if selected_industry == ind %}is-active{% endif %}" data-filter="industry" data-value="{{ ind }}">
 								<span class="check">{% if selected_industry == ind %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
 								{{ ind }}
 							</div>
@@ -555,18 +595,18 @@
 					</div>
 
 					<!-- По тегу -->
-					<div class="dropdown">
-						<button class="dropdown-btn" id="tag-btn" type="button">
-							{% if selected_tag %}{{ selected_tag_name }}{% else %}По тегу{% endif %}
+					<div class="dropdown" id="dd-tag">
+						<button class="dropdown-btn" type="button">
+							<span class="dd-label">{% if selected_tag %}{{ selected_tag_name }}{% else %}По тегу{% endif %}</span>
 							<svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 						</button>
 						<div class="dropdown-menu" id="tag-menu">
-							<div class="dropdown-item {% if not selected_tag %}is-active{% endif %}" onclick="applyFilter('tag', '')">
+							<div class="dropdown-item {% if not selected_tag %}is-active{% endif %}" data-filter="tag" data-value="">
 								<span class="check">{% if not selected_tag %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
 								Все теги
 							</div>
 							{% for tag in all_tags %}
-							<div class="dropdown-item {% if selected_tag == tag.slug %}is-active{% endif %}" onclick="applyFilter('tag', '{{ tag.slug }}')">
+							<div class="dropdown-item {% if selected_tag == tag.slug %}is-active{% endif %}" data-filter="tag" data-value="{{ tag.slug }}">
 								<span class="check">{% if selected_tag == tag.slug %}<svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>{% endif %}</span>
 								{{ tag.name }}
 							</div>
@@ -584,38 +624,7 @@
 
 				<!-- Список кейсов -->
 				<div class="cases-list" id="cases-list">
-					{% for case in cases %}
-					<a class="case-row"
-						href="{% url 'cases:detail' case.slug %}"
-						data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
-
-						<!-- Название + отрасль -->
-						<div class="case-main">
-							<div class="case-title">{{ case.title }}</div>
-							{% if case.industry %}
-							<div class="case-industry">{{ case.industry }}</div>
-							{% endif %}
-						</div>
-
-						<!-- Теги -->
-						<div class="case-tags">
-							{% for tag in case.tags.all|slice:":3" %}
-							<span class="case-tag">{{ tag.name }}</span>
-							{% endfor %}
-							{% if case.tags.count > 3 %}
-							<span class="case-tag-more">ещё...</span>
-							{% endif %}
-						</div>
-
-						<!-- Кнопка -->
-						<div class="case-link">
-							<span class="case-link-text">Кейс</span>
-							<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-						</div>
-					</a>
-					{% empty %}
-					<div class="empty">Кейсы не найдены</div>
-					{% endfor %}
+					{% include "cases/_cases_rows.html" %}
 				</div>
 
 			</div>
@@ -631,84 +640,147 @@
 </div>
 
 <script>
-	// Применяем фильтр без перезагрузки страницы
-	function applyFilter(param, value) {
-		const url = new URL(window.location);
-		if (value) {
-			url.searchParams.set(param, value);
+/* ══════════════════════════════════════════════
+   Состояние фильтров — единый источник правды
+══════════════════════════════════════════════ */
+const state = {
+	direction: '{{ selected_direction|escapejs }}',
+	industry:  '{{ selected_industry|escapejs }}',
+	tag:       '{{ selected_tag|escapejs }}',
+	search:    '{{ search|escapejs }}',
+};
+
+/* Строим URL из state */
+function buildUrl() {
+	const url = new URL(window.location.pathname, window.location.origin);
+	if (state.direction) url.searchParams.set('direction', state.direction);
+	if (state.industry)  url.searchParams.set('industry',  state.industry);
+	if (state.tag)       url.searchParams.set('tag',        state.tag);
+	if (state.search)    url.searchParams.set('search',     state.search);
+	return url;
+}
+
+/* AJAX-обновление: список + фильтры (дропдауны) */
+function reload() {
+	const url = buildUrl();
+	const list = document.getElementById('cases-list');
+	list.style.opacity = '0.4';
+
+	fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
+		.then(r => r.text())
+		.then(html => {
+			const doc = new DOMParser().parseFromString(html, 'text/html');
+
+			/* Обновляем список */
+			const newList = doc.getElementById('cases-list');
+			if (newList) list.innerHTML = newList.innerHTML;
+
+			/* Обновляем содержимое меню дропдаунов */
+			['industry-menu', 'tag-menu'].forEach(id => {
+				const remote = doc.getElementById(id);
+				const local  = document.getElementById(id);
+				if (remote && local) local.innerHTML = remote.innerHTML;
+			});
+
+			/* Обновляем лейблы дропдаунов */
+			updateDropdownLabels();
+
+			/* Переинициализируем пункты меню */
+			initMenuItems();
+
+			/* Обновляем активные кнопки направления */
+			document.querySelectorAll('#sidebar-nav .sidebar-btn').forEach(btn => {
+				btn.classList.toggle('is-active', btn.dataset.direction === state.direction);
+			});
+
+			history.pushState({}, '', url);
+			list.style.opacity = '1';
+
+			/* Переинициализируем превью */
+			initPreview();
+		})
+		.catch(() => { list.style.opacity = '1'; });
+}
+
+/* Обновить текст лейблов дропдаунов из state */
+function updateDropdownLabels() {
+	const indLabel = document.querySelector('#dd-industry .dd-label');
+	const tagLabel = document.querySelector('#dd-tag .dd-label');
+	if (indLabel) indLabel.textContent = state.industry || 'По отрасли';
+	if (tagLabel) {
+		if (state.tag) {
+			/* Ищем имя в обновлённом меню */
+			const item = document.querySelector(`#tag-menu [data-value="${state.tag}"]`);
+			tagLabel.textContent = item ? item.textContent.trim() : state.tag;
 		} else {
-			url.searchParams.delete(param);
+			tagLabel.textContent = 'По тегу';
 		}
-		loadCases(url);
 	}
+}
 
-	function loadCases(url) {
-		const list = document.getElementById('cases-list');
-		list.style.opacity = '0.4';
-		list.style.transition = 'opacity .15s';
-		fetch(url, { headers: { 'X-Requested-With': 'XMLHttpRequest' } })
-			.then(r => r.text())
-			.then(html => {
-				const doc = new DOMParser().parseFromString(html, 'text/html');
-				const newList = doc.getElementById('cases-list');
-				if (newList) {
-					list.innerHTML = newList.innerHTML;
-					/* Обновляем активные кнопки направления */
-					updateActiveButtons(doc);
-				}
-				history.pushState({}, '', url);
-				list.style.opacity = '1';
-			})
-			.catch(() => { list.style.opacity = '1'; });
-	}
-
-	function updateActiveButtons(doc) {
-		/* Синхронизируем is-active на кнопках направления */
-		doc.querySelectorAll('.sidebar-btn').forEach((btn, i) => {
-			const local = document.querySelectorAll('.sidebar-btn')[i];
-			if (local) local.classList.toggle('is-active', btn.classList.contains('is-active'));
-		});
-		/* Синхронизируем текст дропдаунов */
-		['industry-btn', 'tag-btn'].forEach(id => {
-			const remote = doc.getElementById(id);
-			const local  = document.getElementById(id);
-			if (remote && local) local.innerHTML = remote.innerHTML;
-		});
-	}
-
-	// Поиск с задержкой
-	const searchInput = document.getElementById('search-input');
-	let searchTimer;
-	searchInput.addEventListener('input', () => {
-		clearTimeout(searchTimer);
-		searchTimer = setTimeout(() => {
-			applyFilter('search', searchInput.value.trim());
-		}, 400);
-	});
-
-	// Дропдауны
-	document.querySelectorAll('.dropdown').forEach(dropdown => {
-		const btn = dropdown.querySelector('.dropdown-btn');
-		const menu = dropdown.querySelector('.dropdown-menu');
-		btn.addEventListener('click', (e) => {
-			e.stopPropagation();
-			btn.classList.toggle('is-open');
-			menu.classList.toggle('is-open');
+/* ── Пункты меню — клик ── */
+function initMenuItems() {
+	document.querySelectorAll('.dropdown-item[data-filter]').forEach(item => {
+		item.addEventListener('click', () => {
+			const filter = item.dataset.filter;
+			const value  = item.dataset.value;
+			state[filter] = value;
+			closeAllDropdowns();
+			reload();
 		});
 	});
+}
 
-	document.addEventListener('click', () => {
-		document.querySelectorAll('.dropdown-btn, .dropdown-menu').forEach(el => {
-			el.classList.remove('is-open');
-		});
+/* ── Направление — клик по сайдбару, сбрасываем industry и tag ── */
+document.querySelectorAll('#sidebar-nav .sidebar-btn').forEach(btn => {
+	btn.addEventListener('click', () => {
+		state.direction = btn.dataset.direction;
+		state.industry  = '';   /* сброс при смене направления */
+		state.tag       = '';
+		reload();
 	});
+});
 
-	// Превью при ховере — только на нетач-устройствах
-	if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-	const preview = document.getElementById('case-preview');
-	const previewImg = document.getElementById('preview-img');
+/* ── Поиск с задержкой ── */
+const searchInput = document.getElementById('search-input');
+let searchTimer;
+searchInput.addEventListener('input', () => {
+	clearTimeout(searchTimer);
+	searchTimer = setTimeout(() => {
+		state.search = searchInput.value.trim();
+		reload();
+	}, 400);
+});
+
+/* ── Дропдауны — открытие/закрытие ── */
+function closeAllDropdowns() {
+	document.querySelectorAll('.dropdown-btn').forEach(b => b.classList.remove('is-open'));
+	document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('is-open'));
+}
+
+document.querySelectorAll('.dropdown').forEach(dropdown => {
+	const btn  = dropdown.querySelector('.dropdown-btn');
+	const menu = dropdown.querySelector('.dropdown-menu');
+	btn.addEventListener('click', e => {
+		e.stopPropagation();
+		const isOpen = menu.classList.contains('is-open');
+		closeAllDropdowns();
+		if (!isOpen) {
+			btn.classList.add('is-open');
+			menu.classList.add('is-open');
+		}
+	});
+});
+
+document.addEventListener('click', closeAllDropdowns);
+
+/* ── Превью при ховере — только мышь ── */
+function initPreview() {
+	if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+	const preview      = document.getElementById('case-preview');
+	const previewImg   = document.getElementById('preview-img');
 	const previewEmpty = document.getElementById('preview-empty');
-	let moveHandler = null;
+	let moveHandler    = null;
 
 	document.querySelectorAll('.case-row').forEach(row => {
 		row.addEventListener('mouseenter', () => {
@@ -722,11 +794,11 @@
 				previewEmpty.style.display = 'flex';
 			}
 			preview.classList.add('is-visible');
-			moveHandler = (ev) => {
+			moveHandler = ev => {
 				const x = ev.clientX + 24;
 				const y = ev.clientY - 110;
 				preview.style.left = Math.min(x, window.innerWidth - 320) + 'px';
-				preview.style.top = Math.max(8, Math.min(y, window.innerHeight - 240)) + 'px';
+				preview.style.top  = Math.max(8, Math.min(y, window.innerHeight - 240)) + 'px';
 			};
 			document.addEventListener('mousemove', moveHandler);
 		});
@@ -739,6 +811,10 @@
 			}
 		});
 	});
-	} // end hover check
+}
+
+/* Первичная инициализация */
+initMenuItems();
+initPreview();
 </script>
 {% endblock %}

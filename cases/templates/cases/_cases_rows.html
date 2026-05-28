@@ -1,0 +1,36 @@
+{% for case in cases %}
+{% with tags=case.tags.all %}
+<a class="case-row"
+	href="{% url 'cases:detail' case.slug %}"
+	data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
+
+	<!-- Название + отрасль -->
+	<div class="case-main">
+		<div class="case-title">{{ case.title }}</div>
+		{% if case.industry %}
+		<div class="case-industry">{{ case.industry }}</div>
+		{% endif %}
+	</div>
+
+	<!-- Теги: максимум 2 + счётчик остатка -->
+	<div class="case-tags">
+		{% for tag in tags|slice:":2" %}
+		<span class="case-tag">{{ tag.name }}</span>
+		{% endfor %}
+		{% with total=tags.count %}
+		{% if total > 2 %}
+		<span class="case-tag-more">+{{ total|add:"-2" }}</span>
+		{% endif %}
+		{% endwith %}
+	</div>
+
+	<!-- Кнопка -->
+	<div class="case-link">
+		<span class="case-link-text">Кейс</span>
+		<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+	</div>
+</a>
+{% endwith %}
+{% empty %}
+<div class="empty">Кейсы не найдены</div>
+{% endfor %}
