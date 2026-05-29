@@ -485,7 +485,7 @@
 	/* Строка кейса */
 	.home-case-row {
 		display: grid;
-		grid-template-columns: 200px minmax(0,1fr) 1fr auto;
+		grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
 		align-items: center;
 		gap: 24px;
 		padding: 18px 22px;
@@ -499,31 +499,6 @@
 	.home-case-row:hover {
 		background: var(--bg-3);
 		border-color: var(--stroke);
-	}
-
-	/* Услуга */
-	.home-case-service {
-		font-size: 13px;
-		color: rgba(255,255,255,0.4);
-		display: flex;
-		align-items: center;
-		gap: 8px;
-		overflow: hidden;
-	}
-
-	.home-case-service::before {
-		content: '';
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: var(--accent);
-		flex-shrink: 0;
-	}
-
-	.home-case-service-text {
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 
 	/* Название + отрасль */
@@ -541,6 +516,8 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		flex-shrink: 1;
+		min-width: 0;
 	}
 
 	.home-case-industry {
@@ -654,7 +631,7 @@
 		.home-hero-text { font-size: clamp(15px, 2vw, 18px); }
 		.home-services-row-hero { grid-template-columns: 1fr 1fr; }
 		.home-services-row-normal { grid-template-columns: repeat(3, 1fr); }
-		.home-case-row { grid-template-columns: 160px 1fr auto; }
+		.home-case-row { grid-template-columns: minmax(0, 1fr) auto; gap: 14px; }
 		.home-case-tags { display: none; }
 	}
 
@@ -688,7 +665,6 @@
 			grid-template-columns: 1fr auto;
 			gap: 12px;
 		}
-		.home-case-service { display: none; }
 		.home-case-industry { display: none; }
 		.home-case-tags { display: none; }
 		.home-case-link-btn { padding: 0 12px; }
@@ -974,11 +950,6 @@
 				href="{% url 'cases:detail' case.slug %}"
 				data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
 
-				<!-- Услуга -->
-				<div class="home-case-service">
-					<span class="home-case-service-text">{{ case.get_service_display }}</span>
-				</div>
-
 				<!-- Название + отрасль -->
 				<div class="home-case-main">
 					<div class="home-case-title">{{ case.title }}</div>
@@ -989,12 +960,14 @@
 
 				<!-- Теги -->
 				<div class="home-case-tags">
-					{% for tag in case.tags.all|slice:":3" %}
+					{% for tag in case.tags.all|slice:":2" %}
 					<span class="home-case-tag">{{ tag.name }}</span>
 					{% endfor %}
-					{% if case.tags.count > 3 %}
-					<span class="home-case-tag-more">ещё...</span>
+					{% with total=case.tags.count %}
+					{% if total > 2 %}
+					<span class="home-case-tag-more">+{{ total|add:"-2" }}</span>
 					{% endif %}
+					{% endwith %}
 				</div>
 
 				<!-- Кнопка -->

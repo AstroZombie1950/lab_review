@@ -403,7 +403,7 @@
 		font-weight: 900;
 		line-height: 1.1;
 		letter-spacing: -0.03em;
-		margin-bottom: 24px;
+		margin: 0 0 40px;
 	}
 
 	/* Адаптив героя */
@@ -465,10 +465,11 @@
 		}
 		/* Скрываем вводный текст (intro блок) на мобиле */
 		.cb-intro { display: none; }
+		.cb:has(.cb-intro) { display: none; }
 		/* Показываем заголовок-разделитель */
 		.cb-mobile-divider { display: block; }
 		/* Уменьшаем отступ превью */
-		.case-hero-preview { min-height: 0; padding: 0 20px 12px; }
+		.case-hero-preview { min-height: 0; padding: 0 20px 0; }
 	}
 
 	/* ── Общие стили секций ── */

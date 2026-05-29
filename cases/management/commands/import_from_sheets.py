@@ -56,7 +56,6 @@ def download_image(url, subfolder):
 		req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
 		with urllib.request.urlopen(req, timeout=15) as resp:
 			data = resp.read()
-			# Определяем расширение по Content-Type
 			content_type = resp.headers.get('Content-Type', '').split(';')[0].strip()
 			ct_map = {
 				'image/jpeg':    '.jpg',
@@ -68,7 +67,6 @@ def download_image(url, subfolder):
 			detected_ext = ct_map.get(content_type)
 			if detected_ext:
 				ext = detected_ext
-				# Пересчитываем пути если расширение изменилось
 				filename = f'{md5}{ext}'
 				rel_path = f'{subfolder}/{filename}'
 				abs_path = settings.MEDIA_ROOT / rel_path
@@ -95,7 +93,7 @@ CTA_DEFAULTS = {
 
 def fetch_sheet(api_key, sheet_id):
 	"""Получить все строки из первого листа таблицы."""
-	range_ = urllib.parse.quote('A:BV')
+	range_ = urllib.parse.quote('A:CH')
 	url = (
 		f'https://sheets.googleapis.com/v4/spreadsheets/{sheet_id}'
 		f'/values/{range_}?key={api_key}'

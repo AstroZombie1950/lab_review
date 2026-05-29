@@ -329,6 +329,8 @@
 		color: rgba(255,255,255,0.75);
 		text-decoration: none;
 		transition: color .2s, border-color .2s;
+		white-space: nowrap;
+		flex-shrink: 0;
 	}
 
 	/* Иконки в кнопках — не сжимаются при переносе текста */
@@ -385,14 +387,24 @@
 	}
 
 	/* ── Адаптив ── */
-	@media (max-width: 900px) {
-		.contacts-main-grid { grid-template-columns: 1fr; }
-		.contacts-btns { flex-wrap: wrap; }
+
+	/* Двухколоночный layout — кнопкам мало места, скрываем текст */
+	@media (max-width: 1100px) {
+		.contacts-btn { padding: 12px 16px; }
+		.contacts-btn .btn-label { display: none; }
 	}
 
-	/* На мобиле — только иконка */
+	@media (max-width: 900px) {
+		.contacts-main-grid { grid-template-columns: 1fr; }
+		/* Колонка снова широкая — показываем текст */
+		.contacts-btn { padding: 12px 22px; }
+		.contacts-btn .btn-label { display: inline; }
+	}
+
+	/* Мобила — кнопки только иконка, равная ширина */
 	@media (max-width: 768px) {
-		.contacts-btn { padding: 12px 16px; }
+		.contacts-btns { gap: 8px; }
+		.contacts-btn { padding: 12px 16px; flex: 1; justify-content: center; }
 		.contacts-btn .btn-label { display: none; }
 	}
 

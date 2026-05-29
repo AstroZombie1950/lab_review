@@ -103,15 +103,13 @@ class Case(models.Model):
 		'Короткое описание',
 		help_text='1–2 предложения о проекте. Отображается в карточке на странице /cases/ и в превью при наведении. Пример: «Вывели сайт в топ-3 по 47 запросам за 4 месяца»'
 	)
-	cover = models.URLField(
-		'Обложка (URL)',
+	cover = models.CharField('Обложка (URL)', max_length=500,
 		blank=True,
 		help_text='Ссылка на изображение для карточки кейса. Пример: https://example.com/image.jpg'
 	)
 
 	# Герой страницы кейса
-	hero_bg = models.URLField(
-		'Фоновое изображение героя (URL)',
+	hero_bg = models.CharField('Фоновое изображение героя (URL)', max_length=500,
 		blank=True,
 		help_text='Ссылка на фоновое изображение героя. Пример: https://example.com/hero.jpg'
 	)
@@ -128,13 +126,11 @@ class Case(models.Model):
 	)
 
 	# Изображение в герое (опционально, только для CaseNonDev)
-	hero_image = models.URLField(
-		'Изображение в герое (URL)',
+	hero_image = models.CharField('Изображение в герое (URL)', max_length=500,
 		blank=True,
 		help_text='Скриншот статистики для правой части героя. Если не заполнено — показывается стандартный дашборд.'
 	)
-	hero_arrow_svg = models.URLField(
-		'Стрелка поверх (SVG, URL)',
+	hero_arrow_svg = models.CharField('Стрелка поверх (SVG, URL)', max_length=500,
 		blank=True,
 		help_text='SVG с прозрачным фоном того же размера, что и основное изображение. Накладывается поверх. Если не заполнено — стрелка не показывается.'
 	)
@@ -283,8 +279,7 @@ class CaseBlock(models.Model):
 		blank=True,
 		help_text='Второй абзац — детали, подробности. Необязательное поле.'
 	)
-	cf_image = models.URLField(
-		'Изображение (URL)',
+	cf_image = models.CharField('Изображение (URL)', max_length=500,
 		blank=True,
 		help_text='Ссылка на изображение. Показывается справа от текста.'
 	)
@@ -406,8 +401,7 @@ class CaseBlock(models.Model):
 		default='#contact',
 		help_text='Куда ведёт кнопка. Можно указать якорь (#contact) или полный URL.'
 	)
-	cta_image = models.URLField(
-		'Изображение CTA (URL)',
+	cta_image = models.CharField('Изображение CTA (URL)', max_length=500,
 		blank=True,
 		help_text='Картинка в левой части CTA-блока. Необязательное поле.'
 	)
@@ -644,8 +638,9 @@ class DevCaseImage(models.Model):
 		related_name='dev_images',
 		verbose_name='Кейс'
 	)
-	url = models.URLField(
+	url = models.CharField(
 		'URL изображения',
+		max_length=500,
 		help_text='Прямая ссылка на изображение. Пример: https://example.com/screen1.jpg'
 	)
 	order = models.PositiveSmallIntegerField('Порядок', default=0)

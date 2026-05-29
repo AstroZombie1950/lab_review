@@ -349,6 +349,20 @@
 		align-items: center;
 	}
 
+	.svc-include-icon {
+		width: 48px;
+		height: 48px;
+		border-radius: var(--radius-md);
+		background: rgba(232,56,42,0.12);
+		border: 1px solid rgba(232,56,42,0.25);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+		color: var(--accent);
+		align-self: center;
+	}
+
 	.svc-include-item:hover {
 		background: rgba(255,255,255,0.05);
 		border-color: var(--stroke);
@@ -1588,5 +1602,110 @@
 		btn.disabled    = false;
 		btn.textContent = 'Отправить заявку';
 	});
+</script>
+
+<script>
+/* Выравниваем min-height всех FAQ-item по самому высокому в открытом виде */
+(function() {
+	function equalizeFaq() {
+		var items = Array.from(document.querySelectorAll('.svc-faq-item'));
+		if (!items.length) return;
+
+		/* Сбрасываем */
+		items.forEach(function(el) { el.style.minHeight = ''; });
+
+		var maxH = 0;
+
+		items.forEach(function(el) {
+			var wasOpen = el.classList.contains('is-open');
+			var body = el.querySelector('.svc-faq-body');
+
+			/* Временно открываем без анимации */
+			el.classList.add('is-open');
+			if (body) {
+				body.style.transition = 'none';
+				body.style.gridTemplateRows = '1fr';
+			}
+
+			var h = el.offsetHeight;
+			if (h > maxH) maxH = h;
+
+			/* Возвращаем состояние */
+			if (!wasOpen) {
+				el.classList.remove('is-open');
+				if (body) body.style.gridTemplateRows = '';
+			}
+			if (body) body.style.transition = '';
+		});
+
+		/* min-height только для открытого состояния через data-атрибут */
+		items.forEach(function(el) {
+			el.dataset.faqOpenHeight = maxH;
+		});
+
+	/* Применяем через обработчик клика */
+		document.querySelectorAll('.svc-faq-btn').forEach(function(btn) {
+			btn._faqHeightReady = true;
+		});
+	}
+
+	/* Обновляем min-height всех item после клика */
+	document.addEventListener('click', function(e) {
+		var btn = e.target.closest('.svc-faq-btn');
+		if (!btn) return;
+
+		/* setTimeout 0 — ждём пока основной обработчик переключит классы */
+		setTimeout(function() {
+			document.querySelectorAll('.svc-faq-item').forEach(function(item) {
+				var maxH = item.dataset.faqOpenHeight;
+				if (!maxH) return;
+				if (item.classList.contains('is-open')) {
+					item.style.minHeight = maxH + 'px';
+				} else {
+					item.style.minHeight = '';
+				}
+			});
+		}, 0);
+	});
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', equalizeFaq);
+	} else {
+		equalizeFaq();
+	}
+	window.addEventListener('resize', function() {
+		/* При ресайзе сбрасываем data и пересчитываем */
+		document.querySelectorAll('.svc-faq-item').forEach(function(el) {
+			el.style.minHeight = '';
+			delete el.dataset.faqOpenHeight;
+		});
+		equalizeFaq();
+		/* Восстанавливаем min-height для уже открытых */
+		document.querySelectorAll('.svc-faq-item.is-open').forEach(function(el) {
+			if (el.dataset.faqOpenHeight) el.style.minHeight = el.dataset.faqOpenHeight + 'px';
+		});
+	});
+})();
+
+/* Выравниваем высоту карточек includes по самой высокой */
+(function() {
+	function equalizeIncludes() {
+		var items = document.querySelectorAll('.svc-include-item');
+		if (!items.length) return;
+		/* Сбрасываем перед пересчётом */
+		items.forEach(function(el) { el.style.height = ''; });
+		var max = 0;
+		items.forEach(function(el) {
+			if (el.offsetHeight > max) max = el.offsetHeight;
+		});
+		items.forEach(function(el) { el.style.height = max + 'px'; });
+	}
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', equalizeIncludes);
+	} else {
+		equalizeIncludes();
+	}
+	window.addEventListener('resize', equalizeIncludes);
+})();
 </script>
 {% endblock %}
