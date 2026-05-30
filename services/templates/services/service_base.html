@@ -157,7 +157,7 @@
 	.svc-hero-image img {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
+		object-fit: contain;
 	}
 
 	.svc-hero-image-placeholder {
@@ -1617,11 +1617,37 @@
 		/* Сбрасываем min-height перед пересчётом */
 		items.forEach(function(el) { el.style.minHeight = ''; });
 
-		/* Ищем максимальную высоту среди закрытых элементов как есть — без открытия */
+		/* Временно закрываем все без анимации, запоминаем открытые */
+		var openItems = [];
+		items.forEach(function(el) {
+			if (el.classList.contains('is-open')) {
+				openItems.push(el);
+				el.classList.remove('is-open');
+				var body = el.querySelector('.svc-faq-body');
+				if (body) body.style.transition = 'none';
+			}
+		});
+
+		/* Принудительный reflow чтобы браузер пересчитал размеры */
+		items[0].offsetHeight;
+
+		/* Меряем все в закрытом состоянии */
 		var max = 0;
 		items.forEach(function(el) {
 			var h = el.offsetHeight;
 			if (h > max) max = h;
+		});
+
+		/* Восстанавливаем открытые */
+		openItems.forEach(function(el) {
+			el.classList.add('is-open');
+			var body = el.querySelector('.svc-faq-body');
+			if (body) {
+				/* Следующий кадр — возвращаем анимацию */
+				requestAnimationFrame(function() {
+					body.style.transition = '';
+				});
+			}
 		});
 
 		/* Задаём всем одинаковый min-height */
