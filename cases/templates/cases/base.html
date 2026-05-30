@@ -1667,10 +1667,15 @@
 	const modalStatus  = document.getElementById('modal-status');
 
 	// Открыть
+	// Флаг: закрытие инициировано изнутри (не через popstate)
+	let _modalClosingProgrammatically = false;
+
 	function openModal() {
 		modalOverlay.classList.add('is-open');
 		document.body.classList.add('modal-open');
 		document.documentElement.classList.add('modal-open');
+		// Пушим фиктивную запись — чтобы свайп/«назад» закрыл модалку
+		history.pushState({ modal: true }, '');
 	}
 
 	// Закрыть
@@ -1678,6 +1683,11 @@
 		modalOverlay.classList.remove('is-open');
 		document.body.classList.remove('modal-open');
 		document.documentElement.classList.remove('modal-open');
+		// Убираем фиктивную запись из стека, если она там ещё есть
+		if (history.state && history.state.modal) {
+			_modalClosingProgrammatically = true;
+			history.back();
+		}
 	}
 
 	// Очистить форму и статус
@@ -1889,6 +1899,29 @@
 		const val = document.cookie.split('; ').find(r => r.startsWith(name + '='));
 		return val ? val.split('=')[1] : '';
 	}
+
+	// Свайп/кнопка «назад» при открытой модалке
+	window.addEventListener('popstate', (e) => {
+		if (_modalClosingProgrammatically) {
+			// Это мы сами вызвали history.back() из closeModal — игнорируем
+			_modalClosingProgrammatically = false;
+			return;
+		}
+		if (modalOverlay.classList.contains('is-open')) {
+			const hasData = [...modalForm.querySelectorAll('input, textarea')]
+				.some(el => el.value.trim() !== '');
+			if (hasData) {
+				// Форма заполнена — возвращаем запись в стек и показываем confirm
+				history.pushState({ modal: true }, '');
+				showConfirm(() => { resetModal(); closeModal(); });
+			} else {
+				// Форма пустая — просто закрываем (модалка уже убрала is-open)
+				modalOverlay.classList.remove('is-open');
+				document.body.classList.remove('modal-open');
+				document.documentElement.classList.remove('modal-open');
+			}
+		}
+	});
 </script>
 
 <!-- ════ COOKIE CONSENT ════ -->

@@ -501,12 +501,12 @@
 	}
 
 	.cb-task-kicker {
-		font-size: 14px;
+		font-size: 28px;
 		color: rgba(255,255,255,0.6);
 	}
 
 	.cb-task-text {
-		font-size: clamp(20px, 2.2vw, 28px);
+		font-size: clamp(22px, 2.2vw, 30px);
 		font-weight: 900;
 		line-height: 1.2;
 		letter-spacing: -0.02em;
@@ -520,7 +520,7 @@
 	}
 
 	.cb-resume-title {
-		font-size: 24px;
+		font-size: 34px;
 		font-weight: 900;
 		margin-bottom: 24px;
 		padding-bottom: 24px;
@@ -534,7 +534,7 @@
 	}
 
 	.cb-resume-item-label {
-		font-size: 13px;
+		font-size: 18px;
 		color: var(--muted);
 		margin-bottom: 10px;
 	}
@@ -554,7 +554,7 @@
 	}
 
 	.cb-resume-item-unit {
-		font-size: 14px;
+		font-size: 20px;
 		font-weight: 700;
 		color: rgba(255,255,255,0.75);
 		letter-spacing: -0.02em;
@@ -902,6 +902,12 @@
 		.cb-tasks-grid { grid-template-columns: 1fr; }
 		.cb-resume-grid { grid-template-columns: 1fr; }
 		.case-hero-url { display: none; }
+		/* Резюме — чуть меньше на мобиле */
+		.cb-resume-item-label { font-size: 15px; }
+		.cb-resume-item-unit { font-size: 17px; }
+		.cb-resume-item-num { font-size: 26px; }
+		.cb-resume-title { font-size: 26px; }
+		.cb-task-kicker { font-size: 20px; }
 	}
 </style>
 {% endblock %}
