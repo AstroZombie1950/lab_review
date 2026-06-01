@@ -1,5 +1,4 @@
 from django.contrib.sitemaps import Sitemap
-from django.urls import reverse
 from .models import Case
 
 
@@ -23,19 +22,27 @@ class StaticSitemap(Sitemap):
 	changefreq = 'monthly'
 	priority = 0.6
 
-	# (url_name, priority)
+	# (url, priority)
 	pages = [
-		('/',            0.9),
-		('/cases/',      0.8),
-		('/internet-shop/', 0.7),
-		('/landing/',    0.7),
-		('/website/',    0.7),
-		('/html-css/',   0.7),
-		('/seo-setup/',  0.7),
-		('/seo-full/',   0.7),
-		('/seo-top/',    0.7),
-		('/yandex-direct/', 0.7),
-		('/contacts/',   0.6),
+		('/',                    0.9),
+		('/cases/',              0.8),
+		# Разработка
+		('/ecommerce/',          0.7),
+		('/landing/',            0.7),
+		('/site-development/',   0.7),
+		('/verstka/',            0.7),
+		# SEO
+		('/seo-optimization/',   0.7),
+		('/seo-promotion/',      0.7),
+		('/yandex-top/',         0.7),
+		('/yandex-direct/',      0.7),
+		# Авито
+		('/avitolog-vedenie/',   0.7),
+		('/avito-setup/',        0.7),
+		('/avito-consulting/',   0.7),
+		('/avito-feed/',         0.7),
+		# Прочее
+		('/contacts/',           0.6),
 	]
 
 	def items(self):
