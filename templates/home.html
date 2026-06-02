@@ -1023,7 +1023,8 @@
 			document.addEventListener('mousemove', moveHandler);
 		});
 
-		row.addEventListener('mouseleave', () => {
+		row.addEventListener('mouseleave', (e) => {
+			if (e.relatedTarget && e.relatedTarget.closest('.home-case-row')) return;
 			preview.classList.remove('is-visible');
 			if (moveHandler) {
 				document.removeEventListener('mousemove', moveHandler);

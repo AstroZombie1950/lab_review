@@ -27,7 +27,7 @@
 		display: grid;
 		grid-template-columns: 1.02fr 0.98fr;
 		gap: 0;
-		min-height: 620px;
+		min-height: 460px;
 	}
 
 	/* Левая колонка */
@@ -310,6 +310,19 @@
 
 	/* Кликабельная картинка — курсор */
 	.case-hero-img-wrap { cursor: zoom-in; }
+
+	/* Подпись под hero-изображением */
+	.case-hero-img-caption {
+		position: absolute;
+		bottom: 12px;
+		left: 0;
+		right: 0;
+		font-size: 12px;
+		color: var(--muted-2);
+		text-align: center;
+		letter-spacing: 0.04em;
+		pointer-events: none;
+	}
 
 	/* Лайтбокс */
 	.case-lightbox {
@@ -969,6 +982,8 @@
 								<img src="{{ case.hero_arrow_svg }}" alt="" class="case-hero-arrow-svg-layer" id="caseHeroArrow">
 								{% endif %}
 							</div>
+							<!-- Подпись под изображением -->
+							<p class="case-hero-img-caption">Отчётный период за 30 дней</p>
 							<!-- Лайтбокс — 2 слайда -->
 							<div class="case-lightbox" id="caseLightbox">
 								<button class="case-lightbox-close" id="caseLightboxClose">&times;</button>
