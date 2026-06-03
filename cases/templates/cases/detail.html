@@ -313,13 +313,16 @@
 
 	/* Подпись под hero-изображением */
 	.case-hero-img-caption {
-		display: block;
+		position: absolute;
+		bottom: 14px;
+		left: 0;
+		right: 0;
 		font-size: 12px;
 		color: var(--muted-2);
 		text-align: center;
 		letter-spacing: 0.04em;
 		pointer-events: none;
-		padding: 10px 0 14px;
+		z-index: 2;
 	}
 
 	/* Лайтбокс */
@@ -980,6 +983,13 @@
 								<img src="{{ case.hero_arrow_svg }}" alt="" class="case-hero-arrow-svg-layer" id="caseHeroArrow">
 								{% endif %}
 							</div>
+							<!-- Подпись под изображением -->
+							<p class="case-hero-img-caption">
+								{% if case.direction == 'direct' %}Итоги рекламной кампании в Яндекс Директе за 30 дней
+								{% elif case.direction == 'avito' %}Результаты продвижения на Авито за 7 дней
+								{% elif case.direction == 'seo' %}Статистика SEO-продвижения за отчётный период
+								{% else %}Отчётный период за 30 дней{% endif %}
+							</p>
 							<!-- Лайтбокс — 2 слайда -->
 							<div class="case-lightbox" id="caseLightbox">
 								<button class="case-lightbox-close" id="caseLightboxClose">&times;</button>
@@ -999,13 +1009,6 @@
 								<div class="case-lightbox-counter" id="caseLightboxCounter">1 / 2</div>
 								{% endif %}
 							</div>
-						<!-- Подпись под изображением -->
-						<p class="case-hero-img-caption">
-							{% if case.direction == 'direct' %}Итоги рекламной кампании в Яндекс Директе за 30 дней
-							{% elif case.direction == 'avito' %}Результаты продвижения на Авито за 7 дней
-							{% elif case.direction == 'seo' %}Статистика SEO-продвижения за отчётный период
-							{% else %}Отчётный период за 30 дней{% endif %}
-						</p>
 						{% else %}
 							<!-- Стандартный декоративный дашборд -->
 							<div class="case-preview-grid"></div>
