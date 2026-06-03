@@ -1041,6 +1041,28 @@
 		});
 	});
 
+	/* Скрываем превью при скролле */
+	window.addEventListener('scroll', () => {
+		preview.classList.remove('is-visible');
+		if (moveHandler) {
+			document.removeEventListener('mousemove', moveHandler);
+			moveHandler = null;
+		}
+	}, { passive: true });
+
+	/* Скрываем превью если кнопка мыши зажата и курсор ушёл со строки */
+	document.addEventListener('mousemove', (e) => {
+		if (e.buttons === 1 && preview.classList.contains('is-visible')) {
+			if (!e.target.closest('.home-case-row')) {
+				preview.classList.remove('is-visible');
+				if (moveHandler) {
+					document.removeEventListener('mousemove', moveHandler);
+					moveHandler = null;
+				}
+			}
+		}
+	});
+
 	// «Показать ещё» услуги
 	const servicesMoreBtn = document.getElementById('services-more-btn');
 	const servicesHidden  = document.getElementById('services-hidden');
