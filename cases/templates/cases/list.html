@@ -777,6 +777,7 @@ document.addEventListener('click', closeAllDropdowns);
 /* ── Превью при ховере — только мышь ── */
 function initPreview() {
 	if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+	if (window.innerWidth < 1024) return;
 	const preview      = document.getElementById('case-preview');
 	const previewImg   = document.getElementById('preview-img');
 	const previewEmpty = document.getElementById('preview-empty');

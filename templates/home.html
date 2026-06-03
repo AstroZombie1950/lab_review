@@ -250,34 +250,30 @@
 	.home-section-title span { color: var(--muted); }
 
 	/* ════════════════════════════════
-	   УСЛУГИ — новый стиль
+	   УСЛУГИ
 	════════════════════════════════ */
 	.home-services {
 		padding: 100px 0 0;
 	}
 
-	/* Сетка: 3 колонки, карточки одинаковые */
 	.home-services-grid {
 		display: flex;
 		flex-direction: column;
 		gap: 16px;
 	}
 
-	/* Строка с двумя крупными карточками */
 	.home-services-row-hero {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
 		gap: 16px;
 	}
 
-	/* Строка с обычными карточками 3 в ряд */
 	.home-services-row-normal {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 16px;
 	}
 
-	/* Базовая карточка */
 	.home-service-card {
 		border-radius: var(--radius-xl);
 		border: 1px solid var(--stroke);
@@ -290,7 +286,6 @@
 		transition: border-color .25s, transform .25s;
 	}
 
-	/* Крупная карточка — чуть шире чем высота */
 	.home-service-card--hero {
 		aspect-ratio: 4 / 3;
 		min-height: unset;
@@ -305,13 +300,11 @@
 		transform: translateY(-3px);
 	}
 
-	/* Цвета фона */
 	.home-service-card.color-grey  { background: #141414; }
 	.home-service-card.color-red   { background: #161212; }
 	.home-service-card.color-blue  { background: #111316; }
 	.home-service-card.color-green { background: #111614; }
 
-	/* Фото на всю карточку — абсолютный фон */
 	.home-service-bg {
 		position: absolute;
 		inset: 0;
@@ -326,7 +319,6 @@
 		display: block;
 	}
 
-	/* Градиент поверх фото — текст читается */
 	.home-service-bg::after {
 		content: '';
 		position: absolute;
@@ -339,7 +331,6 @@
 		);
 	}
 
-	/* Весь текстовый контент поверх фото */
 	.home-service-body {
 		position: relative;
 		z-index: 1;
@@ -351,7 +342,6 @@
 		gap: 16px;
 	}
 
-	/* Верхняя часть: категория + стрелка */
 	.home-service-top {
 		display: flex;
 		align-items: center;
@@ -377,7 +367,6 @@
 		flex-shrink: 0;
 	}
 
-	/* Кружок со стрелкой */
 	.home-service-arrow {
 		width: 40px;
 		height: 40px;
@@ -399,7 +388,6 @@
 		color: #fff;
 	}
 
-	/* Название */
 	.home-service-name {
 		font-size: clamp(20px, 2vw, 26px);
 		font-weight: 800;
@@ -410,7 +398,6 @@
 		padding-top: 0;
 	}
 
-	/* Кнопка «Показать ещё» */
 	.home-services-more {
 		display: flex;
 		justify-content: center;
@@ -447,7 +434,7 @@
 	}
 
 	/* ════════════════════════════════
-	   КЕЙСЫ — стиль как на /cases/
+	   КЕЙСЫ
 	════════════════════════════════ */
 	.home-cases {
 		padding: 100px 0 0;
@@ -475,14 +462,12 @@
 
 	.home-cases-link:hover { color: #fff; }
 
-	/* Список строками */
 	.home-cases-list {
 		display: flex;
 		flex-direction: column;
 		gap: 3px;
 	}
 
-	/* Строка кейса */
 	.home-case-row {
 		display: grid;
 		grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto;
@@ -501,7 +486,6 @@
 		border-color: var(--stroke);
 	}
 
-	/* Название + отрасль */
 	.home-case-main {
 		display: flex;
 		align-items: center;
@@ -534,7 +518,6 @@
 		flex-shrink: 0;
 	}
 
-	/* Теги */
 	.home-case-tags {
 		display: flex;
 		align-items: center;
@@ -552,7 +535,6 @@
 		color: rgba(255,255,255,0.22);
 	}
 
-	/* Кнопка */
 	.home-case-link-btn {
 		display: inline-flex;
 		align-items: center;
@@ -576,7 +558,6 @@
 		border-color: rgba(255,255,255,0.2);
 	}
 
-	/* Превью при ховере */
 	.home-case-preview {
 		position: fixed;
 		width: 300px;
@@ -597,11 +578,7 @@
 		transform: scale(1) translateY(0);
 	}
 
-	.home-case-preview img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+	.home-case-preview img { width: 100%; height: 100%; object-fit: cover; }
 
 	.home-case-preview-empty {
 		width: 100%;
@@ -614,12 +591,121 @@
 		font-size: 13px;
 	}
 
-	/* Пусто */
 	.home-cases-empty {
 		padding: 80px 0;
 		text-align: center;
 		color: var(--muted-2);
 		font-size: 15px;
+	}
+
+	/* ── Подложка hero ── */
+	.home-hero {
+		position: relative;
+		isolation: isolate;
+		overflow: visible;
+	}
+
+	.home-hero-content {
+		position: relative;
+		z-index: 2;
+		isolation: isolate;
+	}
+
+	.home-hero-content > * {
+		position: relative;
+		z-index: 3;
+	}
+
+	.home-hero-content::before {
+		content: "";
+		position: absolute;
+		left: -220px;
+		top: -120px;
+		width: 910px;
+		height: 680px;
+		z-index: 0;
+		pointer-events: none;
+		opacity: .78;
+		border-radius: 999px;
+
+		background:
+			linear-gradient(115deg, transparent 0 20%, rgba(255,255,255,.10) 20.2%, transparent 20.8%),
+			linear-gradient(32deg, transparent 0 37%, rgba(232,56,42,.16) 37.2%, transparent 37.9%),
+			linear-gradient(150deg, transparent 0 52%, rgba(255,255,255,.075) 52.2%, transparent 52.8%),
+
+			radial-gradient(circle at 22% 38%, rgba(255,255,255,.32) 0 2px, transparent 3px),
+			radial-gradient(circle at 34% 28%, rgba(232,56,42,.50) 0 3px, transparent 4px),
+			radial-gradient(circle at 48% 52%, rgba(255,255,255,.24) 0 2px, transparent 3px),
+			radial-gradient(circle at 63% 34%, rgba(232,56,42,.34) 0 2px, transparent 4px),
+			radial-gradient(circle at 38% 62%, rgba(255,255,255,.16) 0 2px, transparent 4px),
+
+			radial-gradient(circle at 30% 45%, rgba(232,56,42,.18), transparent 34%),
+			radial-gradient(circle at 28% 48%, rgba(255,255,255,.045), transparent 44%);
+
+		-webkit-mask-image:
+			radial-gradient(
+				ellipse at 44% 48%,
+				#000 0%,
+				#000 34%,
+				rgba(0,0,0,.72) 48%,
+				rgba(0,0,0,.30) 62%,
+				transparent 78%
+			);
+		mask-image:
+			radial-gradient(
+				ellipse at 44% 48%,
+				#000 0%,
+				#000 34%,
+				rgba(0,0,0,.72) 48%,
+				rgba(0,0,0,.30) 62%,
+				transparent 78%
+			);
+	}
+
+	.home-hero-content::after {
+		content: "";
+		position: absolute;
+		left: -300px;
+		top: -180px;
+		width: 1020px;
+		height: 780px;
+		z-index: 0;
+		pointer-events: none;
+		opacity: .42;
+		border-radius: 999px;
+		filter: blur(2px);
+
+		background:
+			radial-gradient(circle at 35% 45%, rgba(232,56,42,.20), transparent 30%),
+			radial-gradient(circle at 24% 58%, rgba(255,255,255,.045), transparent 28%),
+			radial-gradient(circle at 46% 50%, rgba(232,56,42,.075), transparent 48%);
+
+		-webkit-mask-image:
+			radial-gradient(
+				ellipse at 45% 48%,
+				#000 0%,
+				rgba(0,0,0,.76) 36%,
+				rgba(0,0,0,.32) 56%,
+				transparent 76%
+			);
+		mask-image:
+			radial-gradient(
+				ellipse at 45% 48%,
+				#000 0%,
+				rgba(0,0,0,.76) 36%,
+				rgba(0,0,0,.32) 56%,
+				transparent 76%
+			);
+	}
+
+	@media (min-width: 1440px) {
+		.home-hero-content::before { left: -270px; width: 960px; }
+		.home-hero-content::after  { left: -370px; width: 1090px; }
+	}
+
+	@media (min-width: 1800px) {
+		.home-hero-content::before { left: -320px; width: 1010px; }
+		.home-hero-content::after  { left: -440px; width: 1160px; }
 	}
 
 	/* ── Адаптив ── */
@@ -640,41 +726,22 @@
 		.home-hero-title { font-size: clamp(28px, 8vw, 42px); }
 		.home-hero-text { font-size: clamp(14px, 3.5vw, 17px); padding-left: 0; }
 		.home-hero-btns { padding-left: 0; flex-direction: column; align-items: flex-start; }
-		/* Hero-карточки — одна колонка, крупные */
 		.home-services-row-hero { grid-template-columns: 1fr; }
 		.home-service-card--hero { min-height: 220px; aspect-ratio: unset; }
-		/* Normal-карточки — одна колонка, компактные */
 		.home-services-row-normal { grid-template-columns: 1fr; }
 		.home-services-row-normal .home-service-card { min-height: 0; height: 200px; }
-		/* Все карточки: категория сверху, название снизу */
-		.home-service-body {
-			padding: 14px 14px 16px;
-			gap: 0;
-			justify-content: space-between;
-		}
-		.home-service-name {
-			font-size: clamp(14px, 3.8vw, 18px);
-			margin-top: auto;
-		}
-		.home-service-card--hero .home-service-name {
-			font-size: clamp(16px, 4.5vw, 22px);
-		}
+		.home-service-body { padding: 14px 14px 16px; gap: 0; justify-content: space-between; }
+		.home-service-name { font-size: clamp(14px, 3.8vw, 18px); margin-top: auto; }
+		.home-service-card--hero .home-service-name { font-size: clamp(16px, 4.5vw, 22px); }
 		.home-service-arrow { width: 32px; height: 32px; }
 		.home-cases-head { flex-direction: column; align-items: flex-start; }
-		.home-case-row {
-			grid-template-columns: 1fr auto;
-			gap: 12px;
-		}
+		.home-case-row { grid-template-columns: 1fr auto; gap: 12px; }
 		.home-case-industry { display: none; }
 		.home-case-tags { display: none; }
 		.home-case-link-btn { padding: 0 12px; }
 		.home-case-link-text { display: none; }
 	}
-
-		/* Иконка услуги в карточке */
-
-
-	</style>
+</style>
 {% endblock %}
 
 {% block content %}
@@ -691,7 +758,7 @@
 				Разработка · SEO · Реклама
 			</div>
 			<h1 class="home-hero-title">
-                Делаем сайты, которые<br>
+				Делаем сайты, которые<br>
 				<span>приносят</span> деньги
 			</h1>
 			<p class="home-hero-text">
@@ -716,18 +783,10 @@
 					<div class="hero-center-icon">LR</div>
 					<div class="hero-center-label">Lab Review</div>
 				</div>
-				<div class="hero-badge hero-badge-1">
-					<span class="hero-badge-dot"></span>SEO в топ Яндекса
-				</div>
-				<div class="hero-badge hero-badge-2">
-					<span class="hero-badge-dot"></span>Разработка сайтов
-				</div>
-				<div class="hero-badge hero-badge-3">
-					<span class="hero-badge-dot"></span>Яндекс Директ
-				</div>
-				<div class="hero-badge hero-badge-4">
-					<span class="hero-badge-dot"></span>+142% заявок
-				</div>
+				<div class="hero-badge hero-badge-1"><span class="hero-badge-dot"></span>SEO в топ Яндекса</div>
+				<div class="hero-badge hero-badge-2"><span class="hero-badge-dot"></span>Разработка сайтов</div>
+				<div class="hero-badge hero-badge-3"><span class="hero-badge-dot"></span>Яндекс Директ</div>
+				<div class="hero-badge hero-badge-4"><span class="hero-badge-dot"></span>Заявки из Авито</div>
 			</div>
 		</div>
 
@@ -740,14 +799,10 @@
 
 		<div class="home-services-grid">
 
-			<!-- ── СТРОКА 1: две крупные карточки ── -->
+			<!-- Строка 1: две крупные карточки -->
 			<div class="home-services-row-hero">
-
-				<!-- 1. Разработка сайта -->
 				<a href="/website/" class="home-service-card home-service-card--hero color-blue">
-					<div class="home-service-bg">
-						<img src="{% static 'services/img/home/webdev-website.png' %}" alt="Разработка сайта" />
-					</div>
+					<div class="home-service-bg"><img src="{% static 'services/img/home/webdev-website.png' %}" alt="Разработка сайта" /></div>
 					<div class="home-service-body">
 						<div class="home-service-top">
 							<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
@@ -756,12 +811,8 @@
 						<div class="home-service-name">Разработка сайта</div>
 					</div>
 				</a>
-
-				<!-- 2. SEO под ключ -->
 				<a href="/seo-full/" class="home-service-card home-service-card--hero color-green">
-					<div class="home-service-bg">
-						<img src="{% static 'services/img/home/seo-full.png' %}" alt="SEO-продвижение" />
-					</div>
+					<div class="home-service-bg"><img src="{% static 'services/img/home/seo-full.png' %}" alt="SEO-продвижение" /></div>
 					<div class="home-service-body">
 						<div class="home-service-top">
 							<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
@@ -770,17 +821,12 @@
 						<div class="home-service-name">Ведение SEO-проекта под ключ</div>
 					</div>
 				</a>
-
 			</div>
 
-			<!-- ── СТРОКА 2: три обычные карточки ── -->
+			<!-- Строка 2: три обычные карточки -->
 			<div class="home-services-row-normal">
-
-				<!-- 3. Авито: ведение кампании -->
 				<a href="/avito-ads/" class="home-service-card color-red">
-					<div class="home-service-bg">
-						<img src="{% static 'services/img/home/avito-ads.png' %}" alt="Реклама на Авито" />
-					</div>
+					<div class="home-service-bg"><img src="{% static 'services/img/home/avito-ads.png' %}" alt="Реклама на Авито" /></div>
 					<div class="home-service-body">
 						<div class="home-service-top">
 							<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
@@ -789,12 +835,8 @@
 						<div class="home-service-name">Ведение рекламных кампаний на Авито</div>
 					</div>
 				</a>
-
-				<!-- 4. Яндекс Директ -->
 				<a href="/yandex-direct/" class="home-service-card color-grey">
-					<div class="home-service-bg">
-						<img src="{% static 'services/img/home/yandex-direct.png' %}" alt="Яндекс Директ" />
-					</div>
+					<div class="home-service-bg"><img src="{% static 'services/img/home/yandex-direct.png' %}" alt="Яндекс Директ" /></div>
 					<div class="home-service-body">
 						<div class="home-service-top">
 							<div class="home-service-cat"><span class="home-service-cat-dot"></span>Яндекс Директ</div>
@@ -803,12 +845,8 @@
 						<div class="home-service-name">Настройка Яндекс.Директа</div>
 					</div>
 				</a>
-
-				<!-- 5. Разработка лендинга -->
 				<a href="/landing/" class="home-service-card color-blue">
-					<div class="home-service-bg">
-						<img src="{% static 'services/img/home/webdev-landing.png' %}" alt="Разработка лендинга" />
-					</div>
+					<div class="home-service-bg"><img src="{% static 'services/img/home/webdev-landing.png' %}" alt="Разработка лендинга" /></div>
 					<div class="home-service-body">
 						<div class="home-service-top">
 							<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
@@ -817,10 +855,9 @@
 						<div class="home-service-name">Разработка лендинга</div>
 					</div>
 				</a>
-
 			</div>
 
-			<!-- ── Кнопка «Показать ещё» ── -->
+			<!-- Кнопка «Показать ещё» -->
 			<div class="home-services-more">
 				<button class="home-services-more-btn" id="services-more-btn">
 					Показать ещё
@@ -828,14 +865,11 @@
 				</button>
 			</div>
 
-			<!-- ── Скрытые карточки ── -->
+			<!-- Скрытые карточки -->
 			<div class="home-services-hidden" id="services-hidden" style="display:none;">
 				<div class="home-services-row-normal">
-
 					<a href="/avito-day/" class="home-service-card color-red">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/avito-day.png' %}" alt="Авитолог на день" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/avito-day.png' %}" alt="Авитолог на день" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
@@ -844,11 +878,8 @@
 							<div class="home-service-name">Авитолог на день</div>
 						</div>
 					</a>
-
 					<a href="/avito-consult/" class="home-service-card color-grey">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/avito-consult.png' %}" alt="Консультация Авитолога" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/avito-consult.png' %}" alt="Консультация Авитолога" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
@@ -857,11 +888,8 @@
 							<div class="home-service-name">Консультация Авитолога</div>
 						</div>
 					</a>
-
 					<a href="/avito-autoload/" class="home-service-card color-green">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/avito-autoload.png' %}" alt="Создание автозагрузочных файлов" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/avito-autoload.png' %}" alt="Создание автозагрузочных файлов" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Авито</div>
@@ -870,11 +898,8 @@
 							<div class="home-service-name">Создание автозагрузочных файлов</div>
 						</div>
 					</a>
-
 					<a href="/internet-shop/" class="home-service-card color-blue">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/webdev-internet-shop.png' %}" alt="Разработка интернет-магазина" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/webdev-internet-shop.png' %}" alt="Разработка интернет-магазина" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
@@ -883,11 +908,8 @@
 							<div class="home-service-name">Разработка интернет-магазина</div>
 						</div>
 					</a>
-
 					<a href="/seo-setup/" class="home-service-card color-blue">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/seo-setup.png' %}" alt="Внутренняя настройка SEO" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/seo-setup.png' %}" alt="Внутренняя настройка SEO" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
@@ -896,11 +918,8 @@
 							<div class="home-service-name">Внутренняя настройка SEO</div>
 						</div>
 					</a>
-
 					<a href="/seo-top/" class="home-service-card color-green">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/seo-top.png' %}" alt="Вывод сайта в топ Яндекса" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/seo-top.png' %}" alt="Вывод сайта в топ Яндекса" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>SEO</div>
@@ -909,11 +928,8 @@
 							<div class="home-service-name">Вывод сайта в топ Яндекса</div>
 						</div>
 					</a>
-
 					<a href="/html-css/" class="home-service-card color-grey">
-						<div class="home-service-bg">
-							<img src="{% static 'services/img/home/webdev-html-css.png' %}" alt="Верстка сайтов" />
-						</div>
+						<div class="home-service-bg"><img src="{% static 'services/img/home/webdev-html-css.png' %}" alt="Верстка сайтов" /></div>
 						<div class="home-service-body">
 							<div class="home-service-top">
 								<div class="home-service-cat"><span class="home-service-cat-dot"></span>Разработка</div>
@@ -922,12 +938,10 @@
 							<div class="home-service-name">Верстка сайтов</div>
 						</div>
 					</a>
-
 				</div>
 			</div>
 
 		</div>
-
 	</section>
 
 	<!-- ════ КЕЙСЫ ════ -->
@@ -943,22 +957,17 @@
 			</a>
 		</div>
 
-		<!-- Список строками, как на /cases/ -->
 		<div class="home-cases-list">
 			{% for case in cases %}
 			<a class="home-case-row"
 				href="{% url 'cases:detail' case.slug %}"
 				data-cover="{% if case.cover %}{{ case.cover }}{% endif %}">
-
-				<!-- Название + отрасль -->
 				<div class="home-case-main">
 					<div class="home-case-title">{{ case.title }}</div>
 					{% if case.industry %}
 					<div class="home-case-industry">{{ case.industry }}</div>
 					{% endif %}
 				</div>
-
-				<!-- Теги -->
 				<div class="home-case-tags">
 					{% for tag in case.tags.all|slice:":2" %}
 					<span class="home-case-tag">{{ tag.name }}</span>
@@ -969,8 +978,6 @@
 					{% endif %}
 					{% endwith %}
 				</div>
-
-				<!-- Кнопка -->
 				<div class="home-case-link-btn">
 					<span class="home-case-link-text">Кейс</span>
 					<svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1000,10 +1007,11 @@
 
 	document.querySelectorAll('.home-case-row').forEach(row => {
 		row.addEventListener('mouseenter', () => {
-            if (moveHandler) {
-                document.removeEventListener('mousemove', moveHandler);
-                moveHandler = null;
-            }
+			if (window.innerWidth < 1024) return;
+			if (moveHandler) {
+				document.removeEventListener('mousemove', moveHandler);
+				moveHandler = null;
+			}
 			const cover = row.dataset.cover;
 			if (cover) {
 				previewImg.src = cover;
@@ -1032,7 +1040,8 @@
 			}
 		});
 	});
-	// ── «Показать ещё» услуги ──
+
+	// «Показать ещё» услуги
 	const servicesMoreBtn = document.getElementById('services-more-btn');
 	const servicesHidden  = document.getElementById('services-hidden');
 	if (servicesMoreBtn && servicesHidden) {

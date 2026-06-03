@@ -278,7 +278,7 @@
 	.case-hero-img-inner {
 		display: flex;
 		max-width: 100%;
-		max-height: 100%;
+		max-height: 420px;
 		border-radius: 20px;
 		overflow: hidden;
 		line-height: 0;
@@ -983,7 +983,12 @@
 								{% endif %}
 							</div>
 							<!-- Подпись под изображением -->
-							<p class="case-hero-img-caption">Отчётный период за 30 дней</p>
+                            <p class="case-hero-img-caption">
+                                {% if case.direction == 'direct' %}Итоги рекламной кампании в Яндекс Директе за 30 дней
+                                {% elif case.direction == 'avito' %}Результаты продвижения на Авито за 7 дней
+                                {% elif case.direction == 'seo' %}Статистика SEO-продвижения за отчётный период
+                                {% else %}Отчётный период за 30 дней{% endif %}
+                            </p>
 							<!-- Лайтбокс — 2 слайда -->
 							<div class="case-lightbox" id="caseLightbox">
 								<button class="case-lightbox-close" id="caseLightboxClose">&times;</button>
