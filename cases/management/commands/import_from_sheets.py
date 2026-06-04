@@ -11,7 +11,9 @@ from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils import timezone
+from django.utils.text import slugify
 from django.core.files.base import ContentFile
+from django.db import transaction
 
 from cases.models import (
 	Case, Tag, CaseMetric, CaseBlock,
@@ -122,14 +124,31 @@ def parse_published_at(raw):
 	return timezone.now()
 
 
+def _unique_tag_slug(name):
+	"""Сгенерировать slug, не конфликтующий с уже существующими тегами."""
+	base = slugify(name, allow_unicode=True) or 'tag'
+	slug = base
+	i = 2
+	# Если slug занят другим тегом — добавляем суффикс
+	while Tag.objects.filter(slug=slug).exists():
+		slug = f'{base}-{i}'
+		i += 1
+	return slug
+
+
 def get_or_create_tags(raw):
-	"""Создать теги из строки через запятую, вернуть список."""
+	"""Создать недостающие теги из строки через запятую, вернуть список.
+	Slug уникализируется явно, чтобы импорт не падал на коллизиях slug."""
 	tags = []
 	for name in raw.split(','):
 		name = name.strip()
-		if name:
-			tag, _ = Tag.objects.get_or_create(name=name)
-			tags.append(tag)
+		if not name:
+			continue
+		# Ищем по точному имени; если нет — создаём с гарантированно уникальным slug
+		tag = Tag.objects.filter(name=name).first()
+		if tag is None:
+			tag = Tag.objects.create(name=name, slug=_unique_tag_slug(name))
+		tags.append(tag)
 	return tags
 
 
@@ -291,6 +310,15 @@ class Command(BaseCommand):
 		)
 
 	def handle(self, *args, **kwargs):
+		# Файловый лог импорта — изолированно, не трогает глобальный logging сайта
+		log_dir = settings.BASE_DIR / 'logs'
+		log_dir.mkdir(exist_ok=True)
+		if not any(isinstance(h, logging.FileHandler) for h in logger.handlers):
+			fh = logging.FileHandler(log_dir / 'import_from_sheets.log', encoding='utf-8')
+			fh.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s] %(message)s'))
+			logger.addHandler(fh)
+		logger.setLevel(logging.INFO)
+
 		dev_only = kwargs['dev']
 		api_key  = settings.GOOGLE_API_KEY
 
@@ -322,7 +350,9 @@ class Command(BaseCommand):
 		created = updated = skipped = 0
 		for row in rows:
 			try:
-				_, status = import_row(row)
+				# Транзакция на строку: кейс импортируется либо целиком, либо откатывается
+				with transaction.atomic():
+					_, status = import_row(row)
 				if status == 'created':
 					created += 1
 				elif status == 'updated':
@@ -331,7 +361,8 @@ class Command(BaseCommand):
 					skipped += 1
 			except Exception as e:
 				slug = row.get('slug', '?')
-				logger.error('Ошибка импорта кейса slug=%s: %s', slug, e)
+				# Полный трейсбек уходит в файл лога — для поиска причины сбоя
+				logger.error('Ошибка импорта кейса slug=%s: %s', slug, e, exc_info=True)
 				self.stderr.write(f'Ошибка в строке slug={slug}: {e}')
 				skipped += 1
 
