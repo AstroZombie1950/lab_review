@@ -411,7 +411,7 @@
 	.case-preview {
 		position: fixed;
 		width: 300px;
-		height: 225px;
+		height: auto;
 		border-radius: var(--radius-xl);
 		overflow: hidden;
 		pointer-events: none;
@@ -428,11 +428,11 @@
 		transform: scale(1) translateY(0);
 	}
 
-	.case-preview img { width: 100%; height: 100%; object-fit: cover; }
+	.case-preview img { width: 100%; height: auto; display: block; }
 
 	.case-preview-empty {
 		width: 100%;
-		height: 100%;
+		height: 225px;
 		background: var(--bg-3);
 		display: flex;
 		align-items: center;
